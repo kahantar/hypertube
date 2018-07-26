@@ -33,6 +33,7 @@ module.exports = {
             }
         }
         catch (err){
+            console.log(err)
             return res.status(500).json({'error': 'Cannot add user'})
         }
     },
@@ -161,6 +162,9 @@ module.exports = {
         }catch(err){
             res.status(500).json({ 'error': 'cannot fetch user' });
         }
+    },
+    contact: (req, res) => {
+        
     }
 
 }
