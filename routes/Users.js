@@ -164,7 +164,9 @@ module.exports = {
         }
     },
     contact: (req, res) => {
-        
-    }
+
+    },
+
+    service: (req, res) => {}
 
 }

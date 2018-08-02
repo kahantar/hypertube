@@ -1,5 +1,6 @@
 const express = require('express');
-const users = require('./routes/Users');
+const users = require('../routes/Users');
+const passport = require('passport')
 
 exports.router = (() => {
     let apiRouter = express.Router();
@@ -11,6 +12,22 @@ exports.router = (() => {
     apiRouter.route('/users/resetemailpassword/').post(users.resetEmailPassword);
     apiRouter.route('/users/resetpassword/').post(users.resetPassword);
     apiRouter.route('/users/modificationprofil/').post(users.modificationProfil);
+    apiRouter.route('/contact/').get(users.contact);
+    apiRouter.route('/s/').get(users.service);
+    apiRouter.get('/', function(req, res, next) {
+        res.redirect("/");
+    });
+
+    apiRouter.get('/google',
+        passport.authenticate('google', { scope : ['profile','email'] }
+        ));
+
+    apiRouter.get('/google/callback',
+        passport.authenticate('google', {
+            successRedirect : '/',
+            failureRedirect : '/login'
+        })
+    );
 
     return apiRouter;
 })();
