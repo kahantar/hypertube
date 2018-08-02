@@ -22,7 +22,7 @@ module.exports = {
                 })
             if (userFound.length === 0){
                 const newUser = await models.User.create({ email, username, name, first_name, password, img, confirmation })
-                const token = jwtUtils.generateTokenForUser(newUser)
+                const token = jwtUtils.generateTokenForUser(newUser.id)
                 mailer(`Veuillez ouvrir le lien suivant afin de valider votre compte:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=confirm`, newUser.email, "Inscription Hypertube")
                 return res.status(201).json({
                     'user.id': newUser.id
@@ -33,7 +33,6 @@ module.exports = {
             }
         }
         catch (err){
-            console.log(err)
             return res.status(500).json({'error': 'Cannot add user'})
         }
     },
@@ -51,7 +50,7 @@ module.exports = {
                   if (userFound.confirmation === true){
                       return res.status(200).json({
                           'userId': userFound.id,
-                          'token': jwtUtils.generateTokenForUser(userFound)
+                          'token': jwtUtils.generateTokenForUser(userFound.id)
                       })
                   }else{
                     return res.status(403).json({ "error": "Email not confirmed" })
@@ -100,7 +99,7 @@ module.exports = {
    
         try{
             const userFound = await models.User.findOne({ where: { email } })
-            const token = jwtUtils.generateTokenForUser(userFound)
+            const token = jwtUtils.generateTokenForUser(userFound.id)
             mailer(`Veuillez ouvrir le lien suivant afin de modifier votre mot de passe:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=reset`, userFound.email, "Reinitialisation Password")
         }catch(err){
         }
@@ -162,11 +161,5 @@ module.exports = {
         }catch(err){
             res.status(500).json({ 'error': 'cannot fetch user' });
         }
-    },
-    contact: (req, res) => {
-
-    },
-
-    service: (req, res) => {}
-
+    }
 }
