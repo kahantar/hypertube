@@ -24,5 +24,5 @@ server.use('/auth/', authentification);
 
 
 server.listen(8080, () => {
-    console.log("ok");
+    console.log("oks");
 });
