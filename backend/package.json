@@ -1,0 +1,29 @@
+{
+  "name": "hypertube",
+  "version": "1.0.0",
+  "description": "realisation d'un site de streaming de video telechargees via le protocole bittorrent",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "gdufay, kahantar",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "express-validator": "^5.3.0",
+    "jsonwebtoken": "^8.3.0",
+    "node-gyp": "^3.7.0",
+    "nodemailer": "^4.6.7",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^0.1.5",
+    "pg": "^6.1.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.22.2",
+    "sequelize-cli": "^4.0.0"
+  }
+}
