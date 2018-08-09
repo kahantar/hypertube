@@ -19,7 +19,7 @@ class App extends React.Component{
                 <input value={this.state.name} placeholder="Name" onChange={(event) => this.setState({name: event.target.value})}/>
                 <input value={this.state.first_name} placeholder="First_name" onChange={(event) => this.setState({first_name: event.target.value})}/>
                 <input value={this.state.password} placeholder="Password" onChange={(event) => this.setState({password: event.target.value})}/>
-                <input value={this.state.confirm_password} placeholder="Confirmation Password" onChange={(event) => this.setState({confirm_password: event.target.value})}/>
+                <input value={this.state.confirm_password} placeholder="Confirmation Password" onChange={(event) => this.setState({confirm_password: event.target.value})}/>                
                 <button type="submit">S'inscrire</button>
             </form>
         );
