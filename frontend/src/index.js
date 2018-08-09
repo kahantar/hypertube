@@ -4,9 +4,10 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reducers from './reducers/indexReducers';
 import thunk from 'redux-thunk';
-import App from './components/App';
+import App from './components/register/register';
+
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 
-ReactDOM.render(<Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}><App /></Provider>, document.getElementById('root'));
+ReactDOM.render(<Provider store={createStoreWithMiddleware(reducers)}><App /></Provider>, document.getElementById('root'));

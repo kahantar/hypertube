@@ -1,49 +1,40 @@
 const models = require('../models');
-const Sequelize = require('sequelize');
-const bcrypt = require('bcrypt');
+const Sequelize = require('../../../Library/Caches/typescript/2.9/node_modules/@types/sequelize');
+const bcrypt = require('../../../Library/Caches/typescript/2.9/node_modules/@types/bcrypt');
 const jwtUtils = require('../utils/jwtUtils')
 const mailer = require('../utils/mailer')
-const { validationResult } = require('express-validator/check');
 
 const Op = Sequelize.Op;
 
 module.exports = {
     register: async (req, res) => {
-        const errors = validationResult(req);
-        if (!errors.isEmpty()) {
-            return res.status(422).json({ errors: errors.array() });
-        }
-        else{
-            const email = req.body.email;
-            const username = req.body.username;
-            const name = req.body.name;
-            const password = await bcrypt.hash(req.body.password, 5);
-            const img = req.body.img;
-            const first_name = req.body.first_name;
-            const confirmation = false;
-    
-            try{
-                const userFound = await models.User.findAll({
-                    where: { [Op.or]: [{email: email}, {username: username}]}
-                    })
-                if (userFound.length === 0){
-                    const newUser = await models.User.create({ email, username, name, first_name, password, img, confirmation })
-                    const token = jwtUtils.generateTokenForUser(newUser.id)
-                    mailer(`Veuillez ouvrir le lien suivant afin de valider votre compte:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=confirm`, newUser.email, "Inscription Hypertube")
-                    return res.status(201).json({
-                        'user.id': newUser.id
-                    })
-                }
-                else {
-                    return res.status(409).json({'error': 'User already exist'})
-                }
+        const email = req.body.email;
+        const username = req.body.username;
+        const name = req.body.name;
+        const password = await bcrypt.hash(req.body.password, 5);
+        const img = req.body.img;
+        const first_name = req.body.first_name;
+        const confirmation = false;
+
+        try{
+            const userFound = await models.User.findAll({
+                where: { [Op.or]: [{email: email}, {username: username}]}
+                })
+            if (userFound.length === 0){
+                const newUser = await models.User.create({ email, username, name, first_name, password, img, confirmation })
+                const token = jwtUtils.generateTokenForUser(newUser.id)
+                mailer(`Veuillez ouvrir le lien suivant afin de valider votre compte:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=confirm`, newUser.email, "Inscription Hypertube")
+                return res.status(201).json({
+                    'user.id': newUser.id
+                })
             }
-            catch (err){
-                console.log(err)
-                return res.status(500).json({'error': 'Cannot add user'})
+            else {
+                return res.status(409).json({'error': 'User already exist'})
             }
         }
-        
+        catch (err){
+            return res.status(500).json({'error': 'Cannot add user'})
+        }
     },
 
     login: async (req, res) => {
