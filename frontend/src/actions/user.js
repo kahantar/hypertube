@@ -1,32 +1,62 @@
 import axios from 'axios';
-import validationRegister from '../utils/validationForm';
+import {validationRegister, validationLogin} from '../utils/validationForm';
 
 export const registerUser = (user) => {
     return (dispatch) => {
         const errors = validationRegister(user);
-        if (errors.length === 0)
-            console.log("coucou")
+        if (errors.length === 0){
+            const data = JSON.stringify({
+                    email: user.email,
+                    username: user.username,
+                    name: user.name,
+                    first_name: user.first_name,
+                    password: user.password,
+                    img: "../upload_img/avatar.jpg"
+                })
+                    axios({ method: 'post',
+                            url: "http://localhost:8080/api/users/register",
+                            data,
+                            headers: {'Content-Type': 'application/json'} 
+                    }).then((response) => {
+                        dispatch({type: "WARNING_REGISTER", payload: response.data})
+                    }).catch((err) => {
+                        if (err.response.status === 422)
+                            dispatch({type: "WARNING_REGISTER", payload: err.response.data.errors})
+                        if (err.response.status === 409)
+                            dispatch({type: "WARNING_REGISTER", payload: err.response.data})
+                    })
+        }
         else
-            dispatch({type: "ERROR_VALIDATION", payload: errors})
-    //     dispatch({})
-    //     const data = JSON.stringify({
-    //             email: user.email,
-    //             username: user.username,
-    //             name: user.name,
-    //             first_name: user.first_name,
-    //             password: user.password,
-    //             img: "../upload_img/avatar.jpg"
-    //         })
-    //         try{
-    //             const response = await axios({  method: 'post',
-    //                                             url: "http://localhost:8080/api/users/register",
-    //                                             data,
-    //                                             headers: {'Content-Type': 'application/json'} 
-    //                                         })
-    //             console.log(response)
-    //         }catch(err){
-    //             console.log(err.response)
-    //         }
+            dispatch({type: "WARNING_REGISTER", payload: errors})
     }
     
+}
+
+export const loginUser = (user, history) => {
+    return (dispatch) => {
+        const errors = [];
+        if (errors.length === 0) {
+            const data = JSON.stringify({
+                email: user.email,
+                password: user.password
+            });
+            axios({ method: 'post',
+                            url: "http://localhost:8080/api/users/login",
+                            data,
+                            headers: {'Content-Type': 'application/json'} 
+                    }).then((response) => {
+                        const token = response.data.token;
+                        localStorage.setItem('token', token);
+                        history.push('/home');
+                    }).catch((err) => {
+                        if (err.response.status === 422)
+                            dispatch({type: "WARNING_LOGIN", payload: err.response.data.errors})
+                        else
+                            dispatch({type: "WARNING_LOGIN", payload: err.response.data})
+                    })
+        }else{
+            dispatch({type: "WARNING_LOGIN", payload: errors});
+        }
+
+    }
 }

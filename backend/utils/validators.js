@@ -19,5 +19,17 @@ module.exports = {
             .matches('[0-9]').withMessage('Password must contain at least 1 number.')
             .matches('[a-z]').withMessage('Password must contain at least 1 lowercase letter.')
             .matches('[A-Z]').withMessage('Password must contain at least 1 uppercase letter.'),
+        ],
+    login:
+        [
+            body('email', 'Incorrect combination')
+                .isEmail(),
+            body('password', 'Incorrect combination')
+                .isLength({ min:8 })
+                .matches('[0-9]')
+                .matches('[a-z]')
+                .matches('[A-Z]')
+            
+
         ]
 }

@@ -27,54 +27,58 @@ module.exports = {
                     where: { [Op.or]: [{email: email}, {username: username}]}
                     })
                 if (userFound.length === 0){
-                    const newUser = await models.User.create({ email, username, name, first_name, password, img, confirmation })
-                    const token = jwtUtils.generateTokenForUser(newUser.id)
+                    const newUser = await models.User.create({ email, username, name, first_name, password, img, confirmation });
+                    const token = jwtUtils.generateTokenForUser(newUser.id);
                     mailer(`Veuillez ouvrir le lien suivant afin de valider votre compte:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=confirm`, newUser.email, "Inscription Hypertube")
-                    return res.status(201).json({
-                        'user.id': newUser.id
-                    })
+                    return res.status(201).send([{
+                        msg: "Please open your confirmation email"
+                    }])
                 }
                 else {
-                    return res.status(409).json({'error': 'User already exist'})
+                    return res.status(409).json([{msg: 'User already exist'}])
                 }
             }
             catch (err){
-                console.log(err)
-                return res.status(500).json({'error': 'Cannot add user'})
+                return res.status(500).json([{msg: 'Cannot add user'}])
             }
         }
         
     },
 
     login: async (req, res) => {
-        const email = req.body.email;
-        const password = req.body.password;
-        try{
-            const userFound = await models.User.findOne({
-                where: {email: email}
-                })
-            if (userFound){
-              const compareUser = await bcrypt.compare(password, userFound.password);
-              if (compareUser){
-                  if (userFound.confirmation === true){
-                      return res.status(200).json({
-                          'userId': userFound.id,
-                          'token': jwtUtils.generateTokenForUser(userFound.id)
-                      })
-                  }else{
-                    return res.status(403).json({ "error": "Email not confirmed" })
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(422).json({ errors: [errors.array()[0]] });
+        }else{
+            const email = req.body.email;
+            const password = req.body.password;
+            try{
+                const userFound = await models.User.findOne({
+                    where: {email: email}
+                    })
+                if (userFound){
+                  const compareUser = await bcrypt.compare(password, userFound.password);
+                  if (compareUser){
+                      if (userFound.confirmation === true){
+                          return res.status(200).json({
+                              'userId': userFound.id,
+                              'token': jwtUtils.generateTokenForUser(userFound.id)
+                          })
+                      }else{
+                        return res.status(403).json([{ msg: "Email not confirmed" }])
+                      }
                   }
-              }
-              else{
-                return res.status(403).json({ "error": "invalid password" })
-              }
+                  else{
+                    return res.status(403).json([{ msg: "Invalid password" }])
+                  }
+                }
+                else {
+                    return res.status(404).json([{msg: 'User not exist'}])
+                }
             }
-            else {
-                return res.status(404).json({'error': 'User not exist'})
+            catch (err){
+                return res.status(500).json([{msg: 'Cannot verify user'}])
             }
-        }
-        catch (err){
-            return res.status(500).json({'error': 'Cannot verify user'})
         }
     },
 
@@ -90,7 +94,7 @@ module.exports = {
                 const userFound = await models.User.findOne({ attributes: ['id', 'confirmation'], where: {id: userId} })
                 userFound.update({ confirmation: true })
                 if (info == "confirm"){
-                    res.redirect("http://hypertube/connexion")
+                    res.redirect("http://localhost:3000/login")
                 }
                 else{
                     res.redirect(`http://hypertube/reset?token=${token}`)

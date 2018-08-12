@@ -17,14 +17,6 @@ class Form extends React.Component{
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.registerUser(this.state);
-        // this.setState({
-        //     email: "",
-        //     username: "",
-        //     name: "",
-        //     first_name: "",
-        //     password: "",
-        //     confirm_password: ""
-        // })
     }
     render(){
         return (
@@ -44,7 +36,7 @@ class Form extends React.Component{
 const mapDispatchToProps = (dispatch) => {
     return {
         ...bindActionCreators({registerUser}, dispatch)
-    }
+    };
 };
 
 export default connect(null, mapDispatchToProps)(Form);

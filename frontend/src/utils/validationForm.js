@@ -1,4 +1,4 @@
-const validationRegister = (user) => {
+export const validationRegister = (user) => {
     const errors = []
     let regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
     let pass = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
@@ -28,9 +28,16 @@ const validationRegister = (user) => {
         errors.push({msg: "Password invalide (8 caracters, 1 number, 1 lowercase letter, 1 uppercase letter)"})
     }
     if (user.password !== user.confirm_password){
-        errors.push({msg: "Vos passwords ne sont pas identique"})
+        errors.push({msg: "Error confirmation password"})
     }
     return errors
 }
 
-export default validationRegister;
+export const validationLogin = (user) => {
+    const errors = []
+    let regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+    let pass = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
+    if (!(regex).test(user.email) || !(pass).test(user.password))  
+        errors.push({msg: "Incorrect combination"});
+    return errors;
+}
