@@ -3,9 +3,9 @@ const jwt = require('jsonwebtoken');
 const secret = "7nTx713Jo25A4hrlWQ3hsQPPIAd0yT";
 
 module.exports = {
-    generateTokenForUser: (userData) => {
+    generateTokenForId: (id) => {
         return jwt.sign({
-            userId: userData            
+            userId: id            
         }, secret)
     },
     getUserId: (authorization) => {
@@ -13,7 +13,6 @@ module.exports = {
         if (authorization != null){
             try{
                 const jwtToken = jwt.verify(authorization, secret);
-                console.log(jwtToken)
                 userId = jwtToken.userId;
             }
             catch(err){
@@ -21,5 +20,14 @@ module.exports = {
             }
         }
         return userId
+    },
+    generateTokenForUser: (userData) => {
+        return jwt.sign({
+            name: userData.name,
+            first_name: userData.first_name,
+            username: userData.username,
+            email: userData.email,
+            img: userData.img
+        }, secret)
     }
 }

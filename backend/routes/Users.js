@@ -28,7 +28,7 @@ module.exports = {
                     })
                 if (userFound.length === 0){
                     const newUser = await models.User.create({ email, username, name, first_name, password, img, confirmation });
-                    const token = jwtUtils.generateTokenForUser(newUser.id);
+                    const token = jwtUtils.generateTokenForId(newUser.id);
                     mailer(`Veuillez ouvrir le lien suivant afin de valider votre compte:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=confirm`, newUser.email, "Inscription Hypertube")
                     return res.status(201).send([{
                         msg: "Please open your confirmation email"
@@ -62,7 +62,7 @@ module.exports = {
                       if (userFound.confirmation === true){
                           return res.status(200).json({
                               'userId': userFound.id,
-                              'token': jwtUtils.generateTokenForUser(userFound.id)
+                              'token': jwtUtils.generateTokenForUser(userFound)
                           })
                       }else{
                         return res.status(403).json([{ msg: "Email not confirmed" }])
@@ -112,7 +112,7 @@ module.exports = {
    
         try{
             const userFound = await models.User.findOne({ where: { email } })
-            const token = jwtUtils.generateTokenForUser(userFound.id)
+            const token = jwtUtils.generateTokenForId(userFound.id)
             mailer(`Veuillez ouvrir le lien suivant afin de modifier votre mot de passe:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=reset`, userFound.email, "Reinitialisation Password")
         }catch(err){
         }
@@ -132,30 +132,31 @@ module.exports = {
         }catch(err){
             return res.status(500).json({'error': 'Cannot add user'})
         }
-
-
     },
     modificationProfil: async (req, res) => {
-        const email = req.body.email;
-        const username = req.body.username;
-        const name = req.body.name;
-        const img = req.body.img;
-        const first_name = req.body.first_name;
-        const headerAuth = req.headers['authorization'];
-        const userId = jwtUtils.getUserId(headerAuth);
-        if (userId < 0){
-            return res.status(400).json({ 'error': 'wrong token' });
-        }
-        try{
-            const userFound = await models.User.findOne({
-                attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
-                where: { id: userId }
-            });
-            userFound.update({ email, username, name, img, first_name })
-            return res.status(201).json({ 'okey': 'profil exchange'});
-        }catch(err){
-            res.status(500).json({ 'error': 'cannot fetch user' });
-        }
+        console.log("coucou")
+            console.log(req.query, req.file)
+            res.json({ok: "ok"})
+        // const email = req.body.email;
+        // const username = req.body.username;
+        // const name = req.body.name;
+        // const img = req.body.img;
+        // const first_name = req.body.first_name;
+        // const headerAuth = req.headers['authorization'];
+        // const userId = jwtUtils.getUserId(headerAuth);
+        // if (userId < 0){
+        //     return res.status(400).json({ 'error': 'wrong token' });
+        // }
+        // try{
+        //     const userFound = await models.User.findOne({
+        //         attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
+        //         where: { id: userId }
+        //     });
+        //     userFound.update({ email, username, name, img, first_name })
+        //     return res.status(201).json({ 'okey': 'profil exchange'});
+        // }catch(err){
+        //     res.status(500).json({ 'error': 'cannot fetch user' });
+        // }
     },
     getUserProfil: async (req, res) => {
         const headerAuth = req.headers['authorization'];

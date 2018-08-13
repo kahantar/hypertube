@@ -6,6 +6,7 @@ class Home extends React.Component {
         return (
             <div>
                 <Link to='/profil'>Profil</Link>
+                <Link to='/Users'>Users</Link>
             </div>
         )
     }

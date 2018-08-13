@@ -34,7 +34,7 @@ export const registerUser = (user) => {
 
 export const loginUser = (user, history) => {
     return (dispatch) => {
-        const errors = [];
+        const errors = validationLogin(user);
         if (errors.length === 0) {
             const data = JSON.stringify({
                 email: user.email,
@@ -46,6 +46,8 @@ export const loginUser = (user, history) => {
                             headers: {'Content-Type': 'application/json'} 
                     }).then((response) => {
                         const token = response.data.token;
+                        let payloadtoken = JSON.parse(atob(token.split('.')[1]));
+                        dispatch({type: "INFO_PROFIL", payload: payloadtoken})
                         localStorage.setItem('token', token);
                         history.push('/home');
                     }).catch((err) => {
@@ -58,5 +60,21 @@ export const loginUser = (user, history) => {
             dispatch({type: "WARNING_LOGIN", payload: errors});
         }
 
+    }
+}
+
+export const updateUser = (user) => {
+    return (dispatch) => {
+        const formData = new FormData()
+        formData.append('img', user.file)
+        const data = JSON.stringify({
+            email: user.email,
+            password: user.username,
+            name: user.name,
+            first_name: user.first_name,
+        });
+        axios.put(`http://localhost:8080/api/users/modificationprofil?data=${data}`, formData, {
+            headers: { 'content-type': 'multipart/form-data' }
+            })
     }
 }
