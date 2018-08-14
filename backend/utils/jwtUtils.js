@@ -22,7 +22,9 @@ module.exports = {
         return userId
     },
     generateTokenForUser: (userData) => {
+        console.log(userData.img)
         return jwt.sign({
+            userId: userData.id,
             name: userData.name,
             first_name: userData.first_name,
             username: userData.username,

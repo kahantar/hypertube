@@ -9,6 +9,7 @@ const Op = Sequelize.Op;
 
 module.exports = {
     register: async (req, res) => {
+        console.log(req.body)
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
@@ -134,29 +135,35 @@ module.exports = {
         }
     },
     modificationProfil: async (req, res) => {
-        console.log("coucou")
-            console.log(req.query, req.file)
-            res.json({ok: "ok"})
-        // const email = req.body.email;
-        // const username = req.body.username;
-        // const name = req.body.name;
-        // const img = req.body.img;
-        // const first_name = req.body.first_name;
-        // const headerAuth = req.headers['authorization'];
-        // const userId = jwtUtils.getUserId(headerAuth);
-        // if (userId < 0){
-        //     return res.status(400).json({ 'error': 'wrong token' });
-        // }
-        // try{
-        //     const userFound = await models.User.findOne({
-        //         attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
-        //         where: { id: userId }
-        //     });
-        //     userFound.update({ email, username, name, img, first_name })
-        //     return res.status(201).json({ 'okey': 'profil exchange'});
-        // }catch(err){
-        //     res.status(500).json({ 'error': 'cannot fetch user' });
-        // }
+        const headerAuth = req.headers['authorization'];
+        const userId = jwtUtils.getUserId(headerAuth);
+        if (userId < 0){
+            return res.status(400).json({ 'error': 'wrong token' });
+        }
+        const data = JSON.parse(req.query.data)
+        const email = data.email;
+        const username = data.username;
+        const name = data.name;
+        const first_name = data.first_name;
+        const userUpdate = {};
+        try{
+            const userFound = await models.User.findOne({
+                attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
+                where: { id: userId }
+            });
+            if (req.files.length > 0){
+                const img = "/upload_img/" + userId + '.png';
+                userUpdate = await userFound.update({ email, username, name, img, first_name })               
+            }
+            else
+                userUpdate = await userFound.update({ email, username, name, img: userFound.img, first_name });                
+            return res.status(201).json({
+                'userId': userFound.id,
+                'token': jwtUtils.generateTokenForUser(userUpdate)
+            });
+        }catch(err){
+            res.status(500).json({ 'error': 'cannot fetch user' });
+        }
     },
     getUserProfil: async (req, res) => {
         const headerAuth = req.headers['authorization'];

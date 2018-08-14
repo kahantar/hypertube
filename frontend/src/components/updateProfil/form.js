@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { updateUser } from '../../actions/user';
 import { bindActionCreators } from 'redux';
+import { withRouter } from "react-router-dom";
 
 class Form extends React.Component {
     state = {
@@ -9,10 +10,9 @@ class Form extends React.Component {
         name: this.props.infoProfil.name,
         first_name: this.props.infoProfil.first_name,
         username: this.props.infoProfil.username,
-        img: '../../upload_img/avatar.png',
+        img: this.props.infoProfil.img,
         file: ''
     }
-
     changeImg = (e) => {
         e.preventDefault();
         const file = e.target.files[0];
@@ -27,8 +27,7 @@ class Form extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.updateUser(this.state)
-
+        this.props.updateUser(this.state, this.props.history)
     }
     render() {
         return (
@@ -54,9 +53,10 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
         infoProfil: state.infoProfil
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Form));

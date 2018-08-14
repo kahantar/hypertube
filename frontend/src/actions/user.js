@@ -11,7 +11,7 @@ export const registerUser = (user) => {
                     name: user.name,
                     first_name: user.first_name,
                     password: user.password,
-                    img: "../upload_img/avatar.jpg"
+                    img: "/upload_img/avatar.png"
                 })
                     axios({ method: 'post',
                             url: "http://localhost:8080/api/users/register",
@@ -63,18 +63,25 @@ export const loginUser = (user, history) => {
     }
 }
 
-export const updateUser = (user) => {
+export const updateUser = (user, history) => {
     return (dispatch) => {
+        const token = localStorage.getItem('token');
         const formData = new FormData()
         formData.append('img', user.file)
         const data = JSON.stringify({
             email: user.email,
-            password: user.username,
+            username: user.username,
             name: user.name,
             first_name: user.first_name,
         });
         axios.put(`http://localhost:8080/api/users/modificationprofil?data=${data}`, formData, {
-            headers: { 'content-type': 'multipart/form-data' }
-            })
+            headers: { 'content-type': 'multipart/form-data', 'Authorization': token  }
+        }).then((response) =>{
+            const token = response.data.token;
+            let payloadtoken = JSON.parse(atob(token.split('.')[1]));
+            dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+            localStorage.setItem('token', token);
+            history.push('/home');
+        }).catch((err) => console.log(err.response))
     }
 }
