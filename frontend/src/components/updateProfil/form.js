@@ -36,7 +36,7 @@ class Form extends React.Component {
                 <input type="text" placeholder="Username" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})}/>
                 <input type="text" placeholder="First name" value={this.state.first_name} onChange={(e) => this.setState({first_name: e.target.value})}/>
                 <input type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
-                <img src={this.state.img} width="200" height="200"/>
+                <img src={this.state.img} alt="img" width="200" height="200"/>
                 <input type="file" onChange={(e) => this.changeImg(e) } />
                 <button type="submit">Envoyer</button>
             </form>

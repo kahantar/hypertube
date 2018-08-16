@@ -27,7 +27,7 @@ exports.router = (() => {
     apiRouter.route('/users/myprofil/').get(users.getUserProfil);
     apiRouter.route('/users/confirmationemail/').get(users.confirmationEmail);
     apiRouter.route('/users/resetemailpassword/').post(users.resetEmailPassword);
-    apiRouter.route('/users/resetpassword/').post(users.resetPassword);
-    apiRouter.route('/users/modificationprofil/').put(upload.any(),users.modificationProfil);
+    apiRouter.route('/users/resetpassword/').put(validator.reset, users.resetPassword);
+    apiRouter.route('/users/modificationprofil/').put(upload.any() ,users.modificationProfil);
     return apiRouter;
 })();

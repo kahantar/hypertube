@@ -2,6 +2,8 @@ import React from 'react';
 import Form from './form';
 import WarningList from '../register/warningList';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
+
 
 class Login extends React.Component{
     render(){
@@ -9,6 +11,7 @@ class Login extends React.Component{
             <div>
                 <WarningList warnings={this.props.warningLogin}/>
                 <Form/>
+                <Link to='/forgetpassword'>Forget</Link>
             </div>
         )
     }

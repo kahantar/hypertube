@@ -1,22 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { bindActionCreators} from 'redux';
+import Form from './form';
+import WarningList from '../register/warningList';
 import { connect } from 'react-redux';
-import { loadInfoUser } from '../../actions/user';
+import { bindActionCreators } from 'redux';
 import qs from 'query-string';
+import { loadInfoUser } from '../../actions/user';
 
-
-class Home extends React.Component {
+class ResetPassword extends React.Component{
     loadInfo = () => {
         this.props.loadInfoUser(qs.parse(this.props.location.search))
     }
     render(){
         if (JSON.stringify(this.props.infoProfil) === '[]')
             this.loadInfo()
-        return (
+        return(
             <div>
-                <Link to='/profil'>Profil</Link>
-                <Link to='/Users'>Users</Link>
+                <WarningList warnings={this.props.warningReset} />
+                <Form />
             </div>
         )
     }
@@ -30,8 +30,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        infoProfil: state.infoProfil
+        warningReset: state.warningReset
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(ResetPassword);

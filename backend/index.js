@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const apiRouteur = require('./routeur/apiRouter').router;
 const session    = require('express-session');
-const authentification = require('./routeur/authRouteur');
+const authRouteur = require('./routeur/authRouteur').router;
 const passportSetup = require('./config/passport-setup');
 const passport = require('passport');
 const cors = require('cors');
@@ -21,7 +21,7 @@ server.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true
 
 
 server.use('/api/', apiRouteur);
-server.use('/auth/', authentification);
+server.use('/auth/', authRouteur);
 
 
 server.listen(8080, () => {
