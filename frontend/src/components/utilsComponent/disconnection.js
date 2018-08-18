@@ -10,6 +10,7 @@ class Disconnection extends React.Component {
                 <button onClick={(e) => {
                     localStorage.removeItem("token");
                     this.props.resetReducerPersist();
+                    this.props.history.push('/')
                 }}>
                 Disconnection
                 </button>

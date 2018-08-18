@@ -5,25 +5,24 @@ import WarningList from '../utilsComponent/warningList';
 import { withRouter } from 'react-router';
 import Disconnection from '../utilsComponent/disconnection';
 
-class UpdateProfil extends React.Component {
-    render() {
+class UpdateProfil extends React.Component{
+    render(){
         if (localStorage.getItem("token")){
-            return (
+            return(
                 <div>
-                    <Disconnection histoty={this.props.history} />
+                     <Disconnection history={this.props.history}/>
                     <WarningList warnings={this.props.warningUpdate}/>
                     <Form />
                 </div>
             )
         }else{
             return(
-                <div>
-                    {this.props.history.push('/')}
-                </div>
+                <div></div>
             )
         }
     }
 }
+
 
 const mapStateToProps = (state) => {
     return {
@@ -31,4 +30,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default withRouter(connect(mapStateToProps)(UpdateProfil));
+export default withRouter(connect(mapStateToProps, null)(UpdateProfil));

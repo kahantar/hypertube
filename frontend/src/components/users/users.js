@@ -4,21 +4,18 @@ import UsersList from './usersList';
 import { withRouter } from 'react-router';
 import Disconnection from '../utilsComponent/disconnection';
 
-
 class Users extends React.Component{
     render(){
         if (localStorage.getItem("token")){
             return(
                 <div>
-                    <Disconnection />
+                    <Disconnection history={this.props.history}/>
                     <UsersList allUsers={this.props.allUsers} />
                 </div>
             )
         }else{
             return(
-                <div>
-                    {this.props.history.push('/')}
-                </div>
+                <div></div>
             )
         }
     }

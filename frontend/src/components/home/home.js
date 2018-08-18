@@ -7,7 +7,6 @@ import qs from 'query-string';
 import { withRouter } from 'react-router';
 import Disconnection from '../utilsComponent/disconnection';
 
-
 class Home extends React.Component {
     loadInfo = () => {
         this.props.loadInfoUser(qs.parse(this.props.location.search))
@@ -20,14 +19,12 @@ class Home extends React.Component {
                 <div>
                     <Link to='/profil'>Profil</Link>
                     <Link onClick={(e) => this.props.loadUsers()} to='/users'>Users</Link>
-                    <Disconnection />
+                    <Disconnection history={this.props.history}/>
                 </div>
             )
         }else{
             return(
-                <div>
-                    {this.props.history.push('/')}
-                </div>
+                <div></div>
             )
         }
     }
