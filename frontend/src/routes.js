@@ -7,6 +7,7 @@ import { Switch, Route } from 'react-router-dom';
 import CompleteAuth from './components/completeAuth/completeAuth';
 import ForgetPassword from './components/fogetPassword/forgetPassword';
 import ResetPassword from './components/resetPassword/resetPassword';
+import Users from './components/users/users';
 
 const Routes = () => (
     <Switch>
@@ -17,6 +18,7 @@ const Routes = () => (
         <Route exact path='/completeauth' component={CompleteAuth}/>
         <Route exact path='/forgetpassword' component={ForgetPassword}/>
         <Route exact path='/resetpassword' component={ResetPassword}/>
+        <Route exact path='/users' component={Users} />
     </Switch>
 )
 

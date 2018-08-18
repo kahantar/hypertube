@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import { loadInfoUser } from '../../actions/user';
+import { loadInfoUser, loadUsers } from '../../actions/user';
 import qs from 'query-string';
+import { withRouter } from 'react-router';
+import Disconnection from '../utilsComponent/disconnection';
 
 
 class Home extends React.Component {
@@ -11,27 +13,37 @@ class Home extends React.Component {
         this.props.loadInfoUser(qs.parse(this.props.location.search))
     }
     render(){
-        if (JSON.stringify(this.props.infoProfil) === '[]')
+        if (JSON.stringify(qs.parse(this.props.location.search)) !== '{}')
             this.loadInfo()
-        return (
-            <div>
-                <Link to='/profil'>Profil</Link>
-                <Link to='/Users'>Users</Link>
-            </div>
-        )
+        if (localStorage.getItem("token")){
+            return (
+                <div>
+                    <Link to='/profil'>Profil</Link>
+                    <Link onClick={(e) => this.props.loadUsers()} to='/users'>Users</Link>
+                    <Disconnection />
+                </div>
+            )
+        }else{
+            return(
+                <div>
+                    {this.props.history.push('/')}
+                </div>
+            )
+        }
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({loadInfoUser}, dispatch)
+        ...bindActionCreators({loadInfoUser, loadUsers}, dispatch)
     }
 }
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
         infoProfil: state.infoProfil
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Home));

@@ -24,10 +24,10 @@ exports.router = (() => {
 
     apiRouter.route('/users/register/').post(validator.register, users.register);
     apiRouter.route('/users/login/').post(validator.login, users.login);
-    apiRouter.route('/users/myprofil/').get(users.getUserProfil);
     apiRouter.route('/users/confirmationemail/').get(users.confirmationEmail);
     apiRouter.route('/users/resetemailpassword/').post(users.resetEmailPassword);
     apiRouter.route('/users/resetpassword/').put(validator.reset, users.resetPassword);
     apiRouter.route('/users/modificationprofil/').put(upload.any() ,users.modificationProfil);
+    apiRouter.route('/users/loadAllUsers').get(users.loadAllUsers);
     return apiRouter;
 })();

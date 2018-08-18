@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from './form';
-import WarningList from '../register/warningList';
+import WarningList from '../utilsComponent/warningList';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import qs from 'query-string';
@@ -30,7 +30,7 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        warningReset: state.warningReset
+        warningReset: state.warningReducers
     }
 }
 

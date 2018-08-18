@@ -1,8 +1,10 @@
 import React from 'react';
 import Form from './form';
-import WarningList from './warningList';
+import WarningList from '../utilsComponent/warningList';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import {bindActionCreators} from 'redux';
+import { resetWarning } from '../../actions/user';
 
 class Register extends React.Component{
     render(){
@@ -10,7 +12,7 @@ class Register extends React.Component{
             <div>
                 <WarningList warnings={this.props.warningRegister}/>
                 <Form />
-                <Link to='/login'>Sign in</Link>
+                <Link onClick={(e) => this.props.resetWarning()} to='/login'>Sign in</Link>
             </div>
         )
     }
@@ -18,8 +20,14 @@ class Register extends React.Component{
 
 const mapStateToProps = (state) => {
     return{
-        warningRegister: state.warningRegister,
+        warningRegister: state.warningReducers,
     }  
 }
 
-export default connect(mapStateToProps, null)(Register);
+const mapDispatchToProps = (dispatch) => {
+    return{
+        ...bindActionCreators({resetWarning}, dispatch)
+    }  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

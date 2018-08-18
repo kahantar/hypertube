@@ -1,18 +1,17 @@
 import React from 'react';
-import Form from './form';
 import { connect } from 'react-redux';
-import WarningList from '../utilsComponent/warningList';
+import UsersList from './usersList';
 import { withRouter } from 'react-router';
 import Disconnection from '../utilsComponent/disconnection';
 
-class UpdateProfil extends React.Component {
-    render() {
+
+class Users extends React.Component{
+    render(){
         if (localStorage.getItem("token")){
-            return (
+            return(
                 <div>
-                    <Disconnection histoty={this.props.history} />
-                    <WarningList warnings={this.props.warningUpdate}/>
-                    <Form />
+                    <Disconnection />
+                    <UsersList allUsers={this.props.allUsers} />
                 </div>
             )
         }else{
@@ -27,8 +26,8 @@ class UpdateProfil extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        warningUpdate: state.warningReducers
+        allUsers: state.allUsers
     }
 }
 
-export default withRouter(connect(mapStateToProps)(UpdateProfil));
+export default withRouter(connect(mapStateToProps)(Users));

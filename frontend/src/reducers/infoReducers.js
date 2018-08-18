@@ -7,3 +7,12 @@ export const infoProfilReducers = (state = [], action) => {
             return state;
     }
 }
+
+export const allUsersReducers = (state = [], action) => {
+    switch(action.type){
+        case "ALL_USERS":
+            return action.payload;
+        default:
+            return state;
+    }
+}

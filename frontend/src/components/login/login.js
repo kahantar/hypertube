@@ -1,8 +1,10 @@
 import React from 'react';
 import Form from './form';
-import WarningList from '../register/warningList';
+import WarningList from '../utilsComponent/warningList';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom'
+import {bindActionCreators} from 'redux';
+import { resetWarning } from '../../actions/user';
 
 
 class Login extends React.Component{
@@ -11,7 +13,7 @@ class Login extends React.Component{
             <div>
                 <WarningList warnings={this.props.warningLogin}/>
                 <Form/>
-                <Link to='/forgetpassword'>Forget</Link>
+                <Link onClick={(e) => this.props.resetWarning()} to='/forgetpassword'>Forget</Link>
             </div>
         )
     }
@@ -19,8 +21,14 @@ class Login extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        warningLogin: state.warningLogin
+        warningLogin: state.warningReducers
     }
 }
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = (dispatch) => {
+    return{
+        ...bindActionCreators({resetWarning}, dispatch)
+    }  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

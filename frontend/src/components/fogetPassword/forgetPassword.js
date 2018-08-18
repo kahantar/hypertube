@@ -1,6 +1,6 @@
 import React from 'react';
 import Form from './form';
-import WarningList from '../register/warningList';
+import WarningList from '../utilsComponent/warningList';
 import { connect } from 'react-redux';
 
 class ForgetPassword extends React.Component{
@@ -16,7 +16,7 @@ class ForgetPassword extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        warningForget: state.warningForget
+        warningForget: state.warningReducers
     }
 }
 

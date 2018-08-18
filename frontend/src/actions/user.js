@@ -18,16 +18,16 @@ export const registerUser = (user) => {
                             data,
                             headers: {'Content-Type': 'application/json'} 
                     }).then((response) => {
-                        dispatch({type: "WARNING_REGISTER", payload: response.data})
+                        dispatch({type: "WARNING_UPDATE", payload: response.data})
                     }).catch((err) => {
                         if (err.response.status === 422)
-                            dispatch({type: "WARNING_REGISTER", payload: err.response.data.errors})
+                            dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
                         if (err.response.status === 409)
-                            dispatch({type: "WARNING_REGISTER", payload: err.response.data})
+                            dispatch({type: "WARNING_UPDATE", payload: err.response.data})
                     })
         }
         else
-            dispatch({type: "WARNING_REGISTER", payload: errors})
+            dispatch({type: "WARNING_UPDATE", payload: errors})
     }
     
 }
@@ -48,16 +48,17 @@ export const loginUser = (user, history) => {
                         const token = response.data.token;
                         let payloadtoken = JSON.parse(atob(token.split('.')[1]));
                         dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+                        dispatch({type: "WARNING_UPDATE", payload: []})
                         localStorage.setItem('token', token);
                         history.push('/home');
                     }).catch((err) => {
                         if (err.response.status === 422)
-                            dispatch({type: "WARNING_LOGIN", payload: err.response.data.errors})
+                            dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
                         else
-                            dispatch({type: "WARNING_LOGIN", payload: err.response.data})
+                            dispatch({type: "WARNING_UPDATE", payload: err.response.data})
                     })
         }else{
-            dispatch({type: "WARNING_LOGIN", payload: errors});
+            dispatch({type: "WARNING_UPDATE", payload: errors});
         }
 
     }
@@ -82,6 +83,7 @@ export const updateUser = (user, history) => {
                 const token = response.data.token;
                 let payloadtoken = JSON.parse(atob(token.split('.')[1]));
                 dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+                dispatch({type: "WARNING_UPDATE", payload: []})
                 localStorage.setItem('token', token);
                 history.push('/home');
             }).catch((err) => {
@@ -128,12 +130,12 @@ export const completeUser = (user, history) => {
                 history.push('/home');
             }).catch((err) => {
                 if (err.response.status === 422)
-                    dispatch({type: "WARNING_COMPLETE", payload: err.response.data.errors})
+                    dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
                 else
-                    dispatch({type: "WARNING_COMPLETE", payload: err.response.data})
+                    dispatch({type: "WARNING_UPDATE", payload: err.response.data})
             })
         }else{
-            dispatch({type: "WARNING_COMPLETE", payload: errors});
+            dispatch({type: "WARNING_UPDATE", payload: errors});
         }
     }
 }
@@ -146,9 +148,9 @@ export const forgetPasswordUser = (user) => {
         axios.post(`http://localhost:8080/api/users/resetemailpassword`, data, {
                 headers: { 'content-type': 'application/json' }
             }).then((response) =>{
-                dispatch({type: "WARNING_FORGET", payload: response.data})
+                dispatch({type: "WARNING_UPDATE", payload: response.data})
             }).catch((err) => {
-                dispatch({type: "WARNING_FORGET", payload: err.response.data})
+                dispatch({type: "WARNING_UPDATE", payload: err.response.data})
             })
     }
 }
@@ -164,16 +166,40 @@ export const resetPasswordUser = (user, history) => {
             axios.put(`http://localhost:8080/api/users/resetpassword`, data, {
                     headers: { 'content-type': 'application/json', 'Authorization': token }
                 }).then((response) =>{
-                    dispatch({type: "WARNING_LOGIN", payload: response.data})
+                    dispatch({type: "WARNING_UPDATE", payload: response.data})
                     history.push('/login');
                 }).catch((err) => {
                     if (err.response.status === 422)
-                        dispatch({type: "WARNING_RESET", payload: err.response.data.errors})
+                        dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
                     else
-                        dispatch({type: "WARNING_RESET", payload: err.response.data})
+                        dispatch({type: "WARNING_UPDATE", payload: err.response.data})
                 })
         }else{
-            dispatch({type: "WARNING_RESET", payload: errors});
+            dispatch({type: "WARNING_UPDATE", payload: errors});
         }
+    }
+}
+
+export const loadUsers = () => {
+    return (dispatch) => {
+        const token = localStorage.getItem('token');
+        axios.get(`http://localhost:8080/api/users/loadallusers`, {
+            headers: { 'content-type': 'application/json', 'Authorization': token }
+        }).then((response) =>{
+            dispatch({type: "ALL_USERS", payload: response.data})
+        }).catch((err) => {})
+    }
+}
+
+export const resetWarning = () => {
+    return (dispatch) => {
+        dispatch({type: "WARNING_UPDATE", payload: []});
+    }
+}
+
+export const resetReducerPersist = () => {
+    return (dispatch) => {
+        dispatch({type: "ALL_USERS", payload: []});
+        dispatch({type: "INFO_PROFIL", payload: []});
     }
 }
