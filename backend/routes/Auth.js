@@ -25,7 +25,28 @@ module.exports = {
                 const token = jwtUtils.generateTokenForUser(userFound)            
                 res.redirect(`http://localhost:3000/completeauth?token=${token}`)
             }
-        }catch(err){console.log(err)}
+        }catch(err){}
+    },
+    auth42: async (req, res) => {
+        try{
+            const email = req.user._json.email;
+            const username = req.user._json.login;
+            const name = req.user._json.last_name;
+            const first_name = req.user._json.first_name;
+            
+            const userFound = await models.User.findOne({
+                where: { email: email }
+            });
+            if (userFound && userFound.confirmation == true){
+                const token = jwtUtils.generateTokenForUser(userFound)
+                res.redirect(`http://localhost:3000/home?token=${token}`)
+            }else{
+                if (userFound == null)
+                    userFound = await models.User.create({ email, username, name, first_name, password: "1234", img: "/upload_img/avatar.png", confirmation: false });
+                const token = jwtUtils.generateTokenForUser(userFound)            
+                res.redirect(`http://localhost:3000/completeauth?token=${token}`)
+            }
+        }catch(err){}
     },
     completeUser: async (req, res) =>{
         const errors = validationResult(req);

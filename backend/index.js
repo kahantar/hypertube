@@ -16,14 +16,11 @@ server.use(passport.initialize());
 
 
 server.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}));
-// server.get('/', (req, res) => {
-// });
-
 
 server.use('/api/', apiRouteur);
 server.use('/auth/', authRouteur);
 
 
 server.listen(8080, () => {
-    console.log("oks");
+    console.log("connexion-ok");
 });

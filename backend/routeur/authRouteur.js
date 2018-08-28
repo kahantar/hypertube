@@ -9,19 +9,11 @@ const validator = require('../utils/validators');
 exports.router = (() => {
     let authRouter = express.Router();
 
+    authRouter.route('/42').get(passport.authenticate('42'));
+    authRouter.route('/42/callback').get(passport.authenticate('42', { failureRedirect: '/login' }), (req, res) => {auth.auth42(req, res)});
     authRouter.route('/google').get(passport.authenticate('google', { scope : ['profile','email'] }));
     authRouter.route('/google/callback').get(passport.authenticate('google', { scope : ['profile','email'] }), (req, res) => {auth.authGoogle(req, res)});
     authRouter.route('/completeuser').put(validator.complete, auth.completeUser);
     
     return authRouter;
 })();
-
-// router.get('/google',
-//     passport.authenticate('google', { scope : ['profile','email'] }
-//     ));
-
-// router.get('/google/callback', passport.authenticate('google', { scope : ['profile','email'] }), (req, res) => {auth.authGoogle(req, res)});
-
-// router.put('/completeuser', validator.complete, (req, res) => {auth.completeUser(req, res)});
-
-// module.exports = router;

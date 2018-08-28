@@ -28,6 +28,6 @@ exports.router = (() => {
     apiRouter.route('/users/resetemailpassword/').post(users.resetEmailPassword);
     apiRouter.route('/users/resetpassword/').put(validator.reset, users.resetPassword);
     apiRouter.route('/users/modificationprofil/').put(upload.any() ,users.modificationProfil);
-    apiRouter.route('/users/loadAllUsers').get(users.loadAllUsers);
+    apiRouter.route('/users/loadallusers').get(users.loadAllUsers);
     return apiRouter;
 })();

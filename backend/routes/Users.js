@@ -9,7 +9,6 @@ const Op = Sequelize.Op;
 
 module.exports = {
     register: async (req, res) => {
-        console.log(req.body)
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
@@ -21,7 +20,7 @@ module.exports = {
             const password = await bcrypt.hash(req.body.password, 5);
             const img = req.body.img;
             const first_name = req.body.first_name;
-            const confirmation = false;
+            const confirmation = req.body.confirmation;
     
             try{
                 const userFound = await models.User.findAll({
@@ -66,7 +65,7 @@ module.exports = {
                               'token': jwtUtils.generateTokenForUser(userFound)
                           })
                       }else{
-                        return res.status(403).json([{ msg: "Email not confirmed" }])
+                        return res.status(409).json([{ msg: "Email not confirmed" }])
                       }
                   }
                   else{
@@ -110,14 +109,13 @@ module.exports = {
 
     resetEmailPassword: async (req, res) => {
         const email = req.body.email;
-   
         try{
             const userFound = await models.User.findOne({ where: { email } })
             const token = jwtUtils.generateTokenForId(userFound.id)
             mailer(`Veuillez ouvrir le lien suivant afin de modifier votre mot de passe:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=reset`, userFound.email, "Reinitialisation Password")
             return res.status(200).json([{msg: "Please open your email"}])
         }catch(err){
-            res.status(200).json([{msg: "wrong email"}])
+            res.status(400).json([{msg: "wrong email"}])
         }
     },
     resetPassword: async (req, res) => {
@@ -141,6 +139,7 @@ module.exports = {
         }
     },
     modificationProfil: async (req, res) => {
+        console.log("coucou")
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
@@ -172,6 +171,7 @@ module.exports = {
                     'token': jwtUtils.generateTokenForUser(userUpdate)
                 });
             }catch(err){
+                console.log(err)
                 res.status(500).json([{ msg: 'cannot fetch user' }]);
             }
         }

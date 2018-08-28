@@ -12,7 +12,7 @@ class Home extends React.Component {
         this.props.loadInfoUser(qs.parse(this.props.location.search))
     }
     render(){
-        if (JSON.stringify(qs.parse(this.props.location.search)) !== '{}')
+        if (JSON.stringify(this.props.infoProfil) === '[]')
             this.loadInfo()
         if (localStorage.getItem("token")){
             return (
