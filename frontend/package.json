@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "query-string": "^6.1.0",
     "react": "^16.4.2",
+    "react-bootstrap": "^0.32.3",
     "react-dom": "^16.4.2",
     "react-google-button": "^0.5.3",
     "react-redux": "^5.0.7",

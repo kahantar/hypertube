@@ -2,7 +2,6 @@ import React from 'react';
 import Form from './form';
 import WarningList from '../utilsComponent/warningList';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom'
 import {bindActionCreators} from 'redux';
 import { resetWarning } from '../../actions/user';
 
@@ -13,7 +12,6 @@ class Login extends React.Component{
             <div>
                 <WarningList warnings={this.props.warningLogin}/>
                 <Form/>
-                <Link onClick={(e) => this.props.resetWarning()} to='/forgetpassword'>Forget</Link>
             </div>
         )
     }

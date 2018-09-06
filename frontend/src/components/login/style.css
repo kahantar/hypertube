@@ -1,22 +1,15 @@
 
-#identifier{
-    color: rgb(222, 145, 47);
-    float: right;
-    font-size: 20px;
-    margin: auto;
-}
 #titre
 {
     margin: auto;
     color: aliceblue;
 }
 
-#email, #password, #confirm, #name, #username, #first
+#email, #password
 {
     background-color: rgba(70, 68, 68);
     border: 1px rgb(70, 68, 68) solid;
     margin: auto;
-    /* margin-top: 15px; */
     width: 350px;
     max-width: 90%;
     color: aliceblue;
@@ -27,7 +20,6 @@
 #button
 {
     margin: auto;
-    /* margin-top: 15px; */
     width: 350px;
     max-width: 90%;
 }
@@ -46,7 +38,44 @@ font-family: Mothproofscriptregular;
 font-size: 90%;
 height: 600px;
 } 
+#signwith{
+    width: 350px;
+    max-width: 90%;
+    margin: auto;
+    padding-bottom: 2px;
+    height: 1px;
+}
+#signimg{
+    float: left;
+    padding-right: 5px;
+    padding-bottom: 2px;
+    width: 30px;
 
+}
+#signtext{
+    color: rgb(152, 151, 149);
+}
+
+#signtext:hover{
+    color: white;
+}
+
+#inscrire{
+    color: rgb(222, 145, 47);
+    float: right;
+    font-size: 20px;
+    margin: auto;
+    padding-bottom: 2px;
+}
+#forget{
+    width: 350px;
+    position: absolute;
+    bottom: 180px;
+    left: 25px;
+    max-width: 90%;
+    color: rgb(152, 151, 149);
+    font-size: 14px;
+}
 #alert{
     width: 500px;
     max-width: 90%;
