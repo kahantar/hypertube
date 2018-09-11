@@ -17,6 +17,7 @@
     "express-fileupload": "^0.4.0",
     "express-session": "^1.15.6",
     "express-validator": "^5.3.0",
+    "fluent-ffmpeg": "^2.1.2",
     "form-data": "^2.3.2",
     "fs": "0.0.1-security",
     "jsonwebtoken": "^8.3.0",
@@ -32,10 +33,11 @@
     "passport-google-oauth": "^0.1.5",
     "pg": "^6.1.1",
     "pg-hstore": "^2.3.2",
+    "pump": "^3.0.0",
     "range-parser": "^1.2.0",
     "request": "^2.87.0",
-    "sequelize": "^4.22.2",
-    "sequelize-cli": "^4.0.0",
+    "sequelize": "^4.38.0",
+    "sequelize-cli": "^4.1.1",
     "torrent-stream": "^1.0.4"
   }
 }

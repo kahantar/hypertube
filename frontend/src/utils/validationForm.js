@@ -105,10 +105,20 @@ export const validationResetPassword = (user) => {
     const errors = []
     let pass = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
     if (!(pass).test(user.password)){
-        errors.push({msg: "Password invalide (8 caracters, 1 number, 1 lowercase letter, 1 uppercase letter)"})
+        errors.push({msg: "Invalid password (8 caracters, 1 number, 1 lowercase letter, 1 uppercase letter)"})
     }
     else if (user.password !== user.confirm_password){
         errors.push({msg: "Error confirmation password"})
     }
     return errors
+}
+
+export const validationComment = (comment = null) => {
+	const errors = [];
+
+	if (!comment || !comment.length)
+		errors.push({msg: "Comment too short"});
+	else if (comment.length >= 600)
+		errors.push({msg: "Comment too long"});
+	return (errors);
 }
