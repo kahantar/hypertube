@@ -1,11 +1,12 @@
 'use strict'
 
 const torrentStream = require('torrent-stream');
-const magnetUri = require('magnet-uri');
 const path = require('path');
 const rangeParser = require('range-parser');
 
+const peerId = Buffer.from('-HT0001-' + crypto.createHash('sha1').update(crypto.randomBytes(12)).digest('hex'));
 const magnet = "magnet:?xt=urn:btih:17B557452B58D7EE14FF45CA8CD1F1C55D60070A&dn=Jurassic+World%3A+Fallen+Kingdom+%282018%29+%5B720p%5D+%5BYTS.AG%5D&tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337"
+
 const engine = torrentStream(magnet);
 
 const getTorrentFile = new Promise((resolve, reject) => {
@@ -25,7 +26,6 @@ module.exports = (req, res) => {
 	getTorrentFile.then((file) => {
 		res.setHeader('Content-Length', file.length);
 		res.setHeader('Content-Type', `video/${file.ext}`);
-		console.log('ranges: ', req.headers.range);
 		const ranges = rangeParser(file.length, req.headers.range, {combine: true});
 		if (ranges === -1) {
 			res.statusCode = 416;
@@ -40,7 +40,10 @@ module.exports = (req, res) => {
 			res.statusCode = 206;
 			res.setHeader('Content-Length', 1 + range.end - range.start);
 			res.setHeader('Content-Range', `bytes ${range.start}-${range.end}/${file.length}`);
-			file.createReadStream().pipe(res);
+			file.createReadStream({
+				start: range.start,
+				end: range.end
+			}).pipe(res);
 		}
 	}).catch (e => {
 		console.log(e);
