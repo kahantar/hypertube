@@ -4,7 +4,7 @@ const multer  = require('multer');
 const users = require('../routes/Users');
 const validator = require('../utils/validators');
 const jwtUtils = require('../utils/jwtUtils');
-const stream = require ('../routes/stream');
+const video = require('../routes/video');
 
 const storage = multer.diskStorage({
 	destination: function(req, file, callback) {
@@ -31,9 +31,9 @@ exports.router = (() => {
 	apiRouter.route('/users/resetpassword/').put(validator.reset, users.resetPassword);
 	apiRouter.route('/users/modificationprofil/').put(upload.any() ,users.modificationProfil);
 	apiRouter.route('/users/loadallusers').get(users.loadAllUsers);
-	//next one show the library, to define
-	//apiRouter.route('/library').get();
-	apiRouter.route('/library/watch').get(stream);
+	apiRouter.route('/video/watch').get(video.stream);
+	apiRouter.route('/video/postComment/').post(video.postComment);
+	apiRouter.route('/video/getComment/').get(video.getComment);
 
 	return apiRouter;
 })();

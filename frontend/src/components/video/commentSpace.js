@@ -3,10 +3,10 @@ import React from 'react'
 import  Form from './form';
 import Comments from './comments';
 
-const CommentSpace = () => {
+const CommentSpace = (props) => {
 	return (
 		<div>
-			<Form />
+			<Form imdb={props.imdb} />
 			<Comments />
 		</div>
 	);

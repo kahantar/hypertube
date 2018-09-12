@@ -1,11 +1,17 @@
 'use strict'
 
+const fs = require('fs');
 const torrentStream = require('torrent-stream');
 const path = require('path');
 const crypto = require('crypto');
 const rangeParser = require('range-parser');
 const ffmpeg = require('fluent-ffmpeg');
 const pump = require('pump');
+const { validationResult } = require('express-validator/check');
+const Sequelize = require('sequelize');
+
+const jwtUtils = require('../utils/jwtUtils')
+const models = require('../models');
 
 const peerId = Buffer.from('-HT0001-' + crypto.createHash('sha1').update(crypto.randomBytes(12)).digest('hex'));
 const magnet = "magnet:?xt=urn:btih:17B557452B58D7EE14FF45CA8CD1F1C55D60070A&dn=Jurassic+World%3A+Fallen+Kingdom+%282018%29+%5B720p%5D+%5BYTS.AG%5D&tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337"
@@ -28,7 +34,7 @@ const getTorrentFile = function(engine) {
 }
 
 async function startEngine(magnet) {
-	return (await torrentStream(magnet, {path: '/Users/gdufay/goinfre'}));
+	return (await torrentStream(magnet, {tmp: '/Users/gdufay/goinfre'}));
 }
 
 function getRange(file, rangeHeader, res) {
@@ -74,27 +80,81 @@ function stream(file, ranges, res) {
 	return (true);
 }
 
-module.exports = async (req, res) => {
-	const enginePending = startEngine(req.query.magnet);
+module.exports = {
 
-	res.setHeader('Accept-Ranges', 'bytes');
-	enginePending
-		.then((engine) => {
-			const getTorrent = getTorrentFile(engine);
+	stream: async (req, res) => {
+		const enginePending = startEngine(req.query.magnet);
 
-			getTorrent
-				.then(async (file) => {
-					res.setHeader('Content-Type', `video/mp4`);
-					const ranges = await getRange(file, req.headers.range, res);
+		res.setHeader('Accept-Ranges', 'bytes');
+		enginePending
+			.then((engine) => {
+				const getTorrent = getTorrentFile(engine);
 
-					if (!stream(file, ranges, res))
-						return (res.end());
-				})
-				.catch(err => {
-					;
-				});
-		})
-		.catch((err) => {
-			;
+				getTorrent
+					.then(async (file) => {
+						res.setHeader('Content-Type', `video/mp4`);
+						const ranges = await getRange(file, req.headers.range, res);
+
+						if (!stream(file, ranges, res))
+							return (res.end());
+					})
+					.catch(err => {
+						;
+					});
+			})
+			.catch((err) => {
+				;
+			});
+	},
+
+	postComment: (req, res) => {
+		const imdb = req.body.imdb || null;
+		const comment = req.body.comment || null;
+		const headerAuth = req.headers['authorization'];
+
+		if (jwtUtils.getUserId(headerAuth) < 0)
+			return res.status(400).json([{ msg: 'wrong token' }]);
+		if (!comment || !comment.length || comment.length >= 600)
+			return res.status(422).json({errors: 'Bad syntax comment'});
+		try {
+			const path = `/Users/gdufay/goinfre/torrent-stream/${imdb}`;
+
+			fs.accessSync(path);
+		} catch (e) {
+			return res.status(422).json({errors: 'Bad imdb'});
+		}
+
+		const username = jwtUtils.getUserUsername(headerAuth);
+		const newComment = models.Comment.create({comment, imdb, username});
+
+		newComment.catch(err => { return res.status(500).json([{msg: 'Cannot add user'}]) });
+		newComment.then(() => { return res.status(201).send([{msg: 'good'}]) });	
+	},
+
+	getComment: (req, res) => {
+		const imdb = req.body.imdb || null;
+		const headerAuth = req.headers['authorization'];
+
+		if (jwtUtils.getUserId(headerAuth) < 0)
+			return res.status(400).json([{ msg: 'wrong token' }]);
+		if (!imdb || !imdb.length)
+			return res.status(422).json({errors: 'Bad imdb'});
+		try {
+			const path = `/Users/gdufay/goinfre/torrent-stream/${imdb}`;
+
+			fs.accessSync(path);
+		} catch (e) {
+			return res.status(422).json({errors: 'Bad imdb'});
+		}
+
+		const query = models.Comment.findAll({
+			attributes: ['comment', 'username', 'createdAt'],
+			where: {
+				imdb: imdb
+			}
 		});
-};
+
+		query.catch(err => { return res.status(500).json([{msg: 'Cannot get user'}]) });
+		query.then((comments) => { return res.status(201).json(comments) });	
+	}
+}

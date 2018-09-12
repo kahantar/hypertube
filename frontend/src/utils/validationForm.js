@@ -113,12 +113,14 @@ export const validationResetPassword = (user) => {
     return errors
 }
 
-export const validationComment = (comment = null) => {
+export const validationComment = (comment = null, imdb = null) => {
 	const errors = [];
 
 	if (!comment || !comment.length)
 		errors.push({msg: "Comment too short"});
 	else if (comment.length >= 600)
 		errors.push({msg: "Comment too long"});
+	if (!imdb || !imdb.length)
+		errors.push({msg: "Bad imdb"});
 	return (errors);
 }

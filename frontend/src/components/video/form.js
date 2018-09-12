@@ -4,14 +4,12 @@ import { postComment } from '../../actions/video'
 
 class Form extends React.Component {
 	state = {
-		comment: ""
+		comment: "",
 	}
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		console.log('here: ', localStorage.getItem('token'));
-		console.log(`state: ${this.state.comment}`);
-		postComment();
+		postComment(this.state.comment, this.props.imdb);
 	}
 
 	render() {
