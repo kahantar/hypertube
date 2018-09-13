@@ -132,7 +132,7 @@ module.exports = {
 	},
 
 	getComment: (req, res) => {
-		const imdb = req.body.imdb || null;
+		const imdb = req.query.imdb || null;
 		const headerAuth = req.headers['authorization'];
 
 		if (jwtUtils.getUserId(headerAuth) < 0)
@@ -148,7 +148,7 @@ module.exports = {
 		}
 
 		const query = models.Comment.findAll({
-			attributes: ['comment', 'username', 'createdAt'],
+			attributes: ['id', 'comment', 'username', 'createdAt'],
 			where: {
 				imdb: imdb
 			}

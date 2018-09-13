@@ -15,9 +15,8 @@ const Video = () => {
 		);
 	}
 	else {
-		return (
-			<div>You should login, need to redirect</div>
-		);
+		window.location.href = '/login';
+		return ;
 	}
 }
 

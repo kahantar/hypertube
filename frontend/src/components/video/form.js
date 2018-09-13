@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { postComment } from '../../actions/video'
+import { postComment } from '../../actions/video';
 
 class Form extends React.Component {
 	state = {
@@ -10,6 +10,8 @@ class Form extends React.Component {
 	handleSubmit = (e) => {
 		e.preventDefault();
 		postComment(this.state.comment, this.props.imdb);
+		this.setState({comment: ""});
+		this.props.handler();
 	}
 
 	render() {

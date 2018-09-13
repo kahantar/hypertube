@@ -26,3 +26,22 @@ export const postComment = (comment, imdb) => {
 			;
 		});
 }
+
+export const getComment = (imdb = null) => {
+	return (dispatch) => {
+		if (!imdb)
+			return ;
+
+		axios({
+			method: 'get',
+			url: 'http://localhost:8080/api/video/getComment?imdb=' + imdb,
+			headers: { 'Content-Type' : 'application/json', 'Authorization': localStorage.getItem('token') }
+		})
+			.then((res) => {
+				dispatch({type: "COMMENT_LIST", payload: res.data});
+			})
+			.catch((err) => {
+				console.log(err);
+			});
+	};
+};
