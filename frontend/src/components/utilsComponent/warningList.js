@@ -1,9 +1,10 @@
 import React from 'react';
+import { Alert } from 'react-bootstrap';
 
 export const WarningList = (props) => {
     return (
-        <div>
-            {props.warnings.map(warning => <div key={warning.msg}>{warning.msg}</div>)}
+        <div id="alert">
+            {props.warnings.map(warning => <Alert bsStyle="warning" key={warning.msg}>{warning.msg}</Alert>)}
         </div>
     );
 }
