@@ -50,6 +50,7 @@ const ScrapPopular = async () => {
         populars[i].type = type;
         populars[i].synopsis = synopsis;
         populars[i].magnet = magnet;
+        console.log(magnet)
     }
 }
 
