@@ -9,6 +9,7 @@ import ForgetPassword from './components/fogetPassword/forgetPassword';
 import ResetPassword from './components/resetPassword/resetPassword';
 import Users from './components/users/users';
 import Video from './components/video/video';
+import Search from './components/search/search';
 
 const Routes = () => (
     <Switch>
@@ -19,6 +20,7 @@ const Routes = () => (
         <Route exact path='/completeauth' component={CompleteAuth}/>
         <Route exact path='/forgetpassword' component={ForgetPassword}/>
         <Route exact path='/resetpassword' component={ResetPassword}/>
+        <Route exact path='/search' component={Search}/>
         <Route exact path='/users' component={Users} />
         <Route exact path='/video' component={Video} />
     </Switch>

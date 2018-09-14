@@ -69,10 +69,18 @@ module.exports = {
                     attributes: ['id', 'email', 'name', 'first_name', 'username', 'img', 'password', 'confirmation'],
                     where: { id: userId }
                 });
+                const popularMovies = await models.Movies.findAll({
+                    raw: true,
+                    order: [
+                        ['rating', 'DESC']
+                      ],
+                      limit: 8
+                  })
                 const user = await userFound.update({ email, username, name, img, first_name, password, confirmation: true })
                 return res.status(201).json({ 
                     'userId': user.dataValues.id,
-                    'token': jwtUtils.generateTokenForUser(user.dataValues)
+                    'token': jwtUtils.generateTokenForUser(user.dataValues),
+                    'popularmovies': popularMovies
                 });
             }catch(err){
                 res.status(500).json([{ msg: 'cannot fetch user' }]);

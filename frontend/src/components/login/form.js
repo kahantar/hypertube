@@ -24,7 +24,7 @@ class Form extends React.Component{
     render(){
         return(
             <form id="form" className="card row justify-content-md-around" onSubmit={(e) => this.handleSubmit(e)}>
-                <img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" />                
+                <img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/>                
                 <h2 id="titre">S'identifier</h2>
                 <Link id="forget" onClick={(e) => this.props.resetWarning()} to='/forgetpassword'>Mot de passe oublié?</Link>                
                 <FormControl id="email" type="email" placeholder="Email" onChange={(e) => this.setState({email: e.target.value}) }/>

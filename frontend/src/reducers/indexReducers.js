@@ -1,19 +1,15 @@
 import { combineReducers } from 'redux';
-// import { warningRegisterReducers, warningLoginReducers, warningUpdateReducers, warningCompleteReducers, warningForgetReducers, warningResetReducers } from './warningReducers';
-import { infoProfilReducers, allUsersReducers } from './infoReducers';
+import { infoProfilReducers, allUsersReducers, allMoviesReducers, popularMoviesReducers, infoMovieReducers } from './infoReducers';
 import { warningReducers } from './warningReducers';
 import { allCommentReducers } from './commentReducers';
 
 const rootReducer = combineReducers({
-	// warningRegister: warningRegisterReducers,
-	// warningLogin: warningLoginReducers,
-	// warningUpdate: warningUpdateReducers,
-	// warningComplete: warningCompleteReducers,
-	// warningForget: warningForgetReducers,
-	// warningReset: warningResetReducers,
-	warningReducers: warningReducers,
-	infoProfil: infoProfilReducers,
-	allUsers: allUsersReducers,
+    warningReducers: warningReducers,
+    infoProfil: infoProfilReducers,
+    allUsers: allUsersReducers,
+    allMovies: allMoviesReducers,
+    popularMovies: popularMoviesReducers,
+    infoMovie: infoMovieReducers
 	comments: allCommentReducers
 })
 

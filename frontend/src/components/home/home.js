@@ -1,25 +1,25 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import { loadInfoUser, loadUsers } from '../../actions/user';
+import { loadInfoUser} from '../../actions/user';
 import qs from 'query-string';
 import { withRouter } from 'react-router';
-import Disconnection from '../utilsComponent/disconnection';
+import Menu from '../utilsComponent/menu';
+import ListMovies from '../library/listMovies';
 
 class Home extends React.Component {
     loadInfo = () => {
         this.props.loadInfoUser(qs.parse(this.props.location.search))
+        // this.forceUpdate();
     }
     render(){
         if (JSON.stringify(this.props.infoProfil) === '[]')
             this.loadInfo()
-        if (localStorage.getItem("token")){
+        if (localStorage.getItem("token") && JSON.stringify(this.props.popularMovies) !== '[]'){
             return (
                 <div>
-                    <Link to='/profil'>Profil</Link>
-                    <Link onClick={(e) => this.props.loadUsers()} to='/users'>Users</Link>
-                    <Disconnection history={this.props.history}/>
+                  <Menu />
+                  <ListMovies movies={this.props.popularMovies}/>
                 </div>
             )
         }else{
@@ -32,14 +32,15 @@ class Home extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({loadInfoUser, loadUsers}, dispatch)
+        ...bindActionCreators({loadInfoUser}, dispatch)
     }
 }
 
 const mapStateToProps = (state) => {
     console.log(state)
     return {
-        infoProfil: state.infoProfil
+        infoProfil: state.infoProfil,
+        popularMovies: state.popularMovies
     }
 }
 

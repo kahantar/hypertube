@@ -60,9 +60,17 @@ module.exports = {
                   const compareUser = await bcrypt.compare(password, userFound.password);
                   if (compareUser){
                       if (userFound.confirmation === true){
+                          const popularMovies = await models.Movies.findAll({
+                              raw: true,
+                              order: [
+                                  ['rating', 'DESC']
+                                ],
+                                limit: 8
+                            })
                           return res.status(200).json({
                               'userId': userFound.id,
-                              'token': jwtUtils.generateTokenForUser(userFound)
+                              'token': jwtUtils.generateTokenForUser(userFound),
+                              'popularmovies': popularMovies
                           })
                       }else{
                         return res.status(409).json([{ msg: "Email not confirmed" }])
@@ -139,7 +147,6 @@ module.exports = {
         }
     },
     modificationProfil: async (req, res) => {
-        console.log("coucou")
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
