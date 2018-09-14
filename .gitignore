@@ -2,3 +2,5 @@ node_modules/
 torrent/
 *.swp
 *.png
+ffprobe
+ffmpeg
