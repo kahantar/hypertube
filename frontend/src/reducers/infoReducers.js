@@ -42,3 +42,12 @@ export const infoMovieReducers = (state = [], action) => {
             return state;
     }
 }
+
+export const fluxMoviesReducers = (state = [], action) => {
+    switch(action.type){
+        case "FLUX_MOVIES":
+            return action.payload;
+        default:
+            return state;
+    }
+}

@@ -13,6 +13,15 @@ export const searchAllMovies = (movie) => {
                 headers: { 'Authorization': token  }
             }).then((response) =>{
                 dispatch({type: "ALL_MOVIES", payload: response.data.allmovies })
+                dispatch({type: "FLUX_MOVIES", payload: response.data.allmovies.slice(0, 20) })
             })
+    }
+}
+
+export const addMovies = (fluxMovies, allMovies) => {
+    const start = fluxMovies.length;
+    const end = start + 20;
+    return (dispatch) => {
+        dispatch({type: "FLUX_MOVIES", payload: allMovies.slice(0, end) })
     }
 }

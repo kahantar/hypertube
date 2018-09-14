@@ -1,4 +1,4 @@
-// import { bindActionCreators} from 'redux';
+import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 // import { loadInfoUser} from '../../actions/user';
 // import qs from 'query-string';
@@ -6,17 +6,17 @@ import { connect } from 'react-redux';
 import Menu from '../utilsComponent/menu';
 import ListMovies from '../library/listMovies';
 import React from 'react';
+import BottomScrollListener from 'react-bottom-scroll-listener';
+import { addMovies } from '../../actions/movie';
 
 class Search extends React.Component {
-    state = {
-        fluxMovies: this.props.allMovies,
-    }
     render(){
         if (localStorage.getItem("token")){
             return (
                 <div>
                   <Menu />
-                  <ListMovies movies={this.state.fluxMovies}/>
+                  <ListMovies movies={this.props.fluxMovies}/>
+                  <BottomScrollListener onBottom={(e) => this.props.addMovies(this.props.fluxMovies, this.props.allMovies)} />
                 </div>
             )
         }else{
@@ -27,17 +27,18 @@ class Search extends React.Component {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         ...bindActionCreators({loadInfoUser}, dispatch)
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ...bindActionCreators({addMovies}, dispatch)
+    }
+}
 
 const mapStateToProps = (state) => {
     console.log("redux",state)
     return {
-        allMovies: state.allMovies
+        allMovies: state.allMovies,
+        fluxMovies: state.fluxMovies
     }
 }
 
-export default connect(mapStateToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Search);
