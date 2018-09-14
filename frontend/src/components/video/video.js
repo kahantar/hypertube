@@ -16,7 +16,7 @@ const Video = () => {
 	}
 	else {
 		window.location.href = '/login';
-		return ;
+		return (<div></div>);
 	}
 }
 

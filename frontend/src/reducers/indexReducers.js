@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     allUsers: allUsersReducers,
     allMovies: allMoviesReducers,
     popularMovies: popularMoviesReducers,
-    infoMovie: infoMovieReducers
+    infoMovie: infoMovieReducers,
 	comments: allCommentReducers
 })
 
