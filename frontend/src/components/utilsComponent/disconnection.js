@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { withRouter } from 'react-router';
 import { resetReducerPersist } from '../../actions/user';
 
 class Disconnection extends React.Component {
@@ -25,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, mapDispatchToProps)(Disconnection);
+export default withRouter(connect(null, mapDispatchToProps)(Disconnection));

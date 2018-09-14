@@ -23,7 +23,7 @@ class Form extends React.Component{
     render(){
         return (
             <form id="form" className="card row justify-content-md-around" onSubmit={(e) => this.handleSubmit(e)}>
-                <img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" />                
+                <img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/>                
                 <h2 id="titre">S'inscrire</h2>
                 <FormControl id="email" type="email "value={this.state.email} placeholder="E-mail" onChange={(event) => this.setState({email: event.target.value})}/>
                 <FormControl id="username" type="text" value={this.state.username} placeholder="Username" onChange={(event) => this.setState({username: event.target.value})}/>

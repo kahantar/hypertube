@@ -1,15 +1,16 @@
 const models = require('../models');
-const sequelize = require('sequelize');
+const Sequelize = require('sequelize');
 
-models.Movies.findAll({
-  order: [
-      ['rating', 'DESC']
-    ],
-  limit: 20
+const ff = async () => {
+    const popularMovies = await models.Movies.findAll({
+        raw: true,
+        order: [
+            ['rating', 'DESC']
+        ],
+        limit: 8
+      })
+      console.log(popularMovies)
+      return 'ok'
+}
 
-}).then((response) => {
-    response.map(movie => {
-        console.log(movie.title)
-    })
-    process.exit()
-})
+ff()

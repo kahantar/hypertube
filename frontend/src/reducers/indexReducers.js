@@ -1,17 +1,13 @@
 import { combineReducers } from 'redux';
-// import { warningRegisterReducers, warningLoginReducers, warningUpdateReducers, warningCompleteReducers, warningForgetReducers, warningResetReducers } from './warningReducers';
-import { infoProfilReducers, allUsersReducers } from './infoReducers';
+import { infoProfilReducers, allUsersReducers, allMoviesReducers, popularMoviesReducers, infoMovieReducers } from './infoReducers';
 import { warningReducers } from './warningReducers';
 const rootReducer = combineReducers({
-    // warningRegister: warningRegisterReducers,
-    // warningLogin: warningLoginReducers,
-    // warningUpdate: warningUpdateReducers,
-    // warningComplete: warningCompleteReducers,
-    // warningForget: warningForgetReducers,
-    // warningReset: warningResetReducers,
     warningReducers: warningReducers,
     infoProfil: infoProfilReducers,
-    allUsers: allUsersReducers
+    allUsers: allUsersReducers,
+    allMovies: allMoviesReducers,
+    popularMovies: popularMoviesReducers,
+    infoMovie: infoMovieReducers
 })
 
 export default rootReducer 

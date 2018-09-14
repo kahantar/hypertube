@@ -5,7 +5,7 @@ const SignIn = (props) => {
     return (
         <div id="signwith">
             <Button href={props.link} bsStyle="link" id="signtext">
-                <img id="signimg" src={props.img}/>
+                <img id="signimg" src={props.img} alt="signIn"/>
                 {props.text}
             </Button>
         </div>

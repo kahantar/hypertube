@@ -1,5 +1,4 @@
 export const infoProfilReducers = (state = [], action) => {
-    console.log(action.payload)
     switch(action.type){
         case "INFO_PROFIL":
             return action.payload;
@@ -11,6 +10,33 @@ export const infoProfilReducers = (state = [], action) => {
 export const allUsersReducers = (state = [], action) => {
     switch(action.type){
         case "ALL_USERS":
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const allMoviesReducers = (state = [], action) => {
+    switch(action.type){
+        case "ALL_MOVIES":
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const popularMoviesReducers = (state = [], action) => {
+    switch(action.type){
+        case "POPULAR_MOVIES":
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const infoMovieReducers = (state = [], action) => {
+    switch(action.type){
+        case "INFO_MOVIE":
             return action.payload;
         default:
             return state;
