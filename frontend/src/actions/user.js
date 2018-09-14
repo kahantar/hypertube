@@ -102,15 +102,17 @@ export const updateUser = (user, history) => {
 
 export const loadInfoUser = (query) => {
     return (dispatch) => {
-        const token = query.token;
-        let payloadtoken = JSON.parse(atob(token.split('.')[1]));
-        localStorage.setItem('token', token);
-        axios.get(`http://localhost:8080/search/popularmovies`,{
-            headers: { 'Authorization': token  }
-        }).then((response) =>{
-            dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies })
-            dispatch({type: "INFO_PROFIL", payload: payloadtoken})
-            })
+        if (query.token !== undefined){
+            const token = query.token;
+            axios.get(`http://localhost:8080/search/popularmovies`,{
+                headers: { 'Authorization': token  }
+            }).then((response) =>{
+                let payloadtoken = JSON.parse(atob(token.split('.')[1]));
+                localStorage.setItem('token', token);
+                dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies })
+                dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+                }).catch((e) => {})
+        }
     }
 }
 

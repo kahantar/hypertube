@@ -15,7 +15,7 @@ class Home extends React.Component {
     render(){
         if (JSON.stringify(this.props.infoProfil) === '[]')
             this.loadInfo()
-        if (localStorage.getItem("token") && JSON.stringify(this.props.popularMovies) !== '[]'){
+        if (localStorage.getItem("token")){
             return (
                 <div>
                   <Menu />
