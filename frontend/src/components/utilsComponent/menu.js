@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loadUsers } from '../../actions/user';
-import { searchAllMovies } from '../../actions/movie';
+import { loadMovies } from '../../actions/movie';
 import Disconnection from '../utilsComponent/disconnection';
 import { Link } from 'react-router-dom';
 import { bindActionCreators} from 'redux';
@@ -13,7 +13,7 @@ class Menu extends React.Component{
         return(
              <div id="nav">
                     <Link to='/profil'>Profil</Link>
-                    <Link onClick={(e) => this.props.searchAllMovies()} to='/search'>Search</Link>
+                    <Link onClick={(e) => this.props.loadMovies(this.props.popularMovies)} to='/search'>Search</Link>
                     <Link onClick={(e) => this.props.loadUsers()} to='/users'>Users</Link>
                     <Disconnection history={this.props.history}/>
             </div> 
@@ -23,9 +23,15 @@ class Menu extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        ...bindActionCreators({loadUsers, searchAllMovies}, dispatch)
+        ...bindActionCreators({loadUsers, loadMovies}, dispatch)
+    }
+}
+
+const mapStateToProps = (state) => {
+    return{
+        popularMovies: state.popularMovies
     }
 }
 
 
-export default connect(null, mapDispatchToProps)(Menu);
+export default connect(mapStateToProps, mapDispatchToProps)(Menu);

@@ -7,11 +7,13 @@ import Menu from '../utilsComponent/menu';
 import ListMovies from '../library/listMovies';
 import React from 'react';
 import BottomScrollListener from 'react-bottom-scroll-listener';
-import { addMovies } from '../../actions/movie';
+import { addMovies, loadMovies } from '../../actions/movie';
 
 class Search extends React.Component {
     render(){
         if (localStorage.getItem("token")){
+            if (JSON.stringify(this.props.allMovies) === '[]')
+                this.props.loadMovies(this.props.popularMovies)
             return (
                 <div>
                   <Menu />
@@ -29,7 +31,7 @@ class Search extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({addMovies}, dispatch)
+        ...bindActionCreators({addMovies, loadMovies}, dispatch)
     }
 }
 
@@ -37,7 +39,8 @@ const mapStateToProps = (state) => {
     console.log("redux",state)
     return {
         allMovies: state.allMovies,
-        fluxMovies: state.fluxMovies
+        fluxMovies: state.fluxMovies,
+        popularMovies: state.popularMovies
     }
 }
 

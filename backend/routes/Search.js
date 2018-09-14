@@ -8,7 +8,7 @@ module.exports = {
                 raw: true,
                 order: [
                     ['title', 'ASC']
-                ],
+                ]
               })
               return res.status(200).json({
                   'allmovies': allMovies

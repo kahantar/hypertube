@@ -6,15 +6,10 @@ export const infoMovie = (movie) => {
     }
 }
 
-export const searchAllMovies = (movie) => {
+export const loadMovies = (popularMovies) => {
     return (dispatch) => {
-        const token = localStorage.getItem('token');
-        axios.get(`http://localhost:8080/search/allmovies`,{
-                headers: { 'Authorization': token  }
-            }).then((response) =>{
-                dispatch({type: "ALL_MOVIES", payload: response.data.allmovies })
-                dispatch({type: "FLUX_MOVIES", payload: response.data.allmovies.slice(0, 20) })
-            })
+        dispatch({type: "ALL_MOVIES", payload: popularMovies })
+        dispatch({type: "FLUX_MOVIES", payload: popularMovies })
     }
 }
 
