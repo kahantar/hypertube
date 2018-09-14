@@ -5,21 +5,21 @@ const models = require("../models");
 const info = require('./info');
 const FormData = require('form-data');
 
+let token = '';
 
 /******* REGISTER *******/
 
 describe('routes/Users.js', function() {
-	let token = ''
 	before((done) => {
 		models.User.destroy({
 			where: {}
 		})
-		.then(() => {
-			done();
-		});
+			.then(() => {
+				done();
+			});
 	});
-	
-	
+
+
 	describe('#register()', function() {
 		it('should return 201', function(done) {
 			request.post(info.urlRegister, {form: info.registerNotConfirm}, function (err, res, body) {
@@ -27,32 +27,32 @@ describe('routes/Users.js', function() {
 				done();
 			});
 		});
-		
+
 		it('should return 201', function(done) {
 			request.post(info.urlRegister, {form: info.registerConfirm}, function (err, res, body) {
 				expect(res.statusCode).to.equal(201);
 				done();
 			});
 		});
-		
+
 		it('should return 409', function(done) {
 			request.post(info.urlRegister, {form: info.registerNotConfirm}, function (err, res, body) {
 				expect(res.statusCode).to.equal(409);
 				done();
 			});
 		});
-		
+
 		it('should return 422', function(done) {
 			request.post(info.urlRegister, {form: info.registerFalse}, function (err, res, body) {
 				expect(res.statusCode).to.equal(422);
 				done();
 			});
 		});
-		
+
 	});
-	
+
 	/******* LOGIN *******/
-	
+
 	describe('#login()', function() {
 
 		it('should return 200', function(done) {
@@ -95,14 +95,14 @@ describe('routes/Users.js', function() {
 	/******* RESETEMAILPASSWORD *******/
 
 	describe('#resetemailpassword()', function() {
-		
+
 		it('should return 200', function(done) {
 			request.post(info.urlResetEmailPassword, {form: info.resetEmailTrue}, function (err, res, body) {
 				expect(res.statusCode).to.equal(200);
 				done();
 			});
 		});
-	
+
 		it('should return 400', function(done) {
 			request.post(info.urlResetEmailPassword, {form: info.resetEmailFalse}, function (err, res, body) {
 				expect(res.statusCode).to.equal(400);
@@ -114,15 +114,15 @@ describe('routes/Users.js', function() {
 	/******* RESETPASSWORD *******/
 
 	describe('#resetpassword()', function() {
-		
+
 		it('should return 201', function(done) {
 			request.put(info.urlResetPassword, {form: info.newPassword}, function (err, res, body) {
 				expect(res.statusCode).to.equal(201);
 				done();
 			})
-			.setHeader('Authorization', token);
+				.setHeader('Authorization', token);
 		});
-	
+
 		it('should return 400', function(done) {
 			request.put(info.urlResetPassword, {form: info.newPassword}, function (err, res, body) {
 				expect(res.statusCode).to.equal(400);
@@ -140,17 +140,17 @@ describe('routes/Users.js', function() {
 
 	/******* LOADUSERS *******/
 
-	
+
 	describe('#loadusers()', function() {
-		
+
 		it('should return 201', function(done) {
 			request.get(info.urlLoadUsers, function (err, res, body) {
 				expect(res.statusCode).to.equal(201);
 				done();
 			})
-			.setHeader('Authorization', token);
+				.setHeader('Authorization', token);
 		});
-	
+
 		it('should return 400', function(done) {
 			request.get(info.urlLoadUsers, function (err, res, body) {
 				expect(res.statusCode).to.equal(400);
@@ -161,28 +161,134 @@ describe('routes/Users.js', function() {
 
 	/******* COMPLETEUSER *******/
 
-		describe('#completeuser()', function() {
-			it('should return 201', function(done) {
-				request.put(info.urlCompleteUser, {form: info.completeUserTrue}, function (err, res, body) {
-					expect(res.statusCode).to.equal(201);
-					done();
-				})
+	describe('#completeuser()', function() {
+		it('should return 201', function(done) {
+			request.put(info.urlCompleteUser, {form: info.completeUserTrue}, function (err, res, body) {
+				expect(res.statusCode).to.equal(201);
+				done();
+			})
 				.setHeader('Authorization', token);
+		});
+
+		it('should return 400', function(done) {
+			request.put(info.urlCompleteUser, {form: info.completeUserTrue}, function (err, res, body) {
+				expect(res.statusCode).to.equal(400);
+				done();
 			});
-		
-			it('should return 400', function(done) {
-				request.put(info.urlCompleteUser, {form: info.completeUserTrue}, function (err, res, body) {
-					expect(res.statusCode).to.equal(400);
-					done();
-				});
-			});
-	
-			it('should return 422', function(done) {
-				request.put(info.urlCompleteUser, {form: info.completeUserFalse}, function (err, res, body) {
-					expect(res.statusCode).to.equal(422);
-					done();
-				})
+		});
+
+		it('should return 422', function(done) {
+			request.put(info.urlCompleteUser, {form: info.completeUserFalse}, function (err, res, body) {
+				expect(res.statusCode).to.equal(422);
+				done();
+			})
 				.setHeader('Authorization', token);
+		});
+	});
+});
+
+/******* Video *******/
+
+describe('routes/Video.js', function() {
+	before((done) => {
+		models.Comment.destroy({
+			where: {}
+		})
+			.then(() => {
+				done();
 			});
+	});
+
+	/******* Video *******/
+
+	describe('#postComment()', () => {
+		it('should return 201', function(done) {
+			request.post(info.urlPostComment, {form: info.completeCommentTrue}, function (err, res, body) {
+				expect(res.statusCode).to.equal(201);
+				done();
+			})
+				.setHeader('Authorization', token);
+		});
+
+		it('should return 400', function(done) {
+			request.post(info.urlPostComment, {form: info.completeCommentTrue}, function (err, res, body) {
+				expect(res.statusCode).to.equal(400);
+				done();
+			})
+		});
+
+		it('should return 422', function(done) {
+			request.post(info.urlPostComment, {form: info.completeCommentFalse}, function (err, res, body) {
+				expect(res.statusCode).to.equal(422);
+				done();
+			})
+				.setHeader('Authorization', token);
+		});
+
+		it('should return 422', function(done) {
+			request.post(info.urlPostComment, {form: info.completeCommentEmptyImdb}, function (err, res, body) {
+				expect(res.statusCode).to.equal(422);
+				done();
+			})
+				.setHeader('Authorization', token);
+		});
+
+		it('should return 422', function(done) {
+			request.post(info.urlPostComment, {form: info.completeCommentEmptyComment}, function (err, res, body) {
+				expect(res.statusCode).to.equal(422);
+				done();
+			})
+				.setHeader('Authorization', token);
+		});
+
+		it('should return 422', function(done) {
+			request.post(info.urlPostComment, {form: info.completeCommentBadImdb}, function (err, res, body) {
+				expect(res.statusCode).to.equal(422);
+				done();
+			})
+				.setHeader('Authorization', token);
+		});
+	});
+
+	describe('#getComment()', () => {
+		it('should return 201', function(done) {
+			request.get(info.urlGetComment, {form: info.getCommentTrue}, function (err, res, body) {
+				expect(res.statusCode).to.equal(201);
+				done();
+			})
+				.setHeader('Authorization', token);
+		});
+
+		it('should return 400', function(done) {
+			request.get(info.urlGetComment, {form: info.getCommentTrue}, function (err, res, body) {
+				expect(res.statusCode).to.equal(400);
+				done();
+			})
+		});
+
+		it('should return 422', function(done) {
+			request.get(info.urlGetComment, {form: info.getCommentEmpty}, function (err, res, body) {
+				expect(res.statusCode).to.equal(422);
+				done();
+			})
+				.setHeader('Authorization', token);
+		});
+
+		it('should return 422', function(done) {
+			request.get(info.urlGetComment, {form: info.getCommentFalse}, function (err, res, body) {
+				expect(res.statusCode).to.equal(422);
+				done();
+			})
+				.setHeader('Authorization', token);
+		});
+
+		it('should return 422', function(done) {
+			request.get(info.urlGetComment, {form: info.getCommentUndefined}, function (err, res, body) {
+				expect(res.statusCode).to.equal(422);
+				done();
+			})
+				.setHeader('Authorization', token);
+		});
+
 	});
 });

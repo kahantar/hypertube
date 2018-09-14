@@ -1,4 +1,7 @@
 module.exports = {
+
+	/******* User *******/
+
     urlRegister: "http://localhost:8080/api/users/register/",
     urlLogin: "http://localhost:8080/api/users/login/",
     urlResetEmailPassword: "http://localhost:8080/api/users/resetemailpassword/",
@@ -87,5 +90,42 @@ module.exports = {
         img: "/upload_img/avatar.png",
         first_name: 't',
         confirmation: true
-    }
+    },
+
+	/******* Video *******/
+
+	urlPostComment: 'http://localhost:8080/api/video/postComment/',
+	urlGetComment: 'http://localhost:8080/api/video/getComment/',
+	completeCommentFalse: {
+		imdb: '',
+		comment: ''
+	},
+	completeCommentEmptyImdb: {
+		imdb: '',
+		comment: 'test'
+	},
+	completeCommentEmptyComment: {
+		imdb: 'EA17E6BE92962A403AC1C638D2537DCF1E564D26',
+		comment: ''
+	},
+	completeCommentTrue: {
+		imdb: 'EA17E6BE92962A403AC1C638D2537DCF1E564D26',
+		comment: 'test'
+	},
+	completeCommentBadImdb: {
+		imdb: 'test',
+		comment: 'test'
+	},
+	getCommentTrue: {
+		imdb: 'EA17E6BE92962A403AC1C638D2537DCF1E564D26',
+	},
+	getCommentEmpty: {
+		imdb: '',
+	},
+	getCommentFalse: {
+		imdb: 'test',
+	},
+	getCommentUndefined: {
+		imdb: undefined,
+	},
 }
