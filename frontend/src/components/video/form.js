@@ -9,9 +9,10 @@ class Form extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		postComment(this.state.comment, this.props.imdb);
+		postComment(this.state.comment, this.props.imdb)
+			.then(() => { this.props.handler(); })
+			.catch((err) => { } );
 		this.setState({comment: ""});
-		this.props.handler();
 	}
 
 	render() {

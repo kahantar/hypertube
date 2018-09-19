@@ -31,7 +31,8 @@ exports.router = (() => {
 	apiRouter.route('/users/resetpassword/').put(validator.reset, users.resetPassword);
 	apiRouter.route('/users/modificationprofil/').put(upload.any() ,users.modificationProfil);
 	apiRouter.route('/users/loadallusers').get(users.loadAllUsers);
-	apiRouter.route('/video/watch').get(video.stream);
+	apiRouter.route('/video/watch/').get(video.stream);
+	apiRouter.route('/video/subtitle/').get(video.subtitle);
 	apiRouter.route('/video/postComment/').post(video.postComment);
 	apiRouter.route('/video/getComment/').get(video.getComment);
 

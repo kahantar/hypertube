@@ -16,7 +16,7 @@ class MovieCard extends React.Component{
               <CardBody>
                 <CardTitle>{this.props.movie.title}</CardTitle>
                 <CardSubtitle>{this.props.movie.year}</CardSubtitle>
-                <Link onClick={(e) => this.props.infoMovie(this.props.movie)} to='/movie'>Visionner</Link>              
+                <Link onClick={(e) => this.props.infoMovie(this.props.movie)} to='/video'>Visionner</Link>              
               </CardBody>
             </Card>
           </Col>

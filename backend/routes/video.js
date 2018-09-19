@@ -9,13 +9,15 @@ const ffmpeg = require('fluent-ffmpeg');
 const pump = require('pump');
 const { validationResult } = require('express-validator/check');
 const Sequelize = require('sequelize');
+const osApi = require('opensubtitles-api');
+const axios = require('axios');
+const subsrt = require('subsrt');
 
 const jwtUtils = require('../utils/jwtUtils')
 const models = require('../models');
 
 const peerId = Buffer.from('-HT0001-' + crypto.createHash('sha1').update(crypto.randomBytes(12)).digest('hex'));
-const magnet = "magnet:?xt=urn:btih:17B557452B58D7EE14FF45CA8CD1F1C55D60070A&dn=Jurassic+World%3A+Fallen+Kingdom+%282018%29+%5B720p%5D+%5BYTS.AG%5D&tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337"
-const avengers = "magnet:?xt=urn:btih:EA17E6BE92962A403AC1C638D2537DCF1E564D26&dn=Avengers%3A+Infinity+War+%282018%29+%5B720p%5D+%5BYTS.AG%5D&tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337"
+const SUBPATH = `/User/gdufay/goinfre/subtitles/`;
 
 const getTorrentFile = function(engine) {
 	return new Promise ((resolve, reject) => {
@@ -80,6 +82,19 @@ function stream(file, ranges, res) {
 	return (true);
 }
 
+function downloadAndConvertSub(sub, hash) {
+	const filename = `${SUBPATH}${hash}${sub.langcode}.vtt`;
+
+	axios({
+		method: 'get',
+		url: sub.url
+	}).then(data => {
+		fs.writeFile(filename, subsrt.convert(data.data, { format: 'vtt' }), (err) => console.log);
+	}).catch(err => {
+		;
+	});
+}
+
 module.exports = {
 
 	stream: async (req, res) => {
@@ -107,6 +122,37 @@ module.exports = {
 			});
 	},
 
+	subtitle: async (req, res) => {
+		const title = req.query.title;
+		const hash = req.query.hash;
+		const os = new osApi('TemporaryUserAgent');
+		const headerAuth = req.headers['authorization'];
+		const paths = [];
+
+		if (jwtUtils.getUserId(headerAuth) < 0)
+			return res.status(400).json([{ msg: 'wrong token' }]);
+		os.search({ 
+			query: title,
+		})
+			.then(sub => {
+				if (sub.en) {
+					downloadAndConvertSub(sub.en, hash);
+					paths.push(`subtitles/${hash}${sub.en.langcode}.vtt`);
+				}
+				if (sub.fr) {
+					downloadAndConvertSub(sub.fr, hash);
+					paths.push(`subtitles/${hash}${sub.fr.langcode}.vtt`);
+				}
+				return res.status(201).json({ paths: paths });
+			})
+			.catch(err => {
+				if (err) {
+					console.log('catch sub ', err);
+				}
+				return res.status(500).json([{ msg: 'os API does not work' }]);
+			});
+	},
+
 	postComment: (req, res) => {
 		const imdb = req.body.imdb || null;
 		const comment = req.body.comment || null;
@@ -128,7 +174,7 @@ module.exports = {
 		const newComment = models.Comment.create({comment, imdb, username});
 
 		newComment.catch(err => { return res.status(500).json([{msg: 'Cannot add user'}]) });
-		newComment.then(() => { return res.status(201).send([{msg: 'good'}]) });	
+		newComment.then(() => { return res.status(201).end() });	
 	},
 
 	getComment: (req, res) => {
@@ -155,6 +201,6 @@ module.exports = {
 		});
 
 		query.catch(err => { return res.status(500).json([{msg: 'Cannot get user'}]) });
-		query.then((comments) => { return res.status(201).json(comments) });	
+		query.then((comments) => { return res.status(201).json(comments) });
 	}
 }
