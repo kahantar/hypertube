@@ -9,7 +9,4 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const { persistor, store } = createAppStore()
 
-
-
-
 ReactDOM.render(<Provider store={store}><PersistGate loading={null} persistor={persistor}><BrowserRouter><Routes/></BrowserRouter></PersistGate></Provider>, document.getElementById('root'));
