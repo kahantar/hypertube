@@ -33,6 +33,7 @@ exports.router = (() => {
 	apiRouter.route('/users/loadallusers').get(users.loadAllUsers);
 	apiRouter.route('/video/watch/').get(video.stream);
 	apiRouter.route('/video/subtitle/').get(video.subtitle);
+	apiRouter.route('/video/showSubtitle/').get(video.showSubtitle);
 	apiRouter.route('/video/postComment/').post(video.postComment);
 	apiRouter.route('/video/getComment/').get(video.getComment);
 

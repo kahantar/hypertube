@@ -11,13 +11,14 @@ const { validationResult } = require('express-validator/check');
 const Sequelize = require('sequelize');
 const osApi = require('opensubtitles-api');
 const axios = require('axios');
-const subsrt = require('subsrt');
+const srt2vtt = require('srt-to-vtt');
+const Readable = require('stream').Readable;
 
 const jwtUtils = require('../utils/jwtUtils')
 const models = require('../models');
 
 const peerId = Buffer.from('-HT0001-' + crypto.createHash('sha1').update(crypto.randomBytes(12)).digest('hex'));
-const SUBPATH = `/User/gdufay/goinfre/subtitles/`;
+const SUBPATH = __dirname + '/../../frontend/public/subtitles/'//`/Users/gdufay/goinfre/subtitles/`;
 
 const getTorrentFile = function(engine) {
 	return new Promise ((resolve, reject) => {
@@ -89,7 +90,17 @@ function downloadAndConvertSub(sub, hash) {
 		method: 'get',
 		url: sub.url
 	}).then(data => {
-		fs.writeFile(filename, subsrt.convert(data.data, { format: 'vtt' }), (err) => console.log);
+		fs.access(filename, fs.constants.F_OK, (err) => {
+			if (err) {
+				const s = new Readable();
+
+				s.push(data.data);
+				s.push(null);
+				s
+					.pipe(srt2vtt())
+					.pipe(fs.createWriteStream(filename))
+			}
+		});
 	}).catch(err => {
 		;
 	});
@@ -137,11 +148,11 @@ module.exports = {
 			.then(sub => {
 				if (sub.en) {
 					downloadAndConvertSub(sub.en, hash);
-					paths.push(`subtitles/${hash}${sub.en.langcode}.vtt`);
+					paths.push({ path: `subtitles/${hash}${sub.en.langcode}.vtt`, lang: 'en' });
 				}
 				if (sub.fr) {
 					downloadAndConvertSub(sub.fr, hash);
-					paths.push(`subtitles/${hash}${sub.fr.langcode}.vtt`);
+					paths.push({ path: `subtitles/${hash}${sub.fr.langcode}.vtt`, lang: 'fr' });
 				}
 				return res.status(201).json({ paths: paths });
 			})
@@ -151,6 +162,25 @@ module.exports = {
 				}
 				return res.status(500).json([{ msg: 'os API does not work' }]);
 			});
+	},
+
+	showSubtitle: (req, res) => {
+		const lang = req.query.lang;
+		const hash = req.query.hash || null;
+
+		if (lang !== 'en' && lang !== 'fr')
+			return res.status(400).json([{ msg: 'unknown lang' }]);
+		if (!hash)
+			return res.status(400).json([{ msg: 'unknown hash' }]);
+
+		const data = fs.readFileSync(`${SUBPATH}${hash}${lang}.vtt`);
+		res.setHeader('Content-Type', 'text/vtt; charset=UTF-8');
+		res.setHeader('Accept-Ranges', 'bytes');
+		res.setHeader('Content-Length', data.length);
+		res.setHeader('Vary', 'Accept-Encoding');
+		res.setHeader('Cache-Control', 'public, max-age=0');
+		fs.createReadStream(`${SUBPATH}${hash}${lang}.vtt`).pipe(res);
+		//res.send(`${SUBPATH}${hash}${lang}.vtt`);
 	},
 
 	postComment: (req, res) => {
