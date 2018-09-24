@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators} from 'redux';
 
 import { subtitle } from '../../actions/video';
 
@@ -10,18 +8,34 @@ class Stream extends React.Component {
 		sub: []
 	}
 
-	componentDidMount() {
-		let tmp = [];
+	getSubtitle() {
+		const SUBPATH = 'http://localhost:3000/';
+		subtitle(this.props.hash, this.props.title).then((res) => {
+			console.log('la');
+			const sub = [];
+			const langs = ['en', 'fr'];
 
-		this.props.subtitle(this.props.hash, this.props.title, ['en', 'fr']);
-		for (let sub of this.props.subtitles) {
-			tmp = [...tmp, React.createElement(
-				'track',
-				{key: sub.key, srcLang: sub.props.srcLang, kind: sub.props.kind, src: sub.props.src, label: sub.props.label},
-				null
-			)]
-		}
-		this.setState({ sub: tmp });
+			for (let lang of langs) {
+				const path = (lang === 'en' ? res.data.paths[0].path : res.data.paths[1].path)
+				const track = <track kind="subtitles"
+					srcLang={lang}
+					label={lang}
+					key={lang}
+					src={`${SUBPATH}${path}`} />;
+
+				sub.push(track);
+				console.log(sub);
+			};
+			this.setState({ sub: sub});
+		})
+			.catch((err) => {
+				console.log('err');
+					this.getSubtitle();
+			})
+	}
+
+	componentDidMount() {
+		this.getSubtitle();
 	}
 
 	render() {
@@ -37,16 +51,4 @@ class Stream extends React.Component {
 	};
 }
 
-const mapStateToProps = (state) => {
-	return {
-		subtitles: state.subtitles
-	}
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		...bindActionCreators({ subtitle }, dispatch)
-	}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Stream);
+export default Stream;
