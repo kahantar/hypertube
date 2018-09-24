@@ -21,17 +21,39 @@ class Form extends React.Component{
     }
     render(){
         return (
-            <form id="form" className="card row justify-content-md-around" onSubmit={(e) => this.handleSubmit(e)}>
-                <img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/>                
-                <h2 id="titre">S'inscrire</h2>
-                <input id="email" type="email "value={this.state.email} placeholder="E-mail" onChange={(event) => this.setState({email: event.target.value})}/>
-                <input id="username" type="text" value={this.state.username} placeholder="Username" onChange={(event) => this.setState({username: event.target.value})}/>
-                <input id="name" type="text" value={this.state.name} placeholder="Name" onChange={(event) => this.setState({name: event.target.value})}/>
-                <input id="first" type="text" value={this.state.first_name} placeholder="First_name" onChange={(event) => this.setState({first_name: event.target.value})}/>
-                <input id="password" type="password" value={this.state.password} placeholder="Password" onChange={(event) => this.setState({password: event.target.value})}/>
-                <input id="confirm" type="password" value={this.state.confirm_password} placeholder="Confirmation Password" onChange={(event) => this.setState({confirm_password: event.target.value})}/>                
-                <button bsStyle="danger"  bsSize="large" id="button" type="submit" data-toggle="modal" data-target="modal">S'inscrire</button>
-                <Link id="identifier" onClick={(e) => this.props.resetWarning()} to='/login'>S'identifier</Link>
+            <form id="form" onSubmit={(e) => this.handleSubmit(e)}>
+                <div className='Register_frame'>
+                    <img className='logoForm' src={MailImg} alt='mail'/>                
+                    <input id="email" type="email "value={this.state.email} placeholder="Mail" onChange={(event) => this.setState({email: event.target.value})}/>
+                </div>
+                <div className='Register_line'/>
+                <div className='Register_frame'>
+                    <img className='logoForm' src={MailImg} alt='mail'/>
+                    <input id="username" type="text" value={this.state.username} placeholder="Username" onChange={(event) => this.setState({username: event.target.value})}/>
+                </div>
+                <div className='Register_line'/>
+                <div className='Register_frame'>
+                    <img className='logoForm' src={MailImg} alt='mail'/>
+                    <input id="first" type="text" value={this.state.first_name} placeholder="First Name" onChange={(event) => this.setState({first_name: event.target.value})}/>
+                </div>
+                <div className='Register_line'/>
+                <div className='Register_frame'>
+                    <img className='logoForm' src={MailImg} alt='mail'/>
+                    <input id="name" type="text" value={this.state.name} placeholder="Second Name" onChange={(event) => this.setState({name: event.target.value})}/>                
+                </div>
+                <div className='Register_line'/>
+                <div className='Register_frame'>
+                    <img className='logoForm' src={PwdImg} alt='password'/>
+                    <input id="password" type="password" value={this.state.password} placeholder="Password" onChange={(event) => this.setState({password: event.target.value})}/>
+                </div>
+                <div className='Register_line'/>
+                <div className='Register_frame'>
+                    <img className='logoForm' src={PwdImg} alt='password'/>
+                    <input id="confirm" type="password" value={this.state.confirm_password} placeholder="Confirmation" onChange={(event) => this.setState({confirm_password: event.target.value})}/>                
+                </div>
+                <div className='Register_line'/>
+                <button type="submit">SIGN UP</button>
+                <Link id="signIn" onClick={(e) => this.props.resetWarning()} to='/login'>Already member ? SIGN IN</Link>
             </form>            
         );
     }

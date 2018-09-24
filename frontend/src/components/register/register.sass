@@ -1,10 +1,103 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,200')    
+
 .background
-    // background-image: url('../../img/background.jpg')
-    background-position: center
-    background-size: cover
     height: 100vh
     display: flex
+    flex-direction: column
+    position: relative
+
+    #logo
+        margin: 12vh auto
+        width: 23vh
     
-    #form
-        margin: auto
-        background-color: rgba(143, 143, 143, 0.4)
+    form
+        margin: 0 auto
+        border-radius: 0
+        width: 35vh
+        // border: 1px solid red
+        display: flex
+        flex-direction: column
+
+        .Register_frame
+            display: flex
+            margin-top: 2.5vh
+            height: 2.3vh
+
+            .logoForm
+                width: 1.7vh
+                // border: 1px solid red
+                margin: auto 0
+
+            input
+                // border: 1px solid blue
+                outline: none
+                border: none
+                background: none
+                font-style: normal
+                color: rgb(220, 220, 220)
+                &::placeholder
+                    color: rgb(220, 220, 220)
+                font-family: 'Roboto'
+                font-weight: 100
+                font-size: 1.5vh
+                margin: auto 0 auto 10px
+            
+        .Register_line
+            margin-top: 0.5vh
+            border-bottom: 1px solid rgb(60,60,60)
+
+        button
+            background-color: #c91423
+            border: none
+            color: white
+            font-family: 'Roboto'
+            font-weight: 200
+            font-size: 1.9vh
+            margin-top: 3vh
+            height: 4.5vh
+            border-radius: 2px
+            box-shadow: inset 0px 1px 0px #c91423, 0px 3px 0px 0px #731D20
+            &:active
+                box-shadow: inset 0px 1px 0px #c91423, 0px 3px 0px 0px #5b1618
+            outline: none
+            cursor: pointer
+
+    #signIn
+        font-family: 'Roboto'
+        font-weight: 200
+        font-size: 1.5vh
+        margin: 1vh auto auto auto
+        text-decoration: none
+        color: rgb(220, 220, 220)  
+
+
+ @media screen and (min-width: 700px) and (max-height: 800px)
+    .background
+        background-image: url('../../img/background.jpg')
+        background-position: center
+        background-size: cover
+        
+        #logo
+            position: absolute
+            left: 50px
+            top: 20px
+            border: 1px solid green
+            margin: 0
+
+        form
+            margin: 7vh auto auto auto
+        
+ @media screen and (min-width: 1000px) and (min-height: 800px)
+    .background
+        background-image: url('../../img/background.jpg')
+        background-position: center
+        background-size: cover
+        
+        #logo
+            position: absolute
+            left: 50px
+            top: 20px
+            margin: 0
+
+        form
+            margin: 7vh auto auto auto
