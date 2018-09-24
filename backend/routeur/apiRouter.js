@@ -34,6 +34,7 @@ exports.router = (() => {
 	apiRouter.route('/video/watch').get(video.stream);
 	apiRouter.route('/video/postComment/').post(video.postComment);
 	apiRouter.route('/video/getComment/').get(video.getComment);
+	apiRouter.route('/users/loadmail/').get(users.loadMail);
 
 	return apiRouter;
 })();

@@ -51,3 +51,12 @@ export const fluxMoviesReducers = (state = [], action) => {
             return state;
     }
 }
+
+export const loadMailReducers = (state = [], action) => {
+    switch(action.type){
+        case "LOAD_MAIL":
+            return action.payload;
+        default:
+            return state;
+    }
+}

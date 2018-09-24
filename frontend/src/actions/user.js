@@ -201,6 +201,16 @@ export const loadUsers = () => {
     }
 }
 
+export const loadMail = () => {
+    return (dispatch) => {
+        axios.get(`http://localhost:8080/api/users/loadmail`, {
+            headers: { 'content-type': 'application/json'}
+        }).then((response) =>{
+            dispatch({type: "LOAD_MAIL", payload: response.data})
+        }).catch((err) => {})
+    }
+}
+
 export const resetWarning = () => {
     return (dispatch) => {
         dispatch({type: "WARNING_UPDATE", payload: []});
