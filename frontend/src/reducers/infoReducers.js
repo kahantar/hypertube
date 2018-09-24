@@ -51,3 +51,12 @@ export const fluxMoviesReducers = (state = [], action) => {
             return state;
     }
 }
+
+export const userWatchReducers = (state = [], action) => {
+    switch(action.type){
+        case "USER_WATCH":
+            return action.payload;
+        default:
+            return state;
+    }
+}

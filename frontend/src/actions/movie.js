@@ -20,3 +20,17 @@ export const addMovies = (fluxMovies, allMovies) => {
         dispatch({type: "FLUX_MOVIES", payload: allMovies.slice(0, end) })
     }
 }
+
+export const addWatch = (movie) => {
+    return (dispatch) => {
+        const token = localStorage.getItem('token');
+        const data = JSON.stringify({
+            idMovie: movie.id
+        });
+        axios.post(`http://localhost:8080/search/addwatch`, data, {
+            headers: { 'content-type': 'application/json', 'Authorization': token  }
+        }).then((response) =>{
+            dispatch({type: "USER_WATCH", payload: response.data.watch})
+        }).catch((e)=>{})
+    }
+}

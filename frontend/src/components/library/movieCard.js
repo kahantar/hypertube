@@ -4,19 +4,24 @@ import { Card, CardImg, CardBody,
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import './style.css';
-import { infoMovie } from '../../actions/movie';
+import { infoMovie, addWatch } from '../../actions/movie';
 import { Link } from 'react-router-dom';
+import {watch} from '../../utils/watch';
 
 class MovieCard extends React.Component{
   render(){
       return (
-          <Col md="3" sm="4" xs="6">
+          <Col sm="4" xs="6">
             <Card id="card">
               <CardImg top width="50%" height="200" src={this.props.movie.image} alt="Card image cap" />
               <CardBody>
                 <CardTitle>{this.props.movie.title}</CardTitle>
                 <CardSubtitle>{this.props.movie.year}</CardSubtitle>
-                <Link onClick={(e) => this.props.infoMovie(this.props.movie)} to='/movie'>Visionner</Link>              
+                <Link onClick={(e) => {
+                    this.props.infoMovie(this.props.movie);
+                    this.props.addWatch(this.props.movie)
+                  }} to='/movie'>Visionner</Link>
+                  {watch(this.props.movie.id, this.props.userWatch) ? <input type="checkbox" checked="checked"/>: <span></span>}              
               </CardBody>
             </Card>
           </Col>
@@ -26,8 +31,15 @@ class MovieCard extends React.Component{
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        ...bindActionCreators({ infoMovie }, dispatch)
+        ...bindActionCreators({ infoMovie, addWatch }, dispatch)
     }
 }
 
-export default connect(null, mapDispatchToProps)(MovieCard);
+const mapStateToProps = (state) => {
+  console.log(state.userWatch)
+  return{
+    userWatch: state.userWatch
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieCard);

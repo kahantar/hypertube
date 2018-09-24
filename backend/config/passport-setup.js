@@ -3,6 +3,7 @@ const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const config = require('../..//config/keysAuth');
 const FortyTwoStrategy = require('passport-42').Strategy;
 
+
 passport.authenticate('google', {scope: 'https://www.googleapis.com/auth/plus.login'}); 
 
 passport.serializeUser((profile, done) => {
@@ -33,3 +34,4 @@ function(accessToken, refreshToken, profile, cb) {
   });
 }
 ));
+

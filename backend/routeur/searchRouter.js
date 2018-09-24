@@ -8,6 +8,7 @@ exports.router = (() => {
 
     searchRouter.route('/allmovies').get(search.allMovies);
     searchRouter.route('/popularmovies').get(search.popularMovies);
+    searchRouter.route('/addwatch').post(search.addWatch);
     
     return searchRouter;
 })();
