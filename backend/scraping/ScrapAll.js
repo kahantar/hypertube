@@ -8,6 +8,7 @@ const _cliProgress = require('cli-progress');
 const addMovie = (movie) => new Promise ((resolve, reject) => {
    if (movie.torrents){
        models.Movies.create({
+           imdb_code: movie.imdb_code,
            url: movie.url,
            hash: movie.torrents[movie.torrents.length - 1].hash,
            title: movie.title,

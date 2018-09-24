@@ -40,6 +40,10 @@ module.exports = {
         allowNull: false,
         type: Sequelize.TEXT
       },
+      imdb_code: {
+        allowNull: false,
+        type: Sequelize.TEXT
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
