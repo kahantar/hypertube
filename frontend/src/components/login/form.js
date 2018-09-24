@@ -39,7 +39,7 @@ class Form extends React.Component{
                     <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537542974/Netflix42/42.png'text="Continue with" link={link_fortytwo}/>                
                     <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537537025/Netflix42/google_qhuzoc.png' text="Continue with" link={link_google}/>
                 </div>
-                <Link id="Login_signUp" onClick={(e) => this.props.resetWarning()} to='/'>Not a member yet ? <span id='Login_bold'>SIGN UP</span></Link>
+                <Link id="Login_signUp" onClick={(e) => this.props.resetWarning()} to='/signup'>Not a member yet ? <span id='Login_bold'>SIGN UP</span></Link>
             </form>
         )
     }

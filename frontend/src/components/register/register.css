@@ -21,6 +21,8 @@
         width: 1.7vh;
         margin: auto 0; }
       .background #Register_form .Register_frame input {
+        width: calc(30vh);
+        padding-right: 3vh;
         outline: none;
         border: none;
         background: none;
