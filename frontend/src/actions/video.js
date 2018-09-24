@@ -13,18 +13,12 @@ export const postComment = (comment, imdb) => {
 		imdb: imdb
 	});
 
-	axios({
+	return (axios({
 		method: 'post',
 		url: 'http://localhost:8080/api/video/postComment',
 		data,
 		headers: { 'Content-Type' : 'application/json', 'Authorization': localStorage.getItem('token') }
-	})
-		.then((res) => {
-			console.log(res);
-		})
-		.catch((err) => {
-			;
-		});
+	}))
 }
 
 export const getComment = (imdb = null) => {
@@ -41,7 +35,18 @@ export const getComment = (imdb = null) => {
 				dispatch({type: "COMMENT_LIST", payload: res.data});
 			})
 			.catch((err) => {
-				console.log(err);
+				dispatch({type: "COMMENT_LIST", payload: []});
 			});
 	};
+};
+
+export const subtitle = (hash = null, title = null, langs = 'en') => {
+	if (!hash || !title)
+		return ;
+
+	return axios({
+		method: 'get',
+		url: `http://localhost:8080/api/video/subtitle/?title=${title}&hash=${hash}`,
+		headers: { 'Content-Type' : 'application/json', 'Authorization': localStorage.getItem('token') }
+	})
 };

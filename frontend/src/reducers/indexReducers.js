@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { infoProfilReducers, allUsersReducers, allMoviesReducers, popularMoviesReducers, infoMovieReducers, fluxMoviesReducers, userWatchReducers } from './infoReducers';
 import { warningReducers } from './warningReducers';
-import { allCommentReducers } from './commentReducers';
+import { allCommentReducers, subtitleReducers } from './commentReducers';
 
 const rootReducer = combineReducers({
     warningReducers: warningReducers,
@@ -13,6 +13,7 @@ const rootReducer = combineReducers({
     infoMovie: infoMovieReducers,
     comments: allCommentReducers,
     userWatch: userWatchReducers
+	subtitles: subtitleReducers,
 })
 
 export default rootReducer 

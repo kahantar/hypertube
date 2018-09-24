@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const infoMovie = (movie) => {
     return (dispatch) => {
         dispatch({type: "INFO_MOVIE", payload: movie })
@@ -20,7 +18,6 @@ export const addMovies = (fluxMovies, allMovies) => {
         dispatch({type: "FLUX_MOVIES", payload: allMovies.slice(0, end) })
     }
 }
-
 export const addWatch = (movie) => {
     return (dispatch) => {
         const token = localStorage.getItem('token');

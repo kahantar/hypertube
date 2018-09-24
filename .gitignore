@@ -4,3 +4,4 @@ torrent/
 *.png
 ffprobe
 ffmpeg
+*.vtt

@@ -1,15 +1,49 @@
 import React from 'react';
 
+import { subtitle } from '../../actions/video';
+
 class Stream extends React.Component {
 	state = {
-		videoSrc: "http://localhost:8080/api/video/watch?magnet=magnet:?xt=urn:btih:EA17E6BE92962A403AC1C638D2537DCF1E564D26&dn=Avengers%3A+Infinity+War+%282018%29+%5B720p%5D+%5BYTS.AG%5D&tr=udp%3A%2F%2Fglotorrents.pw%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Fp4p.arenabg.ch%3A1337&tr=udp%3A%2F%2Ftracker.internetwarriors.net%3A1337"
+		videoSrc: `http://localhost:8080/api/video/watch?magnet=magnet:?xt=urn:btih:${this.props.hash}`,
+		sub: []
 	}
 
-	render(){
+	getSubtitle() {
+		const SUBPATH = 'http://localhost:3000/';
+		subtitle(this.props.hash, this.props.title).then((res) => {
+			console.log('la');
+			const sub = [];
+			const langs = ['en', 'fr'];
+
+			for (let lang of langs) {
+				const path = (lang === 'en' ? res.data.paths[0].path : res.data.paths[1].path)
+				const track = <track kind="subtitles"
+					srcLang={lang}
+					label={lang}
+					key={lang}
+					src={`${SUBPATH}${path}`} />;
+
+				sub.push(track);
+				console.log(sub);
+			};
+			this.setState({ sub: sub});
+		})
+			.catch((err) => {
+				console.log('err');
+					this.getSubtitle();
+			})
+	}
+
+	componentDidMount() {
+		this.getSubtitle();
+	}
+
+	render() {
 		return(
 			<div>
-				<video id='videoPlayer' controls autoPlay>
+				<video id='videoPlayer' controls autoPlay width="90%">
 					<source src={this.state.videoSrc} type="video/mp4" />
+					{this.state.sub}
 					Your browser does not support the video tag.
 				</video>
 			</div>
