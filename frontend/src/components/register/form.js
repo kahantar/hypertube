@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './register.css';
 import { registerUser, resetWarning } from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';

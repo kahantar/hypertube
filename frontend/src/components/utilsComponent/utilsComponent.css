@@ -1,0 +1,9 @@
+#nav {
+  display: flex;
+  justify-content: space-around; }
+
+#logOut {
+  background-position: center;
+  background-size: cover;
+  width: 25px;
+  height: 25px; }

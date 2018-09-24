@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import { Button, FormControl} from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import SignIn from './signIn';
-import './style.css';
+import './login.css';
 
 const link_fortytwo = "http://localhost:8080/auth/42";
 const link_google = "http://localhost:8080/auth/google";

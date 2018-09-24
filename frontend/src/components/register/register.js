@@ -6,9 +6,6 @@ import {loadMail} from '../../actions/user';
 import {bindActionCreators} from 'redux';
 
 class Register extends React.Component{
-    constructor(props) {
-        super(props)
-    }
     componentWillMount(){
         console.log('ok')
         this.props.loadMail()

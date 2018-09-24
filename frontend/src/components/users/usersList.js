@@ -1,6 +1,6 @@
 import React from 'react';
 import DisplayUser from './displayUser';
-import './style.css';
+import './users.css';
 
 const UsersList = (props) => {
     return(

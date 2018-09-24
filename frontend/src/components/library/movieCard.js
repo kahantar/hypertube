@@ -3,7 +3,7 @@ import { Card, CardImg, CardBody,
   CardTitle, CardSubtitle, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import './style.css';
+import './movieCard.css';
 import { infoMovie } from '../../actions/movie';
 import { Link } from 'react-router-dom';
 

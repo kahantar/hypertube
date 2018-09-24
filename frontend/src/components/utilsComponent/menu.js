@@ -5,7 +5,7 @@ import { loadMovies } from '../../actions/movie';
 import Disconnection from '../utilsComponent/disconnection';
 import { Link } from 'react-router-dom';
 import { bindActionCreators} from 'redux';
-import './style.css'
+import './utilsComponent.css'
 
 
 class Menu extends React.Component{

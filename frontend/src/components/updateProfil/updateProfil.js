@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import WarningList from '../utilsComponent/warningList';
 import { withRouter } from 'react-router';
 import Disconnection from '../utilsComponent/disconnection';
+import './updateProfil.css'
 
 class UpdateProfil extends React.Component{
     render(){
         if (localStorage.getItem("token")){
             return(
-                <div>
+                <div id='updateProfil'>
                      <Disconnection history={this.props.history}/>
                     <WarningList warnings={this.props.warningUpdate}/>
                     <Form />
