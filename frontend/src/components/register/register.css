@@ -16,7 +16,8 @@
     .background #Register_form .Register_frame {
       display: flex;
       margin-top: 2.5vh;
-      height: 2.3vh; }
+      height: 2.3vh;
+      position: relative; }
       .background #Register_form .Register_frame .logoForm {
         width: 1.7vh;
         margin: auto 0; }
@@ -28,12 +29,20 @@
         background: none;
         font-style: normal;
         color: gainsboro;
-        font-family: 'Roboto';
+        font-family: "Roboto";
         font-weight: 100;
         font-size: 1.5vh;
         margin: auto 0 auto 10px; }
         .background #Register_form .Register_frame input::placeholder {
           color: gainsboro; }
+      .background #Register_form .Register_frame .validInput {
+        color: gainsboro;
+        position: absolute;
+        left: 33.7vh;
+        top: 0.3vh;
+        font-family: "Roboto";
+        font-size: 1.5vh;
+        white-space: nowrap; }
     .background #Register_form .Register_line {
       margin-top: 0.5vh;
       border-bottom: 1px solid #3c3c3c; }
@@ -41,7 +50,7 @@
       background-color: #c91423;
       border: none;
       color: white;
-      font-family: 'Roboto';
+      font-family: "Roboto";
       font-weight: 300;
       font-size: 1.9vh;
       margin-top: 3vh;
@@ -50,7 +59,7 @@
       outline: none;
       cursor: pointer; }
   .background #signIn {
-    font-family: 'Roboto';
+    font-family: "Roboto";
     font-weight: 200;
     font-size: 1.5vh;
     margin: 1vh auto auto auto;

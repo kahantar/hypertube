@@ -20,16 +20,20 @@ class Form extends React.Component{
         this.props.registerUser(this.state);
     }
     render(){
+        let checked = '\u2713';
+        let wrong = '\u2717';
         return (
             <form id="Register_form" onSubmit={(e) => this.handleSubmit(e)}>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537541388/Netflix42/mail_dgwbct.png' alt='mail'/>                
                     <input id="email" type="email "value={this.state.email} placeholder="Mail" onChange={(event) => this.setState({email: event.target.value})}/>
+                    <div className='validInput'>{checked} Result test longer</div>
                 </div>
                 <div className='Register_line'/>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537545396/Netflix42/user.png' alt='user'/>
                     <input id="username" type="text" value={this.state.username} placeholder="Username" onChange={(event) => this.setState({username: event.target.value})}/>
+                    <div className='validInput'>{wrong} Result test longer</div>
                 </div>
                 <div className='Register_line'/>
                 <div className='Register_frame'>
@@ -53,7 +57,7 @@ class Form extends React.Component{
                 </div>
                 <div className='Register_line'/>
                 <button type="submit">SIGN UP</button>
-                <Link id="signIn" onClick={(e) => this.props.resetWarning()} to='/login'>Already member ? <span id='bold'>SIGN IN</span></Link>
+                <Link id="signIn" onClick={(e) => this.props.resetWarning()} to='/'>Already member ? <span id='bold'>SIGN IN</span></Link>
             </form>            
         );
     }

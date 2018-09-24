@@ -13,8 +13,8 @@ import Search from './components/search/search';
 
 const Routes = () => (
     <Switch>
-        <Route exact path='/' component={Register}/>
-        <Route exact path='/login' component={Login}/>
+        <Route exact path='/' component={Login}/>
+        <Route exact path='/signup' component={Register}/>
         <Route exact path='/home' component={Home}/>
         <Route exact path='/profil' component={UpdateProfil}/>
         <Route exact path='/completeauth' component={CompleteAuth}/>

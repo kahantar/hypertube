@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300")
 
+$colorText: rgb(220, 220, 220)
+$fontPrincipal: 'Roboto'
+
 .background
     height: 100vh
     display: flex
@@ -22,6 +25,7 @@
             display: flex
             margin-top: 2.5vh
             height: 2.3vh
+            position: relative
 
             .logoForm
                 width: 1.7vh
@@ -35,13 +39,22 @@
                 border: none
                 background: none
                 font-style: normal
-                color: rgb(220, 220, 220)
+                color: $colorText
                 &::placeholder
-                    color: rgb(220, 220, 220)
-                font-family: 'Roboto'
+                    color: $colorText
+                font-family: $fontPrincipal
                 font-weight: 100
                 font-size: 1.5vh
                 margin: auto 0 auto 10px
+            
+            .validInput
+                color: $colorText
+                position: absolute
+                left: 33.7vh
+                top: 0.3vh
+                font-family: $fontPrincipal
+                font-size: 1.5vh        
+                white-space: nowrap   
             
         .Register_line
             margin-top: 0.5vh
@@ -51,7 +64,7 @@
             background-color: #c91423
             border: none
             color: white
-            font-family: 'Roboto'
+            font-family: $fontPrincipal
             font-weight: 300
             font-size: 1.9vh
             margin-top: 3vh
@@ -61,12 +74,12 @@
             cursor: pointer
 
     #signIn
-        font-family: 'Roboto'
+        font-family: $fontPrincipal
         font-weight: 200
         font-size: 1.5vh
         margin: 1vh auto auto auto
         text-decoration: none
-        color: rgb(220, 220, 220)    
+        color: $colorText    
         
         #bold
             font-weight: 300
