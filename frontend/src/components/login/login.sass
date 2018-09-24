@@ -1,88 +1,140 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,200')    
 
-// #titre
-// {
-//     margin: auto;
-//     color: aliceblue;
-// }
+.Login_background
+    height: 100vh
+    display: flex
+    flex-direction: column
+    position: relative
 
-// #email, #password
-// {
-//     background-color: rgba(70, 68, 68);
-//     border: 1px rgb(70, 68, 68) solid;
-//     margin: auto;
-//     width: 350px;
-//     max-width: 90%;
-//     color: aliceblue;
-// }
+    #Login_logo
+        margin: 12vh auto
+        width: 23vh
+
+    #Login_form
+        margin: 0 auto
+        border-radius: 0
+        width: 35vh
+        // border: 1px solid red
+        display: flex
+        flex-direction: column
+
+        .Login_frame
+            display: flex
+            margin-top: 2.5vh
+            height: 2.3vh
+
+            .Login_logoForm
+                width: 1.7vh
+                // border: 1px solid red
+                margin: auto 0
+
+            input
+                // border: 1px solid blue
+                outline: none
+                border: none
+                background: none
+                font-style: normal
+                color: rgb(220, 220, 220)
+                &::placeholder
+                    color: rgb(220, 220, 220)
+                font-family: 'Roboto'
+                font-weight: 100
+                font-size: 1.5vh
+                margin: auto 0 auto 10px
+            
+        .Login_line
+            margin-top: 0.5vh
+            border-bottom: 1px solid rgb(60,60,60)
+
+        .Login_buttonSignIn
+            background-color: #c91423
+            border: none
+            color: white
+            font-family: 'Roboto'
+            font-weight: 200
+            font-size: 1.9vh
+            margin-top: 3vh
+            height: 4.5vh
+            border-radius: 2px
+            // box-shadow: inset 0px 1px 0px #c91423, 0px 3px 0px 0px #731D20
+            // &:active
+            //     box-shadow: inset 0px 1px 0px #c91423, 0px 3px 0px 0px #5b1618
+            outline: none
+            cursor: pointer
+
+        #Login_buttonsApi
+            display: flex
+            margin-top: 2vh
+            justify-content: space-between
+
+            .Login_buttonApi
+                background-color: white
+                // box-shadow: inset 0px 1px 0px white, 0px 3px 0px 0px rgb(220, 220, 220)
+                // &:active
+                //     box-shadow: inset 0px 1px 0px #c91423, 0px 3px 0px 0px #5b1618
+                color: white
+                font-family: 'Roboto'
+                font-weight: 200
+                font-size: 1.9vh
+                // margin: auto
+                height: 4vh
+                width: 17vh
+                border-radius: 2px
+                outline: none
+                cursor: pointer
+                display: flex
+                justify-content: space-between
+                padding: 0 5px
+
+                .Login_imgApi
+                    width: 2.3vh
+                    margin-right: 3px
+
+                .Login_textApi
+                    color: black
+                    font-size: 1.4vh
+                    margin: auto
+
+        #Login_signUp
+            font-family: 'Roboto'
+            font-weight: 100
+            font-size: 1.5vh
+            margin: 1vh auto auto auto
+            text-decoration: none
+            color: rgb(220, 220, 220)
+
+            #Login_bold
+                font-weight: 300
+                color: #c91423
 
 
+@media screen and (min-width: 700px) and (max-height: 800px)
+    .Login_background
+        background-image: url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537820794/Netflix42/background_revjzf.jpg')
+        background-position: center
+        background-size: cover
+        
+        #Login_logo
+            position: absolute
+            left: 50px
+            top: 20px
+            border: 1px solid green
+            margin: 0
 
-// #button
-// {
-//     margin: auto;
-//     width: 350px;
-//     max-width: 90%;
-// }
-// /* /*  */
-// #form{
-// width: 400px;
-// max-width: 100%;
-// padding-bottom: 20px;
-// margin: auto;
-// margin-top: 20px;
-// /* border: 1px rgb(224, 226, 227) solid; */
-// border-radius: 4px;
-// box-shadow: rgba(0, 0, 0, 0.3) 20px 20px 20px;
-// background: rgba(0, 0, 0, 0.8);
-// font-family: Mothproofscriptregular;
-// font-size: 90%;
-// height: 600px;
-// } 
-// #signwith{
-//     width: 350px;
-//     max-width: 90%;
-//     margin: auto;
-//     padding-bottom: 2px;
-//     height: 1px;
-// }
-// #signimg{
-//     float: left;
-//     padding-right: 5px;
-//     padding-bottom: 2px;
-//     width: 30px;
+        #Login_form
+            margin: 16vh auto auto auto
+        
+@media screen and (min-width: 1000px) and (min-height: 800px)
+    .Login_background
+        background-image: url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537820794/Netflix42/background_revjzf.jpg')
+        background-position: center
+        background-size: cover
+        
+        #Login_logo
+            position: absolute
+            left: 50px
+            top: 20px
+            margin: 0
 
-// }
-// #signtext{
-//     color: rgb(152, 151, 149);
-// }
-
-// #signtext:hover{
-//     color: white;
-// }
-
-// #inscrire{
-//     color: rgb(222, 145, 47);
-//     float: right;
-//     font-size: 20px;
-//     margin: auto;
-//     padding-bottom: 2px;
-// }
-// #forget{
-//     width: 350px;
-//     position: absolute;
-//     bottom: 180px;
-//     left: 25px;
-//     max-width: 90%;
-//     color: rgb(152, 151, 149);
-//     font-size: 14px;
-// }
-// #alert{
-//     width: 500px;
-//     max-width: 90%;
-//     margin: auto;
-// }
-// [placeholder] {
-//     color: black;
-//     font-style: italic;
-//     opacity: .9;
-//   }
+        #Login_form
+            margin: 16vh auto auto auto

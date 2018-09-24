@@ -22,16 +22,24 @@ class Form extends React.Component{
     }
     render(){
         return(
-            <form id="form" className="card row justify-content-md-around" onSubmit={(e) => this.handleSubmit(e)}>
-                <img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/>                
-                <h2 id="titre">S'identifier</h2>
-                <Link id="forget" onClick={(e) => this.props.resetWarning()} to='/forgetpassword'>Mot de passe oublié?</Link>                
-                <input id="email" type="email" placeholder="Email" onChange={(e) => this.setState({email: e.target.value}) }/>
-                <input id="password" type="password" placeholder="Password" onChange={(e) => this.setState({password: e.target.value}) }/>
-                <button bsStyle="danger"  bsSize="large" id="button" type="submit">Connexion</button>
-                <SignIn img="42.png" text="S'identifier avec 42" link={link_fortytwo}/>                
-                <SignIn img="google.jpeg" text="S'identifier avec Google" link={link_google}/>
-                <Link id="inscrire" onClick={(e) => this.props.resetWarning()} to='/'>Inscrivez-vous</Link>
+            <form id="Login_form" onSubmit={(e) => this.handleSubmit(e)}>            
+                {/* <Link id="forget" onClick={(e) => this.props.resetWarning()} to='/forgetpassword'>Mot de passe oublié?</Link>                 */}
+                <div className='Login_frame'>
+                    <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537541388/Netflix42/mail_dgwbct.png' alt='mail'/>                
+                    <input id="email" type="email "value={this.state.email} placeholder="Mail" onChange={(event) => this.setState({email: event.target.value})}/>
+                </div>
+                <div className='Login_line'/>
+                <div className='Login_frame'>
+                    <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537543400/Netflix42/pwd.png' alt='password'/>
+                    <input id="password" type="password" value={this.state.password} placeholder="Password" onChange={(event) => this.setState({password: event.target.value})}/>
+                </div>
+                <div className='Login_line'/>
+                <button className='Login_buttonSignIn' type="submit">SIGN IN</button>
+                <div id='Login_buttonsApi'>
+                    <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537542974/Netflix42/42.png' text="Continue with 42" link={link_fortytwo}/>                
+                    <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537537025/Netflix42/google_qhuzoc.png' text="Continue with Google" link={link_google}/>
+                </div>
+                <Link id="Login_signUp" onClick={(e) => this.props.resetWarning()} to='/'>Not a member yet ? <span id='Login_bold'>SIGN UP</span></Link>
             </form>
         )
     }

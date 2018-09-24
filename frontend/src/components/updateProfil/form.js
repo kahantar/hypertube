@@ -49,7 +49,7 @@ class Form extends React.Component {
     render() {
         let picture = (this.state.img !== '/upload_img/avatar.png') ? <Dropzone ref={(ref) => { this.uploadInput = ref; }} type="file" onDrop={(files) => this.uploadPicture(files)} className='userPictureFrame'><div id='circleUserPicture'></div><div className='picture' id='userPicture' style={{backgroundImage: `url(${this.state.img})`}}/></Dropzone> : <Dropzone ref={(ref) => { this.uploadInput = ref; }} type="file" onDrop={(files) => this.uploadPicture(files)} className='picture' id='circleEmptyPicture'><div id='cameraEmptyPicture'/></Dropzone>
         return (
-            <form onSubmit={(e) => this.handleSubmit(e)}>
+            <form id='UpdateProfil_form' onSubmit={(e) => this.handleSubmit(e)}>
                 {picture}
                 <div className='description'>Email</div>
                 <input type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>

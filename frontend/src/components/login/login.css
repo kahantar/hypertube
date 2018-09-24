@@ -1,0 +1,111 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,200");
+.Login_background {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative; }
+  .Login_background #Login_logo {
+    margin: 12vh auto;
+    width: 23vh; }
+  .Login_background #Login_form {
+    margin: 0 auto;
+    border-radius: 0;
+    width: 35vh;
+    display: flex;
+    flex-direction: column; }
+    .Login_background #Login_form .Login_frame {
+      display: flex;
+      margin-top: 2.5vh;
+      height: 2.3vh; }
+      .Login_background #Login_form .Login_frame .Login_logoForm {
+        width: 1.7vh;
+        margin: auto 0; }
+      .Login_background #Login_form .Login_frame input {
+        outline: none;
+        border: none;
+        background: none;
+        font-style: normal;
+        color: gainsboro;
+        font-family: 'Roboto';
+        font-weight: 100;
+        font-size: 1.5vh;
+        margin: auto 0 auto 10px; }
+        .Login_background #Login_form .Login_frame input::placeholder {
+          color: gainsboro; }
+    .Login_background #Login_form .Login_line {
+      margin-top: 0.5vh;
+      border-bottom: 1px solid #3c3c3c; }
+    .Login_background #Login_form .Login_buttonSignIn {
+      background-color: #c91423;
+      border: none;
+      color: white;
+      font-family: 'Roboto';
+      font-weight: 200;
+      font-size: 1.9vh;
+      margin-top: 3vh;
+      height: 4.5vh;
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer; }
+    .Login_background #Login_form #Login_buttonsApi {
+      display: flex;
+      margin-top: 2vh;
+      justify-content: space-between; }
+      .Login_background #Login_form #Login_buttonsApi .Login_buttonApi {
+        background-color: white;
+        color: white;
+        font-family: 'Roboto';
+        font-weight: 200;
+        font-size: 1.9vh;
+        height: 4vh;
+        width: 17vh;
+        border-radius: 2px;
+        outline: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        padding: 0 5px; }
+        .Login_background #Login_form #Login_buttonsApi .Login_buttonApi .Login_imgApi {
+          width: 2.3vh;
+          margin-right: 3px; }
+        .Login_background #Login_form #Login_buttonsApi .Login_buttonApi .Login_textApi {
+          color: black;
+          font-size: 1.4vh;
+          margin: auto; }
+    .Login_background #Login_form #Login_signUp {
+      font-family: 'Roboto';
+      font-weight: 100;
+      font-size: 1.5vh;
+      margin: 1vh auto auto auto;
+      text-decoration: none;
+      color: gainsboro; }
+      .Login_background #Login_form #Login_signUp #Login_bold {
+        font-weight: 300;
+        color: #c91423; }
+
+@media screen and (min-width: 700px) and (max-height: 800px) {
+  .Login_background {
+    background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537820794/Netflix42/background_revjzf.jpg");
+    background-position: center;
+    background-size: cover; }
+    .Login_background #Login_logo {
+      position: absolute;
+      left: 50px;
+      top: 20px;
+      border: 1px solid green;
+      margin: 0; }
+    .Login_background #Login_form {
+      margin: 16vh auto auto auto; } }
+
+@media screen and (min-width: 1000px) and (min-height: 800px) {
+  .Login_background {
+    background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537820794/Netflix42/background_revjzf.jpg");
+    background-position: center;
+    background-size: cover; }
+    .Login_background #Login_logo {
+      position: absolute;
+      left: 50px;
+      top: 20px;
+      margin: 0; }
+    .Login_background #Login_form {
+      margin: 16vh auto auto auto; } }

@@ -21,7 +21,7 @@ class Form extends React.Component{
     }
     render(){
         return (
-            <form id="form" onSubmit={(e) => this.handleSubmit(e)}>
+            <form id="Register_form" onSubmit={(e) => this.handleSubmit(e)}>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537541388/Netflix42/mail_dgwbct.png' alt='mail'/>                
                     <input id="email" type="email "value={this.state.email} placeholder="Mail" onChange={(event) => this.setState({email: event.target.value})}/>
@@ -53,7 +53,7 @@ class Form extends React.Component{
                 </div>
                 <div className='Register_line'/>
                 <button type="submit">SIGN UP</button>
-                <Link id="signIn" onClick={(e) => this.props.resetWarning()} to='/login'>Already member ? SIGN IN</Link>
+                <Link id="signIn" onClick={(e) => this.props.resetWarning()} to='/login'>Already member ? <span id='bold'>SIGN IN</span></Link>
             </form>            
         );
     }
