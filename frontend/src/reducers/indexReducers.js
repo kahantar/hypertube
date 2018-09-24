@@ -12,7 +12,7 @@ const rootReducer = combineReducers({
     popularMovies: popularMoviesReducers,
     infoMovie: infoMovieReducers,
     comments: allCommentReducers,
-    userWatch: userWatchReducers
+    userWatch: userWatchReducers,
 	subtitles: subtitleReducers,
 })
 

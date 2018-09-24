@@ -1,3 +1,5 @@
+import { axios } from 'axios';
+
 export const infoMovie = (movie) => {
     return (dispatch) => {
         dispatch({type: "INFO_MOVIE", payload: movie })

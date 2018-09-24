@@ -20,7 +20,7 @@ class MovieCard extends React.Component{
                 <Link onClick={(e) => {
                     this.props.infoMovie(this.props.movie);
                     this.props.addWatch(this.props.movie)
-                  }} to='/movie'>Visionner</Link>
+                  }} to='/video'>Visionner</Link>
                   {watch(this.props.movie.id, this.props.userWatch) ? <input type="checkbox" checked="checked"/>: <span></span>}              
               </CardBody>
             </Card>
