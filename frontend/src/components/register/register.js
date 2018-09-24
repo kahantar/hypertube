@@ -1,15 +1,10 @@
 import React from 'react';
 import Form from './form';
 // import WarningList from '../utilsComponent/warningList';
-import { connect } from 'react-redux';
-import {loadMail} from '../../actions/user';
-import {bindActionCreators} from 'redux';
+// import { connect } from 'react-redux';
+// import {bindActionCreators} from 'redux';
 
 class Register extends React.Component{
-    componentWillMount(){
-        this.props.loadMail()
-        console.log(this.props.loadMails)
-    }
     render(){
         return (
             <div className='background'>
@@ -21,18 +16,19 @@ class Register extends React.Component{
     }
 }
 
-const mapStateToProps = (state) => {
+// const mapStateToProps = (state) => {
     
-    return{
-        warningRegister: state.warningReducers,
-        loadMails: state.loadMail
-    }  
-}
+//     return{
+//         warningRegister: state.warningReducers,
+//         loadMails: state.loadMail
+//     }  
+// }
 
-const mapDispatchToProps = (dispatch) => {
-    return{
-        ...bindActionCreators({ loadMail }, dispatch),
-    }  
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return{
+//         ...bindActionCreators({ loadMail }, dispatch),
+//     }  
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Register);
+// export default connect(mapStateToProps, mapDispatchToProps)(Register);
+export default Register

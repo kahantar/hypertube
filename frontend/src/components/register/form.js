@@ -4,6 +4,8 @@ import { registerUser, resetWarning } from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
+import {loadMail} from '../../actions/user';
+
 
 class Form extends React.Component{
     state = {
@@ -13,6 +15,11 @@ class Form extends React.Component{
         first_name: "",
         password: "",
         confirm_password: ""
+    }
+
+    componentWillMount(){
+        this.props.loadMail()
+        console.log(this.props.listMails)
     }
 
     handleSubmit = (e) => {
@@ -63,10 +70,33 @@ class Form extends React.Component{
     }
 }
 
+// const mapStateToProps = (state) => {
+    
+//     return{
+//         warningRegister: state.warningReducers,
+//         loadMails: state.loadMail
+//     }  
+// }
+
+// const mapDispatchToProps = (dispatch) => {
+//     return{
+//         ...bindActionCreators({ loadMail }, dispatch),
+//     }  
+// }
+
+// export default connect(mapStateToProps, mapDispatchToProps)(Register);
+
+const mapStateToProps = (state) => {
+    
+    return {
+        listMails: state.loadMail
+    }  
+}
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({registerUser, resetWarning}, dispatch)
+        ...bindActionCreators({registerUser, resetWarning, loadMail}, dispatch)
     };
 };
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
