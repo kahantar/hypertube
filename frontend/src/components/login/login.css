@@ -65,12 +65,12 @@
         display: flex;
         justify-content: space-between;
         padding: 0 5px; }
-        .Login_background #Login_form #Login_buttonsApi .Login_buttonApi .Login_imgApi {
-          width: 2.3vh;
-          margin: auto 5px auto auto; }
         .Login_background #Login_form #Login_buttonsApi .Login_buttonApi .Login_textApi {
           color: black;
           font-size: 1.4vh;
+          margin: auto 10px auto auto; }
+        .Login_background #Login_form #Login_buttonsApi .Login_buttonApi .Login_imgApi {
+          width: 2.3vh;
           margin: auto auto auto 0; }
     .Login_background #Login_form #Login_signUp {
       font-family: 'Roboto';
