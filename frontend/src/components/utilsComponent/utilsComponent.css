@@ -3,6 +3,7 @@
   justify-content: space-around; }
 
 #logOut {
+  background-image: url("https://cloudinary.com/console/media_library/asset/image/upload/logout_wwkagl");
   background-position: center;
   background-size: cover;
   width: 25px;

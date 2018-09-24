@@ -1,8 +1,86 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,200");
 .background {
-  background-position: center;
-  background-size: cover;
   height: 100vh;
-  display: flex; }
-  .background #form {
-    margin: auto;
-    background-color: rgba(143, 143, 143, 0.4); }
+  display: flex;
+  flex-direction: column;
+  position: relative; }
+  .background #logo {
+    margin: 12vh auto;
+    width: 23vh; }
+  .background form {
+    margin: 0 auto;
+    border-radius: 0;
+    width: 35vh;
+    display: flex;
+    flex-direction: column; }
+    .background form .Register_frame {
+      display: flex;
+      margin-top: 2.5vh;
+      height: 2.3vh; }
+      .background form .Register_frame .logoForm {
+        width: 1.7vh;
+        margin: auto 0; }
+      .background form .Register_frame input {
+        outline: none;
+        border: none;
+        background: none;
+        font-style: normal;
+        color: gainsboro;
+        font-family: 'Roboto';
+        font-weight: 100;
+        font-size: 1.5vh;
+        margin: auto 0 auto 10px; }
+        .background form .Register_frame input::placeholder {
+          color: gainsboro; }
+    .background form .Register_line {
+      margin-top: 0.5vh;
+      border-bottom: 1px solid #3c3c3c; }
+    .background form button {
+      background-color: #c91423;
+      border: none;
+      color: white;
+      font-family: 'Roboto';
+      font-weight: 200;
+      font-size: 1.9vh;
+      margin-top: 3vh;
+      height: 4.5vh;
+      border-radius: 2px;
+      box-shadow: inset 0px 1px 0px #c91423, 0px 3px 0px 0px #731D20;
+      outline: none;
+      cursor: pointer; }
+      .background form button:active {
+        box-shadow: inset 0px 1px 0px #c91423, 0px 3px 0px 0px #5b1618; }
+  .background #signIn {
+    font-family: 'Roboto';
+    font-weight: 200;
+    font-size: 1.5vh;
+    margin: 1vh auto auto auto;
+    text-decoration: none;
+    color: gainsboro; }
+
+@media screen and (min-width: 700px) and (max-height: 800px) {
+  .background {
+    background-image: url("../../img/background.jpg");
+    background-position: center;
+    background-size: cover; }
+    .background #logo {
+      position: absolute;
+      left: 50px;
+      top: 20px;
+      border: 1px solid green;
+      margin: 0; }
+    .background form {
+      margin: 7vh auto auto auto; } }
+
+@media screen and (min-width: 1000px) and (min-height: 800px) {
+  .background {
+    background-image: url("../../img/background.jpg");
+    background-position: center;
+    background-size: cover; }
+    .background #logo {
+      position: absolute;
+      left: 50px;
+      top: 20px;
+      margin: 0; }
+    .background form {
+      margin: 7vh auto auto auto; } }
