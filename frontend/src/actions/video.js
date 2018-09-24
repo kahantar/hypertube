@@ -1,6 +1,10 @@
 import axios from 'axios';
+import React from 'react';
 
 import { validationComment } from '../utils/validationForm';
+
+const SUBPATH = 'http://localhost:3000/';
+let count = -1;
 
 export const postComment = (comment, imdb) => {
 	const error = validationComment(comment, imdb);
@@ -40,13 +44,39 @@ export const getComment = (imdb = null) => {
 	};
 };
 
-export const subtitle = (hash = null, title = null) => {
-	if (!hash || !title)
-		return ;
+export const subtitle = (hash = null, title = null, langs = 'en') => {
+	return (dispatch) => {
+		if (!hash || !title)
+			return ;
 
-	return (axios({
-		method: 'get',
-		url: `http://localhost:8080/api/video/subtitle/?title=${title}&hash=${hash}`,
-		headers: { 'Content-Type' : 'application/json', 'Authorization': localStorage.getItem('token') }
-	}))
+		axios({
+			method: 'get',
+			url: `http://localhost:8080/api/video/subtitle/?title=${title}&hash=${hash}`,
+			headers: { 'Content-Type' : 'application/json', 'Authorization': localStorage.getItem('token') }
+		})
+			.then((res) => {
+				const sub = [];
+				for (let lang of langs) {
+					const path = (lang === 'en' ? res.data.paths[0].path : res.data.paths[1].path)
+					const track = <track kind="subtitles"
+						srcLang={lang}
+						label={lang}
+						key={lang}
+						src={`${SUBPATH}${path}`} />;
+
+					sub.push(track);
+				};
+				count = -1;
+				dispatch({type: "SUBTITLE", payload: sub});
+			})
+			.catch((err) => {
+				if (++count < 3)
+					subtitle(hash, title);
+				else {
+					count = -1;
+					dispatch({type: "SUBTITLE", payload: []});
+				}
+
+			})
+	};
 };

@@ -1,37 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators} from 'redux';
 
 import { subtitle } from '../../actions/video';
-
-const SUBPATH = 'http://localhost:3000/subtitles/';
 
 class Stream extends React.Component {
 	state = {
 		videoSrc: `http://localhost:8080/api/video/watch?magnet=magnet:?xt=urn:btih:${this.props.hash}`,
-		en: null,
-		fr: null
+		sub: []
 	}
 
 	componentDidMount() {
-		this.getSubtitle();
-	}
+		let tmp = [];
 
-	getSubtitle() {
-		subtitle(this.props.hash, this.props.title)
-			.then((res) => { 
-				res.data.paths.forEach(path => {
-					const track = <track kind="subtitles"
-						srcLang={path.lang}
-						label={path.lang}
-						src={`${SUBPATH}${this.props.hash}${path.lang}.vtt`} />;
-					if (path.lang === 'en')
-						this.setState({ en: track });
-					if (path.lang === 'fr')
-						this.setState({ fr: track });
-				})
-			})
-			.catch((err) => {
-				this.getSubtitle();
-			});
+		this.props.subtitle(this.props.hash, this.props.title, ['en', 'fr']);
+		for (let sub of this.props.subtitles) {
+			tmp = [...tmp, React.createElement(
+				'track',
+				{key: sub.key, srcLang: sub.props.srcLang, kind: sub.props.kind, src: sub.props.src, label: sub.props.label},
+				null
+			)]
+		}
+		this.setState({ sub: tmp });
 	}
 
 	render() {
@@ -39,8 +29,7 @@ class Stream extends React.Component {
 			<div>
 				<video id='videoPlayer' controls autoPlay width="90%">
 					<source src={this.state.videoSrc} type="video/mp4" />
-					{this.state.en}
-					{this.state.fr}
+					{this.state.sub}
 					Your browser does not support the video tag.
 				</video>
 			</div>
@@ -48,4 +37,16 @@ class Stream extends React.Component {
 	};
 }
 
-export default (Stream);
+const mapStateToProps = (state) => {
+	return {
+		subtitles: state.subtitles
+	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+	return {
+		...bindActionCreators({ subtitle }, dispatch)
+	}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Stream);
