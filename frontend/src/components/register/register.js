@@ -13,7 +13,7 @@ class Register extends React.Component{
     }
     render(){
         return (
-            <div>
+            <div className='background'>
                 <Form />
                 <WarningList warnings={this.props.warningRegister}/>
             </div>

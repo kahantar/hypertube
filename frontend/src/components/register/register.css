@@ -1,0 +1,8 @@
+.background {
+  background-position: center;
+  background-size: cover;
+  height: 100vh;
+  display: flex; }
+  .background #form {
+    margin: auto;
+    background-color: rgba(143, 143, 143, 0.4); }
