@@ -32,19 +32,26 @@ class Form extends React.Component{
                 <div className='Login_line'/>
                 <div className='Login_frame'>
                     <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537543400/Netflix42/pwd.png' alt='password'/>
-                    <input id="password" type="password" value={this.state.password} placeholder="Password" onChange={(event) => this.setState({password: event.target.value})}/>
+                    <input id="password" type="password" value={this.state.password} placeholder={this.props.language.password} onChange={(event) => this.setState({password: event.target.value})}/>
                     {/* <div className='Login_validInput' style={{color: checkValidInput.pwd(this.state.pwd).color}}><span className='Login_checkInput'>{checkValidInput.pwd(this.state.pwd).sign}</span>{checkValidInput.pwd(this.state.pwd).value}</div> */}
                 </div>
                 <div className='Login_line'/>
-                <button className='Login_buttonSignIn' type="submit">SIGN IN</button>
+                <button className='Login_buttonSignIn' type="submit">{this.props.language.signIn}</button>
                 <div id='Login_buttonsApi'>
-                    <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537542974/Netflix42/42.png'text="Continue with" link={link_fortytwo}/>                
-                    <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537537025/Netflix42/google_qhuzoc.png' text="Continue with" link={link_google}/>
+                    <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537542974/Netflix42/42.png'text={this.props.language.continueWithApi} link={link_fortytwo}/>                
+                    <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537537025/Netflix42/google_qhuzoc.png' text={this.props.language.continueWithApi} link={link_google}/>
                 </div>
-                <Link id="Login_signUp" onClick={(e) => this.props.resetWarning()} to='/signup'>Not a member yet ? <span id='Login_bold'>SIGN UP</span></Link>
+                <Link id="Login_signUp" onClick={(e) => this.props.resetWarning()} to='/signup'>{this.props.language.changeSignUp}<span id='Login_bold'>{this.props.language.signUp}</span></Link>
             </form>
         )
     }
+}
+
+const mapStateToProps = (state) => {
+    
+    return{
+        language: state.loadLanguage
+    }  
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -54,4 +61,4 @@ const mapDispatchToProps = (dispatch) => {
     
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Form));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Form));

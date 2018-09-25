@@ -4,7 +4,7 @@ import { registerUser, resetWarning } from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
-import {loadMail, loadLanguage} from '../../actions/user';
+import {loadMail} from '../../actions/user';
 import checkValidInput from '../../utils/checkValidInputRegister'
 import Language from '../../utils/language'
 

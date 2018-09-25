@@ -21,6 +21,6 @@ export default {
         secondName: 'Nom de famille',
         changeSignUp: 'Pas encore membre ? ',
         changeSignIn: 'Déjà membre ? ',
-        continueWithApi: 'Se connecter avec'
+        continueWithApi: 'Continuer via'
     }
 }
