@@ -27,11 +27,13 @@ class Form extends React.Component{
                 <div className='Login_frame'>
                     <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537541388/Netflix42/mail_dgwbct.png' alt='mail'/>                
                     <input id="email" type="email "value={this.state.email} placeholder="Mail" onChange={(event) => this.setState({email: event.target.value})}/>
+                    {/* <div className='Login_validInput' style={{color: checkValidInput.mail(this.state.mail, this.props.listMails).color}}><span className='Login_checkInput'>{checkValidInput.mail(this.state.mail, this.props.listMails).sign}</span>{checkValidInput.mail(this.state.mail, this.props.listMails).value}</div> */}
                 </div>
                 <div className='Login_line'/>
                 <div className='Login_frame'>
                     <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537543400/Netflix42/pwd.png' alt='password'/>
                     <input id="password" type="password" value={this.state.password} placeholder="Password" onChange={(event) => this.setState({password: event.target.value})}/>
+                    {/* <div className='Login_validInput' style={{color: checkValidInput.pwd(this.state.pwd).color}}><span className='Login_checkInput'>{checkValidInput.pwd(this.state.pwd).sign}</span>{checkValidInput.pwd(this.state.pwd).value}</div> */}
                 </div>
                 <div className='Login_line'/>
                 <button className='Login_buttonSignIn' type="submit">SIGN IN</button>

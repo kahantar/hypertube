@@ -1,10 +1,11 @@
 import axios from 'axios';
-import {validationRegister, validationLogin, validationUpdate, validationComplete, validationResetPassword} from '../utils/validationForm';
+import {validationLogin, validationUpdate, validationComplete, validationResetPassword} from '../utils/validationForm';
+import allLanguage from '../utils/language'
 
 export const registerUser = (user) => {
     return (dispatch) => {
-        const errors = validationRegister(user);
-        if (errors.length === 0){
+        // const errors = validationRegister(user);
+        // if (errors.length === 0){
             const data = JSON.stringify({
                     email: user.email,
                     username: user.username,
@@ -26,11 +27,10 @@ export const registerUser = (user) => {
                         if (err.response.status === 409)
                             dispatch({type: "WARNING_UPDATE", payload: err.response.data})
                     })
-        }
-        else
-            dispatch({type: "WARNING_UPDATE", payload: errors})
+        // }
+        // else
+        //     dispatch({type: "WARNING_UPDATE", payload: errors})
     }
-    
 }
 
 export const loginUser = (user, history) => {
@@ -208,6 +208,16 @@ export const loadMail = () => {
         }).then((response) =>{
             dispatch({type: "LOAD_MAIL", payload: response.data})
         }).catch((err) => {})
+    }
+}
+
+export const loadLanguage = (actualLanguage) => {
+    console.log(actualLanguage)
+    return (dispatch) => {
+        if (actualLanguage === 'English')
+            dispatch({type: "LOAD_LANGUAGE", payload: allLanguage.english})
+        else if (actualLanguage === 'Français')
+            dispatch({type: "LOAD_LANGUAGE", payload: allLanguage.french})
     }
 }
 

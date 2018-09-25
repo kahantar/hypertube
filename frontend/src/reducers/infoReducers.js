@@ -60,3 +60,12 @@ export const loadMailReducers = (state = [], action) => {
             return state;
     }
 }
+
+export const loadLanguageReducers = (state = [], action) => {
+    switch(action.type){
+        case "LOAD_LANGUAGE":
+            return action.payload;
+        default:
+            return state;
+    }
+}

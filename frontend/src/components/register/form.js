@@ -4,9 +4,9 @@ import { registerUser, resetWarning } from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
-import {loadMail} from '../../actions/user';
+import {loadMail, loadLanguage} from '../../actions/user';
 import checkValidInput from '../../utils/checkValidInputRegister'
-
+import Language from '../../utils/language'
 
 class Form extends React.Component{
     state = {
@@ -20,6 +20,7 @@ class Form extends React.Component{
 
     componentWillMount(){
         this.props.loadMail()
+        console.log(this.props.language, 'pp')
     }
 
     handleSubmit = (e) => {
@@ -60,25 +61,25 @@ class Form extends React.Component{
                 <div className='Register_line'/>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537545396/Netflix42/user.png' alt='user'/>
-                    <input id="username" type="text" value={this.state.username} placeholder="Username" onChange={(event) => this.setState({username: event.target.value})}/>
+                    <input id="username" type="text" value={this.state.username} placeholder={this.props.language.username} onChange={(event) => this.setState({username: event.target.value})}/>
                     <div className='Register_validInput' style={{color: checkValidInput.username(this.state.username).color}}><span className='Register_checkInput'>{checkValidInput.username(this.state.username).sign}</span>{checkValidInput.username(this.state.username).value}</div>
                 </div>
                 <div className='Register_line'/>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537545396/Netflix42/user.png' alt='user'/>
-                    <input id="first" type="text" value={this.state.firstName} placeholder="First Name" onChange={(event) => this.setState({firstName: event.target.value})}/>
+                    <input id="first" type="text" value={this.state.firstName} placeholder={this.props.language.firstName} onChange={(event) => this.setState({firstName: event.target.value})}/>
                     <div className='Register_validInput' style={{color: checkValidInput.firstName(this.state.firstName).color}}><span className='Register_checkInput'>{checkValidInput.firstName(this.state.firstName).sign}</span>{checkValidInput.firstName(this.state.firstName).value}</div>
                 </div>
                 <div className='Register_line'/>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537545396/Netflix42/user.png' alt='user'/>
-                    <input id="name" type="text" value={this.state.secondName} placeholder="Second Name" onChange={(event) => this.setState({secondName: event.target.value})}/> 
+                    <input id="name" type="text" value={this.state.secondName} placeholder={this.props.language.secondName} onChange={(event) => this.setState({secondName: event.target.value})}/> 
                     <div className='Register_validInput' style={{color: checkValidInput.secondName(this.state.secondName).color}}><span className='Register_checkInput'>{checkValidInput.secondName(this.state.secondName).sign}</span>{checkValidInput.secondName(this.state.secondName).value}</div>               
                 </div>
                 <div className='Register_line'/>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537543400/Netflix42/pwd.png' alt='password'/>
-                    <input id="password" type="password" value={this.state.pwd} placeholder="Password" onChange={(event) => this.setState({pwd: event.target.value})}/>
+                    <input id="password" type="password" value={this.state.pwd} placeholder={this.props.language.password} onChange={(event) => this.setState({pwd: event.target.value})}/>
                     <div className='Register_validInput' style={{color: checkValidInput.pwd(this.state.pwd).color}}><span className='Register_checkInput'>{checkValidInput.pwd(this.state.pwd).sign}</span>{checkValidInput.pwd(this.state.pwd).value}</div>
                 </div>
                 <div className='Register_line'/>
@@ -88,33 +89,18 @@ class Form extends React.Component{
                     <div className='Register_validInput' style={{color: checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).color}}><span className='Register_checkInput'>{checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).sign}</span>{checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).value}</div>              
                 </div>
                 <div className='Register_line'/>
-                <button type="submit">SIGN UP</button>
-                <Link id="signIn" onClick={(e) => this.props.resetWarning()} to='/'>Already member ? <span id='bold'>SIGN IN</span></Link>
+                <button type="submit">{this.props.language.signUp}</button>
+                <Link id="signIn" onClick={(e) => this.props.resetWarning()} to='/'>{this.props.language.changeSignIn}<span id='bold'>{this.props.language.signUp}</span></Link>
             </form>            
         );
     }
 }
 
-// const mapStateToProps = (state) => {
-    
-//     return{
-//         warningRegister: state.warningReducers,
-//         loadMails: state.loadMail
-//     }  
-// }
-
-// const mapDispatchToProps = (dispatch) => {
-//     return{
-//         ...bindActionCreators({ loadMail }, dispatch),
-//     }  
-// }
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Register);
-
 const mapStateToProps = (state) => {
     
     return {
-        listMails: state.loadMail
+        listMails: state.loadMail,
+        language: state.loadLanguage
     }  
 }
 
