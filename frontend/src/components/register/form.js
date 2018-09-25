@@ -32,9 +32,8 @@ class Form extends React.Component{
                                     && checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).sign === '\u2713')
                                     ? true : false
 
-        if (checkValidInput.allIsValid)
-            // this.props.registerUser(this.state)
-            console.log(checkValidAllInput)
+        if (checkValidAllInput)
+            this.props.registerUser(this.state)
         else {
             if (checkValidInput.mail(this.state.mail, this.props.listMails).sign === '\u2717')
                 this.setState({mail: ''})
@@ -46,7 +45,7 @@ class Form extends React.Component{
                 this.setState({secondName: ''})
             if (checkValidInput.pwd(this.state.pwd).sign === '\u2717')
                 this.setState({pwd: '', confirmPwd: ''})
-            if (checkValidInput.confirmPwd(this.state.confirmPwd).sign === '\u2717')
+            if (checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).sign === '\u2717')
                 this.setState({pwd: '', confirmPwd: ''})
         }
     }
