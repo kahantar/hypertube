@@ -34,15 +34,18 @@
         font-size: 1.5vh;
         margin: auto 0 auto 10px; }
         .background #Register_form .Register_frame input::placeholder {
-          color: gainsboro; }
-      .background #Register_form .Register_frame .validInput {
+          color: #828282; }
+      .background #Register_form .Register_frame .Register_validInput {
         color: gainsboro;
         position: absolute;
-        left: 33.7vh;
+        left: 34.1vh;
         top: 0.3vh;
         font-family: "Roboto";
-        font-size: 1.5vh;
+        font-size: 1.3vh;
         white-space: nowrap; }
+        .background #Register_form .Register_frame .Register_validInput .Register_checkInput {
+          margin-right: 7px;
+          font-size: 1.5vh; }
     .background #Register_form .Register_line {
       margin-top: 0.5vh;
       border-bottom: 1px solid #3c3c3c; }

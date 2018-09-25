@@ -27,7 +27,7 @@ export const validationRegister = (user) => {
     if (!(pass).test(user.password)){
         errors.push({msg: "Password invalide (8 caracters, 1 number, 1 lowercase letter, 1 uppercase letter)"})
     }
-    if (user.password !== user.confirm_password){
+    if (user.password !== user.confirm_password) {
         errors.push({msg: "Error confirmation password"})
     }
     return errors
