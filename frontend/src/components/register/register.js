@@ -6,9 +6,6 @@ import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 
 class Register extends React.Component{
-    componentWillMount() {
-        this.props.loadLanguage('English')
-    }
     changeLanguage = () => {
         (this.props.language.language === 'English') ? this.props.loadLanguage('Français') : this.props.loadLanguage('English')
     }

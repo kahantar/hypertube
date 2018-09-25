@@ -26,7 +26,7 @@
         background: none;
         font-style: normal;
         color: gainsboro;
-        font-family: 'Roboto';
+        font-family: "Roboto";
         font-weight: 100;
         font-size: 1.5vh;
         margin: auto 0 auto 10px; }
@@ -39,7 +39,7 @@
       background-color: #c91423;
       border: none;
       color: white;
-      font-family: 'Roboto';
+      font-family: "Roboto";
       font-weight: 200;
       font-size: 1.9vh;
       margin-top: 3vh;
@@ -54,7 +54,7 @@
       .Login_background #Login_form #Login_buttonsApi .Login_buttonApi {
         background-color: white;
         color: white;
-        font-family: 'Roboto';
+        font-family: "Roboto";
         font-weight: 200;
         font-size: 1.9vh;
         height: 4vh;
@@ -72,7 +72,7 @@
           width: 2.3vh;
           margin: auto auto auto 0; }
     .Login_background #Login_form #Login_signUp {
-      font-family: 'Roboto';
+      font-family: "Roboto";
       font-weight: 100;
       font-size: 1.5vh;
       margin: 1vh auto auto auto;
@@ -81,6 +81,24 @@
       .Login_background #Login_form #Login_signUp #Login_bold {
         font-weight: 300;
         color: #c91423; }
+  .Login_background #language {
+    color: #828282;
+    font-family: "Roboto";
+    font-weight: 300;
+    font-size: 1.2vh;
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    cursor: pointer; }
+    .Login_background #language #arrowLanguage {
+      background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537910035/Netflix42/arrow-down_tshqhp.png");
+      background-position: center;
+      background-size: cover;
+      width: 1vh;
+      height: 1vh;
+      margin: auto auto auto 4px; }
 
 @media screen and (min-width: 700px) and (max-height: 800px) {
   .Login_background {
@@ -93,7 +111,13 @@
       top: 20px;
       margin: 0; }
     .Login_background #Login_form {
-      margin: 16vh auto auto auto; } }
+      margin: 16vh auto auto auto; }
+    .Login_background #language {
+      top: 4vh;
+      right: 7vh;
+      transform: initial;
+      left: initial;
+      bottom: initial; } }
 
 @media screen and (min-width: 1000px) and (min-height: 800px) {
   .Login_background {
@@ -106,4 +130,10 @@
       top: 20px;
       margin: 0; }
     .Login_background #Login_form {
-      margin: 16vh auto auto auto; } }
+      margin: 16vh auto auto auto; }
+    .Login_background #language {
+      top: 4vh;
+      right: 7vh;
+      transform: initial;
+      left: initial;
+      bottom: initial; } }

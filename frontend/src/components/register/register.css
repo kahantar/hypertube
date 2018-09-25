@@ -36,13 +36,14 @@
         .background #Register_form .Register_frame input::placeholder {
           color: #828282; }
       .background #Register_form .Register_frame .Register_validInput {
-        color: gainsboro;
+        color: #828282;
         position: absolute;
         left: 34.1vh;
         top: 0.3vh;
         font-family: "Roboto";
         font-size: 1.3vh;
-        white-space: nowrap; }
+        white-space: nowrap;
+        font-style: italic; }
         .background #Register_form .Register_frame .Register_validInput .Register_checkInput {
           margin-right: 7px;
           font-size: 1.5vh; }
@@ -77,9 +78,11 @@
     font-weight: 300;
     font-size: 1.2vh;
     position: absolute;
-    top: 4vh;
-    right: 7vh;
-    display: flex; }
+    bottom: 5vh;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    cursor: pointer; }
     .background #language #arrowLanguage {
       background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537910035/Netflix42/arrow-down_tshqhp.png");
       background-position: center;
@@ -100,7 +103,13 @@
       border: 1px solid green;
       margin: 0; }
     .background #Register_form {
-      margin: 7vh auto auto auto; } }
+      margin: 7vh auto auto auto; }
+    .background #language {
+      top: 4vh;
+      right: 7vh;
+      transform: initial;
+      left: initial;
+      bottom: initial; } }
 
 @media screen and (min-width: 1000px) and (min-height: 800px) {
   .background {
@@ -113,4 +122,10 @@
       top: 20px;
       margin: 0; }
     .background #Register_form {
-      margin: 7vh auto auto auto; } }
+      margin: 7vh auto auto auto; }
+    .background #language {
+      top: 4vh;
+      right: 7vh;
+      transform: initial;
+      left: initial;
+      bottom: initial; } }
