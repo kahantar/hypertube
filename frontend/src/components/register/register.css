@@ -38,15 +38,19 @@
       .background #Register_form .Register_frame .Register_validInput {
         color: #828282;
         position: absolute;
-        left: 34.1vh;
-        top: 0.3vh;
+        right: 0.4vh;
+        top: 3.6vh;
         font-family: "Roboto";
         font-size: 1.3vh;
         white-space: nowrap;
         font-style: italic; }
-        .background #Register_form .Register_frame .Register_validInput .Register_checkInput {
-          margin-right: 7px;
-          font-size: 1.5vh; }
+      .background #Register_form .Register_frame .Register_checkInput {
+        position: absolute;
+        left: 34.1vh;
+        top: 0.3vh;
+        font-family: "Roboto";
+        font-size: 1.5vh;
+        font-style: italic; }
     .background #Register_form .Register_line {
       margin-top: 0.5vh;
       border-bottom: 1px solid #3c3c3c; }
@@ -100,10 +104,13 @@
       position: absolute;
       left: 50px;
       top: 20px;
-      border: 1px solid green;
       margin: 0; }
     .background #Register_form {
       margin: 7vh auto auto auto; }
+      .background #Register_form .Register_validInput {
+        top: 0.6vh !important;
+        right: initial !important;
+        left: 35.7vh; }
     .background #language {
       top: 4vh;
       right: 7vh;
@@ -123,6 +130,10 @@
       margin: 0; }
     .background #Register_form {
       margin: 7vh auto auto auto; }
+      .background #Register_form .Register_validInput {
+        top: 0.6vh !important;
+        right: initial !important;
+        left: 35.7vh; }
     .background #language {
       top: 4vh;
       right: 7vh;

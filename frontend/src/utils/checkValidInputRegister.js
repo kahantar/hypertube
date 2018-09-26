@@ -102,14 +102,25 @@ const checkValidPwd = (inputValue) => {
         sign: wrong,
         color: red
     }
-    let regExPwd = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
 
     if (!inputValue) {
         validPwdChecked.sign = null
         return validPwdChecked
     }
-    else if (!regExPwd.test(inputValue)) {
-        validPwdChecked.value = '8 characters, 1 number, 1 lowercase, 1 uppercase'
+    else if (!/[a-z]/.test(inputValue)) {
+        validPwdChecked.value = 'Add a lowercase'
+        return validPwdChecked
+    }
+    else if (!/[A-Z]/.test(inputValue)) {
+        validPwdChecked.value = 'Add a uppercase'
+        return validPwdChecked
+    }
+    else if (!/[0-9]/.test(inputValue)) {
+        validPwdChecked.value = 'Add a number'
+        return validPwdChecked
+    }
+    else if (inputValue.length < 8) {
+        validPwdChecked.value = 'Password too short'
         return validPwdChecked
     }
     else {

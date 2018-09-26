@@ -209,6 +209,7 @@ module.exports = {
         // if (userId < 0){
         //     return res.status(400).json([{ msg: 'wrong token' }]);
         // }
+        console.log('ok')
         try{
             const users = await models.User.findAll({ 
                                     raw: true,
