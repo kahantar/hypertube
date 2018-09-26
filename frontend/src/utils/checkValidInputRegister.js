@@ -16,11 +16,11 @@ const checkValidMail = (inputValue, listMailsObj) => {
         return validMailChecked
     }
     else if (!regExMail.test(inputValue)) {
-        validMailChecked.value = 'Invalid mail'
+        validMailChecked.value = 'invalidMail'
         return validMailChecked
     }
     else if (listMails.find(elem => { return elem === inputValue})) {
-        validMailChecked.value = 'Mail already used'
+        validMailChecked.value = 'mailUsed'
         return validMailChecked
     }
     else {
@@ -41,11 +41,11 @@ const checkValidUsername = (inputValue) => {
         return validUsernameChecked
     }
     else if (inputValue.length < 3) {
-        validUsernameChecked.value = 'Username too short'
+        validUsernameChecked.value = 'usernameTooShort'
         return validUsernameChecked
     }
     else if (inputValue.length > 12) {
-        validUsernameChecked.value = 'Username too long'
+        validUsernameChecked.value = 'usernameTooLong'
         return validUsernameChecked
     }
     else {
@@ -66,7 +66,7 @@ const checkValidFirstName = (inputValue) => {
         return validFirstNameChecked
     }
     else if (inputValue.length > 12) {
-        validFirstNameChecked.value = 'First Name too long'
+        validFirstNameChecked.value = 'firstNameTooLong'
         return validFirstNameChecked
     }
     else {
@@ -87,7 +87,7 @@ const checkValidSecondName = (inputValue) => {
         return validSecondNameChecked
     }
     else if (inputValue.length > 12) {
-        validSecondNameChecked.value = 'Second Name too long'
+        validSecondNameChecked.value = 'secondNameTooLong'
         return validSecondNameChecked
     }
     else {
@@ -108,19 +108,19 @@ const checkValidPwd = (inputValue) => {
         return validPwdChecked
     }
     else if (!/[a-z]/.test(inputValue)) {
-        validPwdChecked.value = 'Add a lowercase'
+        validPwdChecked.value = 'lowercase'
         return validPwdChecked
     }
     else if (!/[A-Z]/.test(inputValue)) {
-        validPwdChecked.value = 'Add a uppercase'
+        validPwdChecked.value = 'uppercase'
         return validPwdChecked
     }
     else if (!/[0-9]/.test(inputValue)) {
-        validPwdChecked.value = 'Add a number'
+        validPwdChecked.value = 'number'
         return validPwdChecked
     }
     else if (inputValue.length < 8) {
-        validPwdChecked.value = 'Password too short'
+        validPwdChecked.value = 'pwdTooSHort'
         return validPwdChecked
     }
     else {
