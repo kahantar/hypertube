@@ -35,6 +35,7 @@ export const registerUser = (user) => {
 
 export const loginUser = (user, history) => {
     return (dispatch) => {
+        console.log('efer')
         const errors = validationLogin(user);
         if (errors.length === 0) {
             const data = JSON.stringify({
@@ -53,14 +54,16 @@ export const loginUser = (user, history) => {
                         dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies})
                         localStorage.setItem('token', token);
                         history.push('/home');
+                        console.log('efe')
                     }).catch((err) => {
+                        console.log(err)
                         if (err.response.status === 422)
-                            dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
+                            dispatch({type: "ERR_LOGIN", payload: err.response.data.errors})
                         else
-                            dispatch({type: "WARNING_UPDATE", payload: err.response.data})
+                            dispatch({type: "ERR_LOGIN", payload: err.response.data})
                     })
         }else{
-            dispatch({type: "WARNING_UPDATE", payload: errors});
+            dispatch({type: "ERR_LOGIN", payload: errors});
         }
 
     }

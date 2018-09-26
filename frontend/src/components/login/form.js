@@ -21,6 +21,7 @@ class Form extends React.Component{
         this.props.loginUser(this.state, this.props.history);
     }
     render(){
+        console.log(this.props.errLogin)
         return(
             <form id="Login_form" onSubmit={(e) => this.handleSubmit(e)}>            
                 {/* <Link id="forget" onClick={(e) => this.props.resetWarning()} to='/forgetpassword'>Mot de passe oublié?</Link>                 */}
@@ -50,7 +51,8 @@ class Form extends React.Component{
 const mapStateToProps = (state) => {
     
     return{
-        language: state.loadLanguage
+        language: state.loadLanguage,
+        errLogin: state.errLogin
     }  
 }
 

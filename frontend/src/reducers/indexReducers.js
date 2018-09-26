@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
 import { infoProfilReducers, allUsersReducers, allMoviesReducers, popularMoviesReducers, infoMovieReducers, fluxMoviesReducers, loadMailReducers, loadLanguageReducers } from './infoReducers';
-import { warningReducers } from './warningReducers';
+import { warningReducers, errLoginReducers } from './warningReducers';
 import { allCommentReducers } from './commentReducers';
 
 const rootReducer = combineReducers({
     warningReducers: warningReducers,
+    errLogin: errLoginReducers,
     infoProfil: infoProfilReducers,
     allUsers: allUsersReducers,
     allMovies: allMoviesReducers,
@@ -16,4 +17,4 @@ const rootReducer = combineReducers({
     loadLanguage: loadLanguageReducers
 })
 
-export default rootReducer 
+export default rootReducer

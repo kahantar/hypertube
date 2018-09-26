@@ -35,11 +35,14 @@ export const validationRegister = (user) => {
 
 export const validationLogin = (user) => {
     const errors = []
-    let regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
-    let pass = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
-    if (!(regex).test(user.email) || !(pass).test(user.password))  
-        errors.push({msg: "Incorrect combination"});
-    return errors;
+    let regExMail = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)    
+    let regExPwd = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/);
+    if (!regExMail.test(user.email))  
+        errors.push({value: "unknowMail"})
+    else if (!regExPwd.test(user.password))
+        errors.push({value: 'wrongPwd'})
+        
+    return errors
 }
 
 export const validationUpdate = (user) => {
