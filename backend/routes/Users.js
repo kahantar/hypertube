@@ -209,13 +209,17 @@ module.exports = {
         // if (userId < 0){
         //     return res.status(400).json([{ msg: 'wrong token' }]);
         // }
-        console.log('ok')
         try{
             const users = await models.User.findAll({ 
                                     raw: true,
                                     attributes: ['email'],
                                 });
-            return res.status(201).json(users);
+            let mailCrypted = []
+            for (let i = 0; i < users.length; i++)
+                mailCrypted.push(await bcrypt.hash(users[i].email, 5))
+
+            console.log(mailCrypted)
+            return res.status(201).json(mailCrypted);
         }catch(err){
             res.status(500).json({ 'error': 'cannot fetch user' });
         }

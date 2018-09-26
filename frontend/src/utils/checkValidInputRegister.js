@@ -1,15 +1,21 @@
+import bcrypt from 'bcryptjs'
+
 let ok = '\u2713'
 let wrong = '\u2717'
 let green = '#18e23a'
 let red = '#e81728'
 
-const checkValidMail = (inputValue, listMailsObj) => {
+const checkValidMail = (inputValue, listMails) => {
     let validMailChecked = {
         sign: wrong,
         color: red
     }
-    let listMails = listMailsObj.map(e => e.email)
     let regExMail = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+
+    let mailsChecked = []
+    for (let i = 0; i < listMails.length; i++) {
+        mailsChecked.push((bcrypt.compareSync(inputValue, listMails[i])))
+    }
 
     if (!inputValue) {
         validMailChecked.sign = null
@@ -19,7 +25,7 @@ const checkValidMail = (inputValue, listMailsObj) => {
         validMailChecked.value = 'invalidMail'
         return validMailChecked
     }
-    else if (listMails.find(elem => { return elem === inputValue})) {
+    else if (mailsChecked.find(elem => { return elem === true})) {
         validMailChecked.value = 'mailUsed'
         return validMailChecked
     }
