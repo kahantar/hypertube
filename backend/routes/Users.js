@@ -220,9 +220,9 @@ module.exports = {
             for (let i = 0; i < users.length; i++)
                 mailCrypted.push(await bcrypt.hash(users[i].email, 5))
 
-            console.log(mailCrypted)
             return res.status(201).json(mailCrypted);
         }catch(err){
+            console.log(res.status(500))
             res.status(500).json({ 'error': 'cannot fetch user' });
         }
     }
