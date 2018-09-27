@@ -20,6 +20,7 @@ class Form extends React.Component{
         this.props.completeUser(this.state, this.props.history);
     }
     render(){
+        console.log(this.props.infoProfil)
         return (
             <form id="conteneur" onSubmit={(e) => this.handleSubmit(e)}>
                 <input type="email " defaultValue={this.props.infoProfil.email} placeholder="Email"/>

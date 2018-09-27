@@ -23,7 +23,7 @@ module.exports = {
                 if (userFound == null)
                     userFound = await models.User.create({ email, username, name, first_name, password: "1234", img: "/upload_img/avatar.png", confirmation: false });
                 const token = jwtUtils.generateTokenForUser(userFound)            
-                res.redirect(`http://localhost:3000/completeauth?token=${token}`)
+                res.redirect(`http://localhost:3000/signup?token=${token}`)
             }
         }catch(err){}
     },
@@ -44,7 +44,7 @@ module.exports = {
                 if (userFound == null)
                     userFound = await models.User.create({ email, username, name, first_name, password: "1234", img: "/upload_img/avatar.png", confirmation: false });
                 const token = jwtUtils.generateTokenForUser(userFound)            
-                res.redirect(`http://localhost:3000/completeauth?token=${token}`)
+                res.redirect(`http://localhost:3000/signup?token=${token}`)
             }
         }catch(err){}
     },

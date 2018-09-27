@@ -22,6 +22,11 @@ class Form extends React.Component{
         this.props.resetErrLogin()
     }
 
+    changePwd = (e) => {
+        this.setState({password: e.target.value})
+        this.props.resetErrLogin()
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.state.email || this.state.password) {
@@ -45,7 +50,7 @@ class Form extends React.Component{
                 <div className='Login_line'/>
                 <div className='Login_frame'>
                     <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537543400/Netflix42/pwd.png' alt='password'/>
-                    <input id="password" type="password" value={this.state.password} placeholder={this.props.language.password} onChange={(e) => this.setState({password: e.target.value})}/>
+                    <input id="password" type="password" value={this.state.password} placeholder={this.props.language.password} onChange={(e) => this.changePwd(e)}/>
                     <div className='Login_checkInput'>{this.props.errLogin.signPwd}</div>
                     <div className='Login_validInput'>{this.props.language[this.props.errLogin.pwd]}</div>
                 </div>

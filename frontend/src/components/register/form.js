@@ -1,12 +1,13 @@
 import React from 'react';
 import './register.css';
-import { registerUser, resetWarning } from '../../actions/user'
+import { registerUser, completeUser, loadInfoUser } from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
 import {loadMail} from '../../actions/user';
 import checkValidInput from '../../utils/checkValidInputRegister'
 import { withRouter } from "react-router-dom";
+import qs from 'query-string'
 
 
 class Form extends React.Component{
@@ -20,7 +21,22 @@ class Form extends React.Component{
     }
 
     componentDidMount(){
+        if (JSON.stringify(this.props.infoProfil) === '[]')
+            this.loadInfo()
+
         this.props.loadMail()
+    }
+
+    loadInfo = () => {
+        this.props.loadInfoUser(qs.parse(this.props.location.search)).then(() => {
+            console.log(this.props.infoProfil)
+            this.setState({
+                mail: this.props.infoProfil.email,
+                username: this.props.infoProfil.username,
+                firstName: this.props.infoProfil.first_name,
+                secondName: this.props.infoProfil.name
+            })
+        })
     }
 
     handleSubmit = (e) => {
@@ -33,8 +49,12 @@ class Form extends React.Component{
                                     && checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).sign === '\u2713')
                                     ? true : false
 
-        if (checkValidAllInput)
-            this.props.registerUser(this.state, this.props.history)
+        if (checkValidAllInput) {
+            if (this.props.infoProfil.length)
+                this.props.completeUser(this.state, this.props.history)
+            else
+                this.props.registerUser(this.state, this.props.history)
+        }
         else {
             if (checkValidInput.mail(this.state.mail, this.props.listMails).sign === '\u2717')
                 this.setState({mail: ''})
@@ -51,6 +71,7 @@ class Form extends React.Component{
         }
     }
     render(){
+        console.log(this.props.infoProfil)
         return (
             <form id="Register_form" onSubmit={(e) => this.handleSubmit(e)}>
                 <div className='Register_frame'>
@@ -105,13 +126,14 @@ const mapStateToProps = (state) => {
     
     return {
         listMails: state.loadMail,
-        language: state.loadLanguage
+        language: state.loadLanguage,
+        infoProfil: state.infoProfil
     }  
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({registerUser, resetWarning, loadMail}, dispatch)
+        ...bindActionCreators({registerUser, loadMail, completeUser, loadInfoUser}, dispatch)
     };
 };
 
