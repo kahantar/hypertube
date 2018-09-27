@@ -6,6 +6,8 @@ import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
 import {loadMail} from '../../actions/user';
 import checkValidInput from '../../utils/checkValidInputRegister'
+import { withRouter } from "react-router-dom";
+
 
 class Form extends React.Component{
     state = {
@@ -17,7 +19,7 @@ class Form extends React.Component{
         confirmPwd: ""
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.props.loadMail()
     }
 
@@ -32,7 +34,7 @@ class Form extends React.Component{
                                     ? true : false
 
         if (checkValidAllInput)
-            this.props.registerUser(this.state)
+            this.props.registerUser(this.state, this.props.history)
         else {
             if (checkValidInput.mail(this.state.mail, this.props.listMails).sign === '\u2717')
                 this.setState({mail: ''})
@@ -93,7 +95,7 @@ class Form extends React.Component{
                 </div>
                 <div className='Register_line'/>
                 <button type="submit">{this.props.language.signUp}</button>
-                <Link id="signIn" onClick={(e) => this.props.resetWarning()} to='/'>{this.props.language.changeSignIn}<span id='bold'>{this.props.language.signUp}</span></Link>
+                <Link id="signIn" to='/'>{this.props.language.changeSignIn}<span id='bold'>{this.props.language.signUp}</span></Link>
             </form>            
         );
     }
@@ -113,4 +115,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Form))

@@ -7,7 +7,7 @@ import thunk from 'redux-thunk'
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['warningReducers', 'allMovies']
+  blacklist: ['warningReducers', 'allMovies', 'mailSent', 'errLogin']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

@@ -11,7 +11,7 @@ module.exports = {
     register: async (req, res) => {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(422).json({ errors: errors.array() });
+            return res.json({ err: 'Empty data'});
         }
         else{
             const email = req.body.email;
@@ -24,22 +24,20 @@ module.exports = {
     
             try{
                 const userFound = await models.User.findAll({
-                    where: { [Op.or]: [{email: email}, {username: username}]}
+                    where: { [Op.or]: [{email: email}]}
                     })
                 if (userFound.length === 0){
                     const newUser = await models.User.create({ email, username, name, first_name, password, img, confirmation });
                     const token = jwtUtils.generateTokenForId(newUser.id);
                     mailer(`Veuillez ouvrir le lien suivant afin de valider votre compte:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=confirm`, newUser.email, "Inscription Hypertube")
-                    return res.status(201).send([{
-                        msg: "Please open your confirmation email"
-                    }])
+                    return res.status(201).json({request: 'ok'})
                 }
                 else {
-                    return res.status(409).json([{msg: 'User already exist'}])
+                    return res.json([{err: 'User already exist'}])
                 }
             }
             catch (err){
-                return res.status(500).json([{msg: 'Cannot add user'}])
+                return res.json([{err: 'Cannot add user'}])
             }
         }
         
@@ -178,7 +176,6 @@ module.exports = {
                     'token': jwtUtils.generateTokenForUser(userUpdate)
                 });
             }catch(err){
-                console.log(err)
                 res.status(500).json([{ msg: 'cannot fetch user' }]);
             }
         }
@@ -220,7 +217,6 @@ module.exports = {
 
             return res.status(201).json(mailCrypted);
         }catch(err){
-            console.log(res.status(500))
             res.status(500).json({ 'error': 'cannot fetch user' });
         }
     }

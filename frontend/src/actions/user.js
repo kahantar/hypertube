@@ -2,16 +2,14 @@ import axios from 'axios';
 import {validationLogin, validationUpdate, validationComplete, validationResetPassword} from '../utils/validationForm';
 import allLanguage from '../utils/language'
 
-export const registerUser = (user) => {
-    return (dispatch) => {
-        // const errors = validationRegister(user);
-        // if (errors.length === 0){
+export const registerUser = (user, history) => {
+    return (dispatch) => {    
             const data = JSON.stringify({
-                    email: user.email,
+                    email: user.mail,
                     username: user.username,
-                    name: user.name,
-                    first_name: user.first_name,
-                    password: user.password,
+                    first_name: user.firstName,
+                    name: user.secondName,                    
+                    password: user.pwd,
                     img: "/upload_img/avatar.png",
                     confirmation: false
                 })
@@ -20,16 +18,16 @@ export const registerUser = (user) => {
                             data,
                             headers: {'Content-Type': 'application/json'} 
                     }).then((response) => {
-                        dispatch({type: "WARNING_UPDATE", payload: response.data})
+                        if (response.data.request === 'ok') {
+                            dispatch({type: "MAIL_SEND", payload: {msg: 'mailSend', mail: user.mail}})
+                            console.log('YEAH')
+                            history.push('/')
+                        }
+                        else
+                            console.log('Error in server request Register')
                     }).catch((err) => {
-                        if (err.response.status === 422)
-                            dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
-                        if (err.response.status === 409)
-                            dispatch({type: "WARNING_UPDATE", payload: err.response.data})
+                        console.log(err)
                     })
-        // }
-        // else
-        //     dispatch({type: "WARNING_UPDATE", payload: errors})
     }
 }
 
@@ -47,20 +45,21 @@ export const loginUser = (user, history) => {
                             data,
                             headers: {'Content-Type': 'application/json'} 
                     }).then((response) => {
-                        const token = response.data.token;
-                        let payloadtoken = JSON.parse(atob(token.split('.')[1]));
-                        dispatch({type: "INFO_PROFIL", payload: payloadtoken})
-                        dispatch({type: "WARNING_UPDATE", payload: []})
-                        dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies})
-                        localStorage.setItem('token', token);
-                        history.push('/home');
-                        console.log('efe')
+                        if (response.data.err)
+                            console.log(response.data.message)
+                        else if (response.status === '200') {
+                            const token = response.data.token;
+                            let payloadtoken = JSON.parse(atob(token.split('.')[1]));
+                            dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+                            // dispatch({type: "WARNING_UPDATE", payload: []})
+                            dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies})
+                            localStorage.setItem('token', token);
+                            history.push('/home');
+                        }
+                        else
+                            dispatch({type: "ERR_LOGIN", payload: response.data})                        
                     }).catch((err) => {
                         console.log(err)
-                        if (err.response.status === 422)
-                            dispatch({type: "ERR_LOGIN", payload: err.response.data.errors})
-                        else
-                            dispatch({type: "ERR_LOGIN", payload: err.response.data})
                     })
         }else{
             console.log(errors, 'drere')
@@ -72,7 +71,7 @@ export const loginUser = (user, history) => {
 
 export const resetErrLogin = () => {
     return (dispatch) => {
-        dispatch({type: "RESET_ERR_LOGIN", payload: ''})
+        dispatch({type: "RESET_ERR_LOGIN", payload: {}})
     }
 }
 
@@ -227,6 +226,12 @@ export const loadLanguage = (actualLanguage) => {
             dispatch({type: "LOAD_LANGUAGE", payload: allLanguage.english})
         else if (actualLanguage === 'Français')
             dispatch({type: "LOAD_LANGUAGE", payload: allLanguage.french})
+    }
+}
+
+export const resetMailSent = () => {
+    return (dispatch) => {
+        dispatch({type: "RESET_MAIL_SEND", payload: {}});
     }
 }
 

@@ -10,7 +10,6 @@ class Register extends React.Component{
         (this.props.language.language === 'English') ? this.props.loadLanguage('Français') : this.props.loadLanguage('English')
     }
     render(){
-        console.log(this.props.language.flag)
         return (
             <div className='background'>
                 <img id='logo' src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/>

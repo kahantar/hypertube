@@ -69,3 +69,14 @@ export const loadLanguageReducers = (state = [], action) => {
             return state;
     }
 }
+
+export const mailSentReducers = (state = {}, action) => {
+    switch(action.type) {
+        case "MAIL_SEND":
+            return action.payload
+        case "RESET_MAIL_SEND":
+            return action.payload
+        default:
+            return state;
+    }
+}

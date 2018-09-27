@@ -12,7 +12,17 @@
     border-radius: 0;
     width: 35vh;
     display: flex;
-    flex-direction: column; }
+    flex-direction: column;
+    position: relative; }
+    .Login_background #Login_form #Login_mailSent {
+      position: absolute;
+      font-family: "Roboto";
+      font-weight: 100;
+      font-size: 1.5vh;
+      color: gainsboro;
+      white-space: nowrap;
+      left: 50%;
+      transform: translate(-50%, -50%); }
     .Login_background #Login_form .Login_frame {
       display: flex;
       margin-top: 2.5vh;

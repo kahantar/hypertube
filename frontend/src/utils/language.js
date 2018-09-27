@@ -21,7 +21,8 @@ export default {
         number: 'Add a number',
         pwdTooSHort: 'Password too short',
         wrongMail: 'Mail doesn\'t exist',
-        wrongPwd: 'Incorrect password'
+        wrongPwd: 'Incorrect password',
+        mailSend: 'A confirmation mail has been sent to : '
 
     },
     french: {
@@ -46,6 +47,7 @@ export default {
         number: 'Ajoutez un chiffre',
         pwdTooSHort: 'Mot de passe trop court',
         wrongMail: 'Ce mail est associé à aucun compte',
-        wrongPwd: 'Mot de passe incorrecte'
+        wrongPwd: 'Mot de passe incorrecte',
+        mailSend: 'Un mail de confirmation a été envoyé à : '
     }
 }
