@@ -34,7 +34,8 @@ class Form extends React.Component{
         console.log(this.props.mailSent)
         return(
             <form id="Login_form" onSubmit={(e) => this.handleSubmit(e)}>            
-                <div id="Login_mailSent">{(this.props.mailSent.msg) ? this.props.language[this.props.mailSent.msg] + this.props.mailSent.mail : null}</div>                
+                {(this.props.errLogin.pwd) ? <Link id="Login_forgotPwd" to='/forgetpassword'>{this.props.language.forgotPwd}</Link> :
+                (this.props.mailSent.msg) ? <div id="Login_mailSent">{this.props.language[this.props.mailSent.msg] + this.props.mailSent.mail}</div> : null}
                 <div className='Login_frame'>
                     <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537541388/Netflix42/mail_dgwbct.png' alt='mail'/>                
                     <input id="email" type="email "value={this.state.email} placeholder="Mail" onChange={(e) => this.changeMail(e)}/>
@@ -55,7 +56,6 @@ class Form extends React.Component{
                     <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537537025/Netflix42/google_qhuzoc.png' text={this.props.language.continueWithApi} link={link_google}/>
                 </div>
                 <Link id="Login_signUp" to='/signup'>{this.props.language.changeSignUp}<span id='Login_bold'>{this.props.language.signUp}</span></Link>
-                {/* <Link id="forget" onClick={(e) => this.props.resetMailSend()} to='/forgetpassword'>{this.props.language}</Link> */}
             </form>
         )
     }

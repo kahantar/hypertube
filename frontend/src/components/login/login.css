@@ -23,6 +23,14 @@
       white-space: nowrap;
       left: 50%;
       transform: translate(-50%, -50%); }
+    .Login_background #Login_form #Login_forgotPwd {
+      position: absolute;
+      font-family: "Roboto";
+      font-weight: 300;
+      font-size: 1.5vh;
+      color: #828282;
+      left: 50%;
+      transform: translate(-50%, -50%); }
     .Login_background #Login_form .Login_frame {
       display: flex;
       margin-top: 2.5vh;
