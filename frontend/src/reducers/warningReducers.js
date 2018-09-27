@@ -67,6 +67,8 @@ export const errLoginReducers = (state=[], action) => {
     switch(action.type) {
         case 'ERR_LOGIN':
             return action.payload
+        case 'RESET_ERR_LOGIN':
+            return action.payload
         default:
             return state
     }

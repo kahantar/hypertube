@@ -35,6 +35,13 @@
         margin: auto 0 auto 10px; }
         .background #Register_form .Register_frame input::placeholder {
           color: #828282; }
+      .background #Register_form .Register_frame .Register_checkInput {
+        position: absolute;
+        left: 34.1vh;
+        top: 0.3vh;
+        font-family: "Roboto";
+        font-size: 1.5vh;
+        font-style: italic; }
       .background #Register_form .Register_frame .Register_validInput {
         color: #828282;
         position: absolute;
@@ -43,13 +50,6 @@
         font-family: "Roboto";
         font-size: 1.3vh;
         white-space: nowrap;
-        font-style: italic; }
-      .background #Register_form .Register_frame .Register_checkInput {
-        position: absolute;
-        left: 34.1vh;
-        top: 0.3vh;
-        font-family: "Roboto";
-        font-size: 1.5vh;
         font-style: italic; }
     .background #Register_form .Register_line {
       margin-top: 0.5vh;

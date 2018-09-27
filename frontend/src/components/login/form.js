@@ -1,12 +1,11 @@
 import React from 'react';
-import { loginUser, resetWarning } from '../../actions/user';
+import { resetErrLogin, loginUser, resetWarning } from '../../actions/user';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import { Link } from 'react-router-dom';
 import SignIn from './signIn';
 import './login.css';
-import checkValidInput from '../../utils/checkValidInputLogin'
 
 
 const link_fortytwo = "http://localhost:8080/auth/42";
@@ -18,26 +17,35 @@ class Form extends React.Component{
         password: '',
     }
 
+    changeMail = (e) => {
+        this.setState({email: e.target.value})
+        this.props.resetErrLogin()
+    }
+
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.loginUser(this.state, this.props.history);
-        this.setState({password: ''})
-        console.log(this.props.errLogin)
+        if (this.state.email || this.state.password) {
+            this.props.loginUser(this.state, this.props.history);
+            this.setState({password: ''})
+        }
     }
     render(){
+        console.log(this.props.errLogin)
         return(
             <form id="Login_form" onSubmit={(e) => this.handleSubmit(e)}>            
                 {/* <Link id="forget" onClick={(e) => this.props.resetWarning()} to='/forgetpassword'>Mot de passe oublié?</Link>                 */}
                 <div className='Login_frame'>
                     <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537541388/Netflix42/mail_dgwbct.png' alt='mail'/>                
-                    <input id="email" type="email "value={this.state.email} placeholder="Mail" onChange={(event) => this.setState({email: event.target.value})}/>
-                    <div className='Login_validInput' style={{color: checkValidInput.mail(this.state.mail, this.props.listMails).color}}><span className='Login_checkInput'>{checkValidInput.mail(this.state.mail, this.props.listMails).sign}</span>{checkValidInput.mail(this.state.mail, this.props.listMails).value}</div>
+                    <input id="email" type="email "value={this.state.email} placeholder="Mail" onChange={(e) => this.changeMail(e)}/>
+                    <div className='Login_checkInput'>{this.props.errLogin.signMail}</div>
+                    <div className='Login_validInput'>{this.props.language[this.props.errLogin.mail]}</div>
                 </div>
                 <div className='Login_line'/>
                 <div className='Login_frame'>
                     <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537543400/Netflix42/pwd.png' alt='password'/>
-                    <input id="password" type="password" value={this.state.password} placeholder={this.props.language.password} onChange={(event) => this.setState({password: event.target.value})}/>
-                    {/* <div className='Login_validInput' style={{color: checkValidInput.pwd(this.state.pwd).color}}><span className='Login_checkInput'>{checkValidInput.pwd(this.state.pwd).sign}</span>{checkValidInput.pwd(this.state.pwd).value}</div> */}
+                    <input id="password" type="password" value={this.state.password} placeholder={this.props.language.password} onChange={(e) => this.setState({password: e.target.value})}/>
+                    <div className='Login_checkInput'>{this.props.errLogin.signPwd}</div>
+                    <div className='Login_validInput'>{this.props.language[this.props.errLogin.pwd]}</div>
                 </div>
                 <div className='Login_line'/>
                 <button className='Login_buttonSignIn' type="submit">{this.props.language.signIn}</button>
@@ -61,7 +69,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({resetWarning, loginUser}, dispatch)
+        ...bindActionCreators({resetErrLogin, resetWarning, loginUser}, dispatch)
     }
     
 }

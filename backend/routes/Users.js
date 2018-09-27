@@ -47,7 +47,6 @@ module.exports = {
 
     login: async (req, res) => {
         const errors = validationResult(req);
-        console.log('fdsvfbgf')
         if (!errors.isEmpty()) {
             return res.status(422).json({ errors: [errors.array()[0]] });
         }else{
@@ -57,7 +56,6 @@ module.exports = {
                 const userFound = await models.User.findOne({
                     where: {email: email}
                     })
-                    console.log(userFound)
                 if (userFound){
                   const compareUser = await bcrypt.compare(password, userFound.password);
                   if (compareUser){
@@ -75,19 +73,19 @@ module.exports = {
                               'popularmovies': popularMovies
                           })
                       }else{
-                        return res.status(409).json([{ mail: email, value: "unactiveMail" }])
+                        return res.status(409).json({ mail: email, value: "unactiveMail" })
                       }
                   }
                   else{
-                    return res.status(403).json([{ mail: email, value: "wrongPwd" }])
+                    return res.status(403).json({ mail: email, value: "wrongPwd" })
                   }
                 }
                 else {
-                    return res.status(404).json([{mail: '', value: 'unknowMail'}])
+                    return res.status(404).json({mail: '', value: 'unknowMail'})
                 }
             }
             catch (err){
-                return res.status(500).json([{msg: ''}])
+                return res.status(500).json({msg: ''})
             }
         }
     },

@@ -35,9 +35,9 @@ export const registerUser = (user) => {
 
 export const loginUser = (user, history) => {
     return (dispatch) => {
-        console.log('efer')
         const errors = validationLogin(user);
-        if (errors.length === 0) {
+        console.log(errors)
+        if (errors.testFront === 'ok') {
             const data = JSON.stringify({
                 email: user.email,
                 password: user.password
@@ -63,9 +63,16 @@ export const loginUser = (user, history) => {
                             dispatch({type: "ERR_LOGIN", payload: err.response.data})
                     })
         }else{
+            console.log(errors, 'drere')
             dispatch({type: "ERR_LOGIN", payload: errors});
         }
 
+    }
+}
+
+export const resetErrLogin = () => {
+    return (dispatch) => {
+        dispatch({type: "RESET_ERR_LOGIN", payload: ''})
     }
 }
 
@@ -215,7 +222,6 @@ export const loadMail = () => {
 }
 
 export const loadLanguage = (actualLanguage) => {
-    console.log(actualLanguage)
     return (dispatch) => {
         if (actualLanguage === 'English')
             dispatch({type: "LOAD_LANGUAGE", payload: allLanguage.english})

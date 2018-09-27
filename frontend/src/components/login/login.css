@@ -16,11 +16,14 @@
     .Login_background #Login_form .Login_frame {
       display: flex;
       margin-top: 2.5vh;
-      height: 2.3vh; }
+      height: 2.3vh;
+      position: relative; }
       .Login_background #Login_form .Login_frame .Login_logoForm {
         width: 1.7vh;
         margin: auto 0; }
       .Login_background #Login_form .Login_frame input {
+        width: calc(30vh);
+        padding-right: 3vh;
         outline: none;
         border: none;
         background: none;
@@ -32,6 +35,23 @@
         margin: auto 0 auto 10px; }
         .Login_background #Login_form .Login_frame input::placeholder {
           color: #828282; }
+      .Login_background #Login_form .Login_frame .Login_checkInput {
+        position: absolute;
+        left: 34.1vh;
+        top: 0.3vh;
+        font-family: "Roboto";
+        font-size: 1.5vh;
+        font-style: italic;
+        color: #e81728; }
+      .Login_background #Login_form .Login_frame .Login_validInput {
+        color: #828282;
+        position: absolute;
+        right: 0.4vh;
+        top: 3.6vh;
+        font-family: "Roboto";
+        font-size: 1.3vh;
+        white-space: nowrap;
+        font-style: italic; }
     .Login_background #Login_form .Login_line {
       margin-top: 0.5vh;
       border-bottom: 1px solid #3c3c3c; }
@@ -112,6 +132,10 @@
       margin: 0; }
     .Login_background #Login_form {
       margin: 16vh auto auto auto; }
+      .Login_background #Login_form .Login_validInput {
+        top: 0.6vh !important;
+        right: initial !important;
+        left: 35.7vh; }
     .Login_background #language {
       top: 4vh;
       right: 7vh;
@@ -131,6 +155,10 @@
       margin: 0; }
     .Login_background #Login_form {
       margin: 16vh auto auto auto; }
+      .Login_background #Login_form .Login_validInput {
+        top: 0.6vh !important;
+        right: initial !important;
+        left: 35.7vh; }
     .Login_background #language {
       top: 4vh;
       right: 7vh;

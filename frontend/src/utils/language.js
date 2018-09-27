@@ -19,7 +19,9 @@ export default {
         lowercase: 'Add a lowercase',
         uppercase: 'Add an uppercase',
         number: 'Add a number',
-        pwdTooSHort: 'Password too short'
+        pwdTooSHort: 'Password too short',
+        wrongMail: 'Mail doesn\'t exist',
+        wrongPwd: 'Incorrect password'
 
     },
     french: {
@@ -42,6 +44,8 @@ export default {
         lowercase: 'Ajoutez une minuscule',
         uppercase: 'Ajoutez une majuscule',
         number: 'Ajoutez un chiffre',
-        pwdTooSHort: 'Mot de passe trop court'
+        pwdTooSHort: 'Mot de passe trop court',
+        wrongMail: 'Ce mail est associé à aucun compte',
+        wrongPwd: 'Mot de passe incorrecte'
     }
 }

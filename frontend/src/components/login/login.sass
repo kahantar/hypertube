@@ -17,7 +17,6 @@ $fontPrincipal: 'Roboto'
         margin: 0 auto
         border-radius: 0
         width: 35vh
-        // border: 1px solid red
         display: flex
         flex-direction: column
 
@@ -25,14 +24,15 @@ $fontPrincipal: 'Roboto'
             display: flex
             margin-top: 2.5vh
             height: 2.3vh
+            position: relative
 
             .Login_logoForm
                 width: 1.7vh
-                // border: 1px solid red
                 margin: auto 0
 
             input
-                // border: 1px solid blue
+                width: calc(30vh)
+                padding-right: 3vh
                 outline: none
                 border: none
                 background: none
@@ -44,6 +44,26 @@ $fontPrincipal: 'Roboto'
                 font-weight: 100
                 font-size: 1.5vh
                 margin: auto 0 auto 10px
+
+            .Login_checkInput
+                position: absolute
+                left: 34.1vh
+                top: 0.3vh
+                font-family: $fontPrincipal
+                font-size: 1.5vh  
+                font-style: italic
+                color: #e81728
+
+            .Login_validInput
+                color: rgb(130, 130, 130)
+                position: absolute
+                right: 0.4vh
+                top: 3.6vh
+                font-family: $fontPrincipal
+                font-size: 1.3vh        
+                white-space: nowrap
+                font-style: italic
+
             
         .Login_line
             margin-top: 0.5vh
@@ -142,6 +162,11 @@ $fontPrincipal: 'Roboto'
         #Login_form
             margin: 16vh auto auto auto
 
+            .Login_validInput
+                top: 0.6vh !important
+                right: initial !important
+                left: 35.7vh
+
         #language
             top: 4vh
             right: 7vh
@@ -163,6 +188,11 @@ $fontPrincipal: 'Roboto'
 
         #Login_form
             margin: 16vh auto auto auto
+
+            .Login_validInput
+                top: 0.6vh !important
+                right: initial !important
+                left: 35.7vh
 
         #language
             top: 4vh
