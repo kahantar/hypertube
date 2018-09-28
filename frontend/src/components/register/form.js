@@ -55,10 +55,11 @@ class Form extends React.Component{
                     username: this.props.infoProfil.username,
                     first_name: this.props.infoProfil.first_name,
                     name: this.props.infoProfil.name,
-                    password: this.state.pwd
+                    password: this.state.pwd,
+                    img: this.props.infoProfil.img
                 }
                 this.props.completeUser(user, this.props.history)
-                console.log('dew')
+                console.log(user)
             }
             else
                 this.props.registerUser(this.state, this.props.history)

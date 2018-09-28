@@ -8,21 +8,25 @@ const { validationResult } = require('express-validator/check');
 module.exports = {
     authGoogle: async (req, res) => {
         try{
-            const email = req.user._json.email;
-            const username = req.user._json.family_name;
-            const name = req.user._json.family_name;
-            const first_name = req.user._json.given_name;
+            const user = {
+                email: req.user._json.email,
+                username: req.user._json.given_name,
+                first_name: req.user._json.given_name,
+                name: req.user._json.family_name,
+                img: req.user._json.picture
+            }
             
             const userFound = await models.User.findOne({
-                where: { email: email }
+                where: { email: user.email }
             });
-            if (userFound && userFound.confirmation == true){
+
+            if (userFound){
                 const token = jwtUtils.generateTokenForUser(userFound)
                 res.redirect(`http://localhost:3000/home?token=${token}`)
-            }else{
-                if (userFound == null)
-                    userFound = await models.User.create({ email, username, name, first_name, password: "1234", img: "/upload_img/avatar.png", confirmation: false });
-                const token = jwtUtils.generateTokenForUser(userFound)            
+            }
+            else {
+                const token = jwtUtils.generateTokenForUser(user)      
+                console.log(token)      
                 res.redirect(`http://localhost:3000/signup?token=${token}`)
             }
         }catch(err){}
@@ -33,12 +37,14 @@ module.exports = {
                 email: req.user._json.email,
                 username: req.user._json.login,
                 first_name: req.user._json.first_name,
-                name: req.user._json.last_name
+                name: req.user._json.last_name,
+                img: req.user._json.image_url
             }
             
             const userFound = await models.User.findOne({
                 where: { email: user.email }
             });
+
             if (userFound){
                 const token = jwtUtils.generateTokenForUser(userFound)
                 res.redirect(`http://localhost:3000/home?token=${token}`)
@@ -55,22 +61,23 @@ module.exports = {
     completeUser: async (req, res) =>{
         console.log(req.body)
         const errors = validationResult(req);
+        console.log(errors)
         if (!errors.isEmpty())
             return res.status(422).json({ errors: errors.array() });
         else{
             const email = req.body.email;
             const username = req.body.username;
             const name = req.body.name;
-            const img = req.body.img;
             const first_name = req.body.first_name;
-            const password = await bcrypt.hash(req.body.password, 5);
+            const password = await bcrypt.hash(req.body.password, 5)
+            const img = req.body.img
             const headerAuth = req.headers['authorization'];
             // const userId = jwtUtils.getUserId(headerAuth);
             // if (userId < 0) {
             //     return res.status(400).json([{ msg: 'wrong token' }]);
             // }
             try{
-                await models.User.create({ email, username, name, first_name, password, img: "/upload_img/avatar.png", confirmation: true });
+                await models.User.create({ email, username, name, first_name, password, img, confirmation: true });
 
                 const user = await models.User.findOne({
                     attributes: ['id', 'email', 'name', 'first_name', 'username', 'img', 'password', 'confirmation'],

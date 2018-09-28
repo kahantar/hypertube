@@ -139,7 +139,7 @@ export const completeUser = (user, history) => {
                 name: user.name,
                 first_name: user.first_name,
                 password: user.password,
-                img: '/upload_img/avatar.png'
+                img: user.img
             });
             axios.put(`http://localhost:8080/auth/completeuser`, data, {
                 headers: { 'content-type': 'application/json', 'Authorization': token  }
