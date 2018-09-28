@@ -20,16 +20,9 @@ class Form extends React.Component{
         confirmPwd: ""
     }
 
-    async componentDidMount(){
+    componentDidMount(){
         if (qs.parse(this.props.location.search).token) {
-            await this.props.loadInfoUser(qs.parse(this.props.location.search))
-            console.log(this.props.infoProfil)
-            // this.setState({
-            //     mail: this.props.infoProfil.email,
-            //     username: this.props.infoProfil.username,
-            //     firstName: this.props.infoProfil.first_name,
-            //     secondName: this.props.infoProfil.name
-            // })
+            this.props.loadInfoUser(qs.parse(this.props.location.search))
             this.props.loadMail()
         }
     }
@@ -48,7 +41,6 @@ class Form extends React.Component{
                                     ? true : false
 
         if (checkValidAllInput) {
-            console.log('de')
             if (this.props.infoProfil.email) {
                 const user = {
                     email: this.props.infoProfil.email,
@@ -59,7 +51,6 @@ class Form extends React.Component{
                     img: this.props.infoProfil.img
                 }
                 this.props.completeUser(user, this.props.history)
-                console.log(user)
             }
             else
                 this.props.registerUser(this.state, this.props.history)

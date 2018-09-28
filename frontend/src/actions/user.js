@@ -45,9 +45,10 @@ export const loginUser = (user, history) => {
                             data,
                             headers: {'Content-Type': 'application/json'} 
                     }).then((response) => {
+                        console.log(response)
                         if (response.data.err)
                             console.log(response.data.message)
-                        else if (response.status === 200) {
+                        else if (response.status === 200 && response.data.userId) {
                             const token = response.data.token;
                             let payloadtoken = JSON.parse(atob(token.split('.')[1]));
                             dispatch({type: "INFO_PROFIL", payload: payloadtoken})
@@ -55,13 +56,14 @@ export const loginUser = (user, history) => {
                             localStorage.setItem('token', token);
                             history.push('/home');
                         }
-                        else
+                        else {
+                            console.log('dfghj')
                             dispatch({type: "ERR_LOGIN", payload: response.data})                        
+                        }
                     }).catch((err) => {
                         console.log(err)
                     })
         }else{
-            console.log(errors, 'drere')
             dispatch({type: "ERR_LOGIN", payload: errors});
         }
 

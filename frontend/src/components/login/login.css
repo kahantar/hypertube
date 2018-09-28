@@ -14,15 +14,16 @@
     display: flex;
     flex-direction: column;
     position: relative; }
-    .Login_background #Login_form #Login_mailSent {
+    .Login_background #Login_form .Login_mailAlert {
       position: absolute;
       font-family: "Roboto";
       font-weight: 100;
-      font-size: 1.5vh;
-      color: gainsboro;
+      font-size: 1.4vh;
+      color: #aaaaaa;
       white-space: nowrap;
       left: 50%;
-      transform: translate(-50%, -50%); }
+      transform: translate(-50%, -50%);
+      font-style: italic; }
     .Login_background #Login_form #Login_forgotPwd {
       position: absolute;
       font-family: "Roboto";

@@ -72,15 +72,15 @@ module.exports = {
                             })
                         }
                         else {
-                            return res.json({ mail: email, value: "unactiveMail" })
+                            return res.json({unactive: 'unactiveUser'})
                         }
                     }
                     else {
-                        return res.status(403).json({ mail: email, value: "wrongPwd" })
+                        return res.json({signPwd: '\u2717', pwd: 'wrongPwd'})
                     }
                 }
                 else {
-                    return res.status(404).json({mail: '', value: 'unknowMail'})
+                    return res.json({signMail: '\u2717', mail: 'wrongMail'})
                 }
             }
             catch (err){

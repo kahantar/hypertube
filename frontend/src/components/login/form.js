@@ -36,11 +36,12 @@ class Form extends React.Component{
         }
     }
     render(){
-        console.log(this.props.mailSent)
+        console.log(this.props.errLogin)
         return(
             <form id="Login_form" onSubmit={(e) => this.handleSubmit(e)}>            
                 {(this.props.errLogin.pwd) ? <Link id="Login_forgotPwd" to='/forgetpassword'>{this.props.language.forgotPwd}</Link> :
-                (this.props.mailSent.msg) ? <div id="Login_mailSent">{this.props.language[this.props.mailSent.msg] + this.props.mailSent.mail}</div> : null}
+                (this.props.errLogin.unactive) ? <div className="Login_mailAlert">{this.props.language[this.props.errLogin.unactive]}</div> :
+                (this.props.mailSent.msg) ? <div className="Login_mailAlert">{this.props.language[this.props.mailSent.msg] + this.props.mailSent.mail}</div> : null}
                 <div className='Login_frame'>
                     <img className='Login_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537541388/Netflix42/mail_dgwbct.png' alt='mail'/>                
                     <input id="email" type="email "value={this.state.email} placeholder="Mail" onChange={(e) => this.changeMail(e)}/>
