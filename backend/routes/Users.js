@@ -56,27 +56,28 @@ module.exports = {
                     })
                 if (userFound){
                   const compareUser = await bcrypt.compare(password, userFound.password);
-                  if (compareUser){
-                      if (userFound.confirmation === true){
-                          const popularMovies = await models.Movies.findAll({
-                              raw: true,
-                              order: [
-                                  ['rating', 'DESC']
-                                ],
-                                limit: 8
+                    if (compareUser){
+                        if (userFound.confirmation === true){
+                            const popularMovies = await models.Movies.findAll({
+                                raw: true,
+                                order: [
+                                    ['rating', 'DESC']
+                                    ],
+                                    limit: 8
+                                })
+                            return res.status(200).json({
+                                'userId': userFound.id,
+                                'token': jwtUtils.generateTokenForUser(userFound),
+                                'popularmovies': popularMovies
                             })
-                          return res.status(200).json({
-                              'userId': userFound.id,
-                              'token': jwtUtils.generateTokenForUser(userFound),
-                              'popularmovies': popularMovies
-                          })
-                      }else{
-                        return res.status(409).json({ mail: email, value: "unactiveMail" })
-                      }
-                  }
-                  else{
-                    return res.status(403).json({ mail: email, value: "wrongPwd" })
-                  }
+                        }
+                        else {
+                            return res.json({ mail: email, value: "unactiveMail" })
+                        }
+                    }
+                    else {
+                        return res.status(403).json({ mail: email, value: "wrongPwd" })
+                    }
                 }
                 else {
                     return res.status(404).json({mail: '', value: 'unknowMail'})

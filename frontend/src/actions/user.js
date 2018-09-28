@@ -34,7 +34,7 @@ export const registerUser = (user, history) => {
 export const loginUser = (user, history) => {
     return (dispatch) => {
         const errors = validationLogin(user);
-        console.log(errors)
+        console.log(user)
         if (errors.testFront === 'ok') {
             const data = JSON.stringify({
                 email: user.email,
@@ -47,11 +47,10 @@ export const loginUser = (user, history) => {
                     }).then((response) => {
                         if (response.data.err)
                             console.log(response.data.message)
-                        else if (response.status === '200') {
+                        else if (response.status === 200) {
                             const token = response.data.token;
                             let payloadtoken = JSON.parse(atob(token.split('.')[1]));
                             dispatch({type: "INFO_PROFIL", payload: payloadtoken})
-                            // dispatch({type: "WARNING_UPDATE", payload: []})
                             dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies})
                             localStorage.setItem('token', token);
                             history.push('/home');
