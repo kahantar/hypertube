@@ -24,7 +24,8 @@ export default {
         wrongPwd: 'Incorrect password',
         mailSend: 'A confirmation mail has been sent to : ',
         forgotPwd: 'Forgot your password ?',
-        unactiveUser: 'You have to activate your account'
+        unactiveUser: 'You have to activate your account',
+        resendPwd: 'Send'
 
     },
     french: {
@@ -52,6 +53,7 @@ export default {
         wrongPwd: 'Mot de passe incorrecte',
         mailSend: 'Un mail de confirmation a été envoyé à : ',
         forgotPwd: 'Mot de passe oublié ?',
-        unactiveUser: 'Vous devez activer votre compte'
+        unactiveUser: 'Vous devez activer votre compte',
+        resendPwd: 'Envoyer'
     }
 }

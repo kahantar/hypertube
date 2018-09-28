@@ -14,13 +14,21 @@ class Form extends React.Component{
         this.props.forgetPasswordUser(this.state);
     }
     render(){
+        console.log(this.props.language)
         return (
-            <form id="conteneur" onSubmit={(e) => this.handleSubmit(e)}>
-                <input type="email "value={this.state.email} placeholder="Email" onChange={(event) => this.setState({email: event.target.value})}/>
-            <button type="submit">S'inscrire</button>
+            <form id="ForgetPwd_form" onSubmit={(e) => this.handleSubmit(e)}>
+                <input id="ForgetPwd_input" type="email" value={this.state.email} placeholder="Mail" onChange={(event) => this.setState({email: event.target.value})}/>
+                <div className='ForgetPwd_line'/>
+            <button className='ForgetPwd_buttonForgetPwd' type="submit">{this.props.language.resendPwd}</button>
             </form>
         );
     }
+}
+
+const mapStateToProps = (state) => {
+    return{
+        language: state.loadLanguage
+    }  
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -29,4 +37,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(Form);
+export default connect(mapStateToProps, mapDispatchToProps)(Form)

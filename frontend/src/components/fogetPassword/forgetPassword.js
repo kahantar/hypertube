@@ -6,9 +6,10 @@ import { connect } from 'react-redux';
 class ForgetPassword extends React.Component{
     render(){
         return(
-            <div>
-                <WarningList warnings={this.props.warningForget} />
+            <div className='ForgetPwd_background'>
+                <img id='ForgetPwd_logo' src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/>
                 <Form />
+                <div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
             </div>
         )
     }
@@ -16,7 +17,8 @@ class ForgetPassword extends React.Component{
 
 const mapStateToProps = (state) => {
     return {
-        warningForget: state.warningReducers
+        warningForget: state.warningReducers,
+        language: state.loadLanguage
     }
 }
 

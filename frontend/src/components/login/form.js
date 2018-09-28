@@ -28,8 +28,8 @@ class Form extends React.Component{
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        if (this.state.email || this.state.password) {
+        e.preventDefault()
+        if (this.state.email && this.state.password) {
             this.props.loginUser(this.state, this.props.history);
             this.props.resetMailSent()
             this.setState({password: ''})
@@ -68,7 +68,6 @@ class Form extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-    
     return{
         language: state.loadLanguage,
         errLogin: state.errLogin,
