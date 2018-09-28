@@ -12,11 +12,6 @@ const checkValidMail = (inputValue, listMails) => {
     }
     let regExMail = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
 
-    let mailsChecked = []
-    for (let i = 0; i < listMails.length; i++) {
-        mailsChecked.push((bcrypt.compareSync(inputValue, listMails[i])))
-    }
-
     if (!inputValue) {
         validMailChecked.sign = null
         return validMailChecked
@@ -25,14 +20,21 @@ const checkValidMail = (inputValue, listMails) => {
         validMailChecked.value = 'invalidMail'
         return validMailChecked
     }
-    else if (mailsChecked.find(elem => { return elem === true})) {
-        validMailChecked.value = 'mailUsed'
-        return validMailChecked
-    }
     else {
-        validMailChecked.sign = ok
-        validMailChecked.color = green
-        return validMailChecked
+        let mailsChecked = []
+        for (let i = 0; i < listMails.length; i++) {
+            mailsChecked.push((bcrypt.compareSync(inputValue, listMails[i])))
+        }
+        
+        if (mailsChecked.find(elem => { return elem === true})) {
+            validMailChecked.value = 'mailUsed'
+            return validMailChecked
+        }
+        else {
+            validMailChecked.sign = ok
+            validMailChecked.color = green
+            return validMailChecked
+        }
     }
 }
 
