@@ -10,7 +10,7 @@ exports.router = (() => {
     let authRouter = express.Router();
 
     authRouter.route('/42').get(passport.authenticate('42'));
-    authRouter.route('/42/callback').get(passport.authenticate('42', { failureRedirect: '/login' }), (req, res) => {auth.auth42(req, res)});
+    authRouter.route('/42/callback').get(passport.authenticate('42', { failureRedirect: '/' }), (req, res) => {auth.auth42(req, res)});
     authRouter.route('/google').get(passport.authenticate('google', { scope : ['profile','email'] }));
     authRouter.route('/google/callback').get(passport.authenticate('google', { scope : ['profile','email'] }), (req, res) => {auth.authGoogle(req, res)});
     authRouter.route('/completeuser').put(validator.complete, auth.completeUser);

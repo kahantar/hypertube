@@ -1,6 +1,6 @@
 import React from 'react';
 import './register.css';
-import { registerUser, completeUser, loadInfoUser } from '../../actions/user'
+import { registerUser, completeUser, loadInfoUser, resetInfoProfil } from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
@@ -20,38 +20,46 @@ class Form extends React.Component{
         confirmPwd: ""
     }
 
-    componentDidMount(){
-        if (JSON.stringify(this.props.infoProfil) === '[]')
-            this.loadInfo()
-
-        this.props.loadMail()
-    }
-
-    loadInfo = () => {
-        this.props.loadInfoUser(qs.parse(this.props.location.search)).then(() => {
+    async componentDidMount(){
+        if (qs.parse(this.props.location.search).token) {
+            await this.props.loadInfoUser(qs.parse(this.props.location.search))
             console.log(this.props.infoProfil)
-            this.setState({
-                mail: this.props.infoProfil.email,
-                username: this.props.infoProfil.username,
-                firstName: this.props.infoProfil.first_name,
-                secondName: this.props.infoProfil.name
-            })
-        })
+            // this.setState({
+            //     mail: this.props.infoProfil.email,
+            //     username: this.props.infoProfil.username,
+            //     firstName: this.props.infoProfil.first_name,
+            //     secondName: this.props.infoProfil.name
+            // })
+            this.props.loadMail()
+        }
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
-        const checkValidAllInput = (checkValidInput.mail(this.state.mail, this.props.listMails).sign === '\u2713'
+        const checkValidAllInput = ((checkValidInput.mail(this.state.mail, this.props.listMails).sign === '\u2713'
                                     && checkValidInput.username(this.state.username).sign === '\u2713'
                                     && checkValidInput.firstName(this.state.firstName).sign === '\u2713'
                                     && checkValidInput.secondName(this.state.secondName).sign === '\u2713'
                                     && checkValidInput.pwd(this.state.pwd).sign === '\u2713'
                                     && checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).sign === '\u2713')
+                                    || (this.props.infoProfil.email
+                                    && checkValidInput.pwd(this.state.pwd).sign === '\u2713'
+                                    && checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).sign === '\u2713'))
                                     ? true : false
 
         if (checkValidAllInput) {
-            if (this.props.infoProfil.length)
-                this.props.completeUser(this.state, this.props.history)
+            console.log('de')
+            if (this.props.infoProfil.email) {
+                const user = {
+                    email: this.props.infoProfil.email,
+                    username: this.props.infoProfil.username,
+                    first_name: this.props.infoProfil.first_name,
+                    name: this.props.infoProfil.name,
+                    password: this.state.pwd
+                }
+                this.props.completeUser(user, this.props.history)
+                console.log('dew')
+            }
             else
                 this.props.registerUser(this.state, this.props.history)
         }
@@ -71,34 +79,33 @@ class Form extends React.Component{
         }
     }
     render(){
-        console.log(this.props.infoProfil)
         return (
             <form id="Register_form" onSubmit={(e) => this.handleSubmit(e)}>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537541388/Netflix42/mail_dgwbct.png' alt='mail'/>                
-                    <input id="email" type="email "value={this.state.mail} placeholder="Mail" onChange={(event) => this.setState({mail: event.target.value})}/>
-                    <div className='Register_checkInput' style={{color: checkValidInput.mail(this.state.mail, this.props.listMails).color}}>{checkValidInput.mail(this.state.mail, this.props.listMails).sign}</div>
+                    <input id="email" type="email "value={(this.props.infoProfil.email) ? this.props.infoProfil.email : this.state.mail} placeholder="Mail" onChange={(event) => (!this.props.infoProfil.email) ? this.setState({mail: event.target.value}) : null}/>
+                    <div className='Register_checkInput' style={{color: (this.props.infoProfil.email) ? '#18e23a' : checkValidInput.mail(this.state.mail, this.props.listMails).color}}>{(this.props.infoProfil.email) ? '\u2713' : checkValidInput.mail(this.state.mail, this.props.listMails).sign}</div>
                     <div className='Register_validInput'>{this.props.language[checkValidInput.mail(this.state.mail, this.props.listMails).value]}</div>
                 </div>
                 <div className='Register_line'/>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537545396/Netflix42/user.png' alt='user'/>
-                    <input id="username" type="text" value={this.state.username} placeholder={this.props.language.username} onChange={(event) => this.setState({username: event.target.value})}/>
-                    <div className='Register_checkInput' style={{color: checkValidInput.username(this.state.username).color}}>{checkValidInput.username(this.state.username).sign}</div>
+                    <input id="username" type="text" value={(this.props.infoProfil.email) ? this.props.infoProfil.username : this.state.username} placeholder={this.props.language.username} onChange={(event) => (!this.props.infoProfil.email) ? this.setState({username: event.target.value}) : null}/>
+                    <div className='Register_checkInput' style={{color: (this.props.infoProfil.email) ? '#18e23a' : checkValidInput.username(this.state.username).color}}>{(this.props.infoProfil.email) ? '\u2713' : checkValidInput.username(this.state.username).sign}</div>
                     <div className='Register_validInput'>{this.props.language[checkValidInput.username(this.state.username).value]}</div>
                 </div>
                 <div className='Register_line'/>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537545396/Netflix42/user.png' alt='user'/>
-                    <input id="first" type="text" value={this.state.firstName} placeholder={this.props.language.firstName} onChange={(event) => this.setState({firstName: event.target.value})}/>
-                    <div className='Register_checkInput' style={{color: checkValidInput.firstName(this.state.firstName).color}}>{checkValidInput.firstName(this.state.firstName).sign}</div>
+                    <input id="first" type="text" value={(this.props.infoProfil.email) ? this.props.infoProfil.first_name : this.state.firstName} placeholder={this.props.language.firstName} onChange={(event) => (!this.props.infoProfil.email) ? this.setState({firstName: event.target.value}) : null}/>
+                    <div className='Register_checkInput' style={{color: (this.props.infoProfil.email) ? '#18e23a' : checkValidInput.firstName(this.state.firstName).color}}>{(this.props.infoProfil.email) ? '\u2713' : checkValidInput.firstName(this.state.firstName).sign}</div>
                     <div className='Register_validInput'>{this.props.language[checkValidInput.firstName(this.state.firstName).value]}</div>
                 </div>
                 <div className='Register_line'/>
                 <div className='Register_frame'>
                     <img className='logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537545396/Netflix42/user.png' alt='user'/>
-                    <input id="name" type="text" value={this.state.secondName} placeholder={this.props.language.secondName} onChange={(event) => this.setState({secondName: event.target.value})}/> 
-                    <div className='Register_checkInput' style={{color: checkValidInput.secondName(this.state.secondName).color}}>{checkValidInput.secondName(this.state.secondName).sign}</div>
+                    <input id="name" type="text" value={(this.props.infoProfil.email) ? this.props.infoProfil.name : this.state.secondName} placeholder={this.props.language.secondName} onChange={(event) => (!this.props.infoProfil.email) ? this.setState({secondName: event.target.value}) : null}/> 
+                    <div className='Register_checkInput' style={{color: (this.props.infoProfil.email) ? '#18e23a' : checkValidInput.secondName(this.state.secondName).color}}>{(this.props.infoProfil.email) ? '\u2713' : checkValidInput.secondName(this.state.secondName).sign}</div>
                     <div className='Register_validInput'>{this.props.language[checkValidInput.secondName(this.state.secondName).value]}</div>               
                 </div>
                 <div className='Register_line'/>
@@ -116,7 +123,7 @@ class Form extends React.Component{
                 </div>
                 <div className='Register_line'/>
                 <button type="submit">{this.props.language.signUp}</button>
-                <Link id="signIn" to='/'>{this.props.language.changeSignIn}<span id='bold'>{this.props.language.signUp}</span></Link>
+                <Link id="signIn" onClick={this.props.resetInfoProfil} to='/'>{this.props.language.changeSignIn}<span id='bold'>{this.props.language.signUp}</span></Link>
             </form>            
         );
     }
@@ -133,7 +140,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({registerUser, loadMail, completeUser, loadInfoUser}, dispatch)
+        ...bindActionCreators({registerUser, loadMail, completeUser, loadInfoUser, resetInfoProfil}, dispatch)
     };
 };
 

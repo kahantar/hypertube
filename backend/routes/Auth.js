@@ -29,26 +29,31 @@ module.exports = {
     },
     auth42: async (req, res) => {
         try{
-            const email = req.user._json.email;
-            const username = req.user._json.login;
-            const name = req.user._json.last_name;
-            const first_name = req.user._json.first_name;
+            const user = {
+                email: req.user._json.email,
+                username: req.user._json.login,
+                first_name: req.user._json.first_name,
+                name: req.user._json.last_name
+            }
             
             const userFound = await models.User.findOne({
-                where: { email: email }
+                where: { email: user.email }
             });
-            if (userFound && userFound.confirmation == true){
+            if (userFound){
                 const token = jwtUtils.generateTokenForUser(userFound)
                 res.redirect(`http://localhost:3000/home?token=${token}`)
-            }else{
-                if (userFound == null)
-                    userFound = await models.User.create({ email, username, name, first_name, password: "1234", img: "/upload_img/avatar.png", confirmation: false });
-                const token = jwtUtils.generateTokenForUser(userFound)            
+            }
+            else {
+                // if (userFound == null)
+                //     userFound = await models.User.create({ email, username, name, first_name, password: "1234", img: "/upload_img/avatar.png", confirmation: false });
+                const token = jwtUtils.generateTokenForUser(user)      
+                console.log(token)      
                 res.redirect(`http://localhost:3000/signup?token=${token}`)
             }
         }catch(err){}
     },
     completeUser: async (req, res) =>{
+        console.log(req.body)
         const errors = validationResult(req);
         if (!errors.isEmpty())
             return res.status(422).json({ errors: errors.array() });
@@ -60,14 +65,16 @@ module.exports = {
             const first_name = req.body.first_name;
             const password = await bcrypt.hash(req.body.password, 5);
             const headerAuth = req.headers['authorization'];
-            const userId = jwtUtils.getUserId(headerAuth);
-            if (userId < 0){
-                return res.status(400).json([{ msg: 'wrong token' }]);
-            }
+            // const userId = jwtUtils.getUserId(headerAuth);
+            // if (userId < 0) {
+            //     return res.status(400).json([{ msg: 'wrong token' }]);
+            // }
             try{
-                const userFound = await models.User.findOne({
+                await models.User.create({ email, username, name, first_name, password, img: "/upload_img/avatar.png", confirmation: true });
+
+                const user = await models.User.findOne({
                     attributes: ['id', 'email', 'name', 'first_name', 'username', 'img', 'password', 'confirmation'],
-                    where: { id: userId }
+                    where: { email: email }
                 });
                 const popularMovies = await models.Movies.findAll({
                     raw: true,
@@ -76,7 +83,7 @@ module.exports = {
                       ],
                       limit: 8
                   })
-                const user = await userFound.update({ email, username, name, img, first_name, password, confirmation: true })
+                // const user = await userFound.update({ email, username, name, img, first_name, password, confirmation: true })
                 return res.status(201).json({ 
                     'userId': user.dataValues.id,
                     'token': jwtUtils.generateTokenForUser(user.dataValues),

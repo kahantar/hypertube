@@ -111,6 +111,7 @@ export const updateUser = (user, history) => {
 
 export const loadInfoUser = (query) => {
     return (dispatch) => {
+        console.log(query, 'query start')
         if (query.token !== undefined){
             const token = query.token;
             axios.get(`http://localhost:8080/search/popularmovies`,{
@@ -118,8 +119,10 @@ export const loadInfoUser = (query) => {
             }).then((response) =>{
                 let payloadtoken = JSON.parse(atob(token.split('.')[1]));
                 localStorage.setItem('token', token);
+                console.log(payloadtoken, 'payloadtoken')
                 dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies })
                 dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+                console.log(response.data)
                 }).catch((e) => {})
         }
     }
@@ -127,8 +130,8 @@ export const loadInfoUser = (query) => {
 
 export const completeUser = (user, history) => {
     return (dispatch) => {
-        const errors = validationComplete(user);
-        if (errors.length === 0){
+        // const errors = validationComplete(user);
+        // if (errors.length === 0){
             const token = localStorage.getItem('token');
             const data = JSON.stringify({
                 email: user.email,
@@ -153,9 +156,10 @@ export const completeUser = (user, history) => {
                 else
                     dispatch({type: "WARNING_UPDATE", payload: err.response.data})
             })
-        }else{
-            dispatch({type: "WARNING_UPDATE", payload: errors});
-        }
+        // }
+        // else{
+        //     dispatch({type: "WARNING_UPDATE", payload: errors});
+        // }
     }
 }
 
@@ -232,6 +236,12 @@ export const loadLanguage = (actualLanguage) => {
 export const resetMailSent = () => {
     return (dispatch) => {
         dispatch({type: "RESET_MAIL_SEND", payload: {}});
+    }
+}
+
+export const resetInfoProfil = () => {
+    return (dispatch) => {
+        dispatch({type: "RESET_INFO_PROFIL", payload: {}});
     }
 }
 
