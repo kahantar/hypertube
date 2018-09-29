@@ -23,9 +23,11 @@ export default {
         wrongMail: 'Mail doesn\'t exist',
         wrongPwd: 'Incorrect password',
         mailSend: 'A confirmation mail has been sent to : ',
+        mailPwdSend: 'A mail to change your password has been sent to : ',
         forgotPwd: 'Forgot your password ?',
         unactiveUser: 'You have to activate your account',
-        resendPwd: 'Send'
+        resendPwdInput: 'Enter your mail',
+        resendPwdButton: 'Send'
 
     },
     french: {
@@ -52,8 +54,10 @@ export default {
         wrongMail: 'Ce mail est associé à aucun compte',
         wrongPwd: 'Mot de passe incorrecte',
         mailSend: 'Un mail de confirmation a été envoyé à : ',
+        mailPwdSend: 'Un mail pour réinitialiser votre mot de passe a été envoyé à : ',
         forgotPwd: 'Mot de passe oublié ?',
         unactiveUser: 'Vous devez activer votre compte',
-        resendPwd: 'Envoyer'
+        resendPwdInput: 'Entrez votre mail',
+        resendPwdButton: 'Envoyer'
     }
 }

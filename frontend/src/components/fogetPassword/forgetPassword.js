@@ -1,13 +1,13 @@
 import React from 'react';
 import Form from './form';
-import WarningList from '../utilsComponent/warningList';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 
 class ForgetPassword extends React.Component{
     render(){
         return(
             <div className='ForgetPwd_background'>
-                <img id='ForgetPwd_logo' src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/>
+                <Link to='/'><img id='ForgetPwd_logo' src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
                 <Form />
                 <div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
             </div>

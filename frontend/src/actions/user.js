@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {validationLogin, validationUpdate, validationComplete, validationResetPassword} from '../utils/validationForm';
+import {validationLogin, validationUpdate, validationResetPassword} from '../utils/validationForm';
 import allLanguage from '../utils/language'
 
 export const registerUser = (user, history) => {
@@ -20,7 +20,6 @@ export const registerUser = (user, history) => {
                     }).then((response) => {
                         if (response.data.request === 'ok') {
                             dispatch({type: "MAIL_SEND", payload: {msg: 'mailSend', mail: user.mail}})
-                            console.log('YEAH')
                             history.push('/')
                         }
                         else
@@ -164,7 +163,7 @@ export const completeUser = (user, history) => {
     }
 }
 
-export const forgetPasswordUser = (user) => {
+export const forgetPasswordUser = (user, history) => {
     return (dispatch) => {
         const data = JSON.stringify({
             email: user.email
@@ -172,9 +171,10 @@ export const forgetPasswordUser = (user) => {
         axios.post(`http://localhost:8080/api/users/resetemailpassword`, data, {
                 headers: { 'content-type': 'application/json' }
             }).then((response) =>{
-                dispatch({type: "WARNING_UPDATE", payload: response.data})
+                dispatch({type: "MAIL_PWD_SEND", payload: {msg: 'mailPwdSend', mail: user.email}})
+                history.push('/')
             }).catch((err) => {
-                dispatch({type: "WARNING_UPDATE", payload: err.response.data})
+                console.log('Problem Server :' + err)
             })
     }
 }

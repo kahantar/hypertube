@@ -78,6 +78,8 @@ export const mailSentReducers = (state = {}, action) => {
             return action.payload
         case "RESET_MAIL_SEND":
             return action.payload
+        case "MAIL_PWD_SEND":
+            return action.payload
         default:
             return state;
     }

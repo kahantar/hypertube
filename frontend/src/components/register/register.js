@@ -1,9 +1,10 @@
 import React from 'react';
 import Form from './form';
 import {loadLanguage} from '../../actions/user'
-// import WarningList from '../utilsComponent/warningList';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
+import { Link } from 'react-router-dom';
+
 
 class Register extends React.Component{
     changeLanguage = () => {
@@ -12,10 +13,9 @@ class Register extends React.Component{
     render(){
         return (
             <div className='background'>
-                <img id='logo' src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/>
+                <Link to='/'><img id='logo' src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
                 <Form />
                 <div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
-                {/* <WarningList warnings={this.props.warningRegister}/> */}
             </div>
         )
     }

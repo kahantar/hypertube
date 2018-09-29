@@ -1,25 +1,50 @@
 import React from 'react';
 import './forgetPassword.css';
-import { forgetPasswordUser } from '../../actions/user'
+import {forgetPasswordUser, loadMail} from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux'
+import { withRouter } from "react-router-dom";
+import {validationResendPwd} from '../../utils/validationForm'
+
 
 class Form extends React.Component{
     state = {
-        email: ""
+        email: "",
+
+    }
+
+    componentDidMount() {
+        this.props.loadMail()
+    }
+
+    changeMail = (e) => {
+        this.setState({email: e.target.value})
     }
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        this.props.forgetPasswordUser(this.state);
+        e.preventDefault()
+        if (this.state.email)
+            if (validationResendPwd(this.state.email, this.props.listMails))
+                this.props.forgetPasswordUser(this.state, this.props.history)
+            else {
+                this.setState({
+                    errSign: '\u2717',
+                    errMsg: 'wrongMail'
+                })
+            }
     }
     render(){
-        console.log(this.props.language)
+        console.log(validationResendPwd(this.state.email, this.props.listMails))
         return (
             <form id="ForgetPwd_form" onSubmit={(e) => this.handleSubmit(e)}>
-                <input id="ForgetPwd_input" type="email" value={this.state.email} placeholder="Mail" onChange={(event) => this.setState({email: event.target.value})}/>
-                <div className='ForgetPwd_line'/>
-            <button className='ForgetPwd_buttonForgetPwd' type="submit">{this.props.language.resendPwd}</button>
+                <div id='ForgetPwd_blockInput'>
+                    <div className='ForgetPwd_frame'>
+                        <img className='ForgetPwd_logoForm' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537541388/Netflix42/mail_dgwbct.png' alt='mail'/>                
+                        <input id="ForgetPwd_input" type="email "value={this.state.email} placeholder={this.props.language.resendPwdInput} onChange={(e) => this.changeMail(e)}/>
+                        <img id='ForgetPwd_button' onClick={this.handleSubmit} src={(!this.state.email) ? 'https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538232571/Netflix42/send_white.png' : 'https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538231140/Netflix42/send.png'} alt='send'/>
+                    </div>
+                    <div className='ForgetPwd_line'/>
+                </div>
             </form>
         );
     }
@@ -27,14 +52,15 @@ class Form extends React.Component{
 
 const mapStateToProps = (state) => {
     return{
-        language: state.loadLanguage
+        language: state.loadLanguage,
+        listMails: state.loadMail
     }  
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({forgetPasswordUser}, dispatch)
+        ...bindActionCreators({forgetPasswordUser, loadMail}, dispatch)
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Form))

@@ -1,10 +1,9 @@
 import React from 'react';
 import './register.css';
-import { registerUser, completeUser, loadInfoUser, resetInfoProfil } from '../../actions/user'
+import { registerUser, completeUser, loadInfoUser, loadMail, resetInfoProfil } from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
-import {loadMail} from '../../actions/user';
 import checkValidInput from '../../utils/checkValidInputRegister'
 import { withRouter } from "react-router-dom";
 import qs from 'query-string'
@@ -19,7 +18,7 @@ class Form extends React.Component{
         username: '',
         signUsername: '',
         colorUsername: '',
-        valueMail: '',
+        valueUsername: '',
         firstName: '',
         signFirstName: '',
         colorFirstName: '',

@@ -1,37 +1,4 @@
-// export const validationRegister = (user) => {
-//     const errors = []
-//     let regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
-//     let pass = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
-//     if (!user.username){
-//         errors.push({msg: "Username invalide"})
-//     }
-//     else if (user.username.length > 12 || user.username.length <= 2){
-//         errors.push({msg: "Default length username"})
-//     }
-//     if (!(regex).test(user.email))  
-//     {
-//         errors.push({msg: "Email is wrong"})
-//     } 
-//     if (!user.first_name){
-//         errors.push({msg: "First name empty"})
-//     }
-//     else if (user.first_name.length > 20){
-//         errors.push({msg: "Default length first name"})
-//     }
-//     if (!user.name){
-//         errors.push({msg: "Name empty"})
-//     }
-//     else if (user.name.length > 20){
-//         errors.push({msg: "Default length name"})
-//     }
-//     if (!(pass).test(user.password)){
-//         errors.push({msg: "Password invalide (8 caracters, 1 number, 1 lowercase letter, 1 uppercase letter)"})
-//     }
-//     if (user.password !== user.confirm_password) {
-//         errors.push({msg: "Error confirmation password"})
-//     }
-//     return errors
-// }
+import bcrypt from 'bcryptjs'
 
 export const validationLogin = (user) => {
     let regExMail = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)    
@@ -43,6 +10,19 @@ export const validationLogin = (user) => {
         return {signPwd: '\u2717', pwd: 'wrongPwd'}
     
     return {testFront: 'ok'}
+}
+
+export const validationResendPwd = (inputValue, listMails) => {
+    let mailsChecked = []
+
+    for (let i = 0; i < listMails.length; i++) {
+        mailsChecked.push((bcrypt.compareSync(inputValue, listMails[i])))
+    }
+    
+    if (mailsChecked.find(elem => { return elem === true}))
+        return true
+    else
+        return false
 }
 
 export const validationUpdate = (user) => {
@@ -73,35 +53,35 @@ export const validationUpdate = (user) => {
     return errors
 }
 
-export const validationComplete = (user) => {
-    let pass = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
-    const errors = []
-    if (!user.username){
-        errors.push({msg: "Username invalide"})
-    }
-    else if (user.username.length > 12 || user.username.length <= 2){
-        errors.push({msg: "Default length username"})
-    }
-    if (!user.first_name){
-        errors.push({msg: "First name empty"})
-    }
-    else if (user.first_name.length > 20){
-        errors.push({msg: "Default length first name"})
-    }
-    if (!user.name){
-        errors.push({msg: "Name empty"})
-    }
-    else if (user.name.length > 20){
-        errors.push({msg: "Default length name"})
-    }
-    if (!(pass).test(user.password)){
-        errors.push({msg: "Password invalide (8 caracters, 1 number, 1 lowercase letter, 1 uppercase letter)"})
-    }
-    if (user.password !== user.confirm_password){
-        errors.push({msg: "Error confirmation password"})
-    }
-    return errors
-}
+// export const validationComplete = (user) => {
+//     let pass = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
+//     const errors = []
+//     if (!user.username){
+//         errors.push({msg: "Username invalide"})
+//     }
+//     else if (user.username.length > 12 || user.username.length <= 2){
+//         errors.push({msg: "Default length username"})
+//     }
+//     if (!user.first_name){
+//         errors.push({msg: "First name empty"})
+//     }
+//     else if (user.first_name.length > 20){
+//         errors.push({msg: "Default length first name"})
+//     }
+//     if (!user.name){
+//         errors.push({msg: "Name empty"})
+//     }
+//     else if (user.name.length > 20){
+//         errors.push({msg: "Default length name"})
+//     }
+//     if (!(pass).test(user.password)){
+//         errors.push({msg: "Password invalide (8 caracters, 1 number, 1 lowercase letter, 1 uppercase letter)"})
+//     }
+//     if (user.password !== user.confirm_password){
+//         errors.push({msg: "Error confirmation password"})
+//     }
+//     return errors
+// }
 
 export const validationResetPassword = (user) => {
     console.log(user)
