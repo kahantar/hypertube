@@ -5,8 +5,9 @@
   flex-direction: column;
   position: relative; }
   .Login_background #Login_logo {
-    margin: 12vh auto;
-    width: 23vh; }
+    margin: 12vh auto; }
+    .Login_background #Login_logo img {
+      width: 23vh; }
   .Login_background #Login_form {
     margin: 0 auto;
     border-radius: 0;

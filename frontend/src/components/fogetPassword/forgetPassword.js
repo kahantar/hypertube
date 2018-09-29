@@ -7,7 +7,7 @@ class ForgetPassword extends React.Component{
     render(){
         return(
             <div className='ForgetPwd_background'>
-                <Link to='/'><img id='ForgetPwd_logo' src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
+                <Link id='ForgetPwd_logo' to='/'><img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
                 <Form />
                 <div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
             </div>
