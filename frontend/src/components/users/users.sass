@@ -1,2 +1,69 @@
-#conteneur
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300')
+
+#Users
     display: flex
+    flex-direction: column
+    height: 100vh
+
+    #UserList_carousel
+        border: 1px solid red
+        height: 47vh
+        width: 90vw
+        margin: auto
+        position: relative
+
+        #UserList_prev2
+            border: 1px solid brown
+            position: absolute
+            left: 0
+
+        #UserList_prev1
+            border: 1px solid blue
+            position: absolute
+            left: 30vh
+            z-index: 1
+
+        #UserList_selected
+            border: 1px solid green
+            position: absolute
+            left: 50%
+            transform: translate(-50%)
+            z-index: 2
+
+
+        #UserList_next1
+            border: 1px solid purple
+            position: absolute
+            right: 30vh
+            z-index: 1
+
+        #UserList_next2
+            border: 1px solid orange
+            position: absolute
+            right: 0
+
+    .DisplayUser_card
+        width: 40vh
+        height: 47vh
+        background-color: white
+        border-radius: 20px
+        display: flex
+        flex-direction: column
+
+        .DisplayUser_img
+            width: 40vh
+            height: 40vh
+            background-position: center
+            background-size: cover
+            border-radius: 20px 20px 0 0
+        
+        .DisplayUser_blockTxt
+            display: flex
+            justify-content: space-around
+            margin: auto 0
+
+            .DisplayUser_txt
+                font-family: 'Roboto'
+                font-size: 3vh        
+                font-weight: 100
+            
