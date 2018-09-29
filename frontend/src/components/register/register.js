@@ -13,7 +13,7 @@ class Register extends React.Component{
     render(){
         return (
             <div className='background'>
-                <Link to='/'><img id='logo' src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
+                <Link id='logo' to='/'><img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
                 <Form />
                 <div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
             </div>

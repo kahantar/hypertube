@@ -5,8 +5,9 @@
   flex-direction: column;
   position: relative; }
   .background #logo {
-    margin: 12vh auto;
-    width: 23vh; }
+    margin: 12vh auto; }
+    .background #logo img {
+      width: 23vh; }
   .background #Register_form {
     margin: 0 auto;
     border-radius: 0;
