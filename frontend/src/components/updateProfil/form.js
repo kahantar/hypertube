@@ -14,6 +14,7 @@ class Form extends React.Component {
         first_name: this.props.infoProfil.first_name,
         username: this.props.infoProfil.username,
         img: this.props.infoProfil.img,
+        
         file: ''
     }
     // changeImg = (e) => {
@@ -52,17 +53,26 @@ class Form extends React.Component {
         return (
             <form id='UpdateProfil_form' onSubmit={(e) => this.handleSubmit(e)}>
                 {picture}
-                <div className='description'>Email</div>
-                <input type="email" placeholder="Email" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
+                <div className='description'>Mail</div>
+                <input type="email" placeholder="|" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
                 <div className='line'/>
-                <div className='description'>Username</div>                
-                <input type="text" placeholder="Username" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})}/>
+                <div className='description'>{this.props.language.username}</div>                
+                <input type="text" placeholder="|" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})}/>
                 <div className='line'/>                
-                <div className='description'>First name</div>                
-                <input type="text" placeholder="First name" value={this.state.first_name} onChange={(e) => this.setState({first_name: e.target.value})}/>
+                <div className='description'>{this.props.language.firstName}</div>                
+                <input type="text" placeholder="|" value={this.state.first_name} onChange={(e) => this.setState({first_name: e.target.value})}/>
                 <div className='line'/>                
-                <div className='description'>Second Name</div>                
-                <input type="text" placeholder="Name" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
+                <div className='description'>{this.props.language.secondName}</div>                
+                <input type="text" placeholder="|" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
+                <div className='line'/>
+                <div className='description'>{this.props.language.oldPwd}</div>                
+                <input type="password" placeholder="|" value={this.state.oldPwd} onChange={(e) => this.setState({name: e.target.value})}/>
+                <div className='line'/>
+                <div className='description'>{this.props.language.newPwd}</div>                
+                <input type="password" placeholder="|" value={this.state.newPwd1} onChange={(e) => this.setState({name: e.target.value})}/>
+                <div className='line'/>
+                <div className='description'>{this.props.language.newPwd}</div>                
+                <input type="password" placeholder="|" value={this.state.newPwd2} onChange={(e) => this.setState({name: e.target.value})}/>
                 <div className='line'/>
                 <button type="submit">UPDATE</button>
             </form>
@@ -80,7 +90,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
     return {
-        infoProfil: state.infoProfil
+        infoProfil: state.infoProfil,
+        language: state.loadLanguage
     }
 }
 

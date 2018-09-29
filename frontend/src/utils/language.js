@@ -27,7 +27,9 @@ export default {
         forgotPwd: 'Forgot your password ?',
         unactiveUser: 'You have to activate your account',
         resendPwdInput: 'Enter your mail',
-        resendPwdButton: 'Send'
+        resendPwdButton: 'Send',
+        oldPwd: 'Old password',
+        newPwd: 'New password'
 
     },
     french: {
@@ -58,6 +60,8 @@ export default {
         forgotPwd: 'Mot de passe oublié ?',
         unactiveUser: 'Vous devez activer votre compte',
         resendPwdInput: 'Entrez votre mail',
-        resendPwdButton: 'Envoyer'
+        resendPwdButton: 'Envoyer',
+        oldPwd: 'Ancient mot de passe',
+        newPwd: 'Nouveau mot de passe'
     }
 }
