@@ -15,17 +15,8 @@
       background-position: center;
       background-size: cover;
       background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg");
-      position: absolute; }
-    #Users #UserList_carousel #UserList_prev2 {
-      border: 1px solid brown; }
-    #Users #UserList_carousel #UserList_prev1 {
-      border: 1px solid blue; }
-    #Users #UserList_carousel #UserList_selected {
-      border: 1px solid green; }
-    #Users #UserList_carousel #UserList_next1 {
-      border: 1px solid purple; }
-    #Users #UserList_carousel #UserList_next2 {
-      border: 1px solid orange; }
+      position: absolute;
+      cursor: pointer; }
   #Users .DisplayUser_card {
     width: 40vh;
     height: 47vh;
