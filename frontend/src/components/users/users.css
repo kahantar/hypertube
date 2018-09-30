@@ -5,34 +5,27 @@
   height: 100vh; }
   #Users #UserList_carousel {
     border: 1px solid red;
-    height: 47vh;
+    height: 37vw;
+    max-height: 70vh;
     width: 90vw;
+    max-width: 171vh;
     margin: auto;
     position: relative; }
+    #Users #UserList_carousel .UserList_img {
+      background-position: center;
+      background-size: cover;
+      background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg");
+      position: absolute; }
     #Users #UserList_carousel #UserList_prev2 {
-      border: 1px solid brown;
-      position: absolute;
-      left: 0; }
+      border: 1px solid brown; }
     #Users #UserList_carousel #UserList_prev1 {
-      border: 1px solid blue;
-      position: absolute;
-      left: 30vh;
-      z-index: 1; }
+      border: 1px solid blue; }
     #Users #UserList_carousel #UserList_selected {
-      border: 1px solid green;
-      position: absolute;
-      left: 50%;
-      transform: translate(-50%);
-      z-index: 2; }
+      border: 1px solid green; }
     #Users #UserList_carousel #UserList_next1 {
-      border: 1px solid purple;
-      position: absolute;
-      right: 30vh;
-      z-index: 1; }
+      border: 1px solid purple; }
     #Users #UserList_carousel #UserList_next2 {
-      border: 1px solid orange;
-      position: absolute;
-      right: 0; }
+      border: 1px solid orange; }
   #Users .DisplayUser_card {
     width: 40vh;
     height: 47vh;
