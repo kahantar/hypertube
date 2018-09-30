@@ -3,38 +3,62 @@
   display: flex;
   flex-direction: column;
   height: 100vh; }
-  #Users #UserList_carousel {
-    border: 1px solid red;
-    height: 37vw;
-    max-height: 70vh;
-    width: 90vw;
-    max-width: 171vh;
-    margin: auto;
-    position: relative; }
-    #Users #UserList_carousel .UserList_img {
-      background-position: center;
-      background-size: cover;
-      background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg");
-      position: absolute;
-      cursor: pointer; }
-  #Users .DisplayUser_card {
-    width: 40vh;
-    height: 47vh;
-    background-color: white;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column; }
-    #Users .DisplayUser_card .DisplayUser_img {
-      width: 40vh;
-      height: 40vh;
-      background-position: center;
-      background-size: cover;
-      border-radius: 20px 20px 0 0; }
-    #Users .DisplayUser_card .DisplayUser_blockTxt {
-      display: flex;
-      justify-content: space-around;
-      margin: auto 0; }
-      #Users .DisplayUser_card .DisplayUser_blockTxt .DisplayUser_txt {
-        font-family: 'Roboto';
-        font-size: 3vh;
-        font-weight: 100; }
+
+#carousel {
+  position: relative;
+  height: 400px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid red; }
+  #carousel div {
+    position: absolute;
+    transition: transform 1s, left 1s, opacity 1s, z-index 0s;
+    opacity: 1;
+    border: 1px solid blue;
+    top: 20%;
+    transform: translate(50%); }
+    #carousel div img {
+      width: 400px;
+      transition: width 1s; }
+    #carousel div.hideLeft {
+      left: 0%;
+      opacity: 0;
+      transform: translateY(50%) translateX(-50%); }
+      #carousel div.hideLeft img {
+        width: 200px; }
+    #carousel div.hideRight {
+      left: 100%;
+      opacity: 0;
+      transform: translateY(50%) translateX(-50%); }
+      #carousel div.hideRight img {
+        width: 200px; }
+    #carousel div.prev {
+      z-index: 5;
+      left: 30%;
+      transform: translateY(50px) translateX(-50%); }
+      #carousel div.prev img {
+        width: 300px; }
+    #carousel div.prevLeftSecond {
+      z-index: 4;
+      left: 15%;
+      transform: translateY(50%) translateX(-50%);
+      opacity: .7; }
+      #carousel div.prevLeftSecond img {
+        width: 200px; }
+    #carousel div.selected {
+      z-index: 10;
+      left: 50%;
+      transform: translateY(0px) translateX(-50%); }
+    #carousel div.next {
+      z-index: 5;
+      left: 70%;
+      transform: translateY(50px) translateX(-50%); }
+      #carousel div.next img {
+        width: 300px; }
+    #carousel div.nextRightSecond {
+      z-index: 4;
+      left: 85%;
+      transform: translateY(50%) translateX(-50%);
+      opacity: .7; }
+      #carousel div.nextRightSecond img {
+        width: 200px; }

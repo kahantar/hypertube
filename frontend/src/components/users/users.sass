@@ -5,44 +5,120 @@
     flex-direction: column
     height: 100vh
 
-    #UserList_carousel
-        border: 1px solid red
-        height: 37vw
-        max-height: 70vh
-        width: 90vw
-        max-width: 171vh
-        margin: auto
-        position: relative
+//     #UserList_carousel
+//         border: 1px solid red
+//         height: 37vw
+//         max-height: 70vh
+//         width: 90vw
+//         max-width: 171vh
+//         margin: auto
+//         position: relative
 
-        .UserList_img
-            background-position: center
-            background-size: cover
-            background-image: url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg')
-            position: absolute
-            cursor: pointer
+//         .UserList_img
+//             background-position: center
+//             background-size: cover
+//             background-image: url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg')
+//             position: absolute
+//             cursor: pointer
 
-    .DisplayUser_card
-        width: 40vh
-        height: 47vh
-        background-color: white
-        border-radius: 20px
-        display: flex
-        flex-direction: column
+#carousel
+    position: relative
+    height: 400px
+    top: 50%
+    transform: translateY(-50%)
+    border: 1px solid red
 
-        .DisplayUser_img
-            width: 40vh
-            height: 40vh
-            background-position: center
-            background-size: cover
-            border-radius: 20px 20px 0 0
+    div
+        position: absolute
+        transition: transform 1s, left 1s, opacity 1s, z-index 0s
+        opacity: 1
+        border: 1px solid blue
+        top: 20%
+        transform: translate(50%)
+
+        img
+            width: 400px
+            transition: width 1s
+
+        &.hideLeft
+            left: 0%
+            opacity: 0
+            transform: translateY(50%) translateX(-50%)
+            img
+                width: 200px
+
+        &.hideRight
+            left: 100%
+            opacity: 0
+            transform: translateY(50%) translateX(-50%)
+            
+            img  
+                width: 200px
+
+        &.prev  
+            z-index: 5
+            left: 30%
+            transform: translateY(50px) translateX(-50%)
+            
+            img
+                width: 300px
+
+        &.prevLeftSecond
+            z-index: 4
+            left: 15%
+            transform: translateY(50%) translateX(-50%)
+            opacity: .7
+            
+            img
+                width: 200px
+
+        &.selected
+            z-index: 10
+            left: 50%
+            transform: translateY(0px) translateX(-50%)
+
+        &.next
+            z-index: 5
+            left: 70%
+            transform: translateY(50px) translateX(-50%)
+
+            img
+                width: 300px
+
+        &.nextRightSecond
+            z-index: 4
+            left: 85%
+            transform: translateY(50%) translateX(-50%)
+            opacity: .7
+
+            img
+                width: 200px
+
+
+
+
+    // .DisplayUser_card
+    //     width: 40vh
+    //     height: 47vh
+    //     background-color: white
+    //     border-radius: 20px
+    //     display: flex
+    //     flex-direction: column
+
+    //     .DisplayUser_img
+    //         width: 40vh
+    //         height: 40vh
+    //         background-position: center
+    //         background-size: cover
+    //         border-radius: 20px 20px 0 0
         
-        .DisplayUser_blockTxt
-            display: flex
-            justify-content: space-around
-            margin: auto 0
+    //     .DisplayUser_blockTxt
+    //         display: flex
+    //         justify-content: space-around
+    //         margin: auto 0
 
-            .DisplayUser_txt
-                font-family: 'Roboto'
-                font-size: 3vh        
-                font-weight: 100
+    //         .DisplayUser_txt
+    //             font-family: 'Roboto'
+    //             font-size: 3vh        
+    //             font-weight: 100
             
