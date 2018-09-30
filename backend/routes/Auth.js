@@ -18,7 +18,7 @@ module.exports = {
             });
             if (userFound && userFound.confirmation == true){
                 const token = jwtUtils.generateTokenForUser(userFound)
-                res.redirect(`http://localhost:3000/home?token=${token}`)
+                res.redirect(`http://localhost:3000/search?token=${token}`)
             }else{
                 if (userFound == null)
                     userFound = await models.User.create({ email, username, name, first_name, password: "1234", img: "/upload_img/avatar.png", confirmation: false });
@@ -39,7 +39,7 @@ module.exports = {
             });
             if (userFound && userFound.confirmation == true){
                 const token = jwtUtils.generateTokenForUser(userFound)
-                res.redirect(`http://localhost:3000/home?token=${token}`)
+                res.redirect(`http://localhost:3000/search?token=${token}`)
             }else{
                 if (userFound == null)
                     userFound = await models.User.create({ email, username, name, first_name, password: "1234", img: "/upload_img/avatar.png", confirmation: false });
@@ -74,6 +74,7 @@ module.exports = {
                     order: [
                         ['rating', 'DESC']
                       ],
+                      where: {source: '1337x'},
                       limit: 8
                   })
                 const user = await userFound.update({ email, username, name, img, first_name, password, confirmation: true })

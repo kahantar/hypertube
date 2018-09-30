@@ -9,43 +9,39 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       url: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       hash: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       title: {
-        allowNull: false,
         type: Sequelize.STRING
       },
       year: {
-        allowNull: false,
         type: Sequelize.INTEGER
       },
       rating: {
-        allowNull: false,
         type: Sequelize.DECIMAL
       },
       genre: {
-        allowNull: true,
         type: Sequelize.ARRAY(Sequelize.STRING)
       },
       image: {
-        allowNull: false,
+        type: Sequelize.STRING
+      },
+      large_image: {
         type: Sequelize.STRING
       },
       synopsis: {
-        allowNull: false,
         type: Sequelize.TEXT
       },
       imdb_code: {
-        allowNull: false,
+        type: Sequelize.TEXT
+      },
+      source: {
         type: Sequelize.TEXT
       },
       createdAt: {
-        allowNull: false,
         type: Sequelize.DATE
       },
       updatedAt: {

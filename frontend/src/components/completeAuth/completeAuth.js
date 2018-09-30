@@ -8,12 +8,12 @@ import { bindActionCreators } from 'redux';
 
 
 class CompleteAuth extends React.Component {
-    loadInfo = () => {
-        this.props.loadInfoUser(qs.parse(this.props.location.search))
-    }
-    render() {
+    componentWillMount(){
         if (JSON.stringify(this.props.infoProfil) === '[]')
-            this.loadInfo()
+            this.props.loadInfoUser(qs.parse(this.props.location.search))
+    }
+
+    render() {
         return (
             <div>
                 <WarningList warnings={this.props.warningComplete}/>

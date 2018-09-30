@@ -11,12 +11,14 @@ const addMovie = (movie) => new Promise ((resolve, reject) => {
            imdb_code: movie.imdb_code,
            url: movie.url,
            hash: movie.torrents[movie.torrents.length - 1].hash,
-           title: movie.title,
+           title: movie.title.toLowerCase(),
            year: movie.year,
            rating: movie.rating,
            genre: movie.genres,
            image: movie.medium_cover_image,
-           synopsis: movie.summary
+           large_image: movie.large_cover_image,
+           synopsis: movie.summary,
+           source: 'yts'
        }).then(() => resolve('ok')
        ).catch((err) => reject(err))
    }else
@@ -42,29 +44,35 @@ const DownloadsUrls = () => {
     })
 }
 
-DownloadsUrls().then((urls) => {
-    const bar1 = new _cliProgress.Bar({}, _cliProgress.Presets.shades_classic);
-    bar1.start(urls.length - 1, 0);
-    let compt = 0
-    urls.map(url => {
-        axios.get(url).then((response) => {
-            response.data.data.movies.forEach((movie, page) => {
-                addMovie(movie).then(() => {
-                    if (page === 49){
-                        bar1.update(++compt);
-                        if (compt >= urls.length - 10){
-                            process.exit()
+
+const ScrapAll = () => {
+    DownloadsUrls().then((urls) => {
+        const bar1 = new _cliProgress.Bar({}, _cliProgress.Presets.shades_classic);
+        bar1.start(urls.length - 1, 0);
+        let compt = 0
+        urls.map(url => {
+            axios.get(url).then((response) => {
+                response.data.data.movies.forEach((movie, page) => {
+                    addMovie(movie).then(() => {
+                        if (page === 49){
+                            bar1.update(++compt);
+                            if (compt >= urls.length - 10){
+                                process.exit()
+                            }
                         }
-                    }
-                }).catch((err) => {
-                    console.log("erreur insertion")
+                    }).catch((err) => {
+                        console.log("erreur insertion")
+                    })
                 })
+            }).catch((err) => {
+                bar1.update(++compt);
+                if (compt >= urls.length - 10){
+                    process.exit()
+                }
             })
-        }).catch((err) => {
-            bar1.update(++compt);
-            if (compt >= urls.length - 10){
-                process.exit()
-            }
         })
     })
-})
+}
+
+ScrapAll()
+// module.exports = ScrapAll

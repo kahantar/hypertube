@@ -104,13 +104,16 @@ export const loadInfoUser = (query) => {
     return (dispatch) => {
         if (query.token !== undefined){
             const token = query.token;
+            localStorage.setItem('token', token);
+            let payloadtoken = JSON.parse(atob(token.split('.')[1]));
+            dispatch({type: "INFO_PROFIL", payload: payloadtoken})
             axios.get(`http://localhost:8080/search/popularmovies`,{
                 headers: { 'Authorization': token  }
             }).then((response) =>{
-                let payloadtoken = JSON.parse(atob(token.split('.')[1]));
                 localStorage.setItem('token', token);
                 dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies })
-                dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+                dispatch({type: "ALL_MOVIES", payload: response.data.popularmovies })
+                dispatch({type: "FLUX_MOVIES", payload: response.data.popularmovies })
                 }).catch((e) => {})
         }
     }

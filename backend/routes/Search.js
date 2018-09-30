@@ -2,21 +2,45 @@ const models = require('../models');
 const Sequelize = require('sequelize');
 const jwtUtils = require('../utils/jwtUtils')
 
+const Op = Sequelize.Op;
 
 module.exports = {
     allMovies: async (req, res) => {
         try{
+            console.log(req.body)
+            let where = {}
+            if (req.body.genre !== 'ALL'){
+                where = {
+                    [Op.and]: [
+                        {source: 'yts'}, 
+                        {genre: {[Op.contains]: [req.body.genre]}},
+                        {rating: {[Op.gte]: req.body.rating}},
+                        {title: {[Op.regexp]: req.body.term}}
+                    ]
+                }
+            }else{
+                where = {
+                    [Op.and]: [
+                        {source: 'yts'},
+                        {rating: {[Op.gte]: req.body.rating}},
+                        {title: {[Op.regexp]: req.body.term}}
+                    ]
+                }
+            }
             const allMovies = await models.Movies.findAll({
                 raw: true,
                 order: [
-                    ['title', 'ASC']
-                ]
+                    [req.body.orderBy, req.body.order]
+                ],
+                where
               })
               return res.status(200).json({
                   'allmovies': allMovies
               })
         }
-        catch(err){}
+        catch(err){
+            console.log(err)
+        }
     },
     popularMovies: async (req, res) => {
         try{
@@ -25,6 +49,7 @@ module.exports = {
                 order: [
                     ['rating', 'DESC']
                   ],
+                  where: {source: '1337x'},
                   limit: 8
               })
               return res.status(200).json({
