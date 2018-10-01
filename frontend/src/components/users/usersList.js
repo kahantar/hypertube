@@ -1,5 +1,5 @@
 import React from 'react';
-// import DisplayUser from './displayUser';
+import DisplayUser from './displayUser';
 import './users.css';
 
 
@@ -229,34 +229,40 @@ class UsersList extends React.Component{
     }
 
     render() {
+        console.log(this.props.allUsers[0])
         return(
             <div id="carousel">
-                <div onClick={this.prev3MoveToSelected} className={this.state.hideLeft}>
-                    <img src="https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg"/>
+                <div onClick={this.prev3MoveToSelected} className='box' id={this.state.hideLeft}>
+                    <div className='img' style={{backgroundImage: `url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg')`}}/>
+                    {/* <DisplayUser key={this.props.allUsers[0].id} user={this.props.allUsers[0]}/> */}
+
                 </div>
 
-                <div onClick={this.prev2MoveToSelected} className={this.state.prevLeftSecond}>
-                    <img src="https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg"/>
+                <div onClick={this.prev2MoveToSelected} className='box' id={this.state.prevLeftSecond}>
+                    <div className='img' style={{backgroundImage: `url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg')`}}/>
                 </div>
 
-                <div onClick={this.prev1MoveToSelected} className={this.state.prev}>
-                    <img src="https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg"/>
+                <div onClick={this.prev1MoveToSelected} className='box' id={this.state.prev}>
+                    <div className='img' style={{backgroundImage: `url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg')`}}/>
                 </div>
 
-                <div onClick={this.moveToSelected} className={this.state.selected}>
-                    <img src="https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg"/>
+                <div onClick={this.moveToSelected} className='box' id={this.state.selected}>
+                    <div className='img' style={{backgroundImage: `url(${this.props.allUsers[0].img})`}}>
+                        <div className='UsersList_txt' id='UsersList_username'>{this.props.allUsers[0].username}</div>
+                        <div className='UsersList_txt' id='UsersList_firstSecondName'>{this.props.allUsers[0].first_name} {this.props.allUsers[0].name}</div>
+                    </div>
                 </div>
 
-                <div onClick={this.next1MoveToSelected} className={this.state.next}>
-                    <img src="https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg"/>
+                <div onClick={this.next1MoveToSelected} className='box' id={this.state.next}>
+                    <div className='img' style={{backgroundImage: `url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg')`}}/>
                 </div>
 
-                <div onClick={this.next2MoveToSelected} className={this.state.nextRightSecond}>
-                    <img src="https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg"/>
+                <div onClick={this.next2MoveToSelected} className='box' id={this.state.nextRightSecond}>
+                    <div className='img' style={{backgroundImage: `url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg')`}}/>
                 </div>
 
-                <div onClick={this.next3MoveToSelected} className={this.state.hideRight}>
-                    <img src="https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg"/>
+                <div onClick={this.next3MoveToSelected} className='box' id={this.state.hideRight}>
+                    <div className='img' style={{backgroundImage: `url('https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538313310/Netflix42/ugo.jpg')`}}/>
                 </div>
             </div>
         )
