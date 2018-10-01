@@ -24,12 +24,11 @@
       position: relative; }
       #carousel .box .img .UsersList_txt {
         font-family: 'Roboto';
-        font-size: 120%;
         font-weight: 100;
         color: white;
         position: absolute;
-        z-index: 10;
-        bottom: 10%; }
+        bottom: 10%;
+        transition: font-size 1s; }
       #carousel .box .img #UsersList_username {
         left: 10%; }
       #carousel .box .img #UsersList_firstSecondName {
@@ -37,25 +36,31 @@
   #carousel #hideLeft {
     left: 0%;
     opacity: 0;
-    transform: translateY(50%) translateX(-50%); }
+    transform: translateY(110%) translateX(-50%); }
     #carousel #hideLeft .img {
       width: 10vw;
       height: 10vw; }
-  #carousel #prev {
-    z-index: 5;
-    left: 30%;
-    transform: translateY(50px) translateX(-50%); }
-    #carousel #prev .img {
-      width: 23vw;
-      height: 23vw; }
+      #carousel #hideLeft .img .UsersList_txt {
+        font-size: 0.8vw; }
   #carousel #prevLeftSecond {
     z-index: 4;
     left: 15%;
-    transform: translateY(50%) translateX(-50%);
+    transform: translateY(60%) translateX(-50%);
     opacity: .7; }
     #carousel #prevLeftSecond .img {
       width: 15vw;
       height: 15vw; }
+      #carousel #prevLeftSecond .img .UsersList_txt {
+        font-size: 1.1vw; }
+  #carousel #prev {
+    z-index: 5;
+    left: 30%;
+    transform: translateY(23%) translateX(-50%); }
+    #carousel #prev .img {
+      width: 23vw;
+      height: 23vw; }
+      #carousel #prev .img .UsersList_txt {
+        font-size: 1.4vw; }
   #carousel #selected {
     z-index: 10;
     left: 50%;
@@ -64,25 +69,33 @@
     #carousel #selected .img {
       width: 30vw;
       height: 30vw; }
+      #carousel #selected .img .UsersList_txt {
+        font-size: 1.8vw; }
   #carousel #next {
     z-index: 5;
     left: 70%;
-    transform: translateY(50px) translateX(-50%); }
+    transform: translateY(23%) translateX(-50%); }
     #carousel #next .img {
       width: 23vw;
       height: 23vw; }
+      #carousel #next .img .UsersList_txt {
+        font-size: 1.4vw; }
   #carousel #nextRightSecond {
     z-index: 4;
     left: 85%;
-    transform: translateY(50%) translateX(-50%);
+    transform: translateY(60%) translateX(-50%);
     opacity: .7; }
     #carousel #nextRightSecond .img {
       width: 15vw;
       height: 15vw; }
+      #carousel #nextRightSecond .img .UsersList_txt {
+        font-size: 1.1vw; }
   #carousel #hideRight {
     left: 100%;
     opacity: 0;
-    transform: translateY(50%) translateX(-50%); }
+    transform: translateY(110%) translateX(-50%); }
     #carousel #hideRight .img {
       width: 10vw;
       height: 10vw; }
+      #carousel #hideRight .img .UsersList_txt {
+        font-size: 0.8vw; }
