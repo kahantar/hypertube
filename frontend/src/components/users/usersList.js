@@ -136,13 +136,15 @@ class UsersList extends React.Component{
     // }
 
     state = {
-        idPrev3: this.props.allUsers.length - 3,
-        idPrev2: this.props.allUsers.length - 2,
-        idPrev: this.props.allUsers.length - 1,
+        idPrev3: 0,
+        idPrev2: 0,
+        idPrev: 0,
         idSelected: 0,
-        idNext: 1,
-        idNext2: 2,
-        idNext3: 3,
+        idNext: 0,
+        idNext2: 0,
+        idNext3: 0,
+        beforeLastUser: 0,
+        secondUser: 0,
         hideLeft: 'hideLeft',
         prevLeftSecond: 'prevLeftSecond',
         prev: 'prev',
@@ -152,13 +154,51 @@ class UsersList extends React.Component{
         hideRight: 'hideRight'
     }
 
+    componentDidMount() {
+        let idPrev3 = this.props.allUsers.length - 3
+        let idPrev2 = this.props.allUsers.length - 2
+        let idPrev = this.props.allUsers.length - 1
+        let idSelected = 0
+        let idNext = 1
+        let idNext2 = 2
+        let idNext3 = 3
+        let beforeLastUser = this.props.allUsers.length - 2
+        let secondUser = 1
+
+        console.log(this.props.allUsers.length)
+
+        if (this.props.allUsers.length === 1) {
+            idPrev3 = 0
+            idPrev2 = 0
+            idNext = 0
+            idNext2 = 0
+            idNext3 = 0
+            beforeLastUser = 0
+        }
+        else if (this.props.allUsers.length === 2) {
+            idPrev3 = 1
+            idPrev2 = 0
+            idNext2 = 0
+            idNext3 = 1
+        }
+        this.setState({
+            idPrev3: idPrev3,
+            idPrev2: idPrev2,
+            idPrev: idPrev,
+            idSelected: idSelected,
+            idNext: idNext,
+            idNext2: idNext2,
+            idNext3: idNext3
+        })
+    }
+
     prev3MoveToSelected = () => {
         let newId1
         let newId2
         let newId3
 
         if (this.state.hideLeft === 'prevLeftSecond') {
-            newId1 = (this.state.idNext3 - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idNext3 - 2 === -2) ? this.props.allUsers.length - 2 : this.state.idNext3 - 2
+            newId1 = (this.state.idNext3 - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idNext3 - 2 === -2) ? this.state.beforeLastUser : this.state.idNext3 - 2
             newId2 = this.state.idSelected
             newId3 = (this.state.idNext3 - 1 === -1) ? this.props.allUsers.length - 1 : this.state.idNext3 - 1
         }
@@ -195,7 +235,7 @@ class UsersList extends React.Component{
         let newId3
 
         if (this.state.prevLeftSecond === 'prevLeftSecond') {
-            newId1 = (this.state.idPrev3 - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idPrev3 - 2 === -2) ? this.props.allUsers.length - 2 : this.state.idPrev3 - 2
+            newId1 = (this.state.idPrev3 - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idPrev3 - 2 === -2) ? this.state.beforeLastUser : this.state.idPrev3 - 2
             newId2 = this.state.idNext
             newId3 = (this.state.idPrev3 - 1 === -1) ? this.props.allUsers.length - 1 : this.state.idPrev3 - 1
         }
@@ -234,7 +274,7 @@ class UsersList extends React.Component{
         if (this.state.prev === 'prevLeftSecond') {
             console.log('HEREE')
 
-            newId1 = (this.state.idPrev2 - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idPrev2 - 2 === -2) ? this.props.allUsers.length - 2 : this.state.idPrev2 - 2
+            newId1 = (this.state.idPrev2 - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idPrev2 - 2 === -2) ? this.state.beforeLastUser : this.state.idPrev2 - 2
             newId2 = this.state.idNext2
             newId3 = (this.state.idPrev2 - 1 === -1) ? this.props.allUsers.length - 1 : this.state.idPrev2 - 1
         }
@@ -271,7 +311,7 @@ class UsersList extends React.Component{
         let newId3
 
         if (this.state.selected === 'prevLeftSecond') {
-            newId1 = (this.state.idPrev - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idPrev - 2 === -2) ? this.props.allUsers.length - 2 : this.state.idPrev - 2
+            newId1 = (this.state.idPrev - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idPrev - 2 === -2) ? this.state.beforeLastUser : this.state.idPrev - 2
             newId2 = this.state.idNext3
             newId3 = (this.state.idPrev - 1 === -1) ? this.props.allUsers.length - 1 : this.state.idPrev - 1
         }
@@ -308,7 +348,7 @@ class UsersList extends React.Component{
         let newId3
 
         if (this.state.next === 'prevLeftSecond') {
-            newId1 = (this.state.idSelected - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.Selected - 2 === -2) ? this.props.allUsers.length - 2 : this.state.idSelected - 2
+            newId1 = (this.state.idSelected - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.Selected - 2 === -2) ? this.state.beforeLastUser : this.state.idSelected - 2
             newId2 = this.state.idPrev3
             newId3 = (this.state.idSelected - 1 === -1) ? this.props.allUsers.length - 1 : this.state.idSelected - 1
         }
@@ -345,7 +385,7 @@ class UsersList extends React.Component{
         let newId3
 
         if (this.state.nextRightSecond === 'prevLeftSecond') {
-            newId1 = (this.state.idNext - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idNext - 2 === -2) ? this.props.allUsers.length - 2 : this.state.idNext - 2
+            newId1 = (this.state.idNext - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.idNext - 2 === -2) ? this.state.beforeLastUser : this.state.idNext - 2
             newId2 = this.state.idPrev2
             newId3 = (this.state.idNext - 1 === -1) ? this.props.allUsers.length - 1 : this.state.idNext - 1
         }
@@ -383,7 +423,7 @@ class UsersList extends React.Component{
         let newId3
 
         if (this.state.hideRight === 'prevLeftSecond') {
-            newId1 = (this.state.idNext2 - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.Next2 - 2 === -2) ? this.props.allUsers.length - 2 : this.state.idNext2 - 2
+            newId1 = (this.state.idNext2 - 2 === -1) ? this.props.allUsers.length - 1 : (this.state.Next2 - 2 === -2) ? this.state.beforeLastUser : this.state.idNext2 - 2
             newId2 = this.state.idPrev
             newId3 = (this.state.idNext2 - 1 === -1) ? this.props.allUsers.length - 1 : this.state.idNext2 - 1
         }
