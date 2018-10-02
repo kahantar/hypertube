@@ -5,3 +5,4 @@ torrent/
 ffprobe
 ffmpeg
 *.vtt
+package-lock.json
