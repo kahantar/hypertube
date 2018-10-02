@@ -84,7 +84,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-    console.log("redux",state)
     return {
         allMovies: state.allMovies,
         fluxMovies: state.fluxMovies,

@@ -43,11 +43,9 @@ export const searchMovies = (info) => {
             orderBy: info.orderBy,
             order: info.order 
         });
-        console.log(info)
         axios.post(`http://localhost:8080/search/allmovies`, data, {
             headers: { 'content-type': 'application/json'}
         }).then((response) => {
-            console.log(response.data.allmovies)
                 dispatch({type: "ALL_MOVIES", payload: response.data.allmovies})
                 dispatch({type: "FLUX_MOVIES", payload: response.data.allmovies.slice(0, 8) })
         }).catch((e)=>{

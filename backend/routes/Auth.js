@@ -48,6 +48,27 @@ module.exports = {
             }
         }catch(err){}
     },
+    authSlack: async (req, res) => {
+        try{
+            const email = req.user.user.email;
+            const username = req.user.user.name;
+            const name = req.user.user.name;
+            const first_name = req.user.user.name;
+            
+            const userFound = await models.User.findOne({
+                where: { email: email }
+            });
+            if (userFound && userFound.confirmation == true){
+                const token = jwtUtils.generateTokenForUser(userFound)
+                res.redirect(`http://localhost:3000/search?token=${token}`)
+            }else{
+                if (userFound == null)
+                    userFound = await models.User.create({ email, username, name, first_name, password: "1234", img: "/upload_img/avatar.png", confirmation: false });
+                const token = jwtUtils.generateTokenForUser(userFound)            
+                res.redirect(`http://localhost:3000/completeauth?token=${token}`)
+            }
+        }catch(err){}
+    },
     completeUser: async (req, res) =>{
         const errors = validationResult(req);
         if (!errors.isEmpty())

@@ -9,6 +9,11 @@ const id = {
         clientSecret: '458f06ff949ceb7c25a60460d4153c3260b0e7d2e472bea60d84fa24d3a8ebc7',
         callbackURL: 'http://localhost:8080/auth/42/callback'
     },
+    slack: {
+        clientID: '3329266210.446704989232',
+        clientSecret: '437f9fa84d8b8ed6706e352db633bba3',
+        callbackURL: 'http://localhost:8080/auth/slack/callback'
+    },
 
 };
 
