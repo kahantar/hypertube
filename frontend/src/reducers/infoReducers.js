@@ -2,6 +2,8 @@ export const infoProfilReducers = (state = [], action) => {
     switch(action.type){
         case "INFO_PROFIL":
             return action.payload;
+        case "RESET_INFO_PROFIL":
+            return action.payload
         default:
             return state;
     }
@@ -56,6 +58,37 @@ export const userWatchReducers = (state = [], action) => {
     switch(action.type){
         case "USER_WATCH":
             return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const loadMailReducers = (state = [], action) => {
+    switch(action.type){
+        case "LOAD_MAIL":
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const loadLanguageReducers = (state = [], action) => {
+    switch(action.type){
+        case "LOAD_LANGUAGE":
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export const mailSentReducers = (state = {}, action) => {
+    switch(action.type) {
+        case "MAIL_SEND":
+            return action.payload
+        case "RESET_MAIL_SEND":
+            return action.payload
+        case "MAIL_PWD_SEND":
+            return action.payload
         default:
             return state;
     }

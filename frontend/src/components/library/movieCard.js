@@ -3,9 +3,10 @@ import { Card, CardImg, CardBody,
   CardTitle, CardSubtitle, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import './style.css';
-import { infoMovie, addWatch } from '../../actions/movie';
 import { Link } from 'react-router-dom';
+
+import { infoMovie, addWatch } from '../../actions/movie';
+import './movieCard.css';
 import {watch} from '../../utils/watch';
 
 class MovieCard extends React.Component{

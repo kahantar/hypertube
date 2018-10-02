@@ -1,23 +1,38 @@
 import React from 'react';
 import Form from './form';
-import WarningList from '../utilsComponent/warningList';
+import {loadLanguage} from '../../actions/user'
 import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import { Link } from 'react-router-dom';
+
 
 class Register extends React.Component{
+    changeLanguage = () => {
+        (this.props.language.language === 'English') ? this.props.loadLanguage('Français') : this.props.loadLanguage('English')
+    }
     render(){
         return (
-            <div>
+            <div className='background'>
+                <Link id='logo' to='/'><img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
                 <Form />
-                <WarningList warnings={this.props.warningRegister}/>
+                <div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state) => {
+    
     return{
-        warningRegister: state.warningReducers,
+        language: state.loadLanguage
     }  
 }
 
-export default connect(mapStateToProps)(Register);
+const mapDispatchToProps = (dispatch) => {
+    return{
+        ...bindActionCreators({ loadLanguage }, dispatch),
+    }  
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);
+// export default Register

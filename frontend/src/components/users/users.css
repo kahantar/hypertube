@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300");
+#Users {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; }
+
+#carousel {
+  margin: auto;
+  overflow: hidden;
+  position: relative;
+  width: 98vw;
+  height: 30vw;
+  border: 1px solid red; }
+  #carousel .box {
+    position: absolute;
+    transition: transform 1s, left 1s, opacity 1s, z-index 0s;
+    opacity: 1;
+    border: 1px solid blue;
+    transform: translate(50%); }
+    #carousel .box .img {
+      transition: width 1s, height 1s;
+      background-position: center;
+      background-size: cover;
+      position: relative; }
+      #carousel .box .img .UsersList_txt {
+        font-family: 'Roboto';
+        font-weight: 100;
+        color: white;
+        position: absolute;
+        bottom: 10%;
+        transition: font-size 1s; }
+      #carousel .box .img #UsersList_username {
+        left: 10%; }
+      #carousel .box .img #UsersList_firstSecondName {
+        right: 10%; }
+  #carousel #hideLeft {
+    left: 0%;
+    opacity: 0;
+    transform: translateY(110%) translateX(-50%); }
+    #carousel #hideLeft .img {
+      width: 10vw;
+      height: 10vw; }
+      #carousel #hideLeft .img .UsersList_txt {
+        font-size: 0.8vw; }
+  #carousel #prevLeftSecond {
+    z-index: 4;
+    left: 15%;
+    transform: translateY(60%) translateX(-50%);
+    opacity: .7; }
+    #carousel #prevLeftSecond .img {
+      width: 15vw;
+      height: 15vw; }
+      #carousel #prevLeftSecond .img .UsersList_txt {
+        font-size: 1.1vw; }
+  #carousel #prev {
+    z-index: 5;
+    left: 30%;
+    transform: translateY(23%) translateX(-50%); }
+    #carousel #prev .img {
+      width: 23vw;
+      height: 23vw; }
+      #carousel #prev .img .UsersList_txt {
+        font-size: 1.4vw; }
+  #carousel #selected {
+    z-index: 10;
+    left: 50%;
+    transform: translateY(0px) translateX(-50%);
+    border: 1px solid green; }
+    #carousel #selected .img {
+      width: 30vw;
+      height: 30vw; }
+      #carousel #selected .img .UsersList_txt {
+        font-size: 1.8vw; }
+  #carousel #next {
+    z-index: 5;
+    left: 70%;
+    transform: translateY(23%) translateX(-50%); }
+    #carousel #next .img {
+      width: 23vw;
+      height: 23vw; }
+      #carousel #next .img .UsersList_txt {
+        font-size: 1.4vw; }
+  #carousel #nextRightSecond {
+    z-index: 4;
+    left: 85%;
+    transform: translateY(60%) translateX(-50%);
+    opacity: .7; }
+    #carousel #nextRightSecond .img {
+      width: 15vw;
+      height: 15vw; }
+      #carousel #nextRightSecond .img .UsersList_txt {
+        font-size: 1.1vw; }
+  #carousel #hideRight {
+    left: 100%;
+    opacity: 0;
+    transform: translateY(110%) translateX(-50%); }
+    #carousel #hideRight .img {
+      width: 10vw;
+      height: 10vw; }
+      #carousel #hideRight .img .UsersList_txt {
+        font-size: 0.8vw; }

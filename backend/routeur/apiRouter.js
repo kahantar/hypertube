@@ -36,6 +36,7 @@ exports.router = (() => {
 	apiRouter.route('/video/showSubtitle/').get(video.showSubtitle);
 	apiRouter.route('/video/postComment/').post(video.postComment);
 	apiRouter.route('/video/getComment/').get(video.getComment);
+	apiRouter.route('/users/loadmail/').get(users.loadMail);
 
 	return apiRouter;
 })();

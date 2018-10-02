@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './completeAuth.css';
 import { completeUser } from '../../actions/user';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -20,6 +20,7 @@ class Form extends React.Component{
         this.props.completeUser(this.state, this.props.history);
     }
     render(){
+        console.log(this.props.infoProfil)
         return (
             <form id="conteneur" onSubmit={(e) => this.handleSubmit(e)}>
                 <input type="email " defaultValue={this.props.infoProfil.email} placeholder="Email"/>
