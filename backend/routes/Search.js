@@ -7,7 +7,6 @@ const Op = Sequelize.Op;
 module.exports = {
     allMovies: async (req, res) => {
         try{
-            console.log(req.body)
             let where = {}
             if (req.body.genre !== 'ALL'){
                 where = {

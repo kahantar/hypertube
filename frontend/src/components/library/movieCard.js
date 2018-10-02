@@ -37,7 +37,6 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const mapStateToProps = (state) => {
-  console.log(state.userWatch)
   return{
     userWatch: state.userWatch
   }
