@@ -8,16 +8,21 @@ import './utilsComponent.css'
 
 class Disconnection extends React.Component {
     render(){
+        console.log(this.props.language)
         return (
-            <div>
-                <div id='logOut' onClick={(e) => {
-                    localStorage.removeItem("token");
-                    this.props.resetReducerPersist();
-                    this.props.history.push('/')
-                }}>
-                </div>
+            <div className='title' id='logOut' onClick={(e) => {
+                localStorage.removeItem("token");
+                this.props.resetReducerPersist();
+                this.props.history.push('/')
+            }}>{this.props.language.logOut}
             </div>
         )
+    }
+}
+
+const mapStateToProps = (state) => {
+    return {
+        language: state.loadLanguage
     }
 }
 
@@ -27,4 +32,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default withRouter(connect(null, mapDispatchToProps)(Disconnection));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Disconnection));

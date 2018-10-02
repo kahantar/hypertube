@@ -8,8 +8,9 @@ import SignIn from './signIn';
 import './login.css';
 
 
-const link_fortytwo = "http://localhost:8080/auth/42";
 const link_google = "http://localhost:8080/auth/google";
+const link_fortytwo = "http://localhost:8080/auth/42";
+const link_slack = "http://localhost:8080/auth/slack";
 
 class Form extends React.Component{
     state = {
@@ -57,9 +58,10 @@ class Form extends React.Component{
                 </div>
                 <div className='Login_line'/>
                 <button className='Login_buttonSignIn' type="submit">{this.props.language.signIn}</button>
-                <div id='Login_buttonsApi'>
-                    <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537542974/Netflix42/42.png'text={this.props.language.continueWithApi} link={link_fortytwo}/>                
+                <div id='Login_buttonsApi'>              
                     <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537537025/Netflix42/google_qhuzoc.png' text={this.props.language.continueWithApi} link={link_google}/>
+                    <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537542974/Netflix42/42.png'text={this.props.language.continueWithApi} link={link_fortytwo}/>   
+                    <SignIn img='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538507334/Netflix42/slack.png'text={this.props.language.continueWithApi} link={link_slack}/>                              
                 </div>
                 <Link id="Login_signUp" to='/signup'>{this.props.language.changeSignUp}<span id='Login_bold'>{this.props.language.signUp}</span></Link>
             </form>
