@@ -5,13 +5,14 @@ import { subtitle } from '../../actions/video';
 class Stream extends React.Component {
 	state = {
 		videoSrc: `http://localhost:8080/api/video/watch?magnet=magnet:?xt=urn:btih:${this.props.hash}`,
-		sub: []
+		sub: [],
+		try: 0
 	}
 
 	getSubtitle() {
 		const SUBPATH = 'http://localhost:3000/';
+
 		subtitle(this.props.hash, this.props.title).then((res) => {
-			console.log('la');
 			const sub = [];
 			const langs = ['en', 'fr'];
 
@@ -24,13 +25,14 @@ class Stream extends React.Component {
 					src={`${SUBPATH}${path}`} />;
 
 				sub.push(track);
-				console.log(sub);
 			};
-			this.setState({ sub: sub});
+			this.setState({ sub: sub });
 		})
 			.catch((err) => {
-				console.log('err');
+				if (this.state.try < 10) {
+					this.setState({ try: this.state.try + 1 });
 					this.getSubtitle();
+				}
 			})
 	}
 
