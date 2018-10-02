@@ -43,3 +43,6 @@
         color: gainsboro; }
     #nav #link .titleActive {
       color: #fafafa; }
+
+#logOut {
+  cursor: pointer; }
