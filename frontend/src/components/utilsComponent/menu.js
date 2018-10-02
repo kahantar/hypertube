@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { loadUsers, loadLanguage } from '../../actions/user';
 import { loadMovies } from '../../actions/movie';
 import Disconnection from '../utilsComponent/disconnection';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { bindActionCreators} from 'redux';
 import './utilsComponent.css'
 
@@ -19,9 +19,9 @@ class Menu extends React.Component{
                 <Link id='logo' to='/search'><img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
                 <div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
                 <div id='link'>
-                    <Link className='title' onClick={(e) => this.props.loadMovies(this.props.popularMovies)} to='/search'>{this.props.language.movies}</Link>
-                    <Link className='title' onClick={(e) => this.props.loadUsers()} to='/users'>{this.props.language.users}</Link>
-                    <Link className='title' to='/profil'>{this.props.language.profil}</Link>
+                    <NavLink className='title' activeClassName='titleActive' onClick={(e) => this.props.loadMovies(this.props.popularMovies)} to='/search'>{this.props.language.movies}</NavLink>
+                    <NavLink className='title' activeClassName='titleActive' onClick={(e) => this.props.loadUsers()} to='/users'>{this.props.language.users}</NavLink>
+                    <NavLink className='title' activeClassName='titleActive' to='/profil'>{this.props.language.profil}</NavLink>
                     <Disconnection history={this.props.history}/>
                 </div>
             </div>

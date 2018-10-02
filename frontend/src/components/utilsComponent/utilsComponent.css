@@ -1,10 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:300");
+@import url("https://fonts.googleapis.com/css?family=Raleway:200");
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,200");
 #nav {
   display: flex;
   justify-content: space-between;
   padding: 10px 40px 6px 40px;
-  position: relative; }
+  position: fixed;
+  width: 94.7vw;
+  background-color: #161616; }
   #nav #logo {
     margin: auto 0; }
     #nav #logo img {
@@ -35,5 +37,9 @@
       margin: auto;
       font-family: 'Raleway', sans-serif;
       font-size: 1.8vh;
-      color: gainsboro;
+      color: #b4b4b4;
       text-decoration: none; }
+      #nav #link .title:active {
+        color: gainsboro; }
+    #nav #link .titleActive {
+      color: #fafafa; }
