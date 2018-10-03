@@ -86,6 +86,7 @@ export const updateUser = (user, history) => {
 				username: user.username,
 				name: user.name,
 				first_name: user.first_name,
+				img: user.img
 			});
 			axios.put(`http://localhost:8080/api/users/modificationprofil?data=${data}`, formData, {
 				headers: { 'content-type': 'multipart/form-data', 'Authorization': token  }

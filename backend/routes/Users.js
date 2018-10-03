@@ -4,7 +4,16 @@ const bcrypt = require('bcrypt');
 const jwtUtils = require('../utils/jwtUtils')
 const mailer = require('../utils/mailer')
 const { validationResult } = require('express-validator/check');
+const cloudinary = require('cloudinary')
+const cloudinaryKey = require('../config/apiKey')
 
+console.log(cloudinaryKey)
+
+cloudinary.config({ 
+    cloud_name: cloudinaryKey.cloud_name, 
+    api_key: cloudinaryKey.api_key, 
+    api_secret: cloudinaryKey.api_secret
+});
 const Op = Sequelize.Op;
 
 module.exports = {
@@ -160,25 +169,42 @@ module.exports = {
 			const username = data.username;
 			const name = data.name;
 			const first_name = data.first_name;
-			let userUpdate = {};
-			try{
+			const img = data.img
+			let userUpdate = {}
+			console.log(img, '1111')
+			// try{
 				const userFound = await models.User.findOne({
 					attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
 					where: { id: userId }
 				});
-				if (req.files.length > 0){
-					let img = "/upload_img/" + userId + '.png';
-					userUpdate = await userFound.update({ email, username, name, img, first_name })               
+				if (img.length > 1000){
+					console.log(img.length, '22222')
+					cloudinary.v2.uploader.upload(img, (err, result) => {
+						if (err)
+							console.log(err)
+						console.log(result)
+						const imgUrl = result.url
+						console.log(imgUrl, '3333333')
+						userUpdate = userFound.update({ email, username, name, imgUrl, first_name }, () => {
+							return res.status(201).json({
+								'userId': userFound.id,
+								'token': jwtUtils.generateTokenForUser(userUpdate)
+							})    
+						})           
+					})
 				}
-				else
-					userUpdate = await userFound.update({ email, username, name, img: userFound.img, first_name });                
-				return res.status(201).json({
-					'userId': userFound.id,
-					'token': jwtUtils.generateTokenForUser(userUpdate)
-				});
-			}catch(err){
-				res.status(500).json([{ msg: 'cannot fetch user' }]);
-			}
+				else {
+					userUpdate = userFound.update({ email, username, name, img: userFound.img, first_name }, () => {
+						return res.status(201).json({
+							'userId': userFound.id,
+							'token': jwtUtils.generateTokenForUser(userUpdate)
+						});
+					});                
+				}
+			// }catch(err){
+			// 	console.log('here 4444444')
+			// 	res.status(500).json([{ msg: 'cannot fetch user' }]);
+			// }
 		}
 	},
 	loadAllUsers: async (req, res) => {

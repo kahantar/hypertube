@@ -3,7 +3,8 @@
   display: flex;
   flex-direction: column;
   width: 40vh;
-  margin: auto; }
+  margin: auto;
+  padding-top: 90px; }
   #UpdateProfil_form .picture {
     margin: auto;
     border-radius: 100%;

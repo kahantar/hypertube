@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updateUser } from '../../actions/user';
+import { updateUser, loadInfoUser } from '../../actions/user';
 import { bindActionCreators } from 'redux';
 import { withRouter } from "react-router-dom";
 import './updateProfil.css'
@@ -9,13 +9,14 @@ import Dropzone from 'react-dropzone'
 
 class Form extends React.Component {
     state = {
-        email: this.props.infoProfil.email,
-        name: this.props.infoProfil.name,
-        first_name: this.props.infoProfil.first_name,
-        username: this.props.infoProfil.username,
-        img: this.props.infoProfil.img,
-        
-        file: ''
+        email: '',
+        name: '',
+        first_name: '',
+        username: '',
+        oldPwd: '',
+        newPwd1: '',
+        newPwd2: '',
+        img: ''
     }
     // changeImg = (e) => {
     //     e.preventDefault();
@@ -29,15 +30,28 @@ class Form extends React.Component {
     //     this.setState({ file })
     // }
 
+    async componentDidMount() {
+        let query = {}
+        query.token = localStorage.getItem("token")
+        await this.props.loadInfoUser(query)
+
+        this.setState({
+            email: this.props.infoProfil.email,
+            name: this.props.infoProfil.name,
+            first_name: this.props.infoProfil.first_name,
+            username: this.props.infoProfil.username,
+            oldPwd: '',
+            newPwd1: '',
+            newPwd2: '',
+            img: this.props.infoProfil.img
+        })
+    }
+
     uploadPicture = (file) => {
         if (file[0].type === 'image/jpeg' || file[0].type === 'image/jpg' || file[0].type === 'image/png') {
             var reader = new FileReader();
             reader.onload = (e) => {
                 this.setState({ img: e.target.result })
-                // axios.post('http://localhost:3001/upload_picture', {
-                // "userId": Cookies.get('id'),
-                // "picture": e.target.result
-                // })
             }
             reader.readAsDataURL(file[0])
         }
@@ -45,10 +59,11 @@ class Form extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
+        console.log(this.state.img)
         this.props.updateUser(this.state, this.props.history)
     }
     render() {
-        console.log(this.props.infoProfil.img)
+        console.log(this.props.infoProfil)
         let picture = (this.state.img !== '/upload_img/avatar.png') ? <Dropzone ref={(ref) => { this.uploadInput = ref; }} type="file" onDrop={(files) => this.uploadPicture(files)} className='userPictureFrame'><div id='circleUserPicture'></div><div className='picture' id='userPicture' style={{backgroundImage: `url(${this.state.img})`}}/></Dropzone> : <Dropzone ref={(ref) => { this.uploadInput = ref; }} type="file" onDrop={(files) => this.uploadPicture(files)} className='picture' id='circleEmptyPicture'><div id='cameraEmptyPicture'/></Dropzone>
         return (
             <form id='UpdateProfil_form' onSubmit={(e) => this.handleSubmit(e)}>
@@ -81,18 +96,17 @@ class Form extends React.Component {
 }
 
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        ...bindActionCreators({updateUser}, dispatch)
-    }
-    
-}
-
 const mapStateToProps = (state) => {
     return {
         infoProfil: state.infoProfil,
         language: state.loadLanguage
     }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ...bindActionCreators({updateUser, loadInfoUser}, dispatch)
+    }   
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Form));
