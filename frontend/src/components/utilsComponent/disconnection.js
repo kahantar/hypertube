@@ -8,9 +8,8 @@ import './utilsComponent.css'
 
 class Disconnection extends React.Component {
     render(){
-        console.log(this.props.language)
         return (
-            <div className='title' id='logOut' onClick={(e) => {
+            <div style={this.props.style} className='title' id='logOut' onClick={(e) => {
                 localStorage.removeItem("token");
                 this.props.resetReducerPersist();
                 this.props.history.push('/')

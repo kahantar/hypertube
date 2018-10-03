@@ -3,22 +3,22 @@
 #nav {
   display: flex;
   justify-content: space-between;
-  padding: 10px 40px 6px 40px;
   position: fixed;
-  width: 94.7vw;
+  width: 100%;
   background-color: #161616; }
   #nav #logo {
-    margin: auto 0; }
+    margin: auto 0;
+    padding: 10px 0 0 40px; }
     #nav #logo img {
-      width: 18vh; }
+      width: 150px; }
   #nav #language {
     color: #828282;
     font-family: 'Roboto';
     font-weight: 300;
-    font-size: 1.2vh;
+    font-size: 10px;
     position: absolute;
-    bottom: -0.5vh;
-    left: 22vh;
+    bottom: -12px;
+    left: 177px;
     transform: translate(-50%, -50%);
     display: flex;
     cursor: pointer; }
@@ -26,19 +26,28 @@
       background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537910035/Netflix42/arrow-down_tshqhp.png");
       background-position: center;
       background-size: cover;
-      width: 1vh;
-      height: 1vh;
+      width: 8px;
+      height: 8px;
       margin: auto auto auto 4px; }
+  #nav #trigramMenu {
+    margin: auto 20px; }
+    #nav #trigramMenu #trigram {
+      display: flex;
+      color: white;
+      cursor: pointer; }
   #nav #link {
+    position: absolute;
     display: flex;
+    flex-direction: column;
     margin: auto 0;
-    width: 400px; }
+    right: 21px;
+    top: 38px; }
     #nav #link .title {
-      margin: auto;
       font-family: 'Raleway', sans-serif;
-      font-size: 1.8vh;
+      font-size: 14px;
       color: #b4b4b4;
-      text-decoration: none; }
+      text-decoration: none;
+      margin: 5px 0 auto auto; }
       #nav #link .title:active {
         color: gainsboro; }
     #nav #link .titleActive {
@@ -46,3 +55,23 @@
 
 #logOut {
   cursor: pointer; }
+
+@media screen and (min-width: 700px) and (max-height: 800px) {
+  #trigram {
+    display: none !important; }
+  #link {
+    position: initial !important;
+    flex-direction: initial !important;
+    width: 400px; }
+    #link .title {
+      margin: auto !important; } }
+
+@media screen and (min-width: 1000px) and (min-height: 800px) {
+  #trigram {
+    display: none !important; }
+  #link {
+    position: initial !important;
+    flex-direction: initial !important;
+    width: 400px; }
+    #link .title {
+      margin: auto !important; } }

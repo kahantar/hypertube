@@ -191,7 +191,7 @@ class Form extends React.Component{
                 </div>
                 <div className='Register_line'/>
                 <button type="submit">{this.props.language.signUp}</button>
-                <Link id="signIn" onClick={this.props.resetInfoProfil} to='/'>{this.props.language.changeSignIn}<span id='bold'>{this.props.language.signUp}</span></Link>
+                <Link id="signIn" onClick={this.props.resetInfoProfil} to='/'>{this.props.language.changeSignIn}<span id='bold'>{this.props.language.signIn}</span></Link>
             </form>            
         );
     }
