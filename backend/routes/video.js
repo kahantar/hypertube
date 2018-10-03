@@ -18,7 +18,7 @@ const jwtUtils = require('../utils/jwtUtils')
 const models = require('../models');
 
 const peerId = Buffer.from('-HT0001-' + crypto.createHash('sha1').update(crypto.randomBytes(12)).digest('hex'));
-const SUBPATH = __dirname + '/../../frontend/public/subtitles/'//`/Users/gdufay/goinfre/subtitles/`;
+const SUBPATH = __dirname + '/../../frontend/public/subtitles/';
 
 const getTorrentFile = function(engine) {
 	return new Promise ((resolve, reject) => {
@@ -180,7 +180,6 @@ module.exports = {
 		res.setHeader('Vary', 'Accept-Encoding');
 		res.setHeader('Cache-Control', 'public, max-age=0');
 		fs.createReadStream(`${SUBPATH}${hash}${lang}.vtt`).pipe(res);
-		//res.send(`${SUBPATH}${hash}${lang}.vtt`);
 	},
 
 	postComment: (req, res) => {

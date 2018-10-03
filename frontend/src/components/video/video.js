@@ -19,7 +19,7 @@ class Video extends React.Component{
 			);
 		}
 		else {
-			window.location.href = '/login';
+			window.location.href = '/';
 			return (<div></div>);
 		}
 	}

@@ -1,44 +1,60 @@
 import React from 'react';
-
-import { subtitle } from '../../actions/video';
+import axios from 'axios';
 
 class Stream extends React.Component {
+	signal = axios.CancelToken.source();
+
 	state = {
 		videoSrc: `http://localhost:8080/api/video/watch?magnet=magnet:?xt=urn:btih:${this.props.hash}`,
-		sub: [],
-		try: 0
+		sub: null,
+		timer: null,
 	}
 
 	getSubtitle() {
 		const SUBPATH = 'http://localhost:3000/';
 
-		subtitle(this.props.hash, this.props.title).then((res) => {
-			const sub = [];
-			const langs = ['en', 'fr'];
-
-			for (let lang of langs) {
-				const path = (lang === 'en' ? res.data.paths[0].path : res.data.paths[1].path)
-				const track = <track kind="subtitles"
-					srcLang={lang}
-					label={lang}
-					key={lang}
-					src={`${SUBPATH}${path}`} />;
-
-				sub.push(track);
-			};
-			this.setState({ sub: sub });
+		axios({
+			method: 'get',
+			url: `http://localhost:8080/api/video/subtitle/?title=${this.props.title}&hash=${this.props.hash}`,
+			headers: { 'Content-Type' : 'application/json', 'Authorization': localStorage.getItem('token') },
+			cancelToken: this.signal.token
 		})
-			.catch((err) => {
-				if (this.state.try < 10) {
-					this.setState({ try: this.state.try + 1 });
-					this.getSubtitle();
-				}
+			.then((res) => {
+				const subt = [];
+				const langs = ['en', 'fr'];
+
+				for (let lang of langs) {
+					const path = (lang === 'en' ? res.data.paths[0].path : res.data.paths[1].path)
+					const track = <track kind="subtitles"
+						srcLang={lang}
+						label={lang}
+						key={lang}
+						src={`${SUBPATH}${path}`} />;
+
+					subt.push(track);
+				};
+				clearInterval(this.state.timer);
+				this.setState({ sub: subt });
+				this.setState({ timer: null });
 			})
+			.catch((err) => { })
 	}
 
 	componentDidMount() {
-		this.getSubtitle();
+		this.setState({ 
+			timer: setInterval(() => {
+				this.getSubtitle();
+			}, 200)
+		});
 	}
+
+	componentWillUnmount() {
+		this.signal.cancel('Api is being canceled');
+		clearInterval(this.state.timer);
+		this.setState({ videoSrc: null });
+		this.setState({ sub: [] });
+	}
+
 
 	render() {
 		return(

@@ -7,28 +7,27 @@ import Disconnection from '../utilsComponent/disconnection';
 import './updateProfil.css'
 
 class UpdateProfil extends React.Component{
-    render(){
-        if (localStorage.getItem("token")){
-            return(
-                <div id='updateProfil'>
-                     <Disconnection history={this.props.history}/>
-                    <WarningList warnings={this.props.warningUpdate}/>
-                    <Form />
-                </div>
-            )
-        }else{
-            return(
-                <div></div>
-            )
-        }
-    }
+	render(){
+		if (localStorage.getItem("token")){
+			return(
+				<div id='updateProfil'>
+					<Disconnection history={this.props.history}/>
+					<WarningList warnings={this.props.warningUpdate}/>
+					<Form />
+				</div>
+			)
+		}else{
+			window.location.href = '/';
+			return (<div></div>)
+		}
+	}
 }
 
 
 const mapStateToProps = (state) => {
-    return {
-        warningUpdate: state.warningReducers
-    }
+	return {
+		warningUpdate: state.warningReducers
+	}
 }
 
 export default withRouter(connect(mapStateToProps, null)(UpdateProfil));

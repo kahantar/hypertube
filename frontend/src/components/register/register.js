@@ -7,32 +7,37 @@ import { Link } from 'react-router-dom';
 
 
 class Register extends React.Component{
-    changeLanguage = () => {
-        (this.props.language.language === 'English') ? this.props.loadLanguage('Français') : this.props.loadLanguage('English')
-    }
-    render(){
-        return (
-            <div className='background'>
-                <Link id='logo' to='/'><img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
-                <Form />
-                <div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
-            </div>
-        )
-    }
+	changeLanguage = () => {
+		(this.props.language.language === 'English') ? this.props.loadLanguage('Français') : this.props.loadLanguage('English')
+	}
+	render(){
+		if (!localStorage.getItem('token')) {
+			return (
+				<div className='background'>
+					<Link id='logo' to='/'><img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
+					<Form />
+					<div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
+				</div>
+			)
+		}
+		else {
+			window.location.href = '/search';
+			return (<div></div>);
+		}
+	}
 }
 
 const mapStateToProps = (state) => {
-    
-    return{
-        language: state.loadLanguage
-    }  
+
+	return{
+		language: state.loadLanguage
+	}  
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return{
-        ...bindActionCreators({ loadLanguage }, dispatch),
-    }  
+	return{
+		...bindActionCreators({ loadLanguage }, dispatch),
+	}  
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Register);
-// export default Register

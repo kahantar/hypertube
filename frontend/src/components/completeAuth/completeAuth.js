@@ -8,32 +8,37 @@ import { bindActionCreators } from 'redux';
 
 
 class CompleteAuth extends React.Component {
-    componentWillMount(){
-        if (JSON.stringify(this.props.infoProfil) === '[]')
-            this.props.loadInfoUser(qs.parse(this.props.location.search))
-    }
+	componentWillMount(){
+		if (JSON.stringify(this.props.infoProfil) === '[]')
+			this.props.loadInfoUser(qs.parse(this.props.location.search))
+	}
 
-    render() {
-        return (
-            <div>
-                <WarningList warnings={this.props.warningComplete}/>
-                <Form />
-            </div>
-        )
-    }
+	render() {
+		if (localStorage.getItem("token")){
+			return (
+				<div>
+					<WarningList warnings={this.props.warningComplete}/>
+					<Form />
+				</div>
+			)
+		}else{
+			window.location.href = '/';
+			return (<div></div>)
+		}
+	}
 }
 
 const mapStateToProps = (state) => {
-    return {
-        infoProfil: state.infoProfil,
-        warningComplete: state.warningReducers
-    }
+	return {
+		infoProfil: state.infoProfil,
+		warningComplete: state.warningReducers
+	}
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return {
-        ...bindActionCreators({loadInfoUser}, dispatch)
-    }
+	return {
+		...bindActionCreators({loadInfoUser}, dispatch)
+	}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CompleteAuth);

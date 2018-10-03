@@ -1,0 +1,59 @@
+body {
+	background-color: #333;
+}
+
+#header {
+	background-color: rgba(0,0,0,.97);
+	padding: 0 45px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 20;
+	height: 90px;
+}
+
+#logo {
+	position: absolute;
+	left: 45px;
+	top: 25px;
+}
+
+#logo a {
+	background-image: url(https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	display: block;
+	width: 146px;
+	height: 40px;
+	font-size: 0;
+	line-height: 0;
+	outline: 0;
+	overflow: hidden;
+	text-indent: -9999px;
+}
+
+#errorBox {
+	margin: 8.5em auto 0 auto;
+	width: 45em;
+	font-family: Arial,sans-serif;
+	color: #f7f7f7;
+}
+
+#errorBox > h1 {
+	font-weight: 700;
+	font-size: 28px;
+	margin-bottom: 2em;
+}
+
+#errorBox .htBtn {
+	border: 1px solid #b3b3b3;
+	font-weight: 700;
+	margin-top: 20px;
+	min-width: 80px;
+	display: inline-block;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	color: #b3b3b3;
+}

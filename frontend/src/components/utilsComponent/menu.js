@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { bindActionCreators} from 'redux';
+
 import { loadUsers } from '../../actions/user';
 import { loadMovies } from '../../actions/movie';
 import Disconnection from '../utilsComponent/disconnection';
-import { Link } from 'react-router-dom';
-import { bindActionCreators} from 'redux';
-import './utilsComponent.css'
-
+import './utilsComponent.css';
 
 class Menu extends React.Component{
     render(){

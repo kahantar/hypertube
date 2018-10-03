@@ -15,9 +15,8 @@ class Users extends React.Component{
                 </div>
             )
         }else{
-            return(
-                <div></div>
-            )
+			window.location.href = '/';
+            return (<div></div>)
         }
     }
 }
