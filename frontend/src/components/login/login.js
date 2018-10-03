@@ -7,26 +7,32 @@ import { resetWarning } from '../../actions/user';
 
 
 class Login extends React.Component{
-    render(){
-        return(
-            <div>
-                <WarningList warnings={this.props.warningLogin}/>
-                <Form/>
-            </div>
-        )
-    }
+	render(){
+		if (!localStorage.getItem('token')) {
+			return(
+				<div>
+					<WarningList warnings={this.props.warningLogin}/>
+					<Form/>
+				</div>
+			)
+		}
+		else {
+			window.location.href = '/search';
+			return (<div></div>);
+		}
+	}
 }
 
 const mapStateToProps = (state) => {
-    return {
-        warningLogin: state.warningReducers
-    }
+	return {
+		warningLogin: state.warningReducers
+	}
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return{
-        ...bindActionCreators({resetWarning}, dispatch)
-    }  
+	return{
+		...bindActionCreators({resetWarning}, dispatch)
+	}  
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
