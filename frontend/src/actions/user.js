@@ -52,7 +52,7 @@ export const loginUser = (user, history) => {
                         dispatch({type: "WARNING_UPDATE", payload: []})
                         dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies})
                         localStorage.setItem('token', token);
-                        history.push('/home');
+                        history.push('/search');
                     }).catch((err) => {
                         if (err.response.status === 422)
                             dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
@@ -87,7 +87,7 @@ export const updateUser = (user, history) => {
                 dispatch({type: "INFO_PROFIL", payload: payloadtoken})
                 dispatch({type: "WARNING_UPDATE", payload: []})
                 localStorage.setItem('token', token);
-                history.push('/home');
+                history.push('/search');
             }).catch((err) => {
                 if (err.response.status === 422)
                     dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
@@ -140,7 +140,7 @@ export const completeUser = (user, history) => {
                 dispatch({type: "INFO_PROFIL", payload: payloadtoken})
                 dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies})
                 localStorage.setItem('token', token);
-                history.push('/home');
+                history.push('/search');
             }).catch((err) => {
                 if (err.response.status === 422)
                     dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})

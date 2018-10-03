@@ -39,15 +39,3 @@ export const getComment = (imdb = null) => {
 			});
 	};
 };
-
-export const subtitle = (hash = null, title = null, langs = 'en', cancelToken) => {
-	if (!hash || !title)
-		return ;
-
-	return axios({
-		method: 'get',
-		url: `http://localhost:8080/api/video/subtitle/?title=${title}&hash=${hash}`,
-		headers: { 'Content-Type' : 'application/json', 'Authorization': localStorage.getItem('token') },
-		cancelToken: cancelToken
-	})
-};

@@ -1,8 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 
-import { subtitle } from '../../actions/video';
-
 class Stream extends React.Component {
 	signal = axios.CancelToken.source();
 
