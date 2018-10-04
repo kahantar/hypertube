@@ -22,11 +22,4 @@ class UpdateProfil extends React.Component{
     }
 }
 
-
-const mapStateToProps = (state) => {
-    return {
-        warningUpdate: state.warningReducers
-    }
-}
-
-export default withRouter(connect(mapStateToProps, null)(UpdateProfil));
+export default withRouter(UpdateProfil)

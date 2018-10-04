@@ -26,30 +26,79 @@ export const validationResendPwd = (inputValue, listMails) => {
 }
 
 export const validationUpdate = (user) => {
-    const errors = []
-    let regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/
-    if (!user.username){
-        errors.push({msg: "Username invalide"})
+    let errors = {}
+    let regExMail = new RegExp(/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+
+    errors.fail = 'wrong'
+
+    if (!(regExMail).test(user.email))   {
+        errors.signMail = '\u2717'
+        errors.mail = 'wrongMail'
+        errors.fail = 'true'
     }
-    else if (user.username.length > 12 || user.username.length <= 2){
-        errors.push({msg: "Default length username"})
+
+    if (user.username.length > 12) {
+        errors.signUsername = '\u2717'
+        errors.username = 'usernameTooLong'
+        errors.fail = 'true'
     }
-    if (!(regex).test(user.email))  
-    {
-        errors.push({msg: "Email is wrong"})
-    } 
-    if (!user.first_name){
-        errors.push({msg: "First name empty"})
+    else if (user.username.length <= 2) {
+        errors.signUsername = '\u2717'
+        errors.username = 'usernameTooShort'
+        errors.fail = 'true'
     }
-    else if (user.first_name.length > 20){
-        errors.push({msg: "Default length first name"})
+    
+    if (!user.first_name) {
+        errors.signFirstName = '\u2717'
+        errors.firstName = 'firstNameEmpty'
+        errors.fail = 'true'
     }
-    if (!user.name){
-        errors.push({msg: "Name empty"})
+    else if (user.first_name.length > 20) {
+        errors.signFirstName = '\u2717'
+        errors.firstName = 'firstNameTooLong'
+        errors.fail = 'true'
     }
-    else if (user.name.length > 20){
-        errors.push({msg: "Default length name"})
+
+    if (!user.name) {
+        errors.signSecondName = '\u2717'
+        errors.secondName = 'secondNameEmpty'
+        errors.fail = 'true'
     }
+    else if (user.name.length > 20) {
+        errors.signSecondName = '\u2717'
+        errors.secondName = 'secondNameTooLong'
+        errors.fail = 'true'
+    }
+
+    if (user.newPwd1) {
+        if (!/[a-z]/.test(user.newPwd1)) {
+            errors.signNewPwd1 = '\u2717'
+            errors.newPwd1 = 'lowercase'
+            errors.fail = 'true'
+        }
+        else if (!/[A-Z]/.test(user.newPwd1)) {
+            errors.signNewPwd1 = '\u2717'
+            errors.newPwd1 = 'uppercase'
+            errors.fail = 'true'
+        }
+        else if (!/[0-9]/.test(user.newPwd1)) {
+            errors.signNewPwd1 = '\u2717'
+            errors.newPwd1 = 'number'
+            errors.fail = 'true'
+        }
+        else if (user.newPwd1.length < 8) {
+            errors.signNewPwd1 = '\u2717'
+            errors.newPwd1 = 'pwdTooShort'
+            errors.fail = 'true'
+        }
+    }
+
+    if (user.newPwd1 !== user.newPwd2) {
+        errors.signNewPwd1 = '\u2717'
+        errors.newPwd1 = 'notEqual'
+        errors.fail = 'true'
+    }
+
     return errors
 }
 

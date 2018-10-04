@@ -39,24 +39,44 @@
       width: 4vh;
       height: 4vh;
       margin: auto; }
-  #UpdateProfil_form .description {
-    font-family: 'Roboto';
-    font-size: 1.3vh;
-    font-weight: 100;
-    color: #535353;
-    margin: 3.4vh 0 0.8vh 0; }
-  #UpdateProfil_form input {
-    background: none;
-    border: none;
-    color: white;
-    font-family: 'Roboto';
-    font-size: 1.6vh;
-    font-weight: 100;
-    font-style: normal;
-    outline: none; }
-  #UpdateProfil_form .line {
-    border-top: 1px solid #535353;
-    margin-top: 0.7vh; }
+  #UpdateProfil_form .frameInput {
+    position: relative; }
+    #UpdateProfil_form .frameInput .description {
+      font-family: 'Roboto';
+      font-size: 1.3vh;
+      font-weight: 100;
+      color: #535353;
+      margin: 3.4vh 0 0.8vh 0; }
+    #UpdateProfil_form .frameInput input {
+      background: none;
+      border: none;
+      color: white;
+      font-family: 'Roboto';
+      font-size: 1.6vh;
+      font-weight: 100;
+      font-style: normal;
+      outline: none;
+      width: 39vh; }
+    #UpdateProfil_form .frameInput .line {
+      border-top: 1px solid #535353;
+      margin-top: 0.7vh; }
+    #UpdateProfil_form .frameInput .checkInput {
+      position: absolute;
+      left: 34.1vh;
+      top: 0.3vh;
+      font-family: 'Roboto';
+      font-size: 1.5vh;
+      font-style: italic;
+      color: #e81728; }
+    #UpdateProfil_form .frameInput .validInput {
+      color: #828282;
+      position: absolute;
+      right: 0.4vh;
+      top: 3.6vh;
+      font-family: 'Roboto';
+      font-size: 1.3vh;
+      white-space: nowrap;
+      font-style: italic; }
   #UpdateProfil_form button {
     background-color: #c91423;
     font-family: 'Roboto';

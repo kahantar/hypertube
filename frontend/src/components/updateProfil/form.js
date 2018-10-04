@@ -59,36 +59,75 @@ class Form extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(this.state.img)
+        this.setState({
+            oldPwd: '',
+            newPwd1: '',
+            newPwd2: ''
+        })
         this.props.updateUser(this.state, this.props.history)
     }
     render() {
-        console.log(this.state.img)
+        console.log(this.props.warningUpdate, this.props.warningUpdate.secondName)
         let picture = (this.state.img !== '/upload_img/avatar.png') ? <Dropzone ref={(ref) => { this.uploadInput = ref; }} type="file" onDrop={(files) => this.uploadPicture(files)} className='userPictureFrame'><div id='circleUserPicture'></div><div className='picture' id='userPicture' style={{backgroundImage: `url(${this.state.img})`}}/></Dropzone> :<Dropzone ref={(ref) => { this.uploadInput = ref; }} type="file" onDrop={(files) => this.uploadPicture(files)} className='picture' id='circleEmptyPicture'><div id='cameraEmptyPicture'/></Dropzone>
         return (
             <form id='UpdateProfil_form' onSubmit={(e) => this.handleSubmit(e)}>
                 {picture}
-                <div className='description'>Mail</div>
-                <input type="email" placeholder="|" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
-                <div className='line'/>
-                <div className='description'>{this.props.language.username}</div>                
-                <input type="text" placeholder="|" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})}/>
-                <div className='line'/>                
-                <div className='description'>{this.props.language.firstName}</div>                
-                <input type="text" placeholder="|" value={this.state.first_name} onChange={(e) => this.setState({first_name: e.target.value})}/>
-                <div className='line'/>                
-                <div className='description'>{this.props.language.secondName}</div>                
-                <input type="text" placeholder="|" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
-                <div className='line'/>
-                <div className='description'>{this.props.language.oldPwd}</div>                
-                <input type="password" placeholder="|" value={this.state.oldPwd} onChange={(e) => this.setState({name: e.target.value})}/>
-                <div className='line'/>
-                <div className='description'>{this.props.language.newPwd}</div>                
-                <input type="password" placeholder="|" value={this.state.newPwd1} onChange={(e) => this.setState({name: e.target.value})}/>
-                <div className='line'/>
-                <div className='description'>{this.props.language.newPwd}</div>                
-                <input type="password" placeholder="|" value={this.state.newPwd2} onChange={(e) => this.setState({name: e.target.value})}/>
-                <div className='line'/>
+                <div className='frameInput'>
+                    <div className='description'>Mail</div>
+                    <input type="email" placeholder="|" value={this.state.email} onChange={(e) => this.setState({email: e.target.value})}/>
+                    <div className='line'/>
+                    <div className='checkInput'>{this.props.warningUpdate.signMail}</div>
+                    <div className='validInput'>{this.props.language[this.props.warningUpdate.mail]}</div>
+                </div>
+
+                <div className='frameInput'>
+                    <div className='description'>{this.props.language.username}</div>                
+                    <input type="text" placeholder="|" value={this.state.username} onChange={(e) => this.setState({username: e.target.value})}/>
+                    <div className='line'/>       
+                    <div className='checkInput'>{this.props.warningUpdate.signMail}</div>
+                    <div className='validInput'>{this.props.language[this.props.warningUpdate.mail]}</div>
+                </div>
+                
+                <div className='frameInput'>
+                    <div className='description'>{this.props.language.firstName}</div>                
+                    <input type="text" placeholder="|" value={this.state.first_name} onChange={(e) => this.setState({first_name: e.target.value})}/>
+                    <div className='line'/>                
+                    <div className='checkInput'>{this.props.warningUpdate.signMail}</div>
+                    <div className='validInput'>{this.props.language[this.props.warningUpdate.mail]}</div>
+                </div>
+
+                <div className='frameInput'>
+                    <div className='description'>{this.props.language.secondName}</div>                
+                    <input type="text" placeholder="|" value={this.state.name} onChange={(e) => this.setState({name: e.target.value})}/>
+                    <div className='line'/>
+                    <div className='checkInput'>{this.props.warningUpdate.signMail}</div>
+                    <div className='validInput'>{this.props.language[this.props.warningUpdate.secondName]}</div>
+                </div>
+
+                <div className='frameInput'>
+                    <div className='description'>{this.props.language.oldPwd}</div>                
+                    <input type="password" placeholder="|" value={this.state.oldPwd} onChange={(e) => this.setState({oldPwd: e.target.value})}/>
+                    <div className='line'/>
+                    <div className='checkInput'>{this.props.warningUpdate.signMail}</div>
+                    <div className='validInput'>{this.props.language[this.props.warningUpdate.mail]}</div>
+                </div>
+
+                <div className='frameInput'>
+                    <div className='description'>{this.props.language.newPwd}</div>                
+                    <input type="password" placeholder="|" value={this.state.newPwd1} onChange={(e) => this.setState({newPwd1: e.target.value})}/>
+                    <div className='line'/>
+                    <div className='checkInput'>{this.props.warningUpdate.signMail}</div>
+                    <div className='validInput'>{this.props.language[this.props.warningUpdate.mail]}</div>
+                </div>
+
+                <div className='frameInput'>
+                    <div className='description'>{this.props.language.newPwd}</div>                
+                    <input type="password" placeholder="|" value={this.state.newPwd2} onChange={(e) => this.setState({newPwd2: e.target.value})}/>
+                    <div className='line'/>
+                    <div className='checkInput'>{this.props.warningUpdate.signMail}</div>
+                    <div className='validInput'>{this.props.language[this.props.warningUpdate.mail]}</div>
+                </div>
+
                 <button type="submit">UPDATE</button>
             </form>
         )
@@ -99,7 +138,8 @@ class Form extends React.Component {
 const mapStateToProps = (state) => {
     return {
         infoProfil: state.infoProfil,
-        language: state.loadLanguage
+        language: state.loadLanguage,
+        warningUpdate: state.warningReducers
     }
 }
 

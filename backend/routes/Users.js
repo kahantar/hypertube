@@ -155,53 +155,66 @@ module.exports = {
 		}
 	},
 	modificationProfil: async (req, res) => {
-		console.log('HHHUHUHUHU')
 		const headerAuth = req.headers['authorization'];
 		const userId = jwtUtils.getUserId(headerAuth);
 		if (userId < 0){
 			return res.status(400).json([{ msg: 'wrong token' }]);
 		}
-		console.log(userId, req.body)
-		const email = req.body.user.email;
-		const username = req.body.user.username;
-		const name = req.body.user.name;
-		const first_name = req.body.user.first_name;
-		const img = req.body.user.img
+		const userFound = await models.User.findOne({
+			attributes: ['id', 'email', 'username', 'name', 'first_name', 'img', 'password'],
+			where: { id: userId }
+		});
+		const email = req.body.email;
+		const username = req.body.username;
+		const name = req.body.name;
+		const first_name = req.body.first_name;
+		const img = req.body.img
+		const newPwd = (!req.body.newPwd) ? userFound.password : req.body.newPwd
 		let userUpdate = {}
-		console.log(img, '1111')
-		// try{
-			const userFound = await models.User.findOne({
-				attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
-				where: { id: userId }
-			});
+		console.log(req.body.newPwd, req.body.oldPwd)
+		const compareUser = await bcrypt.compare(req.body.oldPwd, userFound.password)
+		if (compareUser || (!req.body.newPwd && !req.body.oldPwd)) {
 			if (img.length > 1000){
-				console.log(img.length, '22222')
 				cloudinary.v2.uploader.upload(img, (err, result) => {
 					if (err)
 						console.log(err)
-					console.log(result)
+
 					const imgUrl = result.url
-					console.log(imgUrl, '3333333')
-					userUpdate = userFound.update({ email, username, name, imgUrl, first_name }, () => {
-						return res.status(201).json({
-							'userId': userFound.id,
-							'token': jwtUtils.generateTokenForUser(userUpdate)
-						})    
-					})           
-				})
-			}
-			else {
-				userUpdate = userFound.update({ email, username, name, img: userFound.img, first_name }, () => {
+
+					userFound.update({ email, username, name, first_name, img: imgUrl, password: newPwd })
+					userUpdate = {
+						id: userFound.id,
+						email: email,
+						username: username,
+						name: name,
+						first_name: first_name,
+						img: imgUrl
+					}
 					return res.status(201).json({
 						'userId': userFound.id,
 						'token': jwtUtils.generateTokenForUser(userUpdate)
-					});
-				});                
+					});             
+				})
 			}
-		// }catch(err){
-		// 	console.log('here 4444444')
-		// 	res.status(500).json([{ msg: 'cannot fetch user' }]);
-		// }
+			else {
+				userFound.update({ email, username, name, first_name, password: newPwd })
+				userUpdate = {
+					id: userFound.id,
+					email: email,
+					username: username,
+					name: name,
+					first_name: first_name,
+					img: img
+				}
+				return res.status(201).json({
+					'userId': userFound.id,
+					'token': jwtUtils.generateTokenForUser(userUpdate)
+				});             
+			}
+		}
+		else {
+			return res.json({signPwd: '\u2717', pwd: 'wrongPwd'})
+		}
 	},
 	loadAllUsers: async (req, res) => {
 		const headerAuth = req.headers['authorization'];

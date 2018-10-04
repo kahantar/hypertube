@@ -1,5 +1,4 @@
 import React from 'react';
-import DisplayUser from './displayUser';
 import './users.css';
 
 

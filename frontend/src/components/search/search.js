@@ -1,6 +1,6 @@
 import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import { loadInfoUser} from '../../actions/user';
+import { loadInfoUser, loadUsers } from '../../actions/user';
 import qs from 'query-string';
 import FormSearch from './formSearch';
 import Menu from '../utilsComponent/menu';
@@ -22,9 +22,10 @@ class Search extends React.Component {
 
         if (JSON.stringify(this.props.allMovies) === '[]')
             this.props.loadMovies(this.props.popularMovies)
+
+        this.props.loadUsers()
     }
     render(){
-        console.log(this.props.infoProfil)
         if (localStorage.getItem("token")){
             return (
                 <div>
@@ -53,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({addMovies, loadMovies, loadInfoUser}, dispatch)
+        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, loadUsers}, dispatch)
     }
 }
 
