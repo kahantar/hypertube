@@ -79,18 +79,23 @@ export const updateUser = (user, history) => {
 		const errors = validationUpdate(user);
 		if (errors.length === 0) {
 			const token = localStorage.getItem('token');
-			const formData = new FormData()
-			formData.append('img', user.file)
 			const data = JSON.stringify({
 				email: user.email,
 				username: user.username,
-				name: user.name,
 				first_name: user.first_name,
-				img: user.img
+				name: user.name,
+				img: user.img,
+				oldPwd: user.oldPwd,
+				newPwd: user.newPwd1,
+				password: user.password
 			});
-			axios.put(`http://localhost:8080/api/users/modificationprofil?data=${data}`, formData, {
-				headers: { 'content-type': 'multipart/form-data', 'Authorization': token  }
-			}).then((response) =>{
+			axios({
+				method: 'post',
+				url: `http://localhost:8080/api/users/modificationprofil`,
+				data,
+				headers: { 'content-type': 'application/json', 'Authorization': token}
+			})
+			.then((response) =>{
 				const token = response.data.token;
 				let payloadtoken = JSON.parse(atob(token.split('.')[1]));
 				dispatch({type: "INFO_PROFIL", payload: payloadtoken})
@@ -98,13 +103,13 @@ export const updateUser = (user, history) => {
 				localStorage.setItem('token', token);
 				history.push('/home');
 			}).catch((err) => {
-				if (err.response.status === 422)
-					dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
-				else
-					dispatch({type: "WARNING_UPDATE", payload: err.response.data})
+		// 		if (err.response.status === 422)
+		// 			dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
+		// 		else
+		// 			dispatch({type: "WARNING_UPDATE", payload: err.response.data})
 			})
-		}else{
-			dispatch({type: "WARNING_UPDATE", payload: errors});
+		// }else{
+		// 	dispatch({type: "WARNING_UPDATE", payload: errors});
 		}
 	}
 }

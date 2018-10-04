@@ -155,57 +155,53 @@ module.exports = {
 		}
 	},
 	modificationProfil: async (req, res) => {
-		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			return res.status(422).json({ errors: errors.array() });
-		}else{
-			const headerAuth = req.headers['authorization'];
-			const userId = jwtUtils.getUserId(headerAuth);
-			if (userId < 0){
-				return res.status(400).json([{ msg: 'wrong token' }]);
-			}
-			const data = JSON.parse(req.query.data)
-			const email = data.email;
-			const username = data.username;
-			const name = data.name;
-			const first_name = data.first_name;
-			const img = data.img
-			let userUpdate = {}
-			console.log(img, '1111')
-			// try{
-				const userFound = await models.User.findOne({
-					attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
-					where: { id: userId }
-				});
-				if (img.length > 1000){
-					console.log(img.length, '22222')
-					cloudinary.v2.uploader.upload(img, (err, result) => {
-						if (err)
-							console.log(err)
-						console.log(result)
-						const imgUrl = result.url
-						console.log(imgUrl, '3333333')
-						userUpdate = userFound.update({ email, username, name, imgUrl, first_name }, () => {
-							return res.status(201).json({
-								'userId': userFound.id,
-								'token': jwtUtils.generateTokenForUser(userUpdate)
-							})    
-						})           
-					})
-				}
-				else {
-					userUpdate = userFound.update({ email, username, name, img: userFound.img, first_name }, () => {
+		console.log('HHHUHUHUHU')
+		const headerAuth = req.headers['authorization'];
+		const userId = jwtUtils.getUserId(headerAuth);
+		if (userId < 0){
+			return res.status(400).json([{ msg: 'wrong token' }]);
+		}
+		console.log(userId, req.body)
+		const email = req.body.user.email;
+		const username = req.body.user.username;
+		const name = req.body.user.name;
+		const first_name = req.body.user.first_name;
+		const img = req.body.user.img
+		let userUpdate = {}
+		console.log(img, '1111')
+		// try{
+			const userFound = await models.User.findOne({
+				attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
+				where: { id: userId }
+			});
+			if (img.length > 1000){
+				console.log(img.length, '22222')
+				cloudinary.v2.uploader.upload(img, (err, result) => {
+					if (err)
+						console.log(err)
+					console.log(result)
+					const imgUrl = result.url
+					console.log(imgUrl, '3333333')
+					userUpdate = userFound.update({ email, username, name, imgUrl, first_name }, () => {
 						return res.status(201).json({
 							'userId': userFound.id,
 							'token': jwtUtils.generateTokenForUser(userUpdate)
-						});
-					});                
-				}
-			// }catch(err){
-			// 	console.log('here 4444444')
-			// 	res.status(500).json([{ msg: 'cannot fetch user' }]);
-			// }
-		}
+						})    
+					})           
+				})
+			}
+			else {
+				userUpdate = userFound.update({ email, username, name, img: userFound.img, first_name }, () => {
+					return res.status(201).json({
+						'userId': userFound.id,
+						'token': jwtUtils.generateTokenForUser(userUpdate)
+					});
+				});                
+			}
+		// }catch(err){
+		// 	console.log('here 4444444')
+		// 	res.status(500).json([{ msg: 'cannot fetch user' }]);
+		// }
 	},
 	loadAllUsers: async (req, res) => {
 		const headerAuth = req.headers['authorization'];
