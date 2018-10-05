@@ -14,7 +14,7 @@ const del = require('del');
 let server = express();
 
 //path needed by cron to delete unseen movie since 1month
-const videoPath = '/Users/gdufay/goinfre/torrent-stream/';
+const videoPath = '/goinfre/torrent-stream/';
 const monthMs = 2.628e+9;
 
 server.use(cors());

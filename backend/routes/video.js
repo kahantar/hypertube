@@ -37,7 +37,7 @@ const getTorrentFile = function(engine) {
 }
 
 async function startEngine(magnet) {
-	return (await torrentStream(magnet, {tmp: '/Users/gdufay/goinfre'}));
+	return (await torrentStream(magnet, {tmp: '/goinfre'}));
 }
 
 function getRange(file, rangeHeader, res) {
@@ -192,7 +192,7 @@ module.exports = {
 		if (!comment || !comment.length || comment.length >= 600)
 			return res.status(422).json({errors: 'Bad syntax comment'});
 		try {
-			const path = `/Users/gdufay/goinfre/torrent-stream/${imdb}`;
+			const path = `/goinfre/torrent-stream/${imdb}`;
 
 			fs.accessSync(path);
 		} catch (e) {
@@ -215,7 +215,7 @@ module.exports = {
 		if (!imdb || !imdb.length)
 			return res.status(422).json({errors: 'Bad imdb'});
 		try {
-			const path = `/Users/gdufay/goinfre/torrent-stream/${imdb}`;
+			const path = `/goinfre/torrent-stream/${imdb}`;
 
 			fs.accessSync(path);
 		} catch (e) {

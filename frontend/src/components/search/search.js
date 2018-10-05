@@ -27,7 +27,7 @@ class Search extends React.Component {
     render(){
         if (localStorage.getItem("token")){
             return (
-                <div>
+                <div id='Search_block'>
                   <Menu />
                   <FormSearch />
                   <ListMovies movies={this.props.fluxMovies}/>
