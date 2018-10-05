@@ -33,7 +33,9 @@ export default {
         movies: 'Movies',
         users: 'Users',
         profil: 'Profile',
-        logOut: 'Log Out'
+        logOut: 'Log Out',
+        notEqual: 'Passwords aren\'t equal',
+        update: 'UPDATE'
 
     },
     french: {
@@ -70,6 +72,8 @@ export default {
         movies: 'Films',
         users: 'Utilisateurs',
         profil: 'Mon compte',
-        logOut: 'Deconnexion'
+        logOut: 'Deconnexion',
+        notEqual: 'Les mots de passe ne correspondent pas',
+        update: 'MODIFIER'
     }
 }

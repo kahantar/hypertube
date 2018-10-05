@@ -98,14 +98,12 @@ export const updateUser = (user, history) => {
 				headers: { 'content-type': 'application/json', 'Authorization': token}
 			})
 			.then(({data}) => {
-				console.log(data)
 				if (data.pwd === 'wrongPwd') {
-					console.log('wrong pwd')
+					dispatch({type: "WARNING_UPDATE", payload: data});
 				}
 				else {
 					const token = data.token;
 					let payloadtoken = JSON.parse(atob(token.split('.')[1]));
-					console.log(payloadtoken)
 					dispatch({type: "INFO_PROFIL", payload: payloadtoken})
 					localStorage.setItem('token', token);
 					history.push('/home');
@@ -266,9 +264,9 @@ export const resetInfoProfil = () => {
 	}
 }
 
-export const resetWarning = () => {
+export const resetWarningUpdate = () => {
 	return (dispatch) => {
-		dispatch({type: "WARNING_UPDATE", payload: []});
+		dispatch({type: "RESET_WARNING_UPDATE", payload: {}})
 	}
 }
 

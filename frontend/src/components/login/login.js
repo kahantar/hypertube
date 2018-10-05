@@ -2,7 +2,7 @@ import React from 'react';
 import Form from './form';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { resetWarning, loadLanguage } from '../../actions/user';
+import { loadLanguage } from '../../actions/user';
 import { Link } from 'react-router-dom'
 
 
@@ -34,7 +34,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        ...bindActionCreators({resetWarning, loadLanguage}, dispatch)
+        ...bindActionCreators({loadLanguage}, dispatch)
     }  
 }
 

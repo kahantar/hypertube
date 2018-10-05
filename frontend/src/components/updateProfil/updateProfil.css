@@ -62,8 +62,8 @@
       margin-top: 0.7vh; }
     #UpdateProfil_form .frameInput .checkInput {
       position: absolute;
-      left: 34.1vh;
-      top: 0.3vh;
+      right: 0.4vh;
+      bottom: -2.1vh;
       font-family: 'Roboto';
       font-size: 1.5vh;
       font-style: italic;
@@ -71,8 +71,8 @@
     #UpdateProfil_form .frameInput .validInput {
       color: #828282;
       position: absolute;
-      right: 0.4vh;
-      top: 3.6vh;
+      right: 1.8vh;
+      bottom: -2vh;
       font-family: 'Roboto';
       font-size: 1.3vh;
       white-space: nowrap;
