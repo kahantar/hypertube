@@ -4,7 +4,16 @@ const bcrypt = require('bcrypt');
 const jwtUtils = require('../utils/jwtUtils')
 const mailer = require('../utils/mailer')
 const { validationResult } = require('express-validator/check');
+const cloudinary = require('cloudinary')
+const cloudinaryKey = require('../config/apiKey')
 
+console.log(cloudinaryKey)
+
+cloudinary.config({ 
+    cloud_name: cloudinaryKey.cloud_name, 
+    api_key: cloudinaryKey.api_key, 
+    api_secret: cloudinaryKey.api_secret
+});
 const Op = Sequelize.Op;
 
 module.exports = {
@@ -146,39 +155,65 @@ module.exports = {
 		}
 	},
 	modificationProfil: async (req, res) => {
-		const errors = validationResult(req);
-		if (!errors.isEmpty()) {
-			return res.status(422).json({ errors: errors.array() });
-		}else{
-			const headerAuth = req.headers['authorization'];
-			const userId = jwtUtils.getUserId(headerAuth);
-			if (userId < 0){
-				return res.status(400).json([{ msg: 'wrong token' }]);
+		const headerAuth = req.headers['authorization'];
+		const userId = jwtUtils.getUserId(headerAuth);
+		if (userId < 0){
+			return res.status(400).json([{ msg: 'wrong token' }]);
+		}
+		const userFound = await models.User.findOne({
+			attributes: ['id', 'email', 'username', 'name', 'first_name', 'img', 'password'],
+			where: { id: userId }
+		});
+		const email = req.body.email;
+		const username = req.body.username;
+		const name = req.body.name;
+		const first_name = req.body.first_name;
+		const img = req.body.img
+		const newPwd = (!req.body.newPwd) ? userFound.password : req.body.newPwd
+		let userUpdate = {}
+		console.log(req.body.newPwd, req.body.oldPwd)
+		const compareUser = await bcrypt.compare(req.body.oldPwd, userFound.password)
+		if (compareUser || (!req.body.newPwd && !req.body.oldPwd)) {
+			if (img.length > 1000){
+				cloudinary.v2.uploader.upload(img, (err, result) => {
+					if (err)
+						console.log(err)
+
+					const imgUrl = result.url
+
+					userFound.update({ email, username, name, first_name, img: imgUrl, password: newPwd })
+					userUpdate = {
+						id: userFound.id,
+						email: email,
+						username: username,
+						name: name,
+						first_name: first_name,
+						img: imgUrl
+					}
+					return res.status(201).json({
+						'userId': userFound.id,
+						'token': jwtUtils.generateTokenForUser(userUpdate)
+					});             
+				})
 			}
-			const data = JSON.parse(req.query.data)
-			const email = data.email;
-			const username = data.username;
-			const name = data.name;
-			const first_name = data.first_name;
-			let userUpdate = {};
-			try{
-				const userFound = await models.User.findOne({
-					attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
-					where: { id: userId }
-				});
-				if (req.files.length > 0){
-					let img = "/upload_img/" + userId + '.png';
-					userUpdate = await userFound.update({ email, username, name, img, first_name })               
+			else {
+				userFound.update({ email, username, name, first_name, password: newPwd })
+				userUpdate = {
+					id: userFound.id,
+					email: email,
+					username: username,
+					name: name,
+					first_name: first_name,
+					img: img
 				}
-				else
-					userUpdate = await userFound.update({ email, username, name, img: userFound.img, first_name });                
 				return res.status(201).json({
 					'userId': userFound.id,
 					'token': jwtUtils.generateTokenForUser(userUpdate)
-				});
-			}catch(err){
-				res.status(500).json([{ msg: 'cannot fetch user' }]);
+				});             
 			}
+		}
+		else {
+			return res.json({signPwd: '\u2717', pwd: 'wrongPwd'})
 		}
 	},
 	loadAllUsers: async (req, res) => {

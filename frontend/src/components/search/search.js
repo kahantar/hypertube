@@ -1,6 +1,6 @@
 import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import { loadInfoUser} from '../../actions/user';
+import { loadInfoUser, loadUsers } from '../../actions/user';
 import qs from 'query-string';
 import FormSearch from './formSearch';
 import Menu from '../utilsComponent/menu';
@@ -10,35 +10,36 @@ import BottomScrollListener from 'react-bottom-scroll-listener';
 import { addMovies, loadMovies } from '../../actions/movie';
 
 class Search extends React.Component {
-	componentWillMount(){
-		if (localStorage.getItem("token") == null)
-			this.props.loadInfoUser(qs.parse(this.props.location.search))
-		if (JSON.stringify(this.props.allMovies) === '[]')
-			this.props.loadMovies(this.props.popularMovies)
-	}
+    componentWillMount(){
+        if (localStorage.getItem("token") == null)
+            this.props.loadInfoUser(qs.parse(this.props.location.search))
+        else {
+            let query = {}
+            query.token = localStorage.getItem("token")
+            this.props.loadInfoUser(query)
+        }
 
-	render(){
-		if (localStorage.getItem("token")) {
-			return (
-				<div>
-					<Menu />
-					<FormSearch />
-					<ListMovies movies={this.props.fluxMovies}/>
-					<BottomScrollListener onBottom={(e) => this.props.addMovies(this.props.fluxMovies, this.props.allMovies)} />
-				</div>
-			)
-		}
-		else {
+        if (JSON.stringify(this.props.allMovies) === '[]')
+            this.props.loadMovies(this.props.popularMovies)
+
+        this.props.loadUsers()
+    }
+    render(){
+        if (localStorage.getItem("token")){
+            return (
+                <div>
+                  <Menu />
+                  <FormSearch />
+                  <ListMovies movies={this.props.fluxMovies}/>
+                  <BottomScrollListener onBottom={(e) => this.props.addMovies(this.props.fluxMovies, this.props.allMovies)} />
+                </div>
+            )
+        }
+        else {
 			window.location.href = '/';
 			return(<div></div>)
 		}
-	}
-}
-
-const mapDispatchToProps = (dispatch) => {
-	return {
-		...bindActionCreators({addMovies, loadMovies, loadInfoUser}, dispatch)
-	}
+    }
 }
 
 const mapStateToProps = (state) => {
@@ -48,6 +49,12 @@ const mapStateToProps = (state) => {
 		popularMovies: state.popularMovies,
 		infoProfil: state.infoProfil
 	}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, loadUsers}, dispatch)
+    }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

@@ -1,6 +1,6 @@
 import React from 'react';
 import './register.css';
-import { registerUser, completeUser, loadInfoUser, loadMail, resetInfoProfil } from '../../actions/user'
+import { registerUser, completeUser, loadInfoUser, loadMail, resetInfoProfil, resetErrLogin } from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
@@ -37,6 +37,7 @@ class Form extends React.Component{
     }
 
     componentDidMount(){
+        this.props.resetErrLogin()
         if (qs.parse(this.props.location.search).token) {
             this.props.loadInfoUser(qs.parse(this.props.location.search))
             this.props.loadMail()
@@ -191,14 +192,13 @@ class Form extends React.Component{
                 </div>
                 <div className='Register_line'/>
                 <button type="submit">{this.props.language.signUp}</button>
-                <Link id="signIn" onClick={this.props.resetInfoProfil} to='/'>{this.props.language.changeSignIn}<span id='bold'>{this.props.language.signUp}</span></Link>
+                <Link id="signIn" onClick={this.props.resetInfoProfil} to='/'>{this.props.language.changeSignIn}<span id='bold'>{this.props.language.signIn}</span></Link>
             </form>            
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    
     return {
         listMails: state.loadMail,
         language: state.loadLanguage,
@@ -208,7 +208,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({registerUser, loadMail, completeUser, loadInfoUser, resetInfoProfil}, dispatch)
+        ...bindActionCreators({registerUser, loadMail, completeUser, loadInfoUser, resetInfoProfil, resetErrLogin}, dispatch)
     };
 };
 

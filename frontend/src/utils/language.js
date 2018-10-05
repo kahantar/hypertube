@@ -29,7 +29,13 @@ export default {
         resendPwdInput: 'Enter your mail',
         resendPwdButton: 'Send',
         oldPwd: 'Old password',
-        newPwd: 'New password'
+        newPwd: 'New password',
+        movies: 'Movies',
+        users: 'Users',
+        profil: 'Profile',
+        logOut: 'Log Out',
+        notEqual: 'Passwords aren\'t equal',
+        update: 'UPDATE'
 
     },
     french: {
@@ -62,6 +68,12 @@ export default {
         resendPwdInput: 'Entrez votre mail',
         resendPwdButton: 'Envoyer',
         oldPwd: 'Ancient mot de passe',
-        newPwd: 'Nouveau mot de passe'
+        newPwd: 'Nouveau mot de passe',
+        movies: 'Films',
+        users: 'Utilisateurs',
+        profil: 'Mon compte',
+        logOut: 'Deconnexion',
+        notEqual: 'Les mots de passe ne correspondent pas',
+        update: 'MODIFIER'
     }
 }

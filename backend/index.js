@@ -18,8 +18,8 @@ const videoPath = '/Users/gdufay/goinfre/torrent-stream/';
 const monthMs = 2.628e+9;
 
 server.use(cors());
-server.use(bodyParser.urlencoded({ extended: true }));
-server.use(bodyParser.json());
+server.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+server.use(bodyParser.json({limit: '50mb', extended: true}));
 server.use(passport.initialize());
 
 server.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true}));

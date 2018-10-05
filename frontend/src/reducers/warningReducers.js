@@ -52,10 +52,10 @@
 //     }
 // }
 
-export const warningReducers = (state=[], action) => {
+export const warningReducers = (state={}, action) => {
     switch(action.type){
-        case "WARNING_RESET":
-            return [];
+        case "RESET_WARNING_UPDATE":
+            return action.payload;
         case "WARNING_UPDATE":
             return action.payload;
         default:

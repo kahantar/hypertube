@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import UsersList from './usersList';
 import { withRouter } from 'react-router';
-import Disconnection from '../utilsComponent/disconnection';
+import Menu from '../utilsComponent/menu';
 
 
 class Users extends React.Component{
@@ -10,7 +10,7 @@ class Users extends React.Component{
         if (localStorage.getItem("token")){
             return(
                 <div id='Users'>
-                    <Disconnection history={this.props.history}/>
+                    <Menu />
                     <UsersList allUsers={this.props.allUsers} />
                 </div>
             )

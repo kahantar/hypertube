@@ -1,33 +1,26 @@
 import React from 'react';
 import Form from './form';
 import { connect } from 'react-redux';
-import WarningList from '../utilsComponent/warningList';
 import { withRouter } from 'react-router';
-import Disconnection from '../utilsComponent/disconnection';
+import Menu from '../utilsComponent/menu';
 import './updateProfil.css'
 
 class UpdateProfil extends React.Component{
-	render(){
-		if (localStorage.getItem("token")){
-			return(
-				<div id='updateProfil'>
-					<Disconnection history={this.props.history}/>
-					<WarningList warnings={this.props.warningUpdate}/>
-					<Form />
-				</div>
-			)
-		}else{
+    render(){
+        if (localStorage.getItem("token")){
+            return(
+                <div id='updateProfil'>
+                    <Menu />
+                    <Form />
+                </div>
+            )
+        }else{
 			window.location.href = '/';
-			return (<div></div>)
-		}
-	}
+            return(
+                <div></div>
+            )
+        }
+    }
 }
 
-
-const mapStateToProps = (state) => {
-	return {
-		warningUpdate: state.warningReducers
-	}
-}
-
-export default withRouter(connect(mapStateToProps, null)(UpdateProfil));
+export default withRouter(UpdateProfil)

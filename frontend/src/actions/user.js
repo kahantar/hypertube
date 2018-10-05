@@ -77,32 +77,46 @@ export const resetErrLogin = () => {
 export const updateUser = (user, history) => {
 	return (dispatch) => {
 		const errors = validationUpdate(user);
-		if (errors.length === 0) {
+		console.log(errors)
+		if (errors.fail === 'wrong') {
+			console.log('ok')
 			const token = localStorage.getItem('token');
-			const formData = new FormData()
-			formData.append('img', user.file)
 			const data = JSON.stringify({
 				email: user.email,
 				username: user.username,
-				name: user.name,
 				first_name: user.first_name,
+				name: user.name,
+				img: user.img,
+				oldPwd: user.oldPwd,
+				newPwd: user.newPwd1,
+				password: user.password
 			});
-			axios.put(`http://localhost:8080/api/users/modificationprofil?data=${data}`, formData, {
-				headers: { 'content-type': 'multipart/form-data', 'Authorization': token  }
-			}).then((response) =>{
-				const token = response.data.token;
-				let payloadtoken = JSON.parse(atob(token.split('.')[1]));
-				dispatch({type: "INFO_PROFIL", payload: payloadtoken})
-				dispatch({type: "WARNING_UPDATE", payload: []})
-				localStorage.setItem('token', token);
-				history.push('/search');
-			}).catch((err) => {
-				if (err.response.status === 422)
-					dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
-				else
-					dispatch({type: "WARNING_UPDATE", payload: err.response.data})
+			axios({
+				method: 'post',
+				url: `http://localhost:8080/api/users/modificationprofil`,
+				data,
+				headers: { 'content-type': 'application/json', 'Authorization': token}
 			})
-		}else{
+			.then(({data}) => {
+				if (data.pwd === 'wrongPwd') {
+					dispatch({type: "WARNING_UPDATE", payload: data});
+				}
+				else {
+					const token = data.token;
+					let payloadtoken = JSON.parse(atob(token.split('.')[1]));
+					dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+					localStorage.setItem('token', token);
+					history.push('/search');
+				}
+			}).catch((err) => {
+				console.log(err)
+		// 		if (err.response.status === 422)
+		// 			dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
+		// 		else
+		// 			dispatch({type: "WARNING_UPDATE", payload: err.response.data})
+			})
+		}
+		else {
 			dispatch({type: "WARNING_UPDATE", payload: errors});
 		}
 	}
@@ -203,6 +217,7 @@ export const resetPasswordUser = (user, history) => {
 
 export const loadUsers = () => {
 	return (dispatch) => {
+		console.log('ok')
 		const token = localStorage.getItem('token');
 		axios.get(`http://localhost:8080/api/users/loadallusers`, {
 			headers: { 'content-type': 'application/json', 'Authorization': token }
@@ -243,9 +258,9 @@ export const resetInfoProfil = () => {
 	}
 }
 
-export const resetWarning = () => {
+export const resetWarningUpdate = () => {
 	return (dispatch) => {
-		dispatch({type: "WARNING_UPDATE", payload: []});
+		dispatch({type: "RESET_WARNING_UPDATE", payload: {}})
 	}
 }
 

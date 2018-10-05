@@ -14,7 +14,7 @@ exports.router = (() => {
     authRouter.route('/google').get(passport.authenticate('google', { scope : ['profile','email'] }));
     authRouter.route('/google/callback').get(passport.authenticate('google', { scope : ['profile','email'] }), (req, res) => {auth.authGoogle(req, res)});
     authRouter.route('/slack').get(passport.authenticate('slack'));
-    authRouter.route('/slack/callback').get(passport.authenticate('slack', { failureRedirect: '/login' }), (req, res) => {auth.authSlack(req, res)});    
+    authRouter.route('/slack/callback').get(passport.authenticate('slack', { failureRedirect: '/' }), (req, res) => {auth.authSlack(req, res)});    
     authRouter.route('/completeuser').put(validator.complete, auth.completeUser);
     
     return authRouter;
