@@ -11,7 +11,7 @@ class FormSearch extends React.Component {
         rating: {value: '0', label: 'RATING'},
         genre: {value: 'ALL', label: 'GENRE'},
         orderBy: {value: 'title', label: 'ORDER BY'},
-        order: 'ASC',
+        order: 'DESC',
         term: ''
     }
 
