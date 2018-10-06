@@ -83,8 +83,8 @@ select option {
       margin: auto auto 40px auto; }
       #Search_block #Search_research #Search_txtFrame #Search_txt {
         height: 20px;
-        width: 200px;
-        margin: auto 0;
+        width: 350px;
+        margin: auto 0 35px 0;
         background-color: #161616;
         border: none;
         border-bottom: 1px solid #b4b4b4;
@@ -116,4 +116,7 @@ select option {
           #Search_research #Search_allSelectFrame .Search_selectFrame .Search_select .Search_select__control {
             min-width: 120px !important; }
     #Search_research #Search_txtFrame {
-      margin: auto 50px auto auto !important; } }
+      margin: auto 50px auto auto !important; }
+      #Search_research #Search_txtFrame #Search_txt {
+        width: 200px !important;
+        margin: auto 0 !important; } }
