@@ -32,7 +32,7 @@ select option
                     border: none
                     background-color: rgba(0, 0, 0, 0)
                     box-shadow: none
-                    min-width: 100px
+                    min-width: 120px
                     min-height: 0
                     cursor: pointer
 
@@ -72,12 +72,27 @@ select option
 
                     .Search_select__menu-list
                         max-height: none
-                        box-shadow: 0px 0px 0px 1.3px rgb(180, 180, 180)
-                        // border: 1px solid rgb(180, 180, 180)
-
+                        box-shadow: 0px 1px 0px 1.3px rgb(180, 180, 180)
+                        padding: 0
+                        background-color: rgba(22, 22, 22, 0.9)
+                        font-weight: 100
 
                         .Search_select__option
+                            font-size: 12px
+                            cursor: pointer
 
+                        .Search_select__option--is-selected
+                            background-color: rgba(22, 22, 22, 0)
+                            color: white
+                            font-weight: 300
+                            font-size: 13px
+
+                        .Search_select__option--is-focused
+                            background-color: rgba(22, 22, 22, 0)
+                            color: white
+                            font-weight: 300
+                            font-size: 13px
+                        
 
             .Search_arrow
                 position: absolute

@@ -38,9 +38,9 @@ export const searchMovies = (info) => {
     return (dispatch) => {
         const data = JSON.stringify({
             term: info.term,
-            rating: info.rating,
-            genre: info.genre,
-            orderBy: info.orderBy,
+            rating: info.rating.value,
+            genre: info.genre.value,
+            orderBy: info.orderBy.value,
             order: info.order 
         });
         axios.post(`http://localhost:8080/search/allmovies`, data, {

@@ -8,29 +8,47 @@ import Select from 'react-select'
 
 class FormSearch extends React.Component {
     state = {
-        rating: 0,
-        term: '',
-        genre: 'ALL',
-        orderBy: 'title',
+        rating: {value: '0', label: 'RATING'},
+        genre: {value: 'ALL', label: 'GENRE'},
+        orderBy: {value: 'title', label: 'ORDER BY'},
         order: 'ASC',
-        selectedOption: 'Rating',
+        term: ''
     }
 
-    handleChange = (selectedOption) => {
-        this.setState({ selectedOption });
-        console.log(`Option selected:`, selectedOption);
+    handleChangeRating = (rating) => {
+        this.setState({ rating })
+        console.log(`Option selected:`, rating)
+        this.props.searchMovies(this.state)
+    }
+
+    handleChangeGenre = (genre) => {
+        this.setState({ genre })
+        console.log(`Option selected:`, genre)
+        this.props.searchMovies(this.state)
+    }
+
+    handleChangeOrderBy = (orderBy) => {
+        this.setState({ orderBy })
+        console.log(`Option selected:`, orderBy)
+        this.props.searchMovies(this.state)
+    }
+
+    onEnterPressPwd = (event) => {
+        if(event.keyCode === 13) {
+            event.preventDefault()
+            this.props.searchMovies(this.state)
+        }
     }
 
     render(){
         return(
             <div id="Search_research">
                     <div className="Search_selectFrame">
-                        {/* <img className='Search_arrow' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538760993/Netflix42/arrow_down_white.png' alt='arrow'/> */}
                         <Select className="Search_select" classNamePrefix="Search_select" placeholder='RATING' isSearchable={false}
-                            value={this.state.selectedOption}
-                            onChange={this.handleChange}
+                            value={this.state.rating}
+                            onChange={this.handleChangeRating}
                             options={[
-                                {value: '0', label: 'ALL'},
+                                {value: '0', label: 'RATING'},
                                 {value: '1', label: '1+'},
                                 {value: '2', label: '2+'},
                                 {value: '3', label: '3+'},
@@ -42,63 +60,47 @@ class FormSearch extends React.Component {
                                 {value: '9', label: '9+'},
                             ]}
                         />
-                        {/* <select className="Search_select" onChange={(e) => this.setState({rating: e.target.value}) }>
-                            <option className='Search_option' value='0'>ALL</option>
-                            <option className='Search_option' value='1'>1+</option>
-                            <option className='Search_option' value='2'>2+</option>
-                            <option className='Search_option' value='3'>3+</option>
-                            <option className='Search_option' value='4'>4+</option>
-                            <option className='Search_option' value='5'>5+</option>
-                            <option className='Search_option' value='6'>6+</option>
-                            <option className='Search_option' value='7'>7+</option>
-                            <option className='Search_option' value='8'>8+</option>
-                            <option className='Search_option' value='9'>9+</option>
-                        </select> */}
                     </div>
                     <div className="Search_selectFrame">
-                        <img className='Search_arrow' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538760993/Netflix42/arrow_down_white.png' alt='arrow'/>
-                        <select className="Search_select" onChange={(e) => this.setState({genre: e.target.value}) }>
-                            <option className='Search_option' value="" disabled selected>Genre</option>
-                            <option className='Search_option' value="ALL">ALL</option>
-                            <option className='Search_option' value="Action">Action</option>
-                            <option className='Search_option' value="Adventure">Adventure</option>
-                            <option className='Search_option' value="Adventure">Animation</option>
-                            <option className='Search_option' value="Biography">Biography</option>
-                            <option className='Search_option' value="Comedy">Comedy</option>
-                            <option className='Search_option' value="Crime">Crime</option>
-                            <option className='Search_option' value="Drama">Drama</option>
-                            <option className='Search_option' value="Family">Family</option>
-                            <option className='Search_option' value="Fantasy">Fantasy</option>
-                            <option className='Search_option' value="History">History</option>
-                            <option className='Search_option' value="Horror">Horror</option>
-                            <option className='Search_option' value="Music">Music</option>
-                            <option className='Search_option' value="Mystery">Mystery</option>
-                            <option className='Search_option' value="Romance">Romance</option>
-                            <option className='Search_option' value="Sci-Fi">Sci-Fi</option>
-                            <option className='Search_option' value="Sport">Sport</option>
-                            <option className='Search_option' value="Thriller">Thriller</option>
-                            <option className='Search_option' value="War">War</option>
-                            <option className='Search_option' value="Western">Western</option>
-                        </select>
+                        <Select className="Search_select" classNamePrefix="Search_select" placeholder='GENRE' isSearchable={false}
+                            value={this.state.genre}
+                            onChange={this.handleChangeGenre}
+                            options={[
+                                {value: 'ALL', label: 'GENRE'},
+                                {value: 'Action', label: 'Action'},
+                                {value: 'Adventure', label: 'Adventure'},
+                                {value: 'Animation', label: 'Animation'},
+                                {value: 'Biography', label: 'Biography'},
+                                {value: 'Comedy', label: 'Comedy'},
+                                {value: 'Crime', label: 'Crime'},
+                                {value: 'Drama', label: 'Drama'},
+                                {value: 'Family', label: 'Family'},
+                                {value: 'Fantasy', label: 'Fantasy'},
+                                {value: 'History', label: 'History'},
+                                {value: 'Horror', label: 'Horror'},
+                                {value: 'Music', label: 'Music'},
+                                {value: 'Mystery', label: 'Mystery'},
+                                {value: 'Romance', label: 'Romance'},
+                                {value: 'Sci-Fi', label: 'Sci-Fi'},
+                                {value: 'Sport', label: 'Sport'},
+                                {value: 'Thriller', label: 'Thriller'},
+                                {value: 'War', label: 'War'},
+                                {value: 'Western', label: 'Western'}
+                            ]}
+                        />
                     </div>
                     <div className="Search_selectFrame" onChange={(e) => this.setState({orderBy: e.target.value}) }>
-                        <img className='Search_arrow' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538760993/Netflix42/arrow_down_white.png' alt='arrow'/>
-                        <select className="Search_select">
-                            <option className='Search_option' value="" disabled selected>Order By</option>
-                            <option className='Search_option' value='title'>ALPHA</option>
-                            <option className='Search_option' value='year'>YEAR</option>
-                            <option className='Search_option' value='rating'>RATING</option>
-                        </select>
+                        <Select className="Search_select" classNamePrefix="Search_select" placeholder='ORDER BY' isSearchable={false}
+                            value={this.state.orderBy}
+                            onChange={this.handleChangeOrderBy}
+                            options={[
+                                {value: 'title', label: 'Alphabetical'},
+                                {value: 'year', label: 'Year'},
+                                {value: 'rating', label: 'Rating'}
+                            ]}
+                        />
                     </div>
-                    <div className="Search_selectFrame">
-                        <img className='Search_arrow' src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538760993/Netflix42/arrow_down_white.png' alt='arrow'/>
-                        <select className="Search_select" onChange={(e) => this.setState({order: e.target.value}) }>
-                            <option className='Search_option' value="" disabled selected>Order</option>
-                            <option className='Search_option' value='ASC'>ASC</option>
-                            <option className='Search_option' value='DESC'>DESC</option>
-                        </select>
-                    </div>
-                    <input type="text" id="Search_txt" placeholder="Search..." onChange={(e) => this.setState({term: e.target.value}) }/>
+                    <input type="text" id="Search_txt" placeholder="Search..." onKeyDown={this.onEnterPressPwd} onChange={(e) => this.setState({term: e.target.value}) }/>
                     <img src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538756774/Netflix42/search.png' alt='search' type="button" id='Search_button' onClick={(e) => this.props.searchMovies(this.state)}/>
             </div>
         )
