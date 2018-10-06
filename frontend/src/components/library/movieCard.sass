@@ -2,17 +2,18 @@
 
 #Movies_block
     // border: 1px solid red
-    display: inline-block
+    display: flex
     height: 100%
     flex-wrap: wrap
     margin-left: 44px
     margin-right: 44px
+    justify-content: space-around
 
     .Movies_card
-        display: inline-block
+        display: flex
         // border: 1px solid purple
         position: relative
-        margin: 5px
+        margin: 15px 5px
 
         .Movies_img
             height: 33.2vh
@@ -78,4 +79,12 @@
                 transform: translateX(-50%)
 
 
-            
+
+@media screen and (min-width: 800px)
+
+    #Movies_block
+        display: inline-block
+
+        .Movies_card
+            display: inline-block
+            margin: 5px

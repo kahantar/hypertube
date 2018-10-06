@@ -1,14 +1,15 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300");
 #Movies_block {
-  display: inline-block;
+  display: flex;
   height: 100%;
   flex-wrap: wrap;
   margin-left: 44px;
-  margin-right: 44px; }
+  margin-right: 44px;
+  justify-content: space-around; }
   #Movies_block .Movies_card {
-    display: inline-block;
+    display: flex;
     position: relative;
-    margin: 5px; }
+    margin: 15px 5px; }
     #Movies_block .Movies_card .Movies_img {
       height: 33.2vh;
       min-height: 250px; }
@@ -62,3 +63,10 @@
         bottom: 7vh;
         left: 50%;
         transform: translateX(-50%); }
+
+@media screen and (min-width: 800px) {
+  #Movies_block {
+    display: inline-block; }
+    #Movies_block .Movies_card {
+      display: inline-block;
+      margin: 5px; } }
