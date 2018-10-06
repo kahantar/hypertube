@@ -32,7 +32,7 @@ class Menu extends React.Component{
         const winWidth = window.innerWidth
         const winHeight = window.innerHeight
 
-        if((winWidth < 700 && winHeight > 800) || (winWidth < 1000)) {
+        if (winWidth < 800) {
             this.setState(
                 (prevState) => (
                     (prevState.displayMenu === 'none') ? {displayMenu: 'flex'} : {displayMenu: 'none'}
@@ -45,7 +45,7 @@ class Menu extends React.Component{
         const winWidth = window.innerWidth
         const winHeight = window.innerHeight
         
-        if((winWidth > 700 && winHeight < 800) || (winWidth > 1000)){
+        if (winWidth > 800){
             this.setState({
                 displayMenu: 'flex'
             })

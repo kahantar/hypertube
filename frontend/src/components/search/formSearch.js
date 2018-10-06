@@ -43,6 +43,7 @@ class FormSearch extends React.Component {
     render(){
         return(
             <div id="Search_research">
+                <div id='Search_allSelectFrame'>
                     <div className="Search_selectFrame">
                         <Select className="Search_select" classNamePrefix="Search_select" placeholder='RATING' isSearchable={false}
                             value={this.state.rating}
@@ -100,8 +101,11 @@ class FormSearch extends React.Component {
                             ]}
                         />
                     </div>
+                </div>
+                <div id='Search_txtFrame'>
                     <input type="text" id="Search_txt" placeholder="Search..." onKeyDown={this.onEnterPressPwd} onChange={(e) => this.setState({term: e.target.value}) }/>
                     <img src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538756774/Netflix42/search.png' alt='search' type="button" id='Search_button' onClick={(e) => this.props.searchMovies(this.state)}/>
+                </div>
             </div>
         )
     }
