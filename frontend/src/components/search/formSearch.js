@@ -15,20 +15,20 @@ class FormSearch extends React.Component {
         term: ''
     }
 
-    handleChangeRating = (rating) => {
-        this.setState({ rating })
+    handleChangeRating = async (rating) => {
+        await this.setState({ rating })
         console.log(`Option selected:`, rating)
         this.props.searchMovies(this.state)
     }
 
-    handleChangeGenre = (genre) => {
-        this.setState({ genre })
+    handleChangeGenre = async (genre) => {
+        await this.setState({ genre })
         console.log(`Option selected:`, genre)
         this.props.searchMovies(this.state)
     }
 
-    handleChangeOrderBy = (orderBy) => {
-        this.setState({ orderBy })
+    handleChangeOrderBy = async (orderBy) => {
+        await this.setState({ orderBy })
         console.log(`Option selected:`, orderBy)
         this.props.searchMovies(this.state)
     }
@@ -90,7 +90,7 @@ class FormSearch extends React.Component {
                             ]}
                         />
                     </div>
-                    <div className="Search_selectFrame" onChange={(e) => this.setState({orderBy: e.target.value}) }>
+                    <div className="Search_selectFrame">
                         <Select className="Search_select" classNamePrefix="Search_select" placeholder='ORDER BY' isSearchable={false}
                             value={this.state.orderBy}
                             onChange={this.handleChangeOrderBy}
