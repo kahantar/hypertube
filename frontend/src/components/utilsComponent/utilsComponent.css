@@ -30,11 +30,16 @@
       height: 8px;
       margin: auto auto auto 4px; }
   #nav #trigramMenu {
-    margin: auto 20px; }
+    margin: auto 20px;
+    display: flex; }
     #nav #trigramMenu #trigram {
-      display: flex;
-      color: white;
-      cursor: pointer; }
+      background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538836968/Netflix42/menu-button.png");
+      background-position: center;
+      background-size: cover;
+      cursor: pointer;
+      width: 22px;
+      height: 22px;
+      margin: auto; }
   #nav #link {
     position: absolute;
     display: flex;

@@ -3,11 +3,14 @@ select option {
   background: rgba(0, 0, 0, 0) !important; }
 
 #Search_block {
-  height: 100vh; }
+  height: 100vh;
+  display: flex;
+  flex-direction: column; }
   #Search_block #Search_research {
     padding-top: 110px;
     display: flex;
-    flex-direction: column-reverse; }
+    flex-direction: column-reverse;
+    margin-bottom: 70px; }
     #Search_block #Search_research #Search_allSelectFrame {
       display: flex;
       justify-content: center; }
@@ -18,13 +21,13 @@ select option {
           border: 1px solid #b4b4b4;
           font-family: 'Roboto';
           font-weight: 300;
-          font-size: 14px;
+          font-size: 12px;
           position: relative; }
           #Search_block #Search_research #Search_allSelectFrame .Search_selectFrame .Search_select .Search_select__control {
             border: none;
             background-color: rgba(0, 0, 0, 0);
             box-shadow: none;
-            min-width: 120px;
+            min-width: 31vw;
             min-height: 0;
             cursor: pointer; }
             #Search_block #Search_research #Search_allSelectFrame .Search_selectFrame .Search_select .Search_select__control .Search_select__value-container {
@@ -48,7 +51,8 @@ select option {
             border-radius: 0;
             background-color: transparent;
             color: gainsboro;
-            margin: auto; }
+            margin: auto;
+            z-index: 10; }
             #Search_block #Search_research #Search_allSelectFrame .Search_selectFrame .Search_select .Search_select__menu .Search_select__menu-list {
               max-height: none;
               box-shadow: 0px 1px 0px 1.3px #b4b4b4;
@@ -107,5 +111,9 @@ select option {
       justify-content: start !important; }
       #Search_research #Search_allSelectFrame .Search_selectFrame {
         margin-right: 30px; }
+        #Search_research #Search_allSelectFrame .Search_selectFrame .Search_select {
+          font-size: 12px !important; }
+          #Search_research #Search_allSelectFrame .Search_selectFrame .Search_select .Search_select__control {
+            min-width: 120px !important; }
     #Search_research #Search_txtFrame {
       margin: auto 50px auto auto !important; } }

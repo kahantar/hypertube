@@ -1,6 +1,4 @@
 import React from 'react';
-import { Card, CardImg, CardBody,
-  CardTitle, CardSubtitle, Col } from 'reactstrap';
 import { connect } from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
@@ -10,23 +8,25 @@ import './movieCard.css';
 import {watch} from '../../utils/watch';
 
 class MovieCard extends React.Component{
+  state = {
+    displayInfo: 'none',
+    displaySeen: 'none'
+  }
   render(){
-      return (
-          <Col sm="4" xs="6">
-            <Card id="card">
-              <CardImg top width="50%" height="200" src={this.props.movie.image} alt="Card image cap" />
-              <CardBody>
-                <CardTitle>{this.props.movie.title}</CardTitle>
-                <CardSubtitle>{this.props.movie.year}</CardSubtitle>
-                <Link onClick={(e) => {
-                    this.props.infoMovie(this.props.movie);
-                    this.props.addWatch(this.props.movie)
-                  }} to='/video'>Visionner</Link>
-                  {watch(this.props.movie.id, this.props.userWatch) ? <input type="checkbox" checked="checked"/>: <span></span>}              
-              </CardBody>
-            </Card>
-          </Col>
-      );
+    console.log(this.props.movie)
+    return (
+          <div className='Movies_card'>
+            <img className='Movies_img' src={(!this.props.movie.large_image) ? this.props.movie.image : this.props.movie.large_image} alt="movie" />
+            <Link to='/video' className='Movies_info' onMouseEnter={() => {this.setState({displayInfo: 'initial', displaySeen: (watch(this.props.movie.id, this.props.userWatch)) ? 'initial' : 'none'})}} onMouseLeave={() => {this.setState({displayInfo: 'none', displaySeen: 'none'})}} onClick={(e) => {this.props.infoMovie(this.props.movie); this.props.addWatch(this.props.movie)}}>
+              <div className='Movies_rating' style={{display: this.state.displayInfo}}><span className='Movies_star'>{'\u2B50'}</span>{this.props.movie.rating}</div>
+              <div className='Movies_seen' style={{display: this.state.displaySeen}}>SEEN</div>
+              <img className='Movies_play' style={{display: this.state.displayInfo}} src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538854369/Netflix42/play-button.png' alt='startVideo'/>
+              <div className='Movies_title' style={{display: this.state.displayInfo}}>{this.props.movie.title.charAt(0).toUpperCase() + this.props.movie.title.slice(1)}</div>
+              <div className='Movies_year' style={{display: this.state.displayInfo}}>{this.props.movie.year}</div>
+              {/* <div className='Movies_genre' style={{display: this.state.displayInfo}}>{this.props.movie.genre}</div> */}
+            </Link>
+          </div>
+    );
   }
 };
 

@@ -1,4 +1,64 @@
-#card {
-  margin: auto;
-  margin-bottom: 40px;
-  width: 80%; }
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300");
+#Movies_block {
+  display: inline-block;
+  height: 100%;
+  flex-wrap: wrap;
+  margin-left: 44px;
+  margin-right: 44px; }
+  #Movies_block .Movies_card {
+    display: inline-block;
+    position: relative;
+    margin: 5px; }
+    #Movies_block .Movies_card .Movies_img {
+      height: 33.2vh;
+      min-height: 250px; }
+    #Movies_block .Movies_card .Movies_info {
+      position: absolute;
+      z-index: 2;
+      cursor: pointer;
+      right: 0;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Roboto';
+      font-weight: 100;
+      font-size: 1.7vh;
+      color: white; }
+      #Movies_block .Movies_card .Movies_info:hover {
+        background-color: rgba(22, 22, 22, 0.9);
+        box-shadow: 0px 1px 3px 1.3px #fafafa; }
+      #Movies_block .Movies_card .Movies_info .Movies_rating {
+        position: absolute;
+        top: 10px;
+        left: 30px;
+        display: flex; }
+        #Movies_block .Movies_card .Movies_info .Movies_rating .Movies_star {
+          font-size: 1.3vh;
+          position: absolute;
+          left: -20px;
+          top: -2px; }
+      #Movies_block .Movies_card .Movies_info .Movies_seen {
+        position: absolute;
+        top: 10px;
+        right: 10px; }
+      #Movies_block .Movies_card .Movies_info .Movies_title {
+        position: absolute;
+        top: 5.5vh;
+        font-weight: 300;
+        left: 50%;
+        width: 90%;
+        text-align: center;
+        transform: translateX(-50%);
+        font-size: 2vh; }
+      #Movies_block .Movies_card .Movies_info .Movies_play {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 10vh;
+        height: 10vh; }
+      #Movies_block .Movies_card .Movies_info .Movies_year {
+        position: absolute;
+        bottom: 7vh;
+        left: 50%;
+        transform: translateX(-50%); }

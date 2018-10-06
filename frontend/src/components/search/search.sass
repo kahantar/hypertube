@@ -5,11 +5,14 @@ select option
 
 #Search_block
     height: 100vh
+    display: flex
+    flex-direction: column
 
     #Search_research
         padding-top: 110px
         display: flex
         flex-direction: column-reverse
+        margin-bottom: 70px
 
         #Search_allSelectFrame
             display: flex
@@ -25,7 +28,7 @@ select option
                     // color: white
                     font-family: 'Roboto'    
                     font-weight: 300
-                    font-size: 14px
+                    font-size: 12px
                     // -webkit-appearance: none
                     // -webkit-border-radius: 0px
                     // outline: none
@@ -36,7 +39,7 @@ select option
                         border: none
                         background-color: rgba(0, 0, 0, 0)
                         box-shadow: none
-                        min-width: 120px
+                        min-width: 31vw
                         min-height: 0
                         cursor: pointer
 
@@ -73,6 +76,7 @@ select option
                         background-color: transparent
                         color: rgb(220, 220, 220)
                         margin: auto
+                        z-index: 10
 
                         .Search_select__menu-list
                             max-height: none
@@ -96,7 +100,6 @@ select option
                                 color: white
                                 font-weight: 300
                                 font-size: 13px
-                            
 
                 .Search_arrow
                     position: absolute
@@ -146,6 +149,12 @@ select option
 
             .Search_selectFrame
                 margin-right: 30px
+
+                .Search_select
+                    font-size: 12px !important
+
+                    .Search_select__control
+                        min-width: 120px !important
             
         #Search_txtFrame
             margin: auto 50px auto auto !important
