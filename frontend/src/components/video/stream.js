@@ -58,8 +58,8 @@ class Stream extends React.Component {
 
 	render() {
 		return(
-			<div>
-				<video id='videoPlayer' controls autoPlay width="90%">
+			<div id='Video_blockPlay'>
+				<video id='videoPlayer' controls autoPlay>
 					<source src={this.state.videoSrc} type="video/mp4" />
 					{this.state.sub}
 					Your browser does not support the video tag.

@@ -35,8 +35,25 @@ export default {
         profil: 'Profile',
         logOut: 'Log Out',
         notEqual: 'Passwords aren\'t equal',
-        update: 'UPDATE'
-
+        update: 'UPDATE',
+        ratingMaj: 'RATING',
+        adventure: 'Adventure',
+        biography: 'Biography',
+        comedy: 'Comedy',
+        drama: 'Drama',
+        family: 'Family',
+        fantasy: 'Fantasy',
+        history: 'History',
+        horror: 'Horror',
+        music: 'Music',
+        mystery: 'Mystery',
+        war: 'War',
+        orderBy: 'ORDER BY',
+        alphabetical: 'Alphabetical',
+        year: 'Year',
+        ratingMin: 'Rating',
+        search: 'Search',
+        addComment: 'Add a comment'
     },
     french: {
         language: 'Français',
@@ -74,6 +91,24 @@ export default {
         profil: 'Mon compte',
         logOut: 'Deconnexion',
         notEqual: 'Les mots de passe ne correspondent pas',
-        update: 'MODIFIER'
+        update: 'MODIFIER',
+        ratingMaj: 'NOTES',
+        adventure: 'Aventure',
+        biography: 'Biographie',
+        comedy: 'Comedie',
+        drama: 'Drame',
+        family: 'Famille',
+        fantasy: 'Fantastique',
+        history: 'Histoire',
+        horror: 'Horreur',
+        music: 'Musique',
+        mystery: 'Mystère',
+        war: 'Guerre',
+        orderBy: 'TRIER PAR',
+        alphabetical: 'Alphabetique',
+        year: 'Année',
+        ratingMin: 'Notes',
+        search: 'Recherche',
+        addComment: 'Ajouter un commentaire'
     }
 }

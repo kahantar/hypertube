@@ -6,6 +6,7 @@ import  Form from './form';
 import Comments from './comments';
 import { getComment } from '../../actions/video';
 
+
 class CommentSpace extends React.Component {
 	state = {
 		comments: this.props.getComment(this.props.imdb)
@@ -17,7 +18,7 @@ class CommentSpace extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div id='Video_frameInputComment'>
 				<Form imdb={this.props.imdb} handler={this.refresh} />
 				<Comments comments={this.state.comments} />
 			</div>

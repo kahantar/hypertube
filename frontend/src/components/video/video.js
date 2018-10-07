@@ -5,16 +5,16 @@ import Infos from './infos';
 import Stream from './stream';
 import CommentSpace from './commentSpace';
 import Menu from '../utilsComponent/menu';
+import './video.css'
 
 class Video extends React.Component{
 	render() {
 		if (localStorage.getItem('token')) {
 			return (
-				<div>
+				<div id='Video_block'>
 					<Menu />
-					<Infos info={this.props.infoMovie} />
 					<Stream hash={this.props.infoMovie.hash} title={this.props.infoMovie.title} />
-					<CommentSpace imdb={this.props.infoMovie.hash} />
+					<Infos info={this.props.infoMovie} hash={this.props.infoMovie.hash} language={this.props.language}/>
 				</div>
 			);
 		}
@@ -27,7 +27,8 @@ class Video extends React.Component{
 
 const mapStateToProps = (state) => {
 	return {
-		infoMovie: state.infoMovie
+		infoMovie: state.infoMovie,
+        language: state.loadLanguage
 	}
 }
 

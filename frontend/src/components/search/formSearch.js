@@ -8,9 +8,9 @@ import Select from 'react-select'
 
 class FormSearch extends React.Component {
     state = {
-        rating: {value: '0', label: 'RATING'},
+        rating: '',
         genre: {value: 'ALL', label: 'GENRE'},
-        orderBy: {value: 'title', label: 'ORDER BY'},
+        orderBy: '',
         order: 'DESC',
         term: ''
     }
@@ -45,11 +45,11 @@ class FormSearch extends React.Component {
             <div id="Search_research">
                 <div id='Search_allSelectFrame'>
                     <div className="Search_selectFrame">
-                        <Select className="Search_select" classNamePrefix="Search_select" placeholder='RATING' isSearchable={false}
+                        <Select className="Search_select" classNamePrefix="Search_select" placeholder={this.props.language.ratingMaj} isSearchable={false}
                             value={this.state.rating}
                             onChange={this.handleChangeRating}
                             options={[
-                                {value: '0', label: 'RATING'},
+                                {value: '0', label: this.props.language.ratingMaj},
                                 {value: '1', label: '1+'},
                                 {value: '2', label: '2+'},
                                 {value: '3', label: '3+'},
@@ -69,51 +69,45 @@ class FormSearch extends React.Component {
                             options={[
                                 {value: 'ALL', label: 'GENRE'},
                                 {value: 'Action', label: 'Action'},
-                                {value: 'Adventure', label: 'Adventure'},
+                                {value: 'Adventure', label: this.props.language.adventure},
                                 {value: 'Animation', label: 'Animation'},
-                                {value: 'Biography', label: 'Biography'},
-                                {value: 'Comedy', label: 'Comedy'},
+                                {value: 'Biography', label: this.props.language.biography},
+                                {value: 'Comedy', label: this.props.language.comedy},
                                 {value: 'Crime', label: 'Crime'},
-                                {value: 'Drama', label: 'Drama'},
-                                {value: 'Family', label: 'Family'},
-                                {value: 'Fantasy', label: 'Fantasy'},
-                                {value: 'History', label: 'History'},
-                                {value: 'Horror', label: 'Horror'},
-                                {value: 'Music', label: 'Music'},
-                                {value: 'Mystery', label: 'Mystery'},
+                                {value: 'Drama', label: this.props.language.drama},
+                                {value: 'Family', label: this.props.language.family},
+                                {value: 'Fantasy', label: this.props.language.fantasy},
+                                {value: 'History', label: this.props.language.history},
+                                {value: 'Horror', label: this.props.language.horror},
+                                {value: 'Music', label: this.props.language.music},
+                                {value: 'Mystery', label: this.props.language.mystery},
                                 {value: 'Romance', label: 'Romance'},
-                                {value: 'Sci-Fi', label: 'Sci-Fi'},
+                                {value: 'Sci-Fi', label: 'Science Fiction'},
                                 {value: 'Sport', label: 'Sport'},
                                 {value: 'Thriller', label: 'Thriller'},
-                                {value: 'War', label: 'War'},
+                                {value: 'War', label: this.props.language.war},
                                 {value: 'Western', label: 'Western'}
                             ]}
                         />
                     </div>
                     <div className="Search_selectFrame">
-                        <Select className="Search_select" classNamePrefix="Search_select" placeholder='ORDER BY' isSearchable={false}
+                        <Select className="Search_select" classNamePrefix="Search_select" placeholder={this.props.language.orderBy} isSearchable={false}
                             value={this.state.orderBy}
                             onChange={this.handleChangeOrderBy}
                             options={[
-                                {value: 'title', label: 'Alphabetical'},
-                                {value: 'year', label: 'Year'},
-                                {value: 'rating', label: 'Rating'}
+                                {value: 'title', label: this.props.language.alphabetical},
+                                {value: 'year', label: this.props.language.year},
+                                {value: 'rating', label: this.props.language.ratingMin}
                             ]}
                         />
                     </div>
                 </div>
                 <div id='Search_txtFrame'>
-                    <input type="text" id="Search_txt" placeholder="Search..." onKeyDown={this.onEnterPressPwd} onChange={(e) => this.setState({term: e.target.value}) }/>
+                    <input type="text" id="Search_txt" placeholder={`${this.props.language.search}...`} onKeyDown={this.onEnterPressPwd} onChange={(e) => this.setState({term: e.target.value}) }/>
                     <img src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538756774/Netflix42/search.png' alt='search' type="button" id='Search_button' onClick={(e) => this.props.searchMovies(this.state)}/>
                 </div>
             </div>
         )
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, searchMovies}, dispatch)
     }
 }
 
@@ -122,7 +116,14 @@ const mapStateToProps = (state) => {
         allMovies: state.allMovies,
         fluxMovies: state.fluxMovies,
         popularMovies: state.popularMovies,
-        infoProfil: state.infoProfil
+        infoProfil: state.infoProfil,
+        language: state.loadLanguage
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, searchMovies}, dispatch)
     }
 }
 

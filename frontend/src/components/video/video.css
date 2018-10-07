@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300");
+#Video_block {
+  height: 100vh;
+  display: flex;
+  flex-direction: column; }
+  #Video_block #Video_blockPlay {
+    padding-top: 100px;
+    height: 60%;
+    min-height: 300px;
+    min-width: 600px;
+    margin: 0 auto;
+    max-height: 50vw;
+    width: 106.3vh;
+    max-width: 100%;
+    display: flex;
+    cursor: pointer; }
+    #Video_block #Video_blockPlay #videoPlayer {
+      margin: auto;
+      height: 100%;
+      width: 100%; }
+  #Video_block #Video_infos {
+    display: flex;
+    width: auto;
+    margin-top: 4vh;
+    overflow: hidden; }
+    #Video_block #Video_infos #Video_infosBlock {
+      margin: auto;
+      width: 106.3vh;
+      min-width: 600px;
+      max-width: 100%;
+      display: flex; }
+      #Video_block #Video_infos #Video_infosBlock #Video_frameInfo {
+        font-family: 'Roboto';
+        font-weight: 100;
+        font-size: 1.4vh;
+        color: #f0f0f0;
+        width: 50%; }
+        #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_title {
+          font-size: 2.8vh;
+          margin-bottom: 2vh;
+          white-space: nowrap; }
+        #Video_block #Video_infos #Video_infosBlock #Video_frameInfo .Video_boxInfo {
+          display: flex;
+          margin-bottom: 1.5vh; }
+        #Video_block #Video_infos #Video_infosBlock #Video_frameInfo .Video_label {
+          color: gainsboro; }
+        #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_infoTxtYear {
+          margin-left: 5px;
+          margin-right: 50px; }
+        #Video_block #Video_infos #Video_infosBlock #Video_frameInfo .Video_infoTxt {
+          margin-left: 5px; }
+        #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_boxInfoSysnopsis {
+          margin-top: 2vh; }
+          #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_boxInfoSysnopsis #Video_infoTxtSynopsis {
+            margin-top: 0.7vh;
+            line-height: 2.5vh;
+            font-size: 1.3vh;
+            font-style: italic;
+            max-height: 14vh;
+            overflow: auto;
+            padding-right: 2px; }
+            #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_boxInfoSysnopsis #Video_infoTxtSynopsis::-webkit-scrollbar {
+              background: transparent;
+              width: 8px; }
+            #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_boxInfoSysnopsis #Video_infoTxtSynopsis::-webkit-scrollbar-thumb {
+              background-color: gainsboro;
+              border-radius: 10px; }
+      #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_input {
+        width: calc(30vh);
+        padding-right: 5px;
+        outline: none;
+        background: none;
+        font-style: normal;
+        color: white;
+        font-family: 'Roboto';
+        font-weight: 100;
+        font-size: 1.5vh;
+        margin: auto 0 auto 10px; }
+        #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_input::placeholder {
+          color: #828282; }
+      #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment .Video_line {
+        margin-top: 0.5vh;
+        border-bottom: 1px solid #3c3c3c; }
