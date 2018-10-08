@@ -28,13 +28,14 @@
       width: 106.3vh;
       min-width: 600px;
       max-width: 100%;
-      display: flex; }
+      display: flex;
+      flex-direction: column; }
       #Video_block #Video_infos #Video_infosBlock #Video_frameInfo {
         font-family: 'Roboto';
         font-weight: 100;
         font-size: 1.4vh;
         color: gainsboro;
-        width: 50%; }
+        padding: 0 3vh; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_title {
           font-size: 2.8vh;
           margin-bottom: 2vh;
@@ -68,11 +69,9 @@
       #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment {
         display: flex;
         flex-direction: column;
-        width: 50%;
         margin-top: 3.5vh;
-        padding-left: 20px; }
+        padding: 0 3vh; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit {
-          text-align: right;
           padding-right: 3px;
           position: relative;
           margin-bottom: 1.5vh; }
@@ -95,13 +94,12 @@
             cursor: pointer;
             position: absolute;
             top: 60%;
-            right: 3px;
+            margin-left: -16px;
             transform: translateY(-50%); }
           #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit .Video_line {
             border-bottom: 1px solid #646464;
             width: 28vh;
             position: absolute;
-            right: 0;
             bottom: -0.5vh;
             margin-right: 3px; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments {
@@ -110,8 +108,7 @@
           flex-direction: column;
           overflow: auto;
           margin: auto;
-          width: 68%;
-          padding-left: 30%;
+          width: 100%;
           height: 100%;
           font-family: 'Roboto';
           font-weight: 100;
@@ -135,3 +132,22 @@
               color: gainsboro; }
             #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments .Video_comment .Video_space {
               height: 1vh; }
+
+@media screen and (min-width: 800px) {
+  #Video_infosBlock {
+    flex-direction: initial !important; }
+    #Video_infosBlock #Video_frameInfo {
+      width: 50% !important;
+      padding: 0 !important; }
+    #Video_infosBlock #Video_frameInputComment {
+      width: 50%;
+      padding-left: 20px !important; }
+      #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit {
+        text-align: right; }
+        #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_button {
+          right: 3px; }
+        #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit .Video_line {
+          right: 0; }
+      #Video_infosBlock #Video_frameInputComment #Video_frameComments {
+        width: 68%;
+        padding-left: 30%; } }
