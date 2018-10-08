@@ -29,11 +29,10 @@ class Menu extends React.Component{
         (this.props.language.language === 'English') ? this.props.loadLanguage('Français') : this.props.loadLanguage('English')
     }
 
-    clickOnMenu = () => {
-        this.displayMenu()
-        this.setState(
+    clickOnMenu = async () => {
+        await this.setState(
             (prevState) => (
-                (prevState.clicked) ? {clicked: false, displayMenu: 'flex'} : {clicked: true, displayMenu: 'flex'}
+                (prevState.clicked) ? {clicked: false, displayMenu: 'none'} : {clicked: true, displayMenu: 'flex'}
             )
         )
     }
@@ -41,13 +40,15 @@ class Menu extends React.Component{
     displayMenu = () => {
         const winWidth = window.innerWidth
 
-        if (winWidth < 800) {
-            this.setState(
-                (prevState) => (
-                    (prevState.displayMenu === 'none') ? {displayMenu: 'flex'} : {displayMenu: 'none'}
-                )
-            )
-        }
+        if (winWidth < 800)
+            this.setState({displayMenu: 'flex'})
+    }
+
+    hideMenu = () => {
+        const winWidth = window.innerWidth
+
+        if (winWidth < 800)
+            this.setState({displayMenu: 'none'})
     }
 
     laptopDimensions = (e) => {
@@ -66,11 +67,12 @@ class Menu extends React.Component{
     }
 
     render(){
+        console.log(this.state.clicked)
         return(
              <div id="nav">
                 <Link id='logo' to='/search'><img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
                 <div id='language' onClick={this.changeLanguage}>{this.props.language.language}<div id='arrowLanguage'/></div>
-                <div id='trigramMenu' onClick={this.clickOnMenu} onMouseEnter={(!this.state.clicked) ? this.displayMenu : null} onMouseLeave={(!this.state.clicked) ? this.displayMenu : null}>
+                <div id='trigramMenu' onClick={this.clickOnMenu} onMouseEnter={(!this.state.clicked) ? this.displayMenu : null} onMouseLeave={(!this.state.clicked) ? this.hideMenu : null}>
                     <div id='trigram'></div>
                     <div id='link'>
                         <NavLink style={{display: this.state.displayMenu, opacity: this.state.opacity}} className='title' activeClassName='titleActive' onClick={(e) => this.props.loadMovies(this.props.popularMovies)} to='/search'>{this.props.language.movies}</NavLink>
