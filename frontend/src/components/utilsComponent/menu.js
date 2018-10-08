@@ -67,7 +67,6 @@ class Menu extends React.Component{
     }
 
     render(){
-        console.log(this.state.clicked)
         return(
              <div id="nav">
                 <Link id='logo' to='/search'><img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>

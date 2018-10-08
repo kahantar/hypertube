@@ -20,7 +20,7 @@
             // border: 1px solid brown
         
         .Movies_info
-            transition: transform 0.7s
+            transition: transform 0.7s, background-color 0.5s ease
             position: absolute
             z-index: 2
             cursor: pointer
@@ -33,9 +33,6 @@
             font-weight: 100
             font-size: 1.7vh
             color: white
-            &:hover
-                background-color: rgba(22, 22, 22, 0.9)
-                box-shadow: 0px 1px 3px 1.3px rgb(250, 250, 250)
 
             .Movies_rating
                 position: absolute
@@ -46,8 +43,8 @@
                 .Movies_star
                     font-size: 1.3vh
                     position: absolute
-                    left: -20px
-                    top: -2px
+                    left: -2vh
+                    top: -0.2vh
 
             .Movies_seen
                 position: absolute
@@ -71,12 +68,21 @@
                 transform: translate(-50%, -50%)
                 width: 10vh
                 height: 10vh
-        
+
             .Movies_year
                 position: absolute
                 bottom: 7vh
                 left: 50%
                 transform: translateX(-50%)
+        
+            .Movies_genre
+                position: absolute
+                top: 28vh
+                left: 50%
+                transform: translateX(-50%)
+                font-size: 1.5vh
+                width: 90%
+                text-align: center
 
 
 

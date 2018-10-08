@@ -13,7 +13,7 @@
       min-height: 250px;
       transition: transform 0.7s; }
     #Movies_block .Movies_card .Movies_info {
-      transition: transform 0.7s;
+      transition: transform 0.7s, background-color 0.5s ease;
       position: absolute;
       z-index: 2;
       cursor: pointer;
@@ -25,9 +25,6 @@
       font-weight: 100;
       font-size: 1.7vh;
       color: white; }
-      #Movies_block .Movies_card .Movies_info:hover {
-        background-color: rgba(22, 22, 22, 0.9);
-        box-shadow: 0px 1px 3px 1.3px #fafafa; }
       #Movies_block .Movies_card .Movies_info .Movies_rating {
         position: absolute;
         top: 10px;
@@ -36,8 +33,8 @@
         #Movies_block .Movies_card .Movies_info .Movies_rating .Movies_star {
           font-size: 1.3vh;
           position: absolute;
-          left: -20px;
-          top: -2px; }
+          left: -2vh;
+          top: -0.2vh; }
       #Movies_block .Movies_card .Movies_info .Movies_seen {
         position: absolute;
         top: 10px;
@@ -63,6 +60,14 @@
         bottom: 7vh;
         left: 50%;
         transform: translateX(-50%); }
+      #Movies_block .Movies_card .Movies_info .Movies_genre {
+        position: absolute;
+        top: 28vh;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.5vh;
+        width: 90%;
+        text-align: center; }
 
 @media screen and (min-width: 800px) {
   #Movies_block {
