@@ -10,6 +10,7 @@ import ResetPassword from './components/resetPassword/resetPassword';
 import Users from './components/users/users';
 import Video from './components/video/video';
 import Search from './components/search/search';
+import Home from './components/home/home';
 import NotFound from './components/utilsComponent/404NotFound';
 
 const Routes = () => (
@@ -21,6 +22,7 @@ const Routes = () => (
         <Route exact path='/forgetpassword' component={ForgetPassword}/>
         <Route exact path='/resetpassword' component={ResetPassword}/>
         <Route exact path='/search' component={Search}/>
+        <Route exact path='/home' component={Home}/>
         <Route exact path='/users' component={Users} />
         <Route exact path='/video' component={Video} />
 		<Route component={NotFound} />

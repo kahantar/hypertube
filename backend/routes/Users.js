@@ -101,7 +101,7 @@ module.exports = {
 				const userFound = await models.User.findOne({ attributes: ['id', 'confirmation'], where: {id: userId} })
 				userFound.update({ confirmation: true })
 				if (info == "confirm"){
-					res.redirect("http://localhost:3000/login")
+					res.redirect(`http://localhost:3000/home?token=${token}`)
 				}
 				else{
 					res.redirect(`http://localhost:3000/resetpassword?token=${token}`)
