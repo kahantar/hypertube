@@ -9,7 +9,6 @@
         padding-top: 100px
         height: 60%
         min-height: 300px
-        min-width: 600px
         margin: 0 auto
         max-height: 50vw
         width: 106.3vh
@@ -20,19 +19,15 @@
         #videoPlayer
             margin: auto
             height: 100%
-            width: 100%
+            width: 100vw
 
     #Video_infos
         display: flex
         width: auto
         margin-top: 4vh
-        overflow: hidden
 
         #Video_infosBlock
             margin: auto
-            width: 106.3vh
-            min-width: 600px
-            max-width: 100%
             display: flex
             flex-direction: column
 
@@ -42,6 +37,7 @@
                 font-size: 1.4vh
                 color: rgb(220, 220, 220)
                 padding: 0 3vh
+                max-width: 86vw
 
                 #Video_title
                     font-size: 2.8vh
@@ -85,6 +81,7 @@
                 flex-direction: column
                 margin-top: 3.5vh
                 padding: 0 3vh
+                max-width: 86vw
 
                 #Video_frameInputSubmit
                     padding-right: 3px
@@ -92,7 +89,7 @@
                     margin-bottom: 1.5vh
 
                     #Video_input
-                        width: 40vh
+                        width: 80%
                         padding-right: 2.5vh
                         outline: none
                         border: none
@@ -116,7 +113,8 @@
                     
                     .Video_line
                         border-bottom: 1px solid rgb(100,100,100)
-                        width: 42.5vh
+                        width: 84%
+                        max-width: 89vw
                         position: absolute
                         bottom: -0.5vh
                         margin-right: 3px
@@ -159,30 +157,43 @@
 
 
 @media screen and (min-width: 800px)
-    #Video_infosBlock
-        flex-direction: initial !important
 
-        #Video_frameInfo
-            width: 50% !important
-            padding: 0 !important
+    #Video_blockPlay
+        min-width: 600px
 
-        #Video_frameInputComment
-            width: 50% !important
-            padding: 0 0 0 20px !important
+        #videoPlayer
+            width: 100% !important
 
-            #Video_frameInputSubmit
-                text-align: right
+    #Video_infos
+        overflow: hidden
 
-                #Video_input
-                    width: 25.5vh !important
+        #Video_infosBlock
+            width: 106.3vh
+            min-width: 600px
+            max-width: 100%
+            flex-direction: initial !important
 
-                #Video_button
-                    right: 3px
+            #Video_frameInfo
+                width: 50% !important
+                padding: 0 !important
 
-                .Video_line
-                    right: 0
-                    width: 28vh !important
+            #Video_frameInputComment
+                width: 50% !important
+                padding: 0 0 0 20px !important
 
-            #Video_frameComments
-                width: 68% !important
-                padding-left: 30% !important
+                #Video_frameInputSubmit
+                    text-align: right
+
+                    #Video_input
+                        width: 25.5vh !important
+
+                    #Video_button
+                        right: 3px
+
+                    .Video_line
+                        right: 0
+                        width: 28vh !important
+
+                #Video_frameComments
+                    width: 68% !important
+                    padding-left: 30% !important

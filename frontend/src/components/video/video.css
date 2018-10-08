@@ -7,7 +7,6 @@
     padding-top: 100px;
     height: 60%;
     min-height: 300px;
-    min-width: 600px;
     margin: 0 auto;
     max-height: 50vw;
     width: 106.3vh;
@@ -17,17 +16,13 @@
     #Video_block #Video_blockPlay #videoPlayer {
       margin: auto;
       height: 100%;
-      width: 100%; }
+      width: 100vw; }
   #Video_block #Video_infos {
     display: flex;
     width: auto;
-    margin-top: 4vh;
-    overflow: hidden; }
+    margin-top: 4vh; }
     #Video_block #Video_infos #Video_infosBlock {
       margin: auto;
-      width: 106.3vh;
-      min-width: 600px;
-      max-width: 100%;
       display: flex;
       flex-direction: column; }
       #Video_block #Video_infos #Video_infosBlock #Video_frameInfo {
@@ -35,7 +30,8 @@
         font-weight: 100;
         font-size: 1.4vh;
         color: gainsboro;
-        padding: 0 3vh; }
+        padding: 0 3vh;
+        max-width: 86vw; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_title {
           font-size: 2.8vh;
           margin-bottom: 2vh;
@@ -70,13 +66,14 @@
         display: flex;
         flex-direction: column;
         margin-top: 3.5vh;
-        padding: 0 3vh; }
+        padding: 0 3vh;
+        max-width: 86vw; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit {
           padding-right: 3px;
           position: relative;
           margin-bottom: 1.5vh; }
           #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_input {
-            width: 40vh;
+            width: 80%;
             padding-right: 2.5vh;
             outline: none;
             border: none;
@@ -98,7 +95,8 @@
             transform: translateY(-50%); }
           #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit .Video_line {
             border-bottom: 1px solid #646464;
-            width: 42.5vh;
+            width: 84%;
+            max-width: 89vw;
             position: absolute;
             bottom: -0.5vh;
             margin-right: 3px; }
@@ -134,23 +132,32 @@
               height: 1vh; }
 
 @media screen and (min-width: 800px) {
-  #Video_infosBlock {
-    flex-direction: initial !important; }
-    #Video_infosBlock #Video_frameInfo {
-      width: 50% !important;
-      padding: 0 !important; }
-    #Video_infosBlock #Video_frameInputComment {
-      width: 50% !important;
-      padding: 0 0 0 20px !important; }
-      #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit {
-        text-align: right; }
-        #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_input {
-          width: 25.5vh !important; }
-        #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_button {
-          right: 3px; }
-        #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit .Video_line {
-          right: 0;
-          width: 28vh !important; }
-      #Video_infosBlock #Video_frameInputComment #Video_frameComments {
-        width: 68% !important;
-        padding-left: 30% !important; } }
+  #Video_blockPlay {
+    min-width: 600px; }
+    #Video_blockPlay #videoPlayer {
+      width: 100% !important; }
+  #Video_infos {
+    overflow: hidden; }
+    #Video_infos #Video_infosBlock {
+      width: 106.3vh;
+      min-width: 600px;
+      max-width: 100%;
+      flex-direction: initial !important; }
+      #Video_infos #Video_infosBlock #Video_frameInfo {
+        width: 50% !important;
+        padding: 0 !important; }
+      #Video_infos #Video_infosBlock #Video_frameInputComment {
+        width: 50% !important;
+        padding: 0 0 0 20px !important; }
+        #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit {
+          text-align: right; }
+          #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_input {
+            width: 25.5vh !important; }
+          #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_button {
+            right: 3px; }
+          #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit .Video_line {
+            right: 0;
+            width: 28vh !important; }
+        #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments {
+          width: 68% !important;
+          padding-left: 30% !important; } }
