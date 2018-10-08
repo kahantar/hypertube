@@ -1,6 +1,5 @@
 import React from 'react';
 import Form from './form';
-import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Menu from '../utilsComponent/menu';
 import './updateProfil.css'

@@ -44,7 +44,6 @@ export const loginUser = (user, history) => {
 				data,
 				headers: {'Content-Type': 'application/json'} 
 			}).then((response) => {
-				console.log(response)
 				if (response.data.err)
 					console.log(response.data.message)
 				else if (response.status === 200 && response.data.userId) {
@@ -77,9 +76,7 @@ export const resetErrLogin = () => {
 export const updateUser = (user, history) => {
 	return (dispatch) => {
 		const errors = validationUpdate(user);
-		console.log(errors)
 		if (errors.fail === 'wrong') {
-			console.log('ok')
 			const token = localStorage.getItem('token');
 			const data = JSON.stringify({
 				email: user.email,
@@ -217,7 +214,6 @@ export const resetPasswordUser = (user, history) => {
 
 export const loadUsers = () => {
 	return (dispatch) => {
-		console.log('ok')
 		const token = localStorage.getItem('token');
 		axios.get(`http://localhost:8080/api/users/loadallusers`, {
 			headers: { 'content-type': 'application/json', 'Authorization': token }

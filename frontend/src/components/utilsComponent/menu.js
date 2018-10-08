@@ -30,7 +30,6 @@ class Menu extends React.Component{
 
     displayMenu = () => {
         const winWidth = window.innerWidth
-        const winHeight = window.innerHeight
 
         if (winWidth < 800) {
             this.setState(
@@ -43,7 +42,6 @@ class Menu extends React.Component{
 
     laptopDimensions = (e) => {
         const winWidth = window.innerWidth
-        const winHeight = window.innerHeight
         
         if (winWidth > 800){
             this.setState({

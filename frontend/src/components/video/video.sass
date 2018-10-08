@@ -1,31 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300')
 
-// @mixin custom-scroll-bar()
-//     &::-webkit-scrollbar
-//         border-radius: 10px
-//         height: 10px
-//         width: 8px
-
-//     &::-webkit-scrollbar-thumb
-//         background: #999
-//         border-radius: 10px
-
-//     &::-webkit-scrollbar-track
-//         border-radius: 10px
-
-@mixin no-scroll-bar()
-    &::-webkit-scrollbar
-        height: 0
-        width: 0
-
-    &::-webkit-scrollbar-thumb
-        height: 0
-        width: 0
-
-    &::-webkit-scrollbar-track
-        height: 0
-        width: 0
-
 #Video_block
     height: 100vh
     display: flex
@@ -40,7 +14,6 @@
         max-height: 50vw
         width: 106.3vh
         max-width: 100%
-        // border: 1px solid green
         display: flex
         cursor: pointer
 
@@ -52,7 +25,6 @@
     #Video_infos
         display: flex
         width: auto
-        // border: 1px solid brown
         margin-top: 4vh
         overflow: hidden
 
@@ -61,15 +33,13 @@
             width: 106.3vh
             min-width: 600px
             max-width: 100%
-            // border: 1px solid blue
             display: flex
 
             #Video_frameInfo
                 font-family: 'Roboto'    
                 font-weight: 100
                 font-size: 1.4vh
-                color: rgb(240, 240, 240)
-                // border: 1px solid pink
+                color: rgb(220, 220, 220)
                 width: 50%
 
                 #Video_title
@@ -82,7 +52,7 @@
                     margin-bottom: 1.5vh
 
                 .Video_label
-                    color: rgb(220, 220, 220)
+                    color: rgb(240, 240, 240)
                     
                 #Video_infoTxtYear
                     margin-left: 5px
@@ -99,7 +69,6 @@
                         line-height: 2.5vh
                         font-size: 1.3vh
                         font-style: italic
-                        // border: 1px solid magenta
                         max-height: 14vh
                         overflow: auto
                         padding-right: 2px
@@ -111,25 +80,82 @@
                             border-radius: 10px
         
             #Video_frameInputComment
-                // display: flex
-                // flex-direction: column
-                // border: 1px solid cyan
+                display: flex
+                flex-direction: column
+                width: 50%
+                margin-top: 3.5vh
+                padding-left: 20px
 
-                #Video_input
-                    width: calc(30vh)
-                    padding-right: 5px
-                    outline: none
-                    // border: none
-                    background: none
-                    font-style: normal
-                    color: white
-                    &::placeholder
-                        color: rgb(130, 130, 130)
-                    font-family: 'Roboto'
-                    font-weight: 100
-                    font-size: 1.5vh
-                    margin: auto 0 auto 10px
+                #Video_frameInputSubmit
+                    text-align: right
+                    padding-right: 3px
+                    position: relative
+                    margin-bottom: 1.5vh
+
+                    #Video_input
+                        width: 25.5vh
+                        padding-right: 2.5vh
+                        outline: none
+                        border: none
+                        background: none
+                        font-style: normal
+                        color: white
+                        &::placeholder
+                            color: rgb(130, 130, 130)
+                            font-style: italic
+                        font-family: 'Roboto'
+                        font-weight: 100
+                        font-size: 1.3vh
+
+                    #Video_button
+                        width: 1.8vh
+                        cursor: pointer
+                        position: absolute
+                        top: 60%
+                        right: 3px
+                        transform: translateY(-50%)
+                    
+                    .Video_line
+                        border-bottom: 1px solid rgb(100,100,100)
+                        width: 28vh
+                        position: absolute
+                        right: 0
+                        bottom: -0.5vh
+                        margin-right: 3px
                 
-                .Video_line
-                    margin-top: 0.5vh
-                    border-bottom: 1px solid rgb(60,60,60)
+                #Video_frameComments
+                    max-height: 18.5vh
+                    display: flex
+                    flex-direction: column
+                    overflow: auto
+                    &::-webkit-scrollbar
+                        background: transparent
+                        width: 8px
+                    &::-webkit-scrollbar-thumb
+                        background-color: rgb(220, 220, 220)
+                        border-radius: 10px
+                    margin: auto
+                    width: 68%
+                    padding-left: 30%
+                    height: 100%
+                    font-family: 'Roboto'    
+                    font-weight: 100
+                    font-size: 1.3vh
+                    color: rgb(220, 220, 220)
+
+                    .Video_comment
+                        margin: 0.6vh 0
+                        word-break: break-all
+                        line-height: 2vh
+
+                        .Video_commentUser
+                            color: rgb(240, 240, 240)
+                        
+                        .Video_commentMsg
+                            font-size: 1.4vh
+                        
+                        .Video_commentDate
+                            color: rgb(220, 220, 220)
+
+                        .Video_space
+                            height: 1vh

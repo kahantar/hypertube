@@ -11,12 +11,12 @@ const Infos = (props) => {
 					<div className='Video_boxInfo'>
 						<div className='Video_label'>{props.language.year} :</div>
 						<div id='Video_infoTxtYear'>{props.info.year}</div>
-						<div className='Video_label'>{props.language.ratingMin} :</div>
+						<div className='Video_label'>{props.language.rating} :</div>
 						<div className='Video_infoTxt'>{props.info.rating}</div>
 					</div>
 					<div className='Video_boxInfo'>
 						<div className='Video_label'>Genre :</div>
-						<div className='Video_infoTxt'>{props.info.genre.map((x, i) => {if(i !== 0) return ',' + ' ' + x; else return x})}</div>
+						<div className='Video_infoTxt'>{props.info.genre.map((x, i) => {if(i !== 0) return `,  ${x}`; else return x})}</div>
 					</div>
 					<div id='Video_boxInfoSysnopsis'>
 						<div className='Video_label'>Synopsis :</div>

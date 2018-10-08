@@ -33,7 +33,7 @@
         font-family: 'Roboto';
         font-weight: 100;
         font-size: 1.4vh;
-        color: #f0f0f0;
+        color: gainsboro;
         width: 50%; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_title {
           font-size: 2.8vh;
@@ -43,7 +43,7 @@
           display: flex;
           margin-bottom: 1.5vh; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInfo .Video_label {
-          color: gainsboro; }
+          color: #f0f0f0; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_infoTxtYear {
           margin-left: 5px;
           margin-right: 50px; }
@@ -65,19 +65,73 @@
             #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_boxInfoSysnopsis #Video_infoTxtSynopsis::-webkit-scrollbar-thumb {
               background-color: gainsboro;
               border-radius: 10px; }
-      #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_input {
-        width: calc(30vh);
-        padding-right: 5px;
-        outline: none;
-        background: none;
-        font-style: normal;
-        color: white;
-        font-family: 'Roboto';
-        font-weight: 100;
-        font-size: 1.5vh;
-        margin: auto 0 auto 10px; }
-        #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_input::placeholder {
-          color: #828282; }
-      #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment .Video_line {
-        margin-top: 0.5vh;
-        border-bottom: 1px solid #3c3c3c; }
+      #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment {
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        margin-top: 3.5vh;
+        padding-left: 20px; }
+        #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit {
+          text-align: right;
+          padding-right: 3px;
+          position: relative;
+          margin-bottom: 1.5vh; }
+          #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_input {
+            width: 25.5vh;
+            padding-right: 2.5vh;
+            outline: none;
+            border: none;
+            background: none;
+            font-style: normal;
+            color: white;
+            font-family: 'Roboto';
+            font-weight: 100;
+            font-size: 1.3vh; }
+            #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_input::placeholder {
+              color: #828282;
+              font-style: italic; }
+          #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_button {
+            width: 1.8vh;
+            cursor: pointer;
+            position: absolute;
+            top: 60%;
+            right: 3px;
+            transform: translateY(-50%); }
+          #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit .Video_line {
+            border-bottom: 1px solid #646464;
+            width: 28vh;
+            position: absolute;
+            right: 0;
+            bottom: -0.5vh;
+            margin-right: 3px; }
+        #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments {
+          max-height: 18.5vh;
+          display: flex;
+          flex-direction: column;
+          overflow: auto;
+          margin: auto;
+          width: 68%;
+          padding-left: 30%;
+          height: 100%;
+          font-family: 'Roboto';
+          font-weight: 100;
+          font-size: 1.3vh;
+          color: gainsboro; }
+          #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments::-webkit-scrollbar {
+            background: transparent;
+            width: 8px; }
+          #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments::-webkit-scrollbar-thumb {
+            background-color: gainsboro;
+            border-radius: 10px; }
+          #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments .Video_comment {
+            margin: 0.6vh 0;
+            word-break: break-all;
+            line-height: 2vh; }
+            #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments .Video_comment .Video_commentUser {
+              color: #f0f0f0; }
+            #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments .Video_comment .Video_commentMsg {
+              font-size: 1.4vh; }
+            #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments .Video_comment .Video_commentDate {
+              color: gainsboro; }
+            #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameComments .Video_comment .Video_space {
+              height: 1vh; }

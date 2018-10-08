@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 
 import Infos from './infos';
 import Stream from './stream';
-import CommentSpace from './commentSpace';
 import Menu from '../utilsComponent/menu';
 import './video.css'
 

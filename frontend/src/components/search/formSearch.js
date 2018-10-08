@@ -17,19 +17,16 @@ class FormSearch extends React.Component {
 
     handleChangeRating = async (rating) => {
         await this.setState({ rating })
-        console.log(`Option selected:`, rating)
         this.props.searchMovies(this.state)
     }
 
     handleChangeGenre = async (genre) => {
         await this.setState({ genre })
-        console.log(`Option selected:`, genre)
         this.props.searchMovies(this.state)
     }
 
     handleChangeOrderBy = async (orderBy) => {
         await this.setState({ orderBy })
-        console.log(`Option selected:`, orderBy)
         this.props.searchMovies(this.state)
     }
 
@@ -45,11 +42,11 @@ class FormSearch extends React.Component {
             <div id="Search_research">
                 <div id='Search_allSelectFrame'>
                     <div className="Search_selectFrame">
-                        <Select className="Search_select" classNamePrefix="Search_select" placeholder={this.props.language.ratingMaj} isSearchable={false}
+                        <Select className="Search_select" classNamePrefix="Search_select" placeholder={this.props.language.rating.toUpperCase()} isSearchable={false}
                             value={this.state.rating}
                             onChange={this.handleChangeRating}
                             options={[
-                                {value: '0', label: this.props.language.ratingMaj},
+                                {value: '0', label: this.props.language.rating.toUpperCase()},
                                 {value: '1', label: '1+'},
                                 {value: '2', label: '2+'},
                                 {value: '3', label: '3+'},
@@ -58,7 +55,7 @@ class FormSearch extends React.Component {
                                 {value: '6', label: '6+'},
                                 {value: '7', label: '7+'},
                                 {value: '8', label: '8+'},
-                                {value: '9', label: '9+'},
+                                {value: '9', label: '9+'}
                             ]}
                         />
                     </div>
@@ -97,7 +94,7 @@ class FormSearch extends React.Component {
                             options={[
                                 {value: 'title', label: this.props.language.alphabetical},
                                 {value: 'year', label: this.props.language.year},
-                                {value: 'rating', label: this.props.language.ratingMin}
+                                {value: 'rating', label: this.props.language.rating}
                             ]}
                         />
                     </div>

@@ -18,17 +18,6 @@ class Form extends React.Component {
         newPwd2: '',
         img: ''
     }
-    // changeImg = (e) => {
-    //     e.preventDefault();
-    //     const file = e.target.files[0];
-    //     const reader = new FileReader();
-    //     reader.onloadend = () => {
-    //         const img = reader.result;
-    //         this.setState({ img })
-    //     }
-    //     reader.readAsDataURL(file)
-    //     this.setState({ file })
-    // }
 
     async componentDidMount() {
         let query = {}
@@ -71,7 +60,6 @@ class Form extends React.Component {
         this.props.updateUser(this.state, this.props.history)
     }
     render() {
-        console.log(this.props.warningUpdate, this.props.warningUpdate.pwd, this.props.warningUpdate.signPwd)
         let picture = (this.state.img !== '/upload_img/avatar.png') ? <Dropzone ref={(ref) => { this.uploadInput = ref; }} type="file" onDrop={(files) => this.uploadPicture(files)} className='userPictureFrame'><div id='circleUserPicture'></div><div className='picture' id='userPicture' style={{backgroundImage: `url(${this.state.img})`}}/></Dropzone> :<Dropzone ref={(ref) => { this.uploadInput = ref; }} type="file" onDrop={(files) => this.uploadPicture(files)} className='picture' id='circleEmptyPicture'><div id='cameraEmptyPicture'/></Dropzone>
         return (
             <form id='UpdateProfil_form' onSubmit={(e) => this.handleSubmit(e)}>

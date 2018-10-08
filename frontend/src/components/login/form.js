@@ -37,7 +37,6 @@ class Form extends React.Component{
         }
     }
     render(){
-        console.log(this.props.errLogin)
         return(
             <form id="Login_form" onSubmit={(e) => this.handleSubmit(e)}>            
                 {(this.props.errLogin.unactive) ? <div className="Login_mailAlert">{this.props.language[this.props.errLogin.unactive]}</div> :

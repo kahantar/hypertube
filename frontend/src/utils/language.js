@@ -36,7 +36,7 @@ export default {
         logOut: 'Log Out',
         notEqual: 'Passwords aren\'t equal',
         update: 'UPDATE',
-        ratingMaj: 'RATING',
+        rating: 'Rating',
         adventure: 'Adventure',
         biography: 'Biography',
         comedy: 'Comedy',
@@ -51,7 +51,6 @@ export default {
         orderBy: 'ORDER BY',
         alphabetical: 'Alphabetical',
         year: 'Year',
-        ratingMin: 'Rating',
         search: 'Search',
         addComment: 'Add a comment'
     },
@@ -92,7 +91,7 @@ export default {
         logOut: 'Deconnexion',
         notEqual: 'Les mots de passe ne correspondent pas',
         update: 'MODIFIER',
-        ratingMaj: 'NOTES',
+        rating: 'Notes',
         adventure: 'Aventure',
         biography: 'Biographie',
         comedy: 'Comedie',
@@ -107,7 +106,6 @@ export default {
         orderBy: 'TRIER PAR',
         alphabetical: 'Alphabetique',
         year: 'Année',
-        ratingMin: 'Notes',
         search: 'Recherche',
         addComment: 'Ajouter un commentaire'
     }

@@ -13,7 +13,6 @@ class MovieCard extends React.Component{
     displaySeen: 'none'
   }
   render(){
-    console.log(this.props.movie)
     return (
           <div className='Movies_card'>
             <img className='Movies_img' src={(!this.props.movie.large_image) ? this.props.movie.image : this.props.movie.large_image} alt="movie" />

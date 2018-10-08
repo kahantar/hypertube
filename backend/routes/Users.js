@@ -7,7 +7,6 @@ const { validationResult } = require('express-validator/check');
 const cloudinary = require('cloudinary')
 const cloudinaryKey = require('../config/apiKey')
 
-console.log(cloudinaryKey)
 
 cloudinary.config({ 
     cloud_name: cloudinaryKey.cloud_name, 

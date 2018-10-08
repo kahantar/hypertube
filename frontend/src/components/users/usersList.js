@@ -33,8 +33,6 @@ class UsersList extends React.Component{
         let beforeLastUser = this.props.allUsers.length - 2
         let secondUser = 1
 
-        console.log(this.props.allUsers.length)
-
         if (this.props.allUsers.length === 1) {
             idPrev3 = 0
             idPrev2 = 0
@@ -319,8 +317,6 @@ class UsersList extends React.Component{
     }
 
     render() {
-        console.log(this.state)
-        console.log(this.props.allUsers)
         return(
             <div id="carousel">
                 <div data-id={this.state.idPrev3} onClick={this.prev3MoveToSelected} className='box' id={this.state.hideLeft}>
