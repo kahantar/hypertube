@@ -10,13 +10,34 @@ import {watch} from '../../utils/watch';
 class MovieCard extends React.Component{
   state = {
     displayInfo: 'none',
-    displaySeen: 'none'
+    displaySeen: 'none',
+    rotateFilter: 'rotateY(180deg)',
+    rotateImg: ''
   }
+
+  displayInfoMovie = () => {
+    this.setState({
+      displayInfo: 'initial',
+      displaySeen: (watch(this.props.movie.id, this.props.userWatch)) ? 'initial' : 'none',
+      rotateFilter: 'rotateY(360deg)',
+      rotateImg: 'rotateY(180deg)'
+    })
+  }
+
+  hideInfoMovie = () => {
+    this.setState({
+      displayInfo: 'none',
+      displaySeen: 'none',
+      rotateFilter: 'rotateY(180deg)',
+      rotateImg: ''
+  })
+  }
+
   render(){
     return (
-          <div className='Movies_card'>
-            <img className='Movies_img' src={(!this.props.movie.large_image) ? this.props.movie.image : this.props.movie.large_image} alt="movie" />
-            <Link to='/video' className='Movies_info' onMouseEnter={() => {this.setState({displayInfo: 'initial', displaySeen: (watch(this.props.movie.id, this.props.userWatch)) ? 'initial' : 'none'})}} onMouseLeave={() => {this.setState({displayInfo: 'none', displaySeen: 'none'})}} onClick={(e) => {this.props.infoMovie(this.props.movie); this.props.addWatch(this.props.movie)}}>
+          <div className='Movies_card' onMouseEnter={this.displayInfoMovie} onMouseLeave={this.hideInfoMovie} onClick={(e) => {this.props.infoMovie(this.props.movie); this.props.addWatch(this.props.movie)}}>
+            <img className='Movies_img' style={{transform: this.state.rotateImg}} src={(!this.props.movie.large_image) ? this.props.movie.image : this.props.movie.large_image} alt="movie" />
+            <Link to='/video' className='Movies_info' style={{transform: this.state.rotateFilter}}>
               <div className='Movies_rating' style={{display: this.state.displayInfo}}><span className='Movies_star'>{'\u2B50'}</span>{this.props.movie.rating}</div>
               <div className='Movies_seen' style={{display: this.state.displaySeen}}>SEEN</div>
               <img className='Movies_play' style={{display: this.state.displayInfo}} src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538854369/Netflix42/play-button.png' alt='startVideo'/>

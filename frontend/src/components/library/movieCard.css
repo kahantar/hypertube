@@ -10,8 +10,10 @@
     margin: 15px 5px; }
     #Movies_block .Movies_card .Movies_img {
       height: 33.2vh;
-      min-height: 250px; }
+      min-height: 250px;
+      transition: transform 0.7s; }
     #Movies_block .Movies_card .Movies_info {
+      transition: transform 0.7s;
       position: absolute;
       z-index: 2;
       cursor: pointer;
