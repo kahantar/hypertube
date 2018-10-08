@@ -76,7 +76,7 @@
           position: relative;
           margin-bottom: 1.5vh; }
           #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_input {
-            width: 25.5vh;
+            width: 40vh;
             padding-right: 2.5vh;
             outline: none;
             border: none;
@@ -98,7 +98,7 @@
             transform: translateY(-50%); }
           #Video_block #Video_infos #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit .Video_line {
             border-bottom: 1px solid #646464;
-            width: 28vh;
+            width: 42.5vh;
             position: absolute;
             bottom: -0.5vh;
             margin-right: 3px; }
@@ -140,14 +140,17 @@
       width: 50% !important;
       padding: 0 !important; }
     #Video_infosBlock #Video_frameInputComment {
-      width: 50%;
-      padding-left: 20px !important; }
+      width: 50% !important;
+      padding: 0 0 0 20px !important; }
       #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit {
         text-align: right; }
+        #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_input {
+          width: 25.5vh !important; }
         #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit #Video_button {
           right: 3px; }
         #Video_infosBlock #Video_frameInputComment #Video_frameInputSubmit .Video_line {
-          right: 0; }
+          right: 0;
+          width: 28vh !important; }
       #Video_infosBlock #Video_frameInputComment #Video_frameComments {
-        width: 68%;
-        padding-left: 30%; } }
+        width: 68% !important;
+        padding-left: 30% !important; } }
