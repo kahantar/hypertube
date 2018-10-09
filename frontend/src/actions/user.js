@@ -131,11 +131,10 @@ export const loadInfoUser = (query) => {
 				headers: { 'Authorization': token  }
 			})
 				.then((response) =>{
-					localStorage.setItem('token', token);
 					dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies })
 					dispatch({type: "ALL_MOVIES", payload: response.data.popularmovies })
 					dispatch({type: "FLUX_MOVIES", payload: response.data.popularmovies })
-					dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+                    dispatch({type: "INFO_PROFIL", payload: payloadtoken})
 				})
 				.catch((e) => {})
 		}

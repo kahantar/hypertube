@@ -22,7 +22,7 @@ module.exports = {
 
             if (userFound){
                 const token = jwtUtils.generateTokenForUser(userFound)
-                res.redirect(`http://localhost:3000/search?token=${token}`)
+                res.redirect(`http://localhost:3000/home?token=${token}`)
             }
             else {
                 const token = jwtUtils.generateTokenForUser(user)      
@@ -47,7 +47,7 @@ module.exports = {
 
             if (userFound){
                 const token = jwtUtils.generateTokenForUser(userFound)
-                res.redirect(`http://localhost:3000/search?token=${token}`)
+                res.redirect(`http://localhost:3000/home?token=${token}`)
             }
             else {
                 const token = jwtUtils.generateTokenForUser(user)      
@@ -72,7 +72,7 @@ module.exports = {
 
             if (userFound){
                 const token = jwtUtils.generateTokenForUser(userFound)
-                res.redirect(`http://localhost:3000/search?token=${token}`)
+                res.redirect(`http://localhost:3000/home?token=${token}`)
             }
             else {
                 const token = jwtUtils.generateTokenForUser(user)      
