@@ -34,8 +34,7 @@
         max-width: 86vw; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_title {
           font-size: 2.8vh;
-          margin-bottom: 2vh;
-          white-space: nowrap; }
+          margin-bottom: 2vh; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInfo .Video_boxInfo {
           display: flex;
           margin-bottom: 1.5vh; }
@@ -146,6 +145,8 @@
       #Video_infos #Video_infosBlock #Video_frameInfo {
         width: 50% !important;
         padding: 0 !important; }
+        #Video_infos #Video_infosBlock #Video_frameInfo #Video_title {
+          white-space: nowrap; }
       #Video_infos #Video_infosBlock #Video_frameInputComment {
         width: 50% !important;
         padding: 0 0 0 20px !important; }

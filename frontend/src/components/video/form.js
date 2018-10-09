@@ -16,8 +16,8 @@ class Form extends React.Component {
 
 	handleSubmit = (e) => {
 		e.preventDefault();
-		if (this.state.comment !== '')
-			postComment(this.state.comment, this.props.imdb)
+		if (this.state.comment.trim() !== '')
+			postComment(this.state.comment.trim(), this.props.imdb)
 				.then(() => { this.props.handler(); })
 				.catch((err) => { } );
 		this.setState({comment: ''});
