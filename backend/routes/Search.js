@@ -49,7 +49,6 @@ module.exports = {
                 order: [
                     ['rating', 'DESC']
                   ],
-                  where: {source: 'yify'},
                   limit: 20
               })
               return res.status(200).json({
