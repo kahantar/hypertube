@@ -71,7 +71,7 @@ module.exports = {
 								order: [
 									['rating', 'DESC']
 								],
-								limit: 8
+								limit: 20
 							})
 							return res.status(200).json({
 								'userId': userFound.id,

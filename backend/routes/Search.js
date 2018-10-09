@@ -1,6 +1,7 @@
 const models = require('../models');
 const Sequelize = require('sequelize');
 const jwtUtils = require('../utils/jwtUtils')
+const util = require('util')
 
 const Op = Sequelize.Op;
 
@@ -48,8 +49,8 @@ module.exports = {
                 order: [
                     ['rating', 'DESC']
                   ],
-                  where: {source: '1337x'},
-                  limit: 8
+                  where: {source: 'yify'},
+                  limit: 20
               })
               return res.status(200).json({
                   'popularmovies': popularMovies

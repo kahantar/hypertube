@@ -39,15 +39,15 @@ export const searchMovies = (info) => {
         const data = JSON.stringify({
             term: info.term,
             rating: (!info.rating.value) ? '0' : info.rating.value,
-            genre: info.genre.value,
+            genre: info.genre.value.toLowerCase(),
             orderBy: (!info.orderBy.value) ? 'title' : info.orderBy.value,
-            order: info.order 
+            order: (!info.orderBy || info.orderBy === 'title') ? 'ASC' : 'DESC' 
         });
         axios.post(`http://localhost:8080/search/allmovies`, data, {
             headers: { 'content-type': 'application/json'}
         }).then((response) => {
-                dispatch({type: "ALL_MOVIES", payload: response.data.allmovies})
-                dispatch({type: "FLUX_MOVIES", payload: response.data.allmovies.slice(0, 8) })
+            dispatch({type: "ALL_MOVIES", payload: response.data.allmovies})
+            dispatch({type: "FLUX_MOVIES", payload: response.data.allmovies.slice(0, 8) })
         }).catch((e)=>{
             console.log(e)
         })
