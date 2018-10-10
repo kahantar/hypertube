@@ -15,7 +15,7 @@ class Home extends React.Component {
     render(){
             return (
                 <div>
-                Chargement en cours
+                    Chargement en cours
                 </div>
             )
     }

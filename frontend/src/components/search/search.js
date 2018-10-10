@@ -32,7 +32,7 @@ class Search extends React.Component {
                   <Menu />
                   <FormSearch />
                   <ListMovies movies={this.props.fluxMovies}/>
-                  <BottomScrollListener onBottom={(e) => this.props.addMovies(this.props.fluxMovies, this.props.allMovies)} />
+                  <BottomScrollListener onBottom={(e) => {this.props.addMovies(this.props.fluxMovies, this.props.allMovies); console.log('opopopopop')}} />
                 </div>
             )
         }

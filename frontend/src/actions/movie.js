@@ -14,8 +14,8 @@ export const loadMovies = (popularMovies) => {
 }
 
 export const addMovies = (fluxMovies, allMovies) => {
-    const start = fluxMovies.length;
-    const end = start + start;
+    const start = 50;
+    const end = fluxMovies.length + start;
     return (dispatch) => {
         dispatch({type: "FLUX_MOVIES", payload: allMovies.slice(0, end) })
     }
@@ -47,7 +47,7 @@ export const searchMovies = (info) => {
             headers: { 'content-type': 'application/json'}
         }).then((response) => {
             dispatch({type: "ALL_MOVIES", payload: response.data.allmovies})
-            dispatch({type: "FLUX_MOVIES", payload: response.data.allmovies.slice(0, 8) })
+            dispatch({type: "FLUX_MOVIES", payload: response.data.allmovies.slice(0, 50) })
         }).catch((e)=>{
             console.log(e)
         })

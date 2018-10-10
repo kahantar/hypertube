@@ -81,14 +81,15 @@
                 margin-top: 3.5vh
                 padding: 0 3vh
                 max-width: 86vw
+                margin-bottom: 2vh
 
                 #Video_frameInputSubmit
                     padding-right: 3px
                     position: relative
-                    margin-bottom: 1.5vh
+                    margin-bottom: 2.5vh
 
                     #Video_input
-                        width: 80%
+                        width: calc(99% - 2.5vh)
                         padding-right: 2.5vh
                         outline: none
                         border: none
@@ -98,24 +99,25 @@
                         &::placeholder
                             color: rgb(130, 130, 130)
                             font-style: italic
+                            font-size: 1.1vh
                         font-family: 'Roboto'
                         font-weight: 100
-                        font-size: 1.3vh
+                        font-size: 1.2vh
 
                     #Video_button
                         width: 1.8vh
                         cursor: pointer
                         position: absolute
-                        top: 60%
+                        top: 50%
                         margin-left: -16px
                         transform: translateY(-50%)
                     
                     .Video_line
                         border-bottom: 1px solid rgb(100,100,100)
-                        width: 84%
+                        width: 99%
                         max-width: 89vw
                         position: absolute
-                        bottom: -0.5vh
+                        bottom: -0.8vh
                         margin-right: 3px
                 
                 #Video_frameComments
@@ -129,27 +131,31 @@
                     &::-webkit-scrollbar-thumb
                         background-color: rgb(220, 220, 220)
                         border-radius: 10px
-                    margin: auto
+                    margin: 0 auto
                     width: 100%
                     height: 100%
                     font-family: 'Roboto'    
                     font-weight: 100
-                    font-size: 1.3vh
+                    font-size: 1.1vh
                     color: rgb(220, 220, 220)
 
                     .Video_comment
-                        margin: 0.6vh 0
                         word-break: break-all
-                        line-height: 2vh
+                        line-height: 1.7vh
 
                         .Video_commentUser
                             color: rgb(240, 240, 240)
                         
                         .Video_commentMsg
-                            font-size: 1.4vh
+                            font-size: 1.2vh
                         
                         .Video_commentDate
                             color: rgb(220, 220, 220)
+
+                        .Video_lineComment
+                            width: 9.3vh
+                            margin: 0.8vh 0
+                            border-bottom: 1px solid rgb(50, 50, 50)
 
                         .Video_space
                             height: 1vh
@@ -183,25 +189,29 @@
 
                 #Video_infoTxtSynopsis
                     max-height: calc(300px - 14vw)
-                    min-height: 8vh
+                    min-height: 12vh
 
             #Video_frameInputComment
                 width: 50% !important
                 padding: 0 0 0 20px !important
+                margin-bottom: 0 !important
 
                 #Video_frameInputSubmit
                     text-align: right
+                    padding-left: 30%
 
                     #Video_input
-                        width: 25.5vh !important
+                        width: calc(100% - 3vh) !important
 
                     #Video_button
                         right: 3px
 
                     .Video_line
                         right: 0
-                        width: 28vh !important
+                        width: 68.5% !important
 
                 #Video_frameComments
                     width: 68% !important
                     padding-left: 30% !important
+                    max-height: calc(360px - 14vw) !important
+                    min-height: 19vh

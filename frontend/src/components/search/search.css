@@ -3,7 +3,6 @@ select option {
   background: rgba(0, 0, 0, 0) !important; }
 
 #Search_block {
-  height: 100vh;
   display: flex;
   flex-direction: column; }
   #Search_block #Search_research {

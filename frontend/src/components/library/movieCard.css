@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Roboto:100,300");
 #Movies_block {
   display: flex;
-  height: 100%;
   flex-wrap: wrap;
   justify-content: space-around; }
   #Movies_block .Movies_card {
