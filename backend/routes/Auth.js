@@ -111,7 +111,7 @@ module.exports = {
                     order: [
                         ['rating', 'DESC']
                       ],
-                      limit: 100
+                      limit: 50
                   })
                 // const user = await userFound.update({ email, username, name, img, first_name, password, confirmation: true })
                 return res.status(201).json({ 

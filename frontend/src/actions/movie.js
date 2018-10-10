@@ -39,7 +39,7 @@ export const searchMovies = (info) => {
         const data = JSON.stringify({
             term: info.term,
             rating: (!info.rating.value) ? '0' : info.rating.value,
-            genre: info.genre.value.toLowerCase(),
+            genre: info.genre.value,
             orderBy: (!info.orderBy.value) ? 'title' : info.orderBy.value,
             order: (!info.orderBy || info.orderBy === 'title') ? 'ASC' : 'DESC' 
         });

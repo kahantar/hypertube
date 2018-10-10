@@ -49,6 +49,7 @@
 
                 .Video_label
                     color: rgb(240, 240, 240)
+                    white-space: nowrap
                     
                 #Video_infoTxtYear
                     margin-left: 5px
@@ -65,7 +66,6 @@
                         line-height: 2.5vh
                         font-size: 1.3vh
                         font-style: italic
-                        max-height: 14vh
                         overflow: auto
                         padding-right: 2px
                         &::-webkit-scrollbar
@@ -165,12 +165,14 @@
 
     #Video_infos
         overflow: hidden
+        margin-top: 0 !important
 
         #Video_infosBlock
             width: 106.3vh
             min-width: 600px
             max-width: 100%
             flex-direction: initial !important
+            padding: 4vh
 
             #Video_frameInfo
                 width: 50% !important
@@ -178,6 +180,10 @@
 
                 #Video_title
                     white-space: nowrap
+
+                #Video_infoTxtSynopsis
+                    max-height: calc(300px - 14vw)
+                    min-height: 8vh
 
             #Video_frameInputComment
                 width: 50% !important

@@ -39,7 +39,8 @@
           display: flex;
           margin-bottom: 1.5vh; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInfo .Video_label {
-          color: #f0f0f0; }
+          color: #f0f0f0;
+          white-space: nowrap; }
         #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_infoTxtYear {
           margin-left: 5px;
           margin-right: 50px; }
@@ -52,7 +53,6 @@
             line-height: 2.5vh;
             font-size: 1.3vh;
             font-style: italic;
-            max-height: 14vh;
             overflow: auto;
             padding-right: 2px; }
             #Video_block #Video_infos #Video_infosBlock #Video_frameInfo #Video_boxInfoSysnopsis #Video_infoTxtSynopsis::-webkit-scrollbar {
@@ -136,17 +136,22 @@
     #Video_blockPlay #videoPlayer {
       width: 100% !important; }
   #Video_infos {
-    overflow: hidden; }
+    overflow: hidden;
+    margin-top: 0 !important; }
     #Video_infos #Video_infosBlock {
       width: 106.3vh;
       min-width: 600px;
       max-width: 100%;
-      flex-direction: initial !important; }
+      flex-direction: initial !important;
+      padding: 4vh; }
       #Video_infos #Video_infosBlock #Video_frameInfo {
         width: 50% !important;
         padding: 0 !important; }
         #Video_infos #Video_infosBlock #Video_frameInfo #Video_title {
           white-space: nowrap; }
+        #Video_infos #Video_infosBlock #Video_frameInfo #Video_infoTxtSynopsis {
+          max-height: calc(300px - 14vw);
+          min-height: 8vh; }
       #Video_infos #Video_infosBlock #Video_frameInputComment {
         width: 50% !important;
         padding: 0 0 0 20px !important; }

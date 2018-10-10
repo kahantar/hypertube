@@ -11,7 +11,7 @@ const addMovie = (movie) => new Promise ((resolve, reject) => {
             title: movie.title,
             year: movie.year,
             rating: movie.rating.percentage / 10,
-            genre: movie.genres,
+            genre: movie.genres.map(e => e.charAt(0).toUpperCase() + e.slice(1)),
             image: movie.images.banner,
             large_image: movie.images.poster,
             synopsis: movie.synopsis,
