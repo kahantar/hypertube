@@ -36,6 +36,38 @@ class FormSearch extends React.Component {
         }
     }
 
+    sortOrderOptions = () => {
+        let options = [
+            {value: 'Action', label: 'Action'},
+            {value: 'Animation', label: 'Animation'},
+            {value: 'Comedy', label: this.props.language.comedy},
+            {value: 'Crime', label: 'Crime'},
+            {value: 'Drama', label: this.props.language.drama},
+            {value: 'Family', label: this.props.language.family},
+            {value: 'Fantasy', label: this.props.language.fantasy},
+            {value: 'History', label: this.props.language.history},
+            {value: 'Holiday', label: this.props.language.holiday},
+            {value: 'Horror', label: this.props.language.horror},
+            {value: 'Music', label: this.props.language.music},
+            {value: 'Mystery', label: this.props.language.mystery},
+            {value: 'Romance', label: 'Romance'},
+            {value: 'Science-fiction', label: 'Science Fiction'},
+            {value: 'Superhero', label: 'Super Hero'},
+            {value: 'Suspense', label: 'Suspense'},
+            {value: 'Thriller', label: 'Thriller'},
+            {value: 'War', label: this.props.language.war},
+            {value: 'Western', label: 'Western'}
+        ]
+
+        options.sort((a, b) => {
+            if(a.label < b.label) return -1;
+            if(a.label > b.label) return 1;
+            return 0;
+        })
+        options.splice(0, 0, {value: 'ALL', label: 'GENRE'})
+        return options
+    }
+
     render(){
         return(
             <div id="Search_research">
@@ -62,28 +94,7 @@ class FormSearch extends React.Component {
                         <Select className="Search_select" classNamePrefix="Search_select" placeholder='GENRE' isSearchable={false}
                             value={this.state.genre}
                             onChange={this.handleChangeGenre}
-                            options={[
-                                {value: 'ALL', label: 'GENRE'},
-                                {value: 'Action', label: 'Action'},
-                                {value: 'Adventure', label: this.props.language.adventure},
-                                {value: 'Animation', label: 'Animation'},
-                                {value: 'Biography', label: this.props.language.biography},
-                                {value: 'Comedy', label: this.props.language.comedy},
-                                {value: 'Crime', label: 'Crime'},
-                                {value: 'Drama', label: this.props.language.drama},
-                                {value: 'Family', label: this.props.language.family},
-                                {value: 'Fantasy', label: this.props.language.fantasy},
-                                {value: 'History', label: this.props.language.history},
-                                {value: 'Horror', label: this.props.language.horror},
-                                {value: 'Music', label: this.props.language.music},
-                                {value: 'Mystery', label: this.props.language.mystery},
-                                {value: 'Romance', label: 'Romance'},
-                                {value: 'Sci-Fi', label: 'Science Fiction'},
-                                {value: 'Sport', label: 'Sport'},
-                                {value: 'Thriller', label: 'Thriller'},
-                                {value: 'War', label: this.props.language.war},
-                                {value: 'Western', label: 'Western'}
-                            ]}
+                            options={this.sortOrderOptions()}
                         />
                     </div>
                     <div className="Search_selectFrame">
