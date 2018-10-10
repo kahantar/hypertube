@@ -15,7 +15,7 @@ export const loadMovies = (popularMovies) => {
 
 export const addMovies = (fluxMovies, allMovies) => {
     const start = fluxMovies.length;
-    const end = start + 20;
+    const end = start + start;
     return (dispatch) => {
         dispatch({type: "FLUX_MOVIES", payload: allMovies.slice(0, end) })
     }

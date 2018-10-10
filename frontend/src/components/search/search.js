@@ -19,18 +19,13 @@ class Search extends React.Component {
             this.props.loadInfoUser(query)
         }
 
-        if (JSON.stringify(this.props.allMovies) === '[]')
+        if (JSON.stringify(this.props.allMovies) === '[]') {            
             this.props.loadMovies(this.props.popularMovies)
+        }
 
         this.props.loadUsers()
     }
     render(){
-        /////////// DEFINIR LE NOMBRE DE FILM A CHARGE EN FONCTION DE LA TAILLE DE LECRAN POUR EVITER QUEN BAS IL Y AIT DU VIDE /////////
-        if (window.innerWidth > 800)
-            console.log(window.innerWidth / (window.innerHeight * 0.221) - 0.1 - 0.88)
-        else
-            console.log(window.innerWidth / (window.innerHeight * 0.221) - 0.1)
-
         if (localStorage.getItem("token")){
             return (
                 <div id='Search_block'>

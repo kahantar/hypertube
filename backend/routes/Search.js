@@ -49,7 +49,7 @@ module.exports = {
                 order: [
                     ['rating', 'DESC']
                   ],
-                  limit: 20
+                  limit: 100
               })
               return res.status(200).json({
                   'popularmovies': popularMovies
