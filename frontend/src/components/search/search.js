@@ -47,6 +47,7 @@ class Search extends React.Component {
             )
         }
         else {
+            console.log('HGOUYTUIYFGUOYGILUGIGIUGHPIOUHIPUHPIHO')
 			window.location.href = '/';
 			return(<div></div>)
 		}

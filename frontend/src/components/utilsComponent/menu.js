@@ -75,7 +75,7 @@ class Menu extends React.Component{
                 <div id='trigramMenu' onClick={this.clickOnMenu} onMouseEnter={(!this.state.clicked) ? this.displayMenu : null} onMouseLeave={(!this.state.clicked) ? this.hideMenu : null}>
                     <div id='trigram'></div>
                     <div id='link'>
-                        <NavLink style={{display: this.state.displayMenu, opacity: this.state.opacity}} className='title' activeClassName='titleActive' onClick={(e) => this.props.loadMovies(this.props.popularMovies)} to='/search'>{this.props.language.movies}</NavLink>
+                        <NavLink style={{display: this.state.displayMenu, opacity: this.state.opacity}} className='title' activeClassName='titleActive' to='/search'>{this.props.language.movies}</NavLink>
                         <NavLink style={{display: this.state.displayMenu, opacity: this.state.opacity}} className='title' activeClassName='titleActive' onClick={(e) => this.props.loadUsers()} to='/users'>{this.props.language.users}</NavLink>
                         <NavLink style={{display: this.state.displayMenu, opacity: this.state.opacity}} className='title' activeClassName='titleActive' to='/profil'>{this.props.language.profil}</NavLink>
                         <Disconnection style={{display: this.state.displayMenu, opacity: this.state.opacity}} history={this.props.history}/>
