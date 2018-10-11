@@ -35,7 +35,6 @@ export const getComment = (imdb = null) => {
 				dispatch({type: "COMMENT_LIST", payload: res.data});
 			})
 			.catch((err) => {
-				console.log(err)
 				dispatch({type: "COMMENT_LIST", payload: []});
 			});
 	};

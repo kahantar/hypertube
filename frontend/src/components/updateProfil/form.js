@@ -25,14 +25,14 @@ class Form extends React.Component {
         await this.props.loadInfoUser(query)
 
         this.setState({
-            email: this.props.infoProfil.email,
-            name: this.props.infoProfil.name,
-            first_name: this.props.infoProfil.first_name,
-            username: this.props.infoProfil.username,
+            email: this.props.infoProfil.email || '',
+            name: this.props.infoProfil.name || '',
+            first_name: this.props.infoProfil.first_name || '',
+            username: this.props.infoProfil.username || '',
             oldPwd: '',
             newPwd1: '',
             newPwd2: '',
-            img: this.props.infoProfil.img
+            img: this.props.infoProfil.img || ''
         })
     }
 

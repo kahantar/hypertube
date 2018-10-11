@@ -40,7 +40,7 @@ const scrappMovies = () => new Promise ((resolve, reject) => {
             .catch(err => {
                 console.log(err)
             })
-            .finally(() => {console.log('finish');})
+			//.finally(() => {console.log('finish');})
         })
     })
     .catch(err => {

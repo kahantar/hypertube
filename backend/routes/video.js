@@ -142,6 +142,11 @@ module.exports = {
 
 		if (jwtUtils.getUserId(headerAuth) < 0)
 			return res.status(400).json([{ msg: 'wrong token' }]);
+		try {
+			fs.accessSync(SUBPATH);
+		} catch (e) {
+			fs.mkdir(SUBPATH);
+		}
 		os.search({ 
 			query: title,
 		})
@@ -158,7 +163,7 @@ module.exports = {
 			})
 			.catch(err => {
 				if (err) {
-					console.log('catch sub ', err);
+					console.log('catch sub ');
 				}
 				return res.status(500).json([{ msg: 'os API does not work' }]);
 			});
@@ -172,6 +177,11 @@ module.exports = {
 			return res.status(400).json([{ msg: 'unknown lang' }]);
 		if (!hash)
 			return res.status(400).json([{ msg: 'unknown hash' }]);
+		try {
+			fs.accessSync(SUBPATH);
+		} catch (e) {
+			fs.mkdir(SUBPATH);
+		}
 
 		const data = fs.readFileSync(`${SUBPATH}${hash}${lang}.vtt`);
 		res.setHeader('Content-Type', 'text/vtt; charset=UTF-8');
