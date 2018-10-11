@@ -20,14 +20,18 @@ class FormSearch extends React.Component {
     }
 
     handleChangeGenre = async (genre) => {
-        console.log(this.state)
         await this.setState({ genre })
-        console.log(this.state)
         this.props.searchMovies(this.state, this.props.language)
     }
 
     handleChangeOrderBy = async (orderBy) => {
         await this.setState({ orderBy })
+        this.props.searchMovies(this.state, this.props.language)
+    }
+
+    clearTerm = async () => {
+        console.log('okok')
+        await this.setState({term: ''})
         this.props.searchMovies(this.state, this.props.language)
     }
 
@@ -112,7 +116,8 @@ class FormSearch extends React.Component {
                     </div>
                 </div>
                 <div id='Search_txtFrame'>
-                    <input type="text" id="Search_txt" placeholder={`${this.props.language.search}...`} onKeyDown={this.onEnterPressPwd} onChange={(e) => this.setState({term: e.target.value}) }/>
+                    <input type="text" id="Search_txt" placeholder={`${this.props.language.search}...`} value={this.state.term} onKeyDown={this.onEnterPressPwd} onChange={(e) => this.setState({term: e.target.value}) }/>
+                    {(this.state.term) ? <img src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539293043/Netflix42/clear.png' alt='delete' id='Search_clear' onClick={(e) => this.clearTerm()}/> : null}
                     <img src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538756774/Netflix42/search.png' alt='search' type="button" id='Search_button' onClick={(e) => this.props.searchMovies(this.state, this.props.language)}/>
                 </div>
             </div>

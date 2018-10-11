@@ -110,6 +110,7 @@ select option
         #Search_txtFrame
             display: flex
             margin: auto auto 40px auto
+            position: relative
 
             #Search_txt
                 height: 20px
@@ -123,9 +124,17 @@ select option
                 font-weight: 100
                 font-size: 15px
                 outline: none
-                padding: 3px 1px
+                padding: 3px 3vh 3px 1px
                 &::placeholder
                     color: rgb(180, 180, 180)
+
+            #Search_clear
+                width: 15px
+                height: 15px
+                position: absolute
+                right: 33px
+                top: 5px
+                cursor: pointer
 
             #Search_button
                 width: 22px
