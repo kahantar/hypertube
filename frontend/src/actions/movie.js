@@ -42,7 +42,7 @@ export const searchMovies = (info) => {
             rating: (!info.rating.value) ? '0' : info.rating.value,
             genre: info.genre.value,
             orderBy: (!info.orderBy.value) ? 'title' : info.orderBy.value,
-            order: (!info.orderBy || info.orderBy === 'title') ? 'ASC' : 'DESC' 
+            order: (!info.orderBy || info.orderBy.value === 'title') ? 'ASC' : 'DESC' 
         });
         axios.post(`http://localhost:8080/search/allmovies`, data, {
             headers: { 'content-type': 'application/json'}

@@ -7,7 +7,7 @@ import Menu from '../utilsComponent/menu';
 import ListMovies from '../library/listMovies';
 import React from 'react';
 import BottomScrollListener from 'react-bottom-scroll-listener';
-import { addMovies, loadMovies } from '../../actions/movie';
+import { addMovies, loadMovies, searchMovies } from '../../actions/movie';
 
 class Search extends React.Component {
     componentWillMount(){
@@ -21,7 +21,12 @@ class Search extends React.Component {
 
         console.log(this.props.allMovies)
         if (JSON.stringify(this.props.allMovies) === '[]') {            
-            this.props.loadMovies(this.props.popularMovies)
+			this.props.searchMovies({
+				term: "",
+				genre: { value: "ALL" },
+				rating: { value: "0" },
+				orderBy: { value: "rating" }
+			})
         }
 
         this.props.loadUsers()
@@ -33,7 +38,7 @@ class Search extends React.Component {
                   <Menu />
                   <FormSearch />
                   <ListMovies movies={this.props.fluxMovies}/>
-                  <BottomScrollListener onBottom={(e) => {this.props.addMovies(this.props.fluxMovies, this.props.allMovies); console.log('opopopopop')}} />
+                  <BottomScrollListener onBottom={(e) => {this.props.addMovies(this.props.fluxMovies, this.props.allMovies);}} />
                 </div>
             )
         }
@@ -48,14 +53,13 @@ const mapStateToProps = (state) => {
 	return {
 		allMovies: state.allMovies,
 		fluxMovies: state.fluxMovies,
-		popularMovies: state.popularMovies,
         infoProfil: state.infoProfil,
 	}
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, loadUsers, loadLanguage}, dispatch)
+        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, loadUsers, loadLanguage, searchMovies }, dispatch)
     }
 }
 
