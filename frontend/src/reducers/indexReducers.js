@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import { allCommentReducers, subtitleReducers } from './commentReducers';
-import { mailSentReducers, infoProfilReducers, allUsersReducers, allMoviesReducers, popularMoviesReducers, infoMovieReducers, fluxMoviesReducers, loadMailReducers, loadLanguageReducers, userWatchReducers } from './infoReducers';
+import { mailSentReducers, infoProfilReducers, allUsersReducers, allMoviesReducers,
+	infoMovieReducers, fluxMoviesReducers, loadMailReducers, loadLanguageReducers, userWatchReducers } from './infoReducers';
 import { warningReducers, errLoginReducers } from './warningReducers';
 
 const rootReducer = combineReducers({
@@ -10,7 +11,6 @@ const rootReducer = combineReducers({
     allUsers: allUsersReducers,
     allMovies: allMoviesReducers,
     fluxMovies: fluxMoviesReducers,
-    popularMovies: popularMoviesReducers,
     infoMovie: infoMovieReducers,
     comments: allCommentReducers,
     userWatch: userWatchReducers,
