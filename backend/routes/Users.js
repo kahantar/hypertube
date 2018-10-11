@@ -168,9 +168,8 @@ module.exports = {
 		const name = req.body.name;
 		const first_name = req.body.first_name;
 		const img = req.body.img
-		const newPwd = (!req.body.newPwd) ? userFound.password : req.body.newPwd
+		const newPwd = (!req.body.newPwd) ? userFound.password : await bcrypt.hash(req.body.newPwd, 5)
 		let userUpdate = {}
-		console.log(req.body.newPwd, req.body.oldPwd)
 		const compareUser = await bcrypt.compare(req.body.oldPwd, userFound.password)
 		if (compareUser || (!req.body.newPwd && !req.body.oldPwd)) {
 			if (img.length > 1000){
