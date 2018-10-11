@@ -10,7 +10,6 @@ export const registerUser = (user, history) => {
 			first_name: user.firstName,
 			name: user.secondName,                    
 			password: user.pwd,
-			img: "/upload_img/avatar.png",
 			confirmation: false
 		})
 		axios({ method: 'post',

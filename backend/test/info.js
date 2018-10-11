@@ -13,7 +13,7 @@ module.exports = {
 			username: 'testa',
 			name: 'test',
 			password: 'Abcd1234',
-			img: "/upload_img/avatar.png",
+			img: "https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539275273/Netflix42/no-photos_1.png",
 			first_name: 'test',
 			confirmation: false
     },
@@ -22,7 +22,7 @@ module.exports = {
 			username: 'testb',
 			name: 'test',
 			password: 'Abcd1234',
-			img: "/upload_img/avatar.png",
+			img: "https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539275273/Netflix42/no-photos_1.png",
 			first_name: 'test',
 			confirmation: true,
     },
@@ -31,7 +31,7 @@ module.exports = {
         username: 'b',
         name: 't',
         password: 'abcd1234',
-        img: "/upload_img/avatar.png",
+        img: "https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539275273/Netflix42/no-photos_1.png",
         first_name: 't',
         confirmation: false
     },
@@ -78,7 +78,7 @@ module.exports = {
         username: 'testa',
         name: 'test',
         password: 'Abcd1234',
-        img: "/upload_img/avatar.png",
+        img: "https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539275273/Netflix42/no-photos_1.png",
         first_name: 'test',
         confirmation: true
     },
@@ -87,7 +87,7 @@ module.exports = {
         username: 'b',
         name: 't',
         password: 'abcd1234',
-        img: "/upload_img/avatar.png",
+        img: "https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539275273/Netflix42/no-photos_1.png",
         first_name: 't',
         confirmation: true
     },

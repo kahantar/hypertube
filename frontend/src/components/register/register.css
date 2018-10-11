@@ -11,7 +11,7 @@
   .background #Register_form {
     margin: 0 auto;
     border-radius: 0;
-    width: 35vh;
+    width: 40vh;
     display: flex;
     flex-direction: column; }
     .background #Register_form .Register_frame {
@@ -20,10 +20,10 @@
       height: 2.3vh;
       position: relative; }
       .background #Register_form .Register_frame .logoForm {
-        width: 1.7vh;
+        width: 2.3vh;
         margin: auto 0; }
       .background #Register_form .Register_frame input {
-        width: calc(30vh);
+        width: 35vh;
         padding-right: 3vh;
         outline: none;
         border: none;
@@ -32,16 +32,16 @@
         color: gainsboro;
         font-family: "Roboto";
         font-weight: 100;
-        font-size: 1.5vh;
+        font-size: 1.8vh;
         margin: auto 0 auto 10px; }
         .background #Register_form .Register_frame input::placeholder {
           color: #828282; }
       .background #Register_form .Register_frame .Register_checkInput {
         position: absolute;
-        left: 34.1vh;
+        left: 38.8vh;
         top: 0.3vh;
         font-family: "Roboto";
-        font-size: 1.5vh;
+        font-size: 1.7vh;
         font-style: italic; }
       .background #Register_form .Register_frame .Register_validInput {
         color: #828282;
@@ -49,19 +49,19 @@
         right: 0.4vh;
         top: 3.6vh;
         font-family: "Roboto";
-        font-size: 1.3vh;
+        font-size: 1.5vh;
         white-space: nowrap;
         font-style: italic; }
     .background #Register_form .Register_line {
-      margin-top: 0.5vh;
+      margin-top: 0.7vh;
       border-bottom: 1px solid #3c3c3c; }
     .background #Register_form button {
       background-color: #c91423;
       border: none;
       color: white;
       font-family: "Roboto";
-      font-weight: 300;
-      font-size: 1.9vh;
+      font-weight: 200;
+      font-size: 2.1vh;
       margin-top: 3vh;
       height: 4.5vh;
       border-radius: 2px;
@@ -70,7 +70,7 @@
     .background #Register_form #signIn {
       font-family: "Roboto";
       font-weight: 200;
-      font-size: 1.5vh;
+      font-size: 1.7vh;
       margin: 1vh auto auto auto;
       text-decoration: none;
       color: gainsboro; }
@@ -107,11 +107,11 @@
       top: 20px;
       margin: 0; }
     .background #Register_form {
-      margin: 7vh auto auto auto; }
+      margin: 5vh auto auto auto; }
       .background #Register_form .Register_validInput {
-        top: 0.6vh !important;
+        top: 0.5vh !important;
         right: initial !important;
-        left: 35.7vh; }
+        left: 40.4vh; }
     .background #language {
       top: 4vh;
       right: 7vh;
@@ -130,11 +130,11 @@
       top: 20px;
       margin: 0; }
     .background #Register_form {
-      margin: 7vh auto auto auto; }
+      margin: 5vh auto auto auto; }
       .background #Register_form .Register_validInput {
-        top: 0.6vh !important;
+        top: 0.5vh !important;
         right: initial !important;
-        left: 35.7vh; }
+        left: 40.4vh; }
     .background #language {
       top: 4vh;
       right: 7vh;

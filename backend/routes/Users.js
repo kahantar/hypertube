@@ -26,7 +26,7 @@ module.exports = {
 			const username = req.body.username;
 			const name = req.body.name;
 			const password = await bcrypt.hash(req.body.password, 5);
-			const img = req.body.img;
+			const img = 'https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539275273/Netflix42/no-photos_1.png'
 			const first_name = req.body.first_name;
 			const confirmation = req.body.confirmation;
 

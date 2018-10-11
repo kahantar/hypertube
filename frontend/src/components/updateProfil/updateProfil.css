@@ -5,9 +5,10 @@
   width: 40vh;
   margin: auto;
   padding-top: 90px;
-  height: calc(100vh - 90px); }
+  height: calc(100vh - 90px);
+  min-height: 520px; }
   #UpdateProfil_form .picture {
-    margin: auto;
+    margin: 3vh auto 0 auto;
     border-radius: 100%;
     cursor: pointer;
     background-position: center;
@@ -36,9 +37,9 @@
     #UpdateProfil_form #circleEmptyPicture #cameraEmptyPicture {
       background-position: center;
       background-size: cover;
-      background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1537535683/Netflix42/camera_kobxtp.png");
-      width: 4vh;
-      height: 4vh;
+      background-image: url("https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539276260/no-photos_white_im2g88.png");
+      width: 11vh;
+      height: 11vh;
       margin: auto; }
   #UpdateProfil_form .frameInput {
     position: relative; }

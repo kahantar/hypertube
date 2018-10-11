@@ -77527,7 +77527,7 @@ var registerUser = function registerUser(user) {
                 name: user.name,
                 first_name: user.first_name,
                 password: user.password,
-                img: "/upload_img/avatar.png",
+                img: "https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539275273/Netflix42/no-photos_1.png",
                 confirmation: false
             });
             __WEBPACK_IMPORTED_MODULE_0_axios___default()({ method: 'post',
@@ -77630,7 +77630,7 @@ var completeUser = function completeUser(user, history) {
                 name: user.name,
                 first_name: user.first_name,
                 password: user.password,
-                img: '/upload_img/avatar.png'
+                img: 'https://res.cloudinary.com/dzhnhtkyv/image/upload/v1539275273/Netflix42/no-photos_1.png'
             });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('http://localhost:8080/auth/completeuser', data, {
                 headers: { 'content-type': 'application/json', 'Authorization': token }
