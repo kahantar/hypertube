@@ -29,9 +29,14 @@ export const addWatch = (movie) => {
 
 export const searchMovies = (info, language) => {
     return (dispatch) => {
-        console.log(info, language, 'before')
         info.rating = (!info.rating) ? {value: '0', label: language.rating.toUpperCase()} : info.rating
-        info.orderBy = (!info.orderBy) ? {value: 'rating', label: language.orderBy} : info.orderBy
+
+        if (!info.orderBy || (info.orderBy.label === language.orderBy && info.rating.label === language.rating.toUpperCase() && info.genre.label === 'GENRE' && info.term === ''))
+            info.orderBy = {value: 'rating', label: language.orderBy}
+        else if (info.orderBy.label === language.orderBy && (info.rating.label !== language.rating.toUpperCase() || info.genre.label !== 'GENRE' || info.term !== ''))
+            info.orderBy = {value: 'title', label: language.orderBy}
+
+        
         console.log(info, 'here')
         const data = JSON.stringify({
             term: info.term,
