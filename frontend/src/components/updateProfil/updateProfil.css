@@ -4,7 +4,8 @@
   flex-direction: column;
   width: 40vh;
   margin: auto;
-  padding-top: 90px; }
+  padding-top: 90px;
+  height: calc(100vh - 90px); }
   #UpdateProfil_form .picture {
     margin: auto;
     border-radius: 100%;
@@ -46,7 +47,7 @@
       font-size: 1.3vh;
       font-weight: 100;
       color: #535353;
-      margin: 3.4vh 0 0.8vh 0; }
+      margin: 3vh 0 0.8vh 0; }
     #UpdateProfil_form .frameInput input {
       background: none;
       border: none;

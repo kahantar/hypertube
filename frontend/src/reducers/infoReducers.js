@@ -36,6 +36,15 @@ export const popularMoviesReducers = (state = [], action) => {
     }
 }
 
+export const filterMovieReducers = (state = {rating: '', genre: {value: 'ALL', label: 'GENRE'}, orderBy: '', term: ''}, action) => {
+    switch(action.type) {
+        case "FILTER_MOVIES":
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 export const infoMovieReducers = (state = [], action) => {
     switch(action.type){
         case "INFO_MOVIE":

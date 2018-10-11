@@ -19,6 +19,7 @@ class Search extends React.Component {
             this.props.loadInfoUser(query)
         }
 
+        console.log(this.props.allMovies)
         if (JSON.stringify(this.props.allMovies) === '[]') {            
             this.props.loadMovies(this.props.popularMovies)
         }

@@ -36,6 +36,7 @@ export const addWatch = (movie) => {
 
 export const searchMovies = (info) => {
     return (dispatch) => {
+        console.log(info)
         const data = JSON.stringify({
             term: info.term,
             rating: (!info.rating.value) ? '0' : info.rating.value,
@@ -46,6 +47,8 @@ export const searchMovies = (info) => {
         axios.post(`http://localhost:8080/search/allmovies`, data, {
             headers: { 'content-type': 'application/json'}
         }).then((response) => {
+            dispatch({type: "FILTER_MOVIES", payload: info})
+            console.log(response.data.allmovies)
             dispatch({type: "ALL_MOVIES", payload: response.data.allmovies})
             dispatch({type: "FLUX_MOVIES", payload: response.data.allmovies.slice(0, 50) })
         }).catch((e)=>{

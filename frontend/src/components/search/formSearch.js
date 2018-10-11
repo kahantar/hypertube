@@ -8,10 +8,10 @@ import Select from 'react-select'
 
 class FormSearch extends React.Component {
     state = {
-        rating: '',
-        genre: {value: 'ALL', label: 'GENRE'},
-        orderBy: '',
-        term: ''
+        rating: this.props.filterMovies.rating,
+        genre: this.props.filterMovies.genre,
+        orderBy: this.props.filterMovies.orderBy,
+        term: this.props.filterMovies.term
     }
 
     handleChangeRating = async (rating) => {
@@ -69,6 +69,7 @@ class FormSearch extends React.Component {
     }
 
     render(){
+        console.log(this.props.filterMovies)
         return(
             <div id="Search_research">
                 <div id='Search_allSelectFrame'>
@@ -123,6 +124,7 @@ const mapStateToProps = (state) => {
         allMovies: state.allMovies,
         fluxMovies: state.fluxMovies,
         popularMovies: state.popularMovies,
+        filterMovies: state.filterMovies,
         infoProfil: state.infoProfil,
         language: state.loadLanguage
     }
