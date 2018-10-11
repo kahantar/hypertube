@@ -1,6 +1,6 @@
 import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import { loadInfoUser, loadUsers, loadLanguage } from '../../actions/user';
+import { loadInfoUser, loadUsers } from '../../actions/user';
 import qs from 'query-string';
 import FormSearch from './formSearch';
 import Menu from '../utilsComponent/menu';
@@ -59,7 +59,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, loadUsers, loadLanguage, searchMovies }, dispatch)
+        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, loadUsers, searchMovies }, dispatch)
     }
 }
 

@@ -5,12 +5,16 @@ import { loadInfoUser} from '../../actions/user';
 import qs from 'query-string';
 import { withRouter } from 'react-router';
 
+import { loadLanguage } from '../../actions/user';
+
+
 class Home extends React.Component {
     componentWillMount(){
-            this.props.loadInfoUser(qs.parse(this.props.location.search))
-            setTimeout(() => {
-                this.props.history.push('/search')
-            }, 200);
+        this.props.loadLanguage()
+        this.props.loadInfoUser(qs.parse(this.props.location.search))
+        setTimeout(() => {
+            this.props.history.push('/search')
+        }, 200);
 	}
     render(){
             return (
@@ -23,7 +27,7 @@ class Home extends React.Component {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({loadInfoUser}, dispatch)
+        ...bindActionCreators({loadInfoUser, loadLanguage}, dispatch)
     }
 }
 
