@@ -66,7 +66,7 @@ module.exports = {
 					const compareUser = await bcrypt.compare(password, userFound.password);
 					if (compareUser){
 						if (userFound.confirmation === true){
-							const popularMovies = await models.Movies.findAll({
+							const allMovies = await models.Movies.findAll({
 								raw: true,
 								order: [
 									['rating', 'DESC']
@@ -76,7 +76,7 @@ module.exports = {
 							return res.status(200).json({
 								'userId': userFound.id,
 								'token': jwtUtils.generateTokenForUser(userFound),
-								'popularmovies': popularMovies
+								'allMovies': allMovies
 							})
 						}
 						else {

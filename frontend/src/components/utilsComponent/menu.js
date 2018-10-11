@@ -87,8 +87,7 @@ class Menu extends React.Component{
 
 const mapStateToProps = (state) => {
     return{
-        popularMovies: state.popularMovies,
-        language: state.loadLanguage,
+        language: state.loadLanguage
     }
 }
 

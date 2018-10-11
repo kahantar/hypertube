@@ -106,18 +106,18 @@ module.exports = {
                     attributes: ['id', 'email', 'name', 'first_name', 'username', 'img', 'password', 'confirmation'],
                     where: { email: email }
                 });
-                const popularMovies = await models.Movies.findAll({
+                const fluxMovies = await models.Movies.findAll({
                     raw: true,
                     order: [
                         ['rating', 'DESC']
                       ],
                       limit: 50
                   })
-                // const user = await userFound.update({ email, username, name, img, first_name, password, confirmation: true })
+                  
                 return res.status(201).json({ 
                     'userId': user.dataValues.id,
                     'token': jwtUtils.generateTokenForUser(user.dataValues),
-                    'popularmovies': popularMovies
+                    'fluxMovies': fluxMovies
                 });
             }catch(err){
                 res.json([{ msg: 'cannot fetch user' }]);

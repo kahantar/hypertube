@@ -33,7 +33,6 @@ class Home extends React.Component {
 const mapStateToProps = (state) => {
     return {
         infoProfil: state.infoProfil,
-        popularMovies: state.popularMovies,
         language: state.loadLanguage,
         filterMovies: state.filterMovies
     }

@@ -37,7 +37,6 @@ export const searchMovies = (info, language) => {
             info.orderBy = {value: 'title', label: language.orderBy}
 
         
-        console.log(info, 'here')
         const data = JSON.stringify({
             term: info.term,
             rating: info.rating,

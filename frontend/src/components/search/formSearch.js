@@ -124,7 +124,6 @@ const mapStateToProps = (state) => {
     return {
         allMovies: state.allMovies,
         fluxMovies: state.fluxMovies,
-        popularMovies: state.popularMovies,
         filterMovies: state.filterMovies,
         infoProfil: state.infoProfil,
         language: state.loadLanguage
