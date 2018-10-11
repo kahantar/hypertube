@@ -1,6 +1,6 @@
 import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import { loadInfoUser, loadUsers } from '../../actions/user';
+import { loadInfoUser, loadUsers, loadLanguage } from '../../actions/user';
 import qs from 'query-string';
 import FormSearch from './formSearch';
 import Menu from '../utilsComponent/menu';
@@ -8,6 +8,7 @@ import ListMovies from '../library/listMovies';
 import React from 'react';
 import BottomScrollListener from 'react-bottom-scroll-listener';
 import { addMovies, loadMovies, searchMovies } from '../../actions/movie';
+
 
 class Search extends React.Component {
     componentWillMount(){
@@ -19,7 +20,6 @@ class Search extends React.Component {
             this.props.loadInfoUser(query)
         }
 
-        console.log(this.props.allMovies)
         if (JSON.stringify(this.props.allMovies) === '[]') {            
 			this.props.searchMovies({
 				term: "",
@@ -28,9 +28,13 @@ class Search extends React.Component {
 				orderBy: { value: "rating" }
 			})
         }
-
         this.props.loadUsers()
     }
+
+    componentDidMount() {
+        this.props.loadLanguage()
+    }
+
     render(){
         if (localStorage.getItem("token")){
             return (
@@ -59,7 +63,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, loadUsers, searchMovies }, dispatch)
+        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, loadUsers, loadLanguage, searchMovies }, dispatch)
     }
 }
 

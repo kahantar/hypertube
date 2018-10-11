@@ -16,6 +16,7 @@ class Menu extends React.Component{
             clicked: false
         }
     }
+    
     componentDidMount () {
         window.addEventListener('resize', this.laptopDimensions)
         this.laptopDimensions()

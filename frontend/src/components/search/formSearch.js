@@ -69,7 +69,6 @@ class FormSearch extends React.Component {
     }
 
     render(){
-        console.log(this.props.filterMovies)
         return(
             <div id="Search_research">
                 <div id='Search_allSelectFrame'>

@@ -131,7 +131,6 @@ export const loadInfoUser = (query) => {
 				headers: { 'Authorization': token  }
 			})
 				.then((response) =>{
-					dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies })
 					dispatch({type: "ALL_MOVIES", payload: response.data.popularmovies })
 					dispatch({type: "FLUX_MOVIES", payload: response.data.popularmovies })
                     dispatch({type: "INFO_PROFIL", payload: payloadtoken})
@@ -158,7 +157,6 @@ export const completeUser = (user, history) => {
 			const token = response.data.token;
 			let payloadtoken = JSON.parse(atob(token.split('.')[1]));
 			dispatch({type: "INFO_PROFIL", payload: payloadtoken})
-			dispatch({type: "POPULAR_MOVIES", payload: response.data.popularmovies})
 			localStorage.setItem('token', token);
 			history.push('/home');
 		}).catch((err) => {
