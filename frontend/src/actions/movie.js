@@ -6,13 +6,6 @@ export const infoMovie = (movie) => {
     }
 }
 
-export const loadMovies = (popularMovies) => {
-    return (dispatch) => {
-        dispatch({type: "ALL_MOVIES", payload: popularMovies })
-        dispatch({type: "FLUX_MOVIES", payload: popularMovies })
-    }
-}
-
 export const addMovies = (fluxMovies, allMovies) => {
     const start = 50;
     const end = fluxMovies.length + start;
@@ -34,13 +27,17 @@ export const addWatch = (movie) => {
     }
 }
 
-export const searchMovies = (info) => {
+export const searchMovies = (info, language) => {
     return (dispatch) => {
+        console.log(info, language, 'before')
+        info.rating = (!info.rating) ? {value: '0', label: language.rating.toUpperCase()} : info.rating
+        info.orderBy = (!info.orderBy) ? {value: 'rating', label: language.orderBy} : info.orderBy
+        console.log(info, 'here')
         const data = JSON.stringify({
             term: info.term,
-            rating: (!info.rating.value) ? '0' : info.rating.value,
-            genre: info.genre.value,
-            orderBy: (!info.orderBy.value) ? 'title' : info.orderBy.value,
+            rating: info.rating,
+            genre: info.genre,
+            orderBy: info.orderBy,
             order: (!info.orderBy || info.orderBy.value === 'title') ? 'ASC' : 'DESC' 
         });
         axios.post(`http://localhost:8080/search/allmovies`, data, {

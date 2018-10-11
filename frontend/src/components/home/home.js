@@ -6,17 +6,17 @@ import qs from 'query-string';
 import { withRouter } from 'react-router';
 
 import { loadLanguage } from '../../actions/user';
+import { searchMovies } from '../../actions/movie';
 
 
 class Home extends React.Component {
-    componentWillMount(){
+    async componentWillMount(){
         if (!this.props.language.length) {
-            this.props.loadLanguage('English')
-            console.log('okokok')
+            await this.props.loadLanguage('English')
+            this.props.searchMovies(this.props.filterMovies, this.props.language)
         }
-
-        console.log(this.props.language)
         this.props.loadInfoUser(qs.parse(this.props.location.search))
+        
         setTimeout(() => {
             this.props.history.push('/search')
         }, 200);
@@ -34,13 +34,14 @@ const mapStateToProps = (state) => {
     return {
         infoProfil: state.infoProfil,
         popularMovies: state.popularMovies,
-        language: state.loadLanguage
+        language: state.loadLanguage,
+        filterMovies: state.filterMovies
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({loadInfoUser, loadLanguage}, dispatch)
+        ...bindActionCreators({loadInfoUser, loadLanguage, searchMovies}, dispatch)
     }
 }
 

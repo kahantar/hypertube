@@ -45,8 +45,7 @@
         left: 50%;
         width: 90%;
         text-align: center;
-        transform: translateX(-50%);
-        font-size: 2vh; }
+        transform: translateX(-50%); }
       #Movies_block .Movies_card .Movies_info .Movies_play {
         position: absolute;
         top: 50%;

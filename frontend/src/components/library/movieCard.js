@@ -41,7 +41,7 @@ class MovieCard extends React.Component{
               <div className='Movies_rating' style={{display: this.state.displayInfo}}><span className='Movies_star'>{'\u2B50'}</span>{this.props.movie.rating}</div>
               <div className='Movies_seen' style={{display: this.state.displaySeen}}>SEEN</div>
               <img className='Movies_play' style={{display: this.state.displayInfo}} src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538854369/Netflix42/play-button.png' alt='startVideo'/>
-              <div className='Movies_title' style={{display: this.state.displayInfo}}>{this.props.movie.title.charAt(0).toUpperCase() + this.props.movie.title.slice(1)}</div>
+              <div className='Movies_title' style={{display: this.state.displayInfo, fontSize: (this.props.movie.title.length < 35) ? '2vh' : '1.7vh'}}>{this.props.movie.title.charAt(0).toUpperCase() + this.props.movie.title.slice(1)}</div>
               <div className='Movies_year' style={{display: this.state.displayInfo}}>{this.props.movie.year}</div>
               <div className='Movies_genre' style={{display: this.state.displayInfo}}>{this.props.movie.genre.map((x, i) => {if(i !== 0) return `,  ${x}`; else return x})}</div>
               {/* <div className='Movies_genre' style={{display: this.state.displayInfo}}>{this.props.movie.genre}</div> */}

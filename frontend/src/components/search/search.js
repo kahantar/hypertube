@@ -7,7 +7,7 @@ import Menu from '../utilsComponent/menu';
 import ListMovies from '../library/listMovies';
 import React from 'react';
 import BottomScrollListener from 'react-bottom-scroll-listener';
-import { addMovies, loadMovies, searchMovies } from '../../actions/movie';
+import { addMovies} from '../../actions/movie';
 
 
 class Search extends React.Component {
@@ -18,15 +18,6 @@ class Search extends React.Component {
             let query = {}
             query.token = localStorage.getItem("token")
             this.props.loadInfoUser(query)
-        }
-
-        if (JSON.stringify(this.props.allMovies) === '[]') {            
-			this.props.searchMovies({
-				term: "",
-				genre: { value: "ALL" },
-				rating: { value: "0" },
-				orderBy: { value: "rating" }
-			})
         }
         this.props.loadUsers()
     }
@@ -47,7 +38,6 @@ class Search extends React.Component {
             )
         }
         else {
-            console.log('HGOUYTUIYFGUOYGILUGIGIUGHPIOUHIPUHPIHO')
 			window.location.href = '/';
 			return(<div></div>)
 		}
@@ -64,7 +54,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, loadUsers, loadLanguage, searchMovies }, dispatch)
+        ...bindActionCreators({addMovies, loadInfoUser, loadUsers, loadLanguage}, dispatch)
     }
 }
 

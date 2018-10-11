@@ -7,7 +7,6 @@ exports.router = (() => {
     let searchRouter = express.Router();
 
     searchRouter.route('/allmovies').post(search.allMovies);
-    searchRouter.route('/popularmovies').get(search.popularMovies);
     searchRouter.route('/addwatch').post(search.addWatch);
     
     return searchRouter;

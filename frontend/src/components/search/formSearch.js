@@ -2,7 +2,7 @@ import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import { loadInfoUser} from '../../actions/user';
 import React from 'react';
-import { addMovies, loadMovies, searchMovies } from '../../actions/movie';
+import { addMovies, searchMovies } from '../../actions/movie';
 import './search.css'
 import Select from 'react-select'
 
@@ -16,23 +16,25 @@ class FormSearch extends React.Component {
 
     handleChangeRating = async (rating) => {
         await this.setState({ rating })
-        this.props.searchMovies(this.state)
+        this.props.searchMovies(this.state, this.props.language)
     }
 
     handleChangeGenre = async (genre) => {
+        console.log(this.state)
         await this.setState({ genre })
-        this.props.searchMovies(this.state)
+        console.log(this.state)
+        this.props.searchMovies(this.state, this.props.language)
     }
 
     handleChangeOrderBy = async (orderBy) => {
         await this.setState({ orderBy })
-        this.props.searchMovies(this.state)
+        this.props.searchMovies(this.state, this.props.language)
     }
 
     onEnterPressPwd = (event) => {
         if(event.keyCode === 13) {
             event.preventDefault()
-            this.props.searchMovies(this.state)
+            this.props.searchMovies(this.state, this.props.language)
         }
     }
 
@@ -111,7 +113,7 @@ class FormSearch extends React.Component {
                 </div>
                 <div id='Search_txtFrame'>
                     <input type="text" id="Search_txt" placeholder={`${this.props.language.search}...`} onKeyDown={this.onEnterPressPwd} onChange={(e) => this.setState({term: e.target.value}) }/>
-                    <img src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538756774/Netflix42/search.png' alt='search' type="button" id='Search_button' onClick={(e) => this.props.searchMovies(this.state)}/>
+                    <img src='https://res.cloudinary.com/dzhnhtkyv/image/upload/v1538756774/Netflix42/search.png' alt='search' type="button" id='Search_button' onClick={(e) => this.props.searchMovies(this.state, this.props.language)}/>
                 </div>
             </div>
         )
@@ -131,7 +133,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({addMovies, loadMovies, loadInfoUser, searchMovies}, dispatch)
+        ...bindActionCreators({addMovies, loadInfoUser, searchMovies}, dispatch)
     }
 }
 

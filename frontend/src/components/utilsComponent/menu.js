@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { loadUsers, loadLanguage } from '../../actions/user';
-import { loadMovies } from '../../actions/movie';
 import Disconnection from '../utilsComponent/disconnection';
 import { Link, NavLink } from 'react-router-dom';
 import { bindActionCreators} from 'redux';
@@ -95,7 +94,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return{
-        ...bindActionCreators({loadUsers, loadMovies, loadLanguage}, dispatch)
+        ...bindActionCreators({loadUsers, loadLanguage}, dispatch)
     }
 }
 

@@ -9,12 +9,12 @@ module.exports = {
     allMovies: async (req, res) => {
         try{
             let where = {}
-            if (req.body.genre !== 'ALL'){
+            if (req.body.genre.value !== 'ALL'){
                 where = {
                     [Op.and]: [
                         {source: 'yts'}, 
-                        {genre: {[Op.contains]: [req.body.genre]}},
-                        {rating: {[Op.gte]: req.body.rating}},
+                        {genre: {[Op.contains]: [req.body.genre.value]}},
+                        {rating: {[Op.gte]: req.body.rating.value}},
                         {title: {[Op.regexp]: req.body.term}}
                     ]
                 }
@@ -22,7 +22,7 @@ module.exports = {
                 where = {
                     [Op.and]: [
                         {source: 'yts'},
-                        {rating: {[Op.gte]: req.body.rating}},
+                        {rating: {[Op.gte]: req.body.rating.value}},
                         {title: {[Op.regexp]: req.body.term}}
                     ]
                 }
@@ -30,7 +30,7 @@ module.exports = {
             const allMovies = await models.Movies.findAll({
                 raw: true,
                 order: [
-                    [req.body.orderBy, req.body.order]
+                    [req.body.orderBy.value, req.body.order]
                 ],
                 where
               })
@@ -41,21 +41,6 @@ module.exports = {
         catch(err){
             console.log(err)
         }
-    },
-    popularMovies: async (req, res) => {
-        try{
-            const popularMovies = await models.Movies.findAll({
-                raw: true,
-                order: [
-                    ['rating', 'DESC']
-                  ],
-                  limit: 50
-              })
-              return res.status(200).json({
-                  'popularmovies': popularMovies
-              })
-        }
-        catch(err){}
     },
     addWatch: async (req, res) => {
         try{
