@@ -108,6 +108,7 @@ class FormSearch extends React.Component {
                             value={this.state.orderBy}
                             onChange={this.handleChangeOrderBy}
                             options={[
+                                {value: 'rating', label: this.props.language.orderBy},
                                 {value: 'title', label: this.props.language.alphabetical},
                                 {value: 'year', label: this.props.language.year},
                                 {value: 'rating', label: this.props.language.rating}
