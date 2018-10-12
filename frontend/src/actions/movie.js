@@ -29,7 +29,6 @@ export const addWatch = (movie) => {
 
 export const searchMovies = (info, language) => {
     return (dispatch) => {
-        console.log(info.term)
         info.rating = (!info.rating) ? {value: '0', label: language.rating.toUpperCase()} : info.rating
 
         if (!info.orderBy || (info.orderBy.label === language.orderBy && info.rating.label === language.rating.toUpperCase() && info.genre.label === 'GENRE' && info.term === ''))
@@ -44,7 +43,6 @@ export const searchMovies = (info, language) => {
             orderBy: info.orderBy,
             order: (!info.orderBy || info.orderBy.value === 'title') ? 'ASC' : 'DESC' 
         });
-        console.log(info)
         axios.post(`http://localhost:8080/search/allmovies`, data, {
             headers: { 'content-type': 'application/json'}
         }).then((response) => {

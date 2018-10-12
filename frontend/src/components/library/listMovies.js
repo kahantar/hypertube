@@ -13,6 +13,7 @@ class ListMovie extends React.Component{
 
         const maxMovies = Math.floor(this.props.movies.length / nbMoviesPerRow) * nbMoviesPerRow
         let movies = this.props.movies.slice(0, maxMovies)
+
         movies = (movies.length === 0) ? this.props.movies : movies
         return(
             <div id='Movies_block'>

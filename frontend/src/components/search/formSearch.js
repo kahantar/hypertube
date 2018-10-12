@@ -30,7 +30,6 @@ class FormSearch extends React.Component {
     }
 
     clearTerm = async () => {
-        console.log('okok')
         await this.setState({term: ''})
         this.props.searchMovies(this.state, this.props.language)
     }
