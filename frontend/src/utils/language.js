@@ -53,7 +53,8 @@ export default {
         alphabetical: 'Alphabetical',
         year: 'Year',
         search: 'Search',
-        addComment: 'Add a comment'
+        addComment: 'Add a comment',
+        noMovies: 'No result. Please try an other pattern.'
     },
     french: {
         language: 'Français',
@@ -107,6 +108,7 @@ export default {
         alphabetical: 'Alphabetique',
         year: 'Année',
         search: 'Recherche',
-        addComment: 'Ajouter un commentaire'
+        addComment: 'Ajouter un commentaire',
+        noMovies: 'Aucun résultat. Veuillez affiner votre recherche.'
     }
 }

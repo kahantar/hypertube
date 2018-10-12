@@ -1,6 +1,6 @@
 import React from 'react';
 import './register.css';
-import { registerUser, completeUser, loadInfoUser, loadMail, resetInfoProfil, resetErrLogin } from '../../actions/user'
+import { registerUser, completeUser, loadMail, resetInfoProfil, resetErrLogin, loadLanguage } from '../../actions/user'
 import { connect } from 'react-redux'
 import {bindActionCreators} from 'redux';
 import { Link } from 'react-router-dom';
@@ -34,14 +34,34 @@ class Form extends React.Component{
 		confirmPwd: '',
 		signConfirmPwd: '',
 		colorConfirmPwd: '',
+		img: ''
 	}
 
 	componentDidMount(){
 		this.props.resetErrLogin()
+
 		if (qs.parse(this.props.location.search).token) {
-			this.props.loadInfoUser(qs.parse(this.props.location.search))
-			this.props.loadMail()
+			const infoUser = JSON.parse(atob(qs.parse(this.props.location.search).token.split('.')[1]))
+			this.setState({
+				mail: infoUser.email,
+				signMail: '\u2713',
+				colorMail: '#18e23a',
+				username: infoUser.username,
+				signUsername: '\u2713',
+				colorUsername: '#18e23a',
+				firstName: infoUser.first_name,
+				signFirstName: '\u2713',
+				colorFirstName: '#18e23a',
+				secondName: infoUser.name,
+				signSecondName: '\u2713',
+				colorSecondName: '#18e23a',
+				img: infoUser.img
+			})
 		}
+		if (this.props.language.length === 0)
+			this.props.loadLanguage('English')
+		if (this.props.listMails)
+			this.props.loadMail()
 	}
 
 	changeMail = (e) => {
@@ -118,17 +138,8 @@ class Form extends React.Component{
 			? true : false
 
 		if (checkValidAllInput) {
-			if (this.props.infoProfil.email) {
-				const user = {
-					email: this.props.infoProfil.email,
-					username: this.props.infoProfil.username,
-					first_name: this.props.infoProfil.first_name,
-					name: this.props.infoProfil.name,
-					password: this.state.pwd,
-					img: this.props.infoProfil.img
-				}
-				this.props.completeUser(user, this.props.history)
-			}
+			if (qs.parse(this.props.location.search).token)
+				this.props.completeUser(this.state, this.props.history)
 			else
 				this.props.registerUser(this.state, this.props.history)
 		}
@@ -148,6 +159,7 @@ class Form extends React.Component{
 		}
 	}
 	render(){
+		console.log('GBUYGUGBNJKLGNCTHGNUHJ<KLMKJ DSYRDXCFGVNJK')
 		return (
 			<form id="Register_form" onSubmit={(e) => this.handleSubmit(e)}>
 				<div className='Register_frame'>
@@ -208,7 +220,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		...bindActionCreators({registerUser, loadMail, completeUser, loadInfoUser, resetInfoProfil, resetErrLogin}, dispatch)
+		...bindActionCreators({registerUser, loadMail, completeUser, resetInfoProfil, resetErrLogin, loadLanguage}, dispatch)
 	};
 };
 

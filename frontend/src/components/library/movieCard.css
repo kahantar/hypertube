@@ -66,6 +66,13 @@
         font-size: 1.5vh;
         width: 90%;
         text-align: center; }
+  #Movies_block #Movies_noMovies {
+    margin: 0 auto;
+    text-align: center;
+    color: gainsboro;
+    font-family: 'Roboto';
+    font-weight: 100;
+    font-size: 1.7vh; }
 
 @media screen and (min-width: 800px) {
   #Movies_block {

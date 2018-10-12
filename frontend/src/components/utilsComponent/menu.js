@@ -30,11 +30,15 @@ class Menu extends React.Component{
     }
 
     clickOnMenu = async () => {
-        await this.setState(
-            (prevState) => (
-                (prevState.clicked) ? {clicked: false, displayMenu: 'none'} : {clicked: true, displayMenu: 'flex'}
+        const winWidth = window.innerWidth
+
+        if (winWidth < 800) {
+            await this.setState(
+                (prevState) => (
+                    (prevState.clicked) ? {clicked: false, displayMenu: 'none'} : {clicked: true, displayMenu: 'flex'}
+                )
             )
-        )
+        }
     }
 
     displayMenu = () => {

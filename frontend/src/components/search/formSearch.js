@@ -1,6 +1,5 @@
 import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
-import { loadInfoUser} from '../../actions/user';
 import React from 'react';
 import { addMovies, searchMovies } from '../../actions/movie';
 import './search.css'
@@ -137,7 +136,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        ...bindActionCreators({addMovies, loadInfoUser, searchMovies}, dispatch)
+        ...bindActionCreators({addMovies, searchMovies}, dispatch)
     }
 }
 

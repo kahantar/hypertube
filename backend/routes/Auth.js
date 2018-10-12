@@ -19,12 +19,15 @@ module.exports = {
             const userFound = await models.User.findOne({
                 where: { email: user.email }
             });
+            console.log(userFound)
 
             if (userFound){
+                console.log('1')
                 const token = jwtUtils.generateTokenForUser(userFound)
                 res.redirect(`http://localhost:3000/home?token=${token}`)
             }
             else {
+                console.log('2')
                 const token = jwtUtils.generateTokenForUser(user)           
                 res.redirect(`http://localhost:3000/signup?token=${token}`)
             }

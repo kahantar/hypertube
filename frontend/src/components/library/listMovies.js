@@ -1,5 +1,7 @@
 import React from 'react';
 import MovieCard from './movieCard';
+import { connect } from 'react-redux';
+
 
 class ListMovie extends React.Component{
     render(){
@@ -18,9 +20,16 @@ class ListMovie extends React.Component{
         return(
             <div id='Movies_block'>
                 {movies.map(movie => <MovieCard key={movie.id} movie={movie} />)}
+                {(this.props.movies.length === 0) ? <div id='Movies_noMovies'>{this.props.language.noMovies}</div> : null}
             </div>
         )
     }
 }
 
-export default ListMovie;
+const mapStateToProps = (state) => {
+    return {
+        language: state.loadLanguage
+    }
+}
+
+export default connect(mapStateToProps, null)(ListMovie)

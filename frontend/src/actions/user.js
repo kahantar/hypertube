@@ -115,7 +115,7 @@ export const updateUser = (user, history) => {
 
 export const loadInfoUser = (query) => {
 	return (dispatch) => {
-
+		console.log(query)
 		if (query.token !== undefined){
 			const token = query.token;
 			localStorage.setItem('token', token);
@@ -129,11 +129,11 @@ export const completeUser = (user, history) => {
 	return (dispatch) => {
 		const token = localStorage.getItem('token');
 		const data = JSON.stringify({
-			email: user.email,
+			email: user.mail,
 			username: user.username,
-			name: user.name,
-			first_name: user.first_name,
-			password: user.password,
+			name: user.secondName,
+			first_name: user.firstName,
+			password: user.pwd,
 			img: user.img
 		});
 		axios.put(`http://localhost:8080/auth/completeuser`, data, {
@@ -217,6 +217,7 @@ export const loadMail = () => {
 
 export const loadLanguage = (actualLanguage) => {
 	return (dispatch) => {
+		console.log("HUYTFYGHIMLRTYYTfny")
 		if (actualLanguage === 'English')
 			dispatch({type: "LOAD_LANGUAGE", payload: allLanguage.english})
 		else if (actualLanguage === 'Français')
