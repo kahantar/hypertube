@@ -1,5 +1,10 @@
+#NotFound_frame {
+	display: flex;
+	height: 100vh
+}
+
 #NotFound_errorBox {
-	margin: 8.5em auto 0 auto;
+	margin: auto;
 	width: 45em;
 	font-family: Arial,sans-serif;
 	color: #f7f7f7;
@@ -8,16 +13,12 @@
 #NotFound_errorBox > h1 {
 	font-weight: 700;
 	font-size: 28px;
-	margin-bottom: 2em;
 }
 
-#NotFound_errorBox .htBtn {
-	border: 1px solid #b3b3b3;
+#NotFound_errorBox {
 	font-weight: 700;
-	margin-top: 20px;
 	min-width: 80px;
 	display: inline-block;
-	padding: 5px 10px;
 	text-align: center;
 	text-decoration: none;
 	color: #b3b3b3;

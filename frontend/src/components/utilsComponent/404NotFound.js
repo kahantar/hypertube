@@ -7,11 +7,11 @@ import './notFound.css';
 
 const NotFound = () => {
 	return (
-		<div>
+		<div id ='NotFound_frame'>
 			<Menu/>
 			<div id='NotFound_errorBox'>
 				<h1>404 Not found</h1>
-				<Link to='/search' className='NotFound_htBtn'>Back to home</Link>
+				<Link to='/search' className='NotFound_button'>Back to home</Link>
 			</div>
 		</div>
 	)
