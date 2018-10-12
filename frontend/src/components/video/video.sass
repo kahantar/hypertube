@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,300')
 
+
 #Video_block
     height: 100vh
     display: flex
@@ -18,8 +19,13 @@
 
         #videoPlayer
             margin: auto
-            height: 100%
             width: 100vw
+            cursor: pointer
+            &::cue 
+                background-color: transparent
+                font-family: 'Roboto'    
+                font-weight: 100
+                font-size: 1.6vh
 
     #Video_infos
         display: flex

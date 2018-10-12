@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {validationLogin, validationUpdate, validationResetPassword} from '../utils/validationForm';
+import {validationLogin, validationUpdate} from '../utils/validationForm';
 import allLanguage from '../utils/language'
 
 export const registerUser = (user, history) => {
@@ -115,7 +115,6 @@ export const updateUser = (user, history) => {
 
 export const loadInfoUser = (query) => {
 	return (dispatch) => {
-		console.log(query)
 		if (query.token !== undefined){
 			const token = query.token;
 			localStorage.setItem('token', token);
@@ -171,26 +170,19 @@ export const forgetPasswordUser = (user, history) => {
 
 export const resetPasswordUser = (user, history) => {
 	return (dispatch) => {
-		const errors = validationResetPassword(user);
-		if (errors.length === 0){
-			const data = JSON.stringify({
-				password: user.password
-			});
-			const token = localStorage.getItem('token');
-			axios.put(`http://localhost:8080/api/users/resetpassword`, data, {
-				headers: { 'content-type': 'application/json', 'Authorization': token }
-			}).then((response) =>{
-				dispatch({type: "WARNING_UPDATE", payload: response.data})
-				history.push('/login');
-			}).catch((err) => {
-				if (err.response.status === 422)
-					dispatch({type: "WARNING_UPDATE", payload: err.response.data.errors})
-				else
-					dispatch({type: "WARNING_UPDATE", payload: err.response.data})
-			})
-		}else{
-			dispatch({type: "WARNING_UPDATE", payload: errors});
-		}
+		console.log(user.token)
+		const data = JSON.stringify({
+			password: user.pwd,
+			token: user.token
+		});
+		axios.put(`http://localhost:8080/api/users/resetpassword`, data, {
+			headers: { 'content-type': 'application/json', 'Authorization': user.token }
+		}).then((response) =>{
+			dispatch({type: "MAIL_PWD_SEND", payload: {msg: 'pwdEdit', mail: null}})
+			history.push('/login');
+		}).catch((err) => {
+			console.log(err)
+		})
 	}
 }
 
@@ -217,7 +209,6 @@ export const loadMail = () => {
 
 export const loadLanguage = (actualLanguage) => {
 	return (dispatch) => {
-		console.log("HUYTFYGHIMLRTYYTfny")
 		if (actualLanguage === 'English')
 			dispatch({type: "LOAD_LANGUAGE", payload: allLanguage.english})
 		else if (actualLanguage === 'Français')

@@ -35,7 +35,7 @@ export default {
         profil: 'Profile',
         logOut: 'Log Out',
         notEqual: 'Passwords aren\'t equal',
-        update: 'UPDATE',
+        edit: 'EDIT',
         rating: 'Rating',
         adventure: 'Adventure',
         biography: 'Biography',
@@ -54,7 +54,8 @@ export default {
         year: 'Year',
         search: 'Search',
         addComment: 'Add a comment',
-        noMovies: 'No result. Please try an other pattern.'
+        noMovies: 'No result. Please try an other pattern.',
+        pwdEdit: 'Your password has been edited'
     },
     french: {
         language: 'Français',
@@ -92,7 +93,7 @@ export default {
         profil: 'Mon compte',
         logOut: 'Deconnexion',
         notEqual: 'Les mots de passe ne correspondent pas',
-        update: 'MODIFIER',
+        edit: 'MODIFIER',
         rating: 'Notes',
         comedy: 'Comédie',
         drama: 'Drame',
@@ -109,6 +110,7 @@ export default {
         year: 'Année',
         search: 'Recherche',
         addComment: 'Ajouter un commentaire',
-        noMovies: 'Aucun résultat. Veuillez affiner votre recherche.'
+        noMovies: 'Aucun résultat. Veuillez affiner votre recherche.',
+        pwdEdit: 'Votre mot de passe a bien été modifié'
     }
 }

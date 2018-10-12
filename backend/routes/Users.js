@@ -138,10 +138,13 @@ module.exports = {
 		if (!errors.isEmpty()) {
 			return res.status(422).json({ errors: errors.array() });
 		}else{
+			console.log('okokok')
 			const newPassword = await bcrypt.hash(req.body.password, 5);
-			const headerAuth = req.headers['authorization'];
-			const userId = jwtUtils.getUserId(headerAuth);
+			console.log(req.body.token)
+			const userId = jwtUtils.getUserId(req.body.token);
+			console.log(userId)
 			if (userId < 0){
+				console.log('here')
 				return res.status(400).json([{ msg: 'wrong token' }]);
 			}
 			try{

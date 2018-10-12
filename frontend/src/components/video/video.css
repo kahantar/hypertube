@@ -15,8 +15,13 @@
     cursor: pointer; }
     #Video_block #Video_blockPlay #videoPlayer {
       margin: auto;
-      height: 100%;
-      width: 100vw; }
+      width: 100vw;
+      cursor: pointer; }
+      #Video_block #Video_blockPlay #videoPlayer::cue {
+        background-color: transparent;
+        font-family: 'Roboto';
+        font-weight: 100;
+        font-size: 1.6vh; }
   #Video_block #Video_infos {
     display: flex;
     width: auto;

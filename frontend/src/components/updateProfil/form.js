@@ -120,7 +120,7 @@ class Form extends React.Component {
 						<div className='validInput'>{this.props.language[this.props.warningUpdate.newPwd2]}</div>
 					</div>
 
-					<button type="submit">{this.props.language.update}</button>
+					<button type="submit">{this.props.language.edit}</button>
 				</form>
 			)
 	}
