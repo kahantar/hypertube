@@ -12,7 +12,6 @@ export const postComment = (comment, imdb) => {
 		comment: comment,
 		imdb: imdb
 	});
-	console.log(data)
 	return (axios({
 		method: 'post',
 		url: 'http://localhost:8080/api/video/postComment',

@@ -40,7 +40,6 @@ class Form extends React.Component{
             }
     }
     render() {
-        console.log(validationResendPwd(this.state.email, this.props.listMails))
         return (
             <form id="ForgetPwd_form" onSubmit={(e) => this.handleSubmit(e)}>
                 <div id='ForgetPwd_blockInput'>

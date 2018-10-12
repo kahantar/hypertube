@@ -133,7 +133,6 @@ export const validationUpdate = (user) => {
 // }
 
 export const validationResetPassword = (user) => {
-    console.log(user)
     const errors = []
     let pass = (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/)
     if (!(pass).test(user.password)){

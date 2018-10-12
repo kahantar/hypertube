@@ -25,8 +25,7 @@ module.exports = {
                 res.redirect(`http://localhost:3000/home?token=${token}`)
             }
             else {
-                const token = jwtUtils.generateTokenForUser(user)      
-                console.log(token)      
+                const token = jwtUtils.generateTokenForUser(user)           
                 res.redirect(`http://localhost:3000/signup?token=${token}`)
             }
         }catch(err){}
@@ -50,8 +49,7 @@ module.exports = {
                 res.redirect(`http://localhost:3000/home?token=${token}`)
             }
             else {
-                const token = jwtUtils.generateTokenForUser(user)      
-                console.log(token)      
+                const token = jwtUtils.generateTokenForUser(user)         
                 res.redirect(`http://localhost:3000/signup?token=${token}`)
             }
         }catch(err){}
@@ -75,16 +73,13 @@ module.exports = {
                 res.redirect(`http://localhost:3000/home?token=${token}`)
             }
             else {
-                const token = jwtUtils.generateTokenForUser(user)      
-                console.log(token)      
+                const token = jwtUtils.generateTokenForUser(user)        
                 res.redirect(`http://localhost:3000/signup?token=${token}`)
             }
         }catch(err){}
 	},
 	completeUser: async (req, res) =>{
-        console.log(req.body)
         const errors = validationResult(req);
-        console.log(errors)
         if (!errors.isEmpty())
             return res.json({ errors: errors.array() });
         else{
