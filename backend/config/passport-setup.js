@@ -1,8 +1,8 @@
 const passport = require('passport');  
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const config = require('../..//config/keysAuth');
+const config = require('./keysAuth');
 const FortyTwoStrategy = require('passport-42').Strategy;
-var SlackStrategy = require('passport-slack').Strategy;
+const SlackStrategy = require('passport-slack').Strategy;
 
 
 
