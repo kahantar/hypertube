@@ -234,7 +234,10 @@ export const loadLanguage = (actualLanguage, filterMovies) => {
 				filterMovies.orderBy.label = 'Année'
 			else if (filterMovies.orderBy.label === 'Année')
 				filterMovies.orderBy.label = 'Year'
+
 			filterMovies.rating.label = (filterMovies.rating.label === 'RATING') ? 'NOTES' : (filterMovies.rating.label === 'NOTES') ? 'RATING' : filterMovies.rating.label
+			filterMovies.genre.label = switchGenreLanguage(filterMovies.genre.label)
+
             dispatch({type: "FILTER_MOVIES", payload: filterMovies})
 		}
 
@@ -267,5 +270,52 @@ export const resetReducerPersist = () => {
 	return (dispatch) => {
 		dispatch({type: "ALL_USERS", payload: []});
 		dispatch({type: "INFO_PROFIL", payload: []});
+	}
+}
+
+const switchGenreLanguage = (genre) => {
+	switch(genre) {
+		case 'Comedy':
+			 return 'Comédie'
+		case 'Comédie':
+			 return 'Comedy'
+		case 'Drama':
+			 return 'Drame'
+		case 'Drame':
+			 return 'Drama'
+		case 'Family':
+			 return 'Famille'
+		case 'Famille':
+			 return 'Family'
+		case 'Fantasy':
+			 return 'Fantastique'
+		case 'Fantastique':
+			 return 'Fantasy'
+		case 'History':
+			 return 'Histoire'
+		case 'Histoire':
+			 return 'History'
+		case 'Holiday':
+			 return 'Vacances'
+		case 'Vacances':
+			 return 'Holiday'
+		case 'Horror':
+			 return 'Horreur'
+		case 'Horreur':
+			 return 'Horror'
+		case 'Music':
+			 return 'Musique'
+		case 'Musique':
+			 return 'Music'
+		case 'Mystery':
+			 return 'Mystère'
+		case 'Mystère':
+			 return 'Mystery'
+		case 'War':
+			 return 'Guerre'
+		case 'Guerre':
+			 return 'War'
+		default:
+			return genre
 	}
 }
