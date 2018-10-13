@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 
 class Register extends React.Component{
 	changeLanguage = () => {
-		(this.props.language.language === 'English') ? this.props.loadLanguage('Français') : this.props.loadLanguage('English')
+		(this.props.language.language === 'English') ? this.props.loadLanguage('Français', this.props.filterMovies) : this.props.loadLanguage('English', this.props.filterMovies)
 	}
 	render(){
 		if (!localStorage.getItem('token')) {
@@ -30,7 +30,8 @@ class Register extends React.Component{
 const mapStateToProps = (state) => {
 
 	return{
-		language: state.loadLanguage
+		language: state.loadLanguage,
+        filterMovies: state.filterMovies
 	}  
 }
 

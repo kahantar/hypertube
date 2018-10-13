@@ -119,7 +119,15 @@ export const loadInfoUser = (query) => {
 			const token = query.token;
 			localStorage.setItem('token', token);
 			let payloadtoken = JSON.parse(atob(token.split('.')[1]));
-			dispatch({type: "INFO_PROFIL", payload: payloadtoken})
+			if (!payloadtoken.email) {
+				axios.get(`http://localhost:8080/api/users/loadinfouser`, {
+					headers: { 'content-type': 'application/json', 'Authorization': token }
+				}).then(({data}) =>{
+					dispatch({type: "INFO_PROFIL", payload: data})
+				}).catch((err) => console.log(err))
+			}
+			else
+				dispatch({type: "INFO_PROFIL", payload: payloadtoken})
 		}
 	}
 }
@@ -193,7 +201,7 @@ export const loadUsers = () => {
 			headers: { 'content-type': 'application/json', 'Authorization': token }
 		}).then((response) =>{
 			dispatch({type: "ALL_USERS", payload: response.data})
-		}).catch((err) => {})
+		}).catch((err) => console.log(err))
 	}
 }
 
@@ -203,12 +211,18 @@ export const loadMail = () => {
 			headers: { 'content-type': 'application/json'}
 		}).then((response) =>{
 			dispatch({type: "LOAD_MAIL", payload: response.data})
-		}).catch((err) => {})
+		}).catch((err) => console.log(err))
 	}
 }
 
-export const loadLanguage = (actualLanguage) => {
+export const loadLanguage = (actualLanguage, filterMovies) => {
 	return (dispatch) => {
+		if (filterMovies.orderBy.label) {
+			filterMovies.orderBy.label = (filterMovies.orderBy.label === 'ORDER BY') ? 'TRIER PAR' : 'ORDER BY'
+			filterMovies.rating.label = (filterMovies.rating.label === 'RATING') ? 'NOTES' : 'RATING'
+            dispatch({type: "FILTER_MOVIES", payload: filterMovies})
+		}
+
 		if (actualLanguage === 'English')
 			dispatch({type: "LOAD_LANGUAGE", payload: allLanguage.english})
 		else if (actualLanguage === 'Français')

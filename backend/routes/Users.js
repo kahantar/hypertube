@@ -219,6 +219,22 @@ module.exports = {
 			return res.json({signPwd: '\u2717', pwd: 'wrongPwd'})
 		}
 	},
+	loadInfoUser: async (req, res) => {
+		const headerAuth = req.headers['authorization'];
+		const userId = jwtUtils.getUserId(headerAuth);
+		if (userId < 0) {
+			return res.status(400).json([{ msg: 'wrong token' }]);
+		}
+		try{
+			const users = await models.User.findOne({ 
+				attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
+				where: { id: userId }
+			});
+			return res.status(201).json(users);
+		}catch(err){
+			res.status(500).json({ 'error': 'cannot fetch user' });
+		}
+	},
 	loadAllUsers: async (req, res) => {
 		const headerAuth = req.headers['authorization'];
 		const userId = jwtUtils.getUserId(headerAuth);
@@ -226,10 +242,6 @@ module.exports = {
 			return res.status(400).json([{ msg: 'wrong token' }]);
 		}
 		try{
-			// const userFound = await models.User.findOne({
-			//                         attributes: ['id', 'email', 'name', 'first_name', 'username', 'img'],
-			//                         where: { id: userId }
-			//                     });
 			const users = await models.User.findAll({ 
 				attributes: ['id', 'name', 'first_name', 'username', 'img'],
 				where: { confirmation: true } 
@@ -240,11 +252,6 @@ module.exports = {
 		}
 	},
 	loadMail: async (req, res) => {
-		// const headerAuth = req.headers['authorization'];
-		// const userId = jwtUtils.getUserId(headerAuth);
-		// if (userId < 0){
-		//     return res.status(400).json([{ msg: 'wrong token' }]);
-		// }
 		try{
 			const users = await models.User.findAll({ 
 				raw: true,

@@ -22,10 +22,6 @@ class Search extends React.Component {
         this.props.loadUsers()
     }
 
-    componentDidMount() {
-        this.props.loadLanguage()
-    }
-
     render(){
         if (localStorage.getItem("token")){
             return (

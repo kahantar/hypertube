@@ -59,7 +59,7 @@ class Form extends React.Component{
 			})
 		}
 		if (this.props.language.length === 0)
-			this.props.loadLanguage('English')
+			this.props.loadLanguage('English', this.props.filterMovies)
 		if (this.props.listMails)
 			this.props.loadMail()
 	}
@@ -214,7 +214,8 @@ const mapStateToProps = (state) => {
 	return {
 		listMails: state.loadMail,
 		language: state.loadLanguage,
-		infoProfil: state.infoProfil
+		infoProfil: state.infoProfil,
+        filterMovies: state.filterMovies
 	}  
 }
 

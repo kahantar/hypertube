@@ -26,7 +26,7 @@ class Menu extends React.Component{
     }
 
     changeLanguage = () => {
-        (this.props.language.language === 'English') ? this.props.loadLanguage('Français') : this.props.loadLanguage('English')
+        (this.props.language.language === 'English') ? this.props.loadLanguage('Français', this.props.filterMovies) : this.props.loadLanguage('English', this.props.filterMovies)
     }
 
     clickOnMenu = async () => {
@@ -91,7 +91,8 @@ class Menu extends React.Component{
 
 const mapStateToProps = (state) => {
     return{
-        language: state.loadLanguage
+        language: state.loadLanguage,
+        filterMovies: state.filterMovies
     }
 }
 

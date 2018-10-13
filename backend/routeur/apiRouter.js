@@ -30,6 +30,7 @@ exports.router = (() => {
 	apiRouter.route('/users/resetemailpassword/').post(users.resetEmailPassword);
 	apiRouter.route('/users/resetpassword/').put(validator.reset, users.resetPassword);
 	apiRouter.route('/users/modificationprofil/').post(users.modificationProfil);
+	apiRouter.route('/users/loadinfouser').get(users.loadInfoUser);
 	apiRouter.route('/users/loadallusers').get(users.loadAllUsers);
 	apiRouter.route('/video/watch/').get(video.stream);
 	apiRouter.route('/video/subtitle/').get(video.subtitle);

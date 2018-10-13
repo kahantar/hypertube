@@ -12,11 +12,10 @@ import { searchMovies } from '../../actions/movie';
 class Home extends React.Component {
     async componentWillMount(){
         if (!this.props.language.length) {
-            await this.props.loadLanguage('English')
+            await this.props.loadLanguage('English', this.props.filterMovies)
             this.props.searchMovies(this.props.filterMovies, this.props.language)
         }
         this.props.loadInfoUser(qs.parse(this.props.location.search))
-        
         setTimeout(() => {
             this.props.history.push('/search')
         }, 200);

@@ -8,10 +8,10 @@ import { Link } from 'react-router-dom'
 
 class Login extends React.Component{
 	componentWillMount() {
-		this.props.loadLanguage('English')
+		this.props.loadLanguage('English', this.props.filterMovies)
 	}
 	changeLanguage = () => {
-		(this.props.language.language === 'English') ? this.props.loadLanguage('Français') : this.props.loadLanguage('English')
+		(this.props.language.language === 'English') ? this.props.loadLanguage('Français', this.props.filterMovies) : this.props.loadLanguage('English', this.props.filterMovies)
 	}
 	render(){
 		if (!localStorage.getItem('token')) {
@@ -33,7 +33,8 @@ class Login extends React.Component{
 const mapStateToProps = (state) => {
 	return {
 		warningLogin: state.warningReducers,
-		language: state.loadLanguage
+		language: state.loadLanguage,
+        filterMovies: state.filterMovies		
 	}
 }
 
