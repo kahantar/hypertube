@@ -106,7 +106,7 @@ export default {
         mystery: 'Mystère',
         war: 'Guerre',
         orderBy: 'TRIER PAR',
-        alphabetical: 'Alphabetique',
+        alphabetical: 'Alphabétique',
         year: 'Année',
         search: 'Recherche',
         addComment: 'Ajouter un commentaire',

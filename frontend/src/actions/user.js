@@ -218,8 +218,23 @@ export const loadMail = () => {
 export const loadLanguage = (actualLanguage, filterMovies) => {
 	return (dispatch) => {
 		if (filterMovies.orderBy.label) {
-			filterMovies.orderBy.label = (filterMovies.orderBy.label === 'ORDER BY') ? 'TRIER PAR' : 'ORDER BY'
-			filterMovies.rating.label = (filterMovies.rating.label === 'RATING') ? 'NOTES' : 'RATING'
+			if (filterMovies.orderBy.label === 'ORDER BY')
+				filterMovies.orderBy.label = 'TRIER PAR'
+			else if (filterMovies.orderBy.label === 'TRIER PAR')
+				filterMovies.orderBy.label = 'ORDER BY'
+			else if (filterMovies.orderBy.label === 'Rating')
+				filterMovies.orderBy.label = 'Notes'
+			else if (filterMovies.orderBy.label === 'Notes')
+				filterMovies.orderBy.label = 'Rating'
+			else if (filterMovies.orderBy.label === 'Alphabetical')
+				filterMovies.orderBy.label = 'Alphabétique'
+			else if (filterMovies.orderBy.label === 'Alphabétique')
+				filterMovies.orderBy.label = 'Alphabetical'
+			else if (filterMovies.orderBy.label === 'Year')
+				filterMovies.orderBy.label = 'Année'
+			else if (filterMovies.orderBy.label === 'Année')
+				filterMovies.orderBy.label = 'Year'
+			filterMovies.rating.label = (filterMovies.rating.label === 'RATING') ? 'NOTES' : (filterMovies.rating.label === 'NOTES') ? 'RATING' : filterMovies.rating.label
             dispatch({type: "FILTER_MOVIES", payload: filterMovies})
 		}
 
