@@ -22,7 +22,7 @@ class Form extends React.Component{
     }
 
     componentDidMount() {
-        const token = JSON.parse(atob(qs.parse(this.props.location.search).token))
+        const token = qs.parse(this.props.location.search).token
         console.log(token)
         if (token)
             this.setState({token: token})
@@ -51,9 +51,16 @@ class Form extends React.Component{
 	}
 
     handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('fer')
-        this.props.resetPasswordUser(this.state, this.props.history);
+		e.preventDefault();
+		const checkValidAllInput = (checkValidInput.pwd(this.state.pwd).sign === '\u2713' && checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).sign === '\u2713') ? true : false
+		if (checkValidAllInput)
+			this.props.resetPasswordUser(this.state, this.props.history);			
+		else {
+			if (checkValidInput.pwd(this.state.pwd).sign === '\u2717')
+				this.setState({pwd: '', confirmPwd: '', signConfirmPwd: '', colorConfirmPwd: '', valueConfirmPwd: ''})
+			if (checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).sign === '\u2717')
+				this.setState({confirmPwd: '', signConfirmPwd: '', colorConfirmPwd: '', valueConfirmPwd: ''})
+		}
     }
     render(){
         return (

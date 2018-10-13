@@ -155,7 +155,7 @@ class Form extends React.Component{
 			if (checkValidInput.pwd(this.state.pwd).sign === '\u2717')
 				this.setState({pwd: '', signPwd: '', colorPwd: '', valuePwd: '', confirmPwd: '', signConfirmPwd: '', colorConfirmPwd: '', valueConfirmPwd: ''})
 			if (checkValidInput.confirmPwd(this.state.confirmPwd, this.state.pwd).sign === '\u2717')
-				this.setState({pwd: '', signPwd: '', colorPwd: '', valuePwd: '', confirmPwd: '', signConfirmPwd: '', colorConfirmPwd: '', valueConfirmPwd: ''})
+				this.setState({confirmPwd: '', signConfirmPwd: '', colorConfirmPwd: '', valueConfirmPwd: ''})
 		}
 	}
 	render(){

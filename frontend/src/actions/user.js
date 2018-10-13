@@ -178,8 +178,8 @@ export const resetPasswordUser = (user, history) => {
 		axios.put(`http://localhost:8080/api/users/resetpassword`, data, {
 			headers: { 'content-type': 'application/json', 'Authorization': user.token }
 		}).then((response) =>{
-			dispatch({type: "MAIL_PWD_SEND", payload: {msg: 'pwdEdit', mail: null}})
-			history.push('/login');
+			dispatch({type: "MAIL_PWD_SEND", payload: {msg: 'pwdEdit', mail: ''}})
+			history.push('/');
 		}).catch((err) => {
 			console.log(err)
 		})

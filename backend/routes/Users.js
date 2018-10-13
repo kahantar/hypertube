@@ -126,7 +126,9 @@ module.exports = {
 		const email = req.body.email;
 		try{
 			const userFound = await models.User.findOne({ where: { email } })
+			console.log(userFound.id)
 			const token = jwtUtils.generateTokenForId(userFound.id)
+			console.log(token)
 			mailer(`Veuillez ouvrir le lien suivant afin de modifier votre mot de passe:  http://localhost:8080/api/users/confirmationemail?token=${token}&info=reset`, userFound.email, "Reinitialisation Password")
 			return res.status(200).json([{msg: "Please open your email"}])
 		}catch(err){

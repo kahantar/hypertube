@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import qs from 'query-string';
+// import qs from 'query-string';
 import { loadInfoUser } from '../../actions/user';
 import { Link } from 'react-router-dom';
 
@@ -9,12 +9,12 @@ import Form from './form';
 import './resetPassword.css'
 
 class ResetPassword extends React.Component{
-    loadInfo = () => {
-        this.props.loadInfoUser(qs.parse(this.props.location.search))
-    }
+    // loadInfo = () => {
+    //     this.props.loadInfoUser(qs.parse(this.props.location.search.token))
+    // }
     render(){
-        if (JSON.stringify(this.props.infoProfil) === '[]')
-            this.loadInfo()
+        // if (JSON.stringify(this.props.infoProfil) === '[]')
+        //     this.loadInfo()
         return(
             <div className='background'>
                 <Link id='logo' to='/'><img src="https://fontmeme.com/permalink/180901/3bd2426f867386d0ba5efba6386554cd.png" alt="hypertube"/></Link>
