@@ -162,10 +162,9 @@ module.exports = {
 				return res.status(201).json({ paths: paths });
 			})
 			.catch(err => {
-				if (err) {
-					console.log('catch sub ');
-				}
-				return res.status(500).json([{ msg: 'os API does not work' }]);
+				if (err)
+					console.log('catch sub');
+				return res.status(404).json([{ msg: 'os API does not work' }]);
 			});
 	},
 

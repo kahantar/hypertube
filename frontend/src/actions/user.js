@@ -178,7 +178,6 @@ export const forgetPasswordUser = (user, history) => {
 
 export const resetPasswordUser = (user, history) => {
 	return (dispatch) => {
-		console.log(user.token)
 		const data = JSON.stringify({
 			password: user.pwd,
 			token: user.token

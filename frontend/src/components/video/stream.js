@@ -37,10 +37,13 @@ class Stream extends React.Component {
 				this.setState({ sub: subt });
 				this.setState({ timer: null });
 			})
-			.catch((err) => { })
+			.catch((err) => { console.log('no sub available or problem') })
 	}
 
 	componentDidMount() {
+		setTimeout(() => {
+			clearInterval(this.state.timer);
+		}, 2500);
 		this.setState({ 
 			timer: setInterval(() => {
 				this.getSubtitle();

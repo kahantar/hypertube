@@ -1,12 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 import Infos from './infos';
 import Stream from './stream';
 import Menu from '../utilsComponent/menu';
+import { loadLanguage } from '../../actions/user';
 import './video.css'
 
 class Video extends React.Component{
+
 	render() {
 		if (localStorage.getItem('token')) {
 			return (
@@ -18,7 +21,7 @@ class Video extends React.Component{
 			);
 		}
 		else {
-			window.location.href = '/';
+			window.location.href = '/home';
 			return (<div></div>);
 		}
 	}
@@ -31,4 +34,10 @@ const mapStateToProps = (state) => {
 	}
 }
 
-export default connect(mapStateToProps)(Video);
+const mapDispatchToProps = (dispatch) => {
+	return {
+		...bindActionCreators({loadLanguage}, dispatch)
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Video);

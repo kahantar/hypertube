@@ -23,7 +23,6 @@ class Form extends React.Component{
 
     componentDidMount() {
         const token = qs.parse(this.props.location.search).token
-        console.log(token)
         if (token)
             this.setState({token: token})
         else

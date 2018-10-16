@@ -159,7 +159,6 @@ class Form extends React.Component{
 		}
 	}
 	render(){
-		console.log('GBUYGUGBNJKLGNCTHGNUHJ<KLMKJ DSYRDXCFGVNJK')
 		return (
 			<form id="Register_form" onSubmit={(e) => this.handleSubmit(e)}>
 				<div className='Register_frame'>
