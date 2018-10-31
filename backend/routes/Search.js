@@ -15,7 +15,7 @@ module.exports = {
                         {source: 'yts'}, 
                         {genre: {[Op.contains]: [req.body.genre.value]}},
                         {rating: {[Op.gte]: req.body.rating.value}},
-                        {title: {[Op.regexp]: req.body.term}}
+                        {title: {[Op.iLike]: `%${req.body.term}%`}}
                     ]
                 }
             }else{
@@ -23,7 +23,7 @@ module.exports = {
                     [Op.and]: [
                         {source: 'yts'},
                         {rating: {[Op.gte]: req.body.rating.value}},
-                        {title: {[Op.regexp]: req.body.term}}
+                        {title: {[Op.iLike]: `%${req.body.term}%`}}
                     ]
                 }
             }
